@@ -1,222 +1,202 @@
-  <aside id="sidebar" class="sidebar break-point-lg has-bg-image">
-      <div class="image-wrapper">
-          <img src="https://user-images.githubusercontent.com/25878302/144499035-2911184c-76d3-4611-86e7-bc4e8ff84ff5.jpg" alt="sidebar background" />
-      </div>
-      <div class="sidebar-layout">
-          <div class="sidebar-header">
-              <span style="
-                text-transform: uppercase;
-                font-size: 15px;
-                letter-spacing: 3px;
-                font-weight: bold;
-              ">Fobpiks</span>
-          </div>
-          <div class="sidebar-content">
-              <nav class="menu open-current-submenu">
-                  <ul>
-                      <li class="menu-item sub-menu">
-                          <a href="#">
-                              <span class="menu-icon">
-                                  <i class="ri-vip-diamond-fill"></i>
-                              </span>
-                              <span class="menu-title">Components</span>
+<aside id="sidebar" class="sidebar break-point-lg has-bg-image">
 
-                          </a>
-                          <div class="sub-menu-list">
-                              <ul>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Grid</span>
-                                      </a>
-                                  </li>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Layout</span>
-                                      </a>
-                                  </li>
-                                  <li class="menu-item sub-menu">
-                                      <a href="#">
-                                          <span class="menu-title">Forms</span>
-                                      </a>
-                                      <div class="sub-menu-list">
-                                          <ul>
-                                              <li class="menu-item">
-                                                  <a href="#">
-                                                      <span class="menu-title">Input</span>
-                                                  </a>
-                                              </li>
-                                              <li class="menu-item">
-                                                  <a href="#">
-                                                      <span class="menu-title">Select</span>
-                                                  </a>
-                                              </li>
-                                              <li class="menu-item sub-menu">
-                                                  <a href="#">
-                                                      <span class="menu-title">More</span>
-                                                  </a>
-                                                  <div class="sub-menu-list">
-                                                      <ul>
-                                                          <li class="menu-item">
-                                                              <a href="#">
-                                                                  <span class="menu-title">CheckBox</span>
-                                                              </a>
-                                                          </li>
-                                                          <li class="menu-item">
-                                                              <a href="#">
-                                                                  <span class="menu-title">Radio</span>
-                                                              </a>
-                                                          </li>
-                                                          <li class="menu-item sub-menu">
-                                                              <a href="#">
-                                                                  <span class="menu-title">Want more ?</span>
-                                                                  <span class="menu-suffix">&#x1F914;</span>
-                                                              </a>
-                                                              <div class="sub-menu-list">
-                                                                  <ul>
-                                                                      <li class="menu-item">
-                                                                          <a href="#">
-                                                                              <span class="menu-prefix">&#127881;</span>
-                                                                              <span class="menu-title">You made it
-                                                                              </span>
-                                                                          </a>
-                                                                      </li>
-                                                                  </ul>
-                                                              </div>
-                                                          </li>
-                                                      </ul>
-                                                  </div>
-                                              </li>
-                                          </ul>
-                                      </div>
-                                  </li>
-                              </ul>
-                          </div>
-                      </li>
-                      <li class="menu-item sub-menu">
-                          <a href="#">
-                              <span class="menu-icon">
-                                  <i class="ri-bar-chart-2-fill"></i>
-                              </span>
-                              <span class="menu-title">Charts</span>
-                          </a>
-                          <div class="sub-menu-list">
-                              <ul>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Pie chart</span>
-                                      </a>
-                                  </li>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Line chart</span>
-                                      </a>
-                                  </li>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Bar chart</span>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </li>
-                      <li class="menu-item sub-menu">
-                          <a href="#">
-                              <span class="menu-icon">
-                                  <i class="ri-shopping-cart-fill"></i>
-                              </span>
-                              <span class="menu-title">E-commerce</span>
-                          </a>
-                          <div class="sub-menu-list">
-                              <ul>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Products</span>
-                                      </a>
-                                  </li>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Orders</span>
-                                      </a>
-                                  </li>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">credit card</span>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </li>
-                      <li class="menu-item sub-menu">
-                          <a href="#">
-                              <span class="menu-icon">
-                                  <i class="ri-global-fill"></i>
-                              </span>
-                              <span class="menu-title">Maps</span>
-                          </a>
-                          <div class="sub-menu-list">
-                              <ul>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Google maps</span>
-                                      </a>
-                                  </li>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Open street map</span>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </li>
-                      <li class="menu-item sub-menu">
-                          <a href="#">
-                              <span class="menu-icon">
-                                  <i class="ri-brush-3-fill"></i>
-                              </span>
-                              <span class="menu-title">Theme</span>
-                          </a>
-                          <div class="sub-menu-list">
-                              <ul>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Dark</span>
-                                      </a>
-                                  </li>
-                                  <li class="menu-item">
-                                      <a href="#">
-                                          <span class="menu-title">Light</span>
-                                      </a>
-                                  </li>
-                              </ul>
-                          </div>
-                      </li>
-                      <li class="menu-item">
-                          <a href="#">
-                              <span class="menu-icon">
-                                  <i class="ri-book-2-fill"></i>
-                              </span>
-                              <span class="menu-title">Documentation</span>
-                          </a>
-                      </li>
-                      <li class="menu-item">
-                          <a href="#">
-                              <span class="menu-icon">
-                                  <i class="ri-calendar-fill"></i>
-                              </span>
-                              <span class="menu-title">Calendar</span>
-                          </a>
-                      </li>
-                      <li class="menu-item">
-                          <a href="#">
-                              <span class="menu-icon">
-                                  <i class="ri-service-fill"></i>
-                              </span>
-                              <span class="menu-title">Examples</span>
-                          </a>
-                      </li>
-                  </ul>
-              </nav>
-          </div>
-          <div class="sidebar-footer"><span>Sidebar footer</span></div>
-      </div>
-  </aside>
+<div class="sidebar-layout">
+    <div class="sidebar-header">
+        <span style="
+         text-transform: uppercase;
+         font-size: 15px;
+         letter-spacing: 3px;
+         font-weight: bold;
+       ">Fabpiks</span>
+    </div>
+    <div class="sidebar-content">
+        <nav class="menu open-current-submenu">
+            <ul>
+                <li class="menu-item ">
+                    <a href="dashboard.php">
+                        <span class="menu-icon">
+                            <i class="ri-bar-chart-fill"></i>
+                        </span>
+                        <span class="menu-title">Dashboard</span>
+
+                    </a>
+
+                </li>
+                <li class="menu-item sub-menu">
+                    <a href="javascript:void">
+                        <span class="menu-icon">
+                            <i class="ri-shopping-bag-line"></i>
+                        </span>
+                        <span class="menu-title">Catalog</span>
+                    </a>
+                    <div class="sub-menu-list">
+                        <ul>
+                            <li class="menu-item sub-menu">
+                                <a href="javascript:void">
+                                    <span class="menu-title">Products</span>
+                                </a>
+                                <div class="sub-menu-list">
+                                    <ul>
+                                        <li class="menu-item">
+                                            <a href="products.php">
+                                                <span class="menu-title">Product </span>
+                                            </a>
+                                        </li>
+                                       
+                                        <li class="menu-item">
+                                            <a href="product-listing.php">
+                                                <span class="menu-title">Product Listing</span>
+                                            </a>
+                                        </li>
+
+                                    </ul>
+                                </div>
+                            </li>
+                            <li class="menu-item">
+                                <a href="product-add.php">
+                                    <span class="menu-title">Product Add</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="{{url('crm/category')}}">
+                                    <span class="menu-title">Product Category</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{url('crm/sub-category')}}">
+                                    <span class="menu-title">Product Sub-Category</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="{{url('crm/attribute')}}">
+                                    <span class="menu-title">Product Attribute</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="{{url('crm/sub-attribute')}}">
+                                    <span class="menu-title">Product Sub Attribute</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="{{url('crm/brand')}}" class="active">
+                                    <span class="menu-title">Brand</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="{{url('crm/brand-store')}}" class="active">
+                                    <span class="menu-title">Brand Store</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+                <li class="menu-item  ">
+                    <a href="brand-store.php">
+                        <span class="menu-icon">
+                            <i class="ri-user-line"></i>
+                        </span>
+                        <span class="menu-title">Customers</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a href="order.php">
+                        <span class="menu-icon">
+                            <i class="ri-book-line"></i>
+                        </span>
+                        <span class="menu-title">Orders</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a href="user.php">
+                        <span class="menu-icon">
+                            <i class="ri-user-line"></i>
+                        </span>
+                        <span class="menu-title">User</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item ">
+                    <a href="survay-question.php">
+                        <span class="menu-icon">
+                            <i class="ri-booklet-line"></i>
+
+                        </span>
+                        <span class="menu-title">Survay Questions</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a href="survay-feedback.php">
+                        <span class="menu-icon">
+                            <i class="ri-booklet-line"></i>
+
+                        </span>
+                        <span class="menu-title">Survay Feedback</span>
+                    </a>
+
+                </li>
+                <li class="menu-item ">
+                    <a href="push-notification.php">
+                        <span class="menu-icon">
+                            <i class="ri-notification-4-line"></i>
+
+                        </span>
+                        <span class="menu-title">Push Notification</span>
+                    </a>
+
+                </li>
+
+                <li class="menu-item sub-menu">
+                    <a href="#">
+                        <span class="menu-icon">
+                            <i class="ri-settings-2-line"></i>
+                        </span>
+                        <span class="menu-title">Settings</span>
+                    </a>
+                    <div class="sub-menu-list">
+                        <ul>
+                            <li class="menu-item">
+                                <a href="general-settings.php">
+                                    <span class="menu-title">General Settings</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="about.php">
+                                    <span class="menu-title">About Us</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="privacy-policy.php">
+                                    <span class="menu-title">Privacy Policy</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="teams-and-conditions.php">
+                                    <span class="menu-title">Teams and Conditions</span>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="refund-policy.php">
+                                    <span class="menu-title">Refund Policy</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </li>
+
+
+            </ul>
+        </nav>
+    </div>
+    <div class="sidebar-footer"><span><a href="#">Help</a> <a href="#">Contact us</a> <a href="#"><i class="ri-logout-box-r-line"></i> Logout</a></span></div>
+</div>
+</aside>

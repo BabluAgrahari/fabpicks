@@ -1,3 +1,5 @@
+
+
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; } const ANIMATION_DURATION = 300;
 
 const SIDEBAR_EL = document.getElementById("sidebar");
@@ -15,10 +17,6 @@ const INNER_SUB_MENUS_BTN = document.querySelectorAll(
 
 
 class PopperObject {
-
-
-
-
     constructor(reference, popperTarget) {
         _defineProperty(this, "instance", null); _defineProperty(this, "reference", null); _defineProperty(this, "popperTarget", null);
         this.init(reference, popperTarget);
@@ -258,3 +256,31 @@ INNER_SUB_MENUS_BTN.forEach(element => {
         slideToggle(element.nextElementSibling);
     });
 });
+
+
+
+$(document).ready(function () {
+    $('#myTable').DataTable();
+    $('#myTable1').DataTable();
+});
+
+
+
+$('#button').on('click', function () {
+    $(".chart-box").removeClass('show');
+    $(".chart-box-1").addClass('show')
+})
+$('#button2').on('click', function () {
+    $(".chart-box").removeClass('show');
+    $(".chart-box-2").addClass('show')
+})
+$('#button3').on('click', function () {
+    $(".chart-box").removeClass('show');
+    $(".chart-box-3").addClass('show')
+})
+$('#button4').on('click', function () {
+    $(".chart-box").removeClass('show');
+    $(".chart-box-4").addClass('show')
+})
+
+

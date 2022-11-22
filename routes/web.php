@@ -1,7 +1,14 @@
 <?php
 
-use App\Http\Controllers\CRM\Auth\Login;
+use App\Http\Controllers\CRM\Auth\LoginController;
 use App\Http\Controllers\CRM\Auth\Register;
+use App\Http\Controllers\CRM\BrandController;
+use App\Http\Controllers\CRM\DashboardController;
+use App\Http\Controllers\CRM\CategoryController;
+use App\Http\Controllers\CRM\SubCategoryController;
+use App\Http\Controllers\CRM\AttributeController;
+use App\Http\Controllers\CRM\SubAttributeController;
+use App\Http\Controllers\CRM\BrandStoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +22,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [Login::class, 'index']);
-Route::post('login', [Login::class, 'login']);
-Route::get('register', [Register::class, 'index']);
-Route::post('register', [Register::class, 'register']);
 
-// Route::get('/', function () {
-//     return view('admin.dashboard');
-// });
+Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
+    Route::get('dashboard', [DashboardController::class, 'index']);
+    Route::resource('brand',BrandController::class);
+    Route::resource('category',CategoryController::class);
+    Route::resource('sub-category',SubCategoryController::class);
+    Route::resource('attribute',AttributeController::class);
+    Route::resource('sub-attribute',SubAttributeController::class);
+    Route::resource('brand-store',BrandStoreController::class);
+});
+
+Route::group(['middleware' => 'guest'], function () {
+    Route::get('/', [LoginController::class, 'index']);
+    Route::post('login', [LoginController::class, 'login']);
+    Route::get('register', [Register::class, 'index']);
+    Route::post('register', [Register::class, 'register']);
+});
+
+
+
