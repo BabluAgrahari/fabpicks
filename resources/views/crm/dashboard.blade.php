@@ -171,7 +171,7 @@
          <div class="row g-0">
 
              <div class="col-md-7">
-                 <table class="table table-dark table-striped products-table" id="myTable">
+                 <table class="table table-light table-striped products-table" id="myTable">
                      <thead>
                          <tr>
                              <th scope="col">#</th>

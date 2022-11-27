@@ -5,6 +5,7 @@ use App\Models\Outlet;
 use App\Models\TransferHistory;
 use App\Models\User;
 use App\Models\Webhook;
+use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 use Ixudra\Curl\Facades\Curl;
 
@@ -55,4 +56,11 @@ if (!function_exists('pr')) {
 function ip_address()
 {
     return !empty($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+}
+
+function settinglogo()
+{
+    $res = Setting::first();
+    // print_r($res);die;
+    return $res;
 }

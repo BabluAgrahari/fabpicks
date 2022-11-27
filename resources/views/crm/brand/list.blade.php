@@ -16,7 +16,7 @@
         </div>
 
         <div class="col-md-12 ">
-            <table class="table table-dark table-striped custom-table" id="dataTable">
+            <table class="table table-light table-striped custom-table" id="dataTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -30,7 +30,7 @@
                     @foreach($lists as $key=>$list)
                     <tr>
                         <th scope="row">{{++$key}}</th>
-                        <td>{{$list->brand_name}}</td>
+                        <td>{{$list->name}}</td>
                         <td><img src="{{asset('brand/'.$list->logo)}}" style="height:50px; width:60px;"></td>
                         <td>{{$list->sort}}</td>
                         <td>
@@ -73,8 +73,8 @@
                                 <div class="col-md-3">
                                     <div class="field-group">
                                         <label for="category-name ">Brand Name</label>
-                                        <input type="text" name="brand_name" id="brandName" class="form-control">
-                                        <span class="text-danger" id="brand_name_msg"></span>
+                                        <input type="text" name="name" id="brandName" class="form-control">
+                                        <span class="text-danger" id="name_msg"></span> 
                                     </div>
                                 </div>
 
@@ -191,7 +191,7 @@
             success: function(res) {
 
                 if (res.status) {
-                    $('#brandName').val(res.record.brand_name);
+                    $('#brandName').val(res.record.name);
                     $('#sort').val(res.record.sort);
                     let status = res.record.status ? true : false;
                     $('#status').prop('checked', status);

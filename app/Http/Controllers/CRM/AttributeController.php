@@ -1,26 +1,23 @@
 <?php
 
 namespace App\Http\Controllers\crm;
-
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\ProductAttribute;
-use App\Http\Request\Product_AttributeRequest;
+use App\Http\Request\AttributeRequest;
+use App\Models\Attribute;
 
 class AttributeController extends Controller
 {
     public function index()
     {   
-        $data['lists'] =ProductAttribute::all();
+        $data['lists'] =Attribute::all();
         return view('crm.attribute.list',$data);
     }
 
-    public function store(Product_AttributeRequest $request)
+    public function store(AttributeRequest $request)
     {
-        $save= new ProductAttribute();
-        $save->category_name    =$request->category_name;
-        $save->discription      =$request->discription;
-        $save->sort             =$request->sort;
+        $save= new Attribute();
+        $save->name             =$request->name;
+        $save->sort             =(int)$request->sort;
         $save->status           =(int)$request->status??'0';
 
         if (!empty($request->file('banner')))
@@ -37,16 +34,15 @@ class AttributeController extends Controller
 
     public function edit($id)
     {
-        $record = ProductAttribute::find($id);
+        $record = Attribute::find($id);
         return response(['status'=>true,'record'=>$record]);
     }
 
-    public function update(Request $request, $id)
+    public function update(AttributeRequest $request, $id)
     {
-        $save= ProductAttribute::find($id);
-        $save->category_name    =$request->category_name;
-        $save->discription      =$request->discription;
-        $save->sort             =$request->sort;
+        $save= Attribute::find($id);
+        $save->name             =$request->name;
+        $save->sort             =(int)$request->sort;
         $save->status           =(int)$request->status??'0';
 
         if (!empty($request->file('banner')))
@@ -56,9 +52,9 @@ class AttributeController extends Controller
             $save->icon  = singleFile($request->file('icon'), 'attribute');
 
             if ($save->save())
-            return response(['status' => true, 'msg' => 'Attribute Added Successfully.']);
+            return response(['status' => true, 'msg' => 'Attribute Update Successfully.']);
 
-        return response(['status' => false, 'msg' => 'Attribute not Added.']);
+        return response(['status' => false, 'msg' => 'Attribute not Update.']);
     }
 
     public function destroy($id)

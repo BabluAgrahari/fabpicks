@@ -4,13 +4,16 @@ namespace App\Http\Controllers\crm;
 
 use App\Http\Controllers\Controller;
 use App\Models\SubAttribute;
+use App\Models\ProductAttribute;
 use App\Http\Request\SubAttributeRequest;
+use App\Models\Attribute;
 use Illuminate\Http\Request;
 
 class SubAttributeController extends Controller
 {
     public function index()
     {
+        $data['attributes']=Attribute::where('status',1)->get();
         $data['lists']=SubAttribute::all();
         return view('crm.subattribute.list',$data);
     }
@@ -18,9 +21,9 @@ class SubAttributeController extends Controller
     public function store(SubAttributeRequest $request)
     {
         $save= new SubAttribute();
-        $save->category_name    =$request->category_name;
-        $save->discription      =$request->discription;
-        $save->sort             =$request->sort;
+        $save->attribute_id     =$request->attribute_id;
+        $save->attribute_name   =$request->attribute_name;
+        $save->sort             =(int)$request->sort;
         $save->status           =(int)$request->status??'0';
 
         if (!empty($request->file('banner')))
@@ -41,13 +44,13 @@ class SubAttributeController extends Controller
         return response(['status'=>true,'record'=>$record]);
     }
 
-    public function update(SubAttributeRequest $request, $id)
+    public function update(SubAttributeRequest $request, $id) 
     {
         $save= SubAttribute::find($id);
-        $save->category_name    =$request->category_name;
-        $save->discription      =$request->discription;
-        $save->sort             =$request->sort;
-        $save->status           =(int)$request->status??'0';
+        $save->attribute_id      =$request->attribute_id;
+        $save->attribute_name    =$request->attribute_name;
+        $save->sort              =(int)$request->sort;
+        $save->status            =(int)$request->status??'0';
 
         if (!empty($request->file('banner')))
             $save->banner  = singleFile($request->file('banner'), 'subattribute');

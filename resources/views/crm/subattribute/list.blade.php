@@ -16,14 +16,12 @@
         </div>
 
         <div class="col-md-12 ">
-            <table class="table table-dark table-striped custom-table" id="myTable">
+            <table class="table table-light table-striped custom-table" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Sub Attributes</th>
-                        <th scope="col">Discription</th>
                         <th scope="col">Sort</th>
-                        <th scope="col">Banner</th>
                         <th scope="col">Icon</th>
                         <th scope="col">Action</th>
                     </tr>
@@ -32,17 +30,12 @@
                     @foreach($lists as $key=>$list)
                     <tr>
                         <th scope="row">{{++$key}}</th>
-                        <td>{{$list->category_name}}</td>
-                        <td>{{$list->discription}}</td>
+                        <td>{{$list->name}}</td>
                         <td>{{$list->sort}}</td>
-
-                        <td><img src="{{asset('subattribute/'.$list->banner)}}" style="height:50px; width:60px;"></td>
                         <td><img src="{{asset('subattribute/'.$list->icon)}}" style="height:50px; width:60px;"></td>
                         <td>
                             <div class="action-group">
                                 <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
-                                <!-- <a href="#"><i class="ri-delete-bin-line"></i>
-                                </a> -->
                             </div>
                         </td>
                     </tr>
@@ -74,43 +67,47 @@
 
                             <div class="col-md-6">
                                 <div class="field-group">
-                                    <label for="category-name ">Category Name</label>
-                                    <input type="text" name="category_name" id="category_name" class="form-control">
+                                    <label>Attribute</label>
+                                    <select name="attribute_id" class="form-control" id="attribute">
+                                        <option value="">Select</option>
+                                        @foreach($attributes as $attr)
+                                        <option value="{{$attr->_id}}">{{ucwords($attr->name)}}</option>
+                                        @endforeach
+                                    </select>
+                                    <span class="text-danger" id="attribute_id_msg"></span> 
                                 </div>
                             </div>
+
                             <div class="col-md-6">
                                 <div class="field-group">
-                                    <label for="discription ">Discription</label>
-                                    <textarea name="discription" id="discription" cols="10" rows="1" class="form-control"></textarea>
+                                    <label>Sub Attribute Name</label>
+                                    <input type="text" name="name" id="name" class="form-control">
                                 </div>
+                                <span class="text-danger" id="name_msg"></span> 
                             </div>
                         </div>
 
                         <div class="row">
-                            <div class="col-md-4">
-                                <div class="field-group">
-                                    <label for="banner">Banner</label>
-                                    <input type="file" name="banner" id="banner" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <div class="field-group">
                                     <label for="icon">Icon</label>
                                     <input type="file" name="icon" id="icon" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="field-group">
                                     <label for="sort ">Sort</label>
                                     <input type="text" name="sort" id="sort" class="form-control">
                                 </div>
+                                <span class="text-danger" id="sort_msg"></span> 
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <div class="field-group">
                                     <div class="form-check form-switch custom-switch">
                                         <label class="form-check-label" for="active">Active/Inactive</label>
                                         <input class="form-check-input" type="checkbox" role="switch" value="1" name="status" id="status" checked>
                                     </div>
+                                    <span class="text-danger" id="status_msg"></span> 
                                 </div>
                             </div>
                         </div>
@@ -200,8 +197,7 @@
             success: function(res) {
 
                 if (res.status) {
-                    $('#category_name').val(res.record.category_name);
-                    $('#discription').val(res.record.discription);
+                    $('#category_name').val(res.record.name);
                     $('#sort').val(res.record.sort);
                     let status = res.record.status ? true : false;
                     $('#status').prop('checked', status);

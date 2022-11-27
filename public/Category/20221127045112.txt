@@ -1,0 +1,64 @@
+Add Beneficary Response
+"api_response": {
+      "status": true,
+      "response_code": 1,
+      "data": {
+        "bene_id": "2826",
+        "bankid": "1115",
+        "bankname": "RBL BANK LIMITED",
+        "name": "BABLU AGRAHARI",
+        "accno": "309010413784",
+        "ifsc": "RATN0000114",
+        "verified": "0",
+        "banktype": "ALL",
+        "status": "1",
+        "bank3": false
+      }}
+
+Remove Beneficary Response
+  "remove_api_res": {
+    "status": "failed",
+    "message": "Beneficiary or Remitter details not found."
+  }
+
+
+Transaction Complete Response
+ "api_response": {
+      "status": true,
+      "response_code": 1,
+      "ackno": "46809",
+      "utr": "204012199354",
+      "txn_status": 1,
+      "benename": "BABLU AGRAHARI",
+      "remarks": " - BABLU AGRAHARI",
+      "message": "Transaction Successful.",
+      "customercharge": "10.00",
+      "gst": "1.53",
+      "tds": "0.19",
+      "netcommission": "4.78",
+      "remitter": "8889988771",
+      "account_number": "309010413784",
+      "paysprint_share": "3.5",
+      "txn_amount": "100",
+      "balance": 19140.24
+    }
+
+Transaction Status Response
+{
+    "status": true,
+    "response_code": 1,
+    "utr": null,
+    "amount": "100",
+    "ackno": "44749",
+    "referenceid": "12345678191",
+    "account": "274110100083392",
+    "txn_status": "4",
+    "message": null,
+    "customercharge": "10.00",
+    "gst": "1.53",
+    "discount": "1.53",
+    "tds": "0.19",
+    "netcommission": "4.78",
+    "daterefunded": null,
+    "refundtxnid": null
+}

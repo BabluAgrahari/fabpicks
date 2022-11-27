@@ -13,12 +13,12 @@ class SubAttributeRequest extends FormRequest
         return true;
     }
 
-    public function rules()
+    public function rules() 
     {
         return [
-            'category_name'     => 'required|string|min:2|max:30',
+            'attribute_id'      => 'required',
+            'name'              => 'required|string|min:2|max:30',
             'sort'              => 'required|numeric',
-            'discription'       => 'required|',
             'status'            => 'nullable|numeric|in:0,1'
         ];
     }

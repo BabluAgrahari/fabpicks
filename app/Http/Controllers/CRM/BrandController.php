@@ -22,10 +22,9 @@ class BrandController extends Controller
     public function store(BrandRequest $request)
     {
         $save = new Brand();
-        $save->brand_name = $request->brand_name;
+        $save->name       = $request->name;
         $save->sort       = (int)$request->sort;
         $save->status     = (int)$request->status ?? 0;
-        // $save->general_setting = $request->general_setting;
 
         //for logo upload
         if (!empty($request->file('logo')))
@@ -40,14 +39,13 @@ class BrandController extends Controller
     public function edit($id)
     {
         $record = Brand::find($id);
-
         return response(['status' => true, 'record' => $record]);
     }
 
     public function update(BrandRequest $request, $id)
     {
         $save = Brand::find($id);
-        $save->brand_name = $request->brand_name;
+        $save->name       = $request->name;
         $save->sort       = (int)$request->sort;
         $save->status     = (int)$request->status ?? 0;
 

@@ -15,7 +15,7 @@
         </div>
 
         <div class="col-md-12">
-            <table class="table table-dark table-striped custom-table" id="myTable">
+            <table class="table table-light table-striped custom-table" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -31,7 +31,7 @@
                     @foreach($lists as $key=>$list)
                     <tr>
                         <th scope="row">{{++$key}}</th>
-                        <td>{{$list->category_name}}</td>
+                        <td>{{$list->name}}</td>
                         <td>{{$list->discription}}</td>
                         <td>{{$list->sort}}</td>
 
@@ -39,8 +39,8 @@
                         <td><img src="{{asset('Category/'.$list->icon)}}" style="height:50px; width:60px;"></td>
                         <td>
                             <div class="action-group">
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove"><i class="ri-delete-bin-line"></i>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><i class="ri-pencil-line"></i></a>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove"><i class="ri-delete-bin-line"></i>
                                 </a>
                             </div>
                         </td>
@@ -73,7 +73,8 @@
                             <div class="col-md-4">
                                 <div class="field-group">
                                     <label for="category-name ">Category Name</label>
-                                    <input type="text" id="category_name" name="category_name" class="form-control">
+                                    <input type="text" id="name" name="name" class="form-control">
+                                    <span class="text-danger" id="name_msg"></span>
                                 </div>
                             </div>
 
@@ -81,6 +82,7 @@
                                 <div class="field-group">
                                     <label for="discription ">Discription</label>
                                     <textarea name="discription" id="discription" cols="10" rows="1" class="form-control"></textarea>
+                                    <span class="text-danger" id="discription_msg"></span>
                                 </div>
                             </div>
                         </div>
@@ -102,6 +104,7 @@
                                 <div class="field-group">
                                     <label for="sort ">Sort</label>
                                     <input type="text" id="sort" name="sort" class="form-control">
+                                    <span class="text-danger" id="sort_msg"></span>
                                 </div>
                             </div>
                             <div class="col-md-3">
@@ -109,6 +112,7 @@
                                     <div class="form-check form-switch custom-switch">
                                         <label class="form-check-label" for="active">Active/Inactive</label>
                                         <input class="form-check-input" name="status" type="checkbox" value="1" role="switch" id="status" checked>
+                                        <span class="text-danger" id="status_msg"></span>
                                     </div>
                                 </div>
                             </div>
@@ -197,7 +201,7 @@
             success: function(res) {
 
                 if (res.status) {
-                    $('#category_name').val(res.record.category_name);
+                    $('#name').val(res.record.name);
                     $('#discription').val(res.record.discription);
                     $('#sort').val(res.record.sort);
                     let status = res.record.status ? true : false;

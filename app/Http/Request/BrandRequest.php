@@ -16,7 +16,7 @@ class BrandRequest extends FormRequest
     public function rules()
     {
         return [
-            'brand_name'  => 'required|string|min:2|max:30',
+            'name'        => 'required|string|min:2|max:30',
             'logo'        => 'nullable',
             'sort'        => 'required|numeric',
             'status'      => 'nullable|numeric|in:0,1'

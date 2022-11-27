@@ -15,7 +15,7 @@
         </div>
 
         <div class="col-md-12 ">
-            <table class="table table-dark table-striped custom-table" id="myTable">
+            <table class="table table-light table-striped custom-table" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -31,7 +31,7 @@
                     @foreach($lists as $key=>$list)
                     <tr>
                         <th scope="row">{{++$key}}</th>
-                        <td>{{$list->sub_category_name}}</td>
+                        <td>{{$list->name}}</td>
                         <td>{{$list->discription}}</td>
                         <td>{{$list->sort}}</td>
                         <td><img src="{{asset('SubCategory/'.$list->banner)}}" style="height:50px; width:60px;"></td>
@@ -71,25 +71,28 @@
                             <div class="col-md-4">
                                 <div class="field-group">
                                     <label>Category</label>
-                                    <select name="category" class="form-control" id="category">
+                                    <select name="category_id" class="form-control" id="category"> 
                                         <option value="">Select</option>
                                         @foreach($categories as $cat)
-                                        <option value="{{$cat->_id}}">{{ucwords($cat->category_name)}}</option>
+                                        <option value="{{$cat->_id}}">{{ucwords($cat->name)}}</option>
                                         @endforeach
                                     </select>
+                                    <span class="text-danger" id="category_id_msg"></span>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="field-group">
                                     <label for="category-name ">Sub Category Name</label>
-                                    <input type="text" id="sub_category_name" name="sub_category_name" class="form-control">
+                                    <input type="text" id="name" name="name" class="form-control">
                                 </div>
+                                <span class="text-danger" id="name_msg"></span>
                             </div>
                             <div class="col-md-4">
                                 <div class="field-group">
                                     <label for="discription ">Discription</label>
                                     <textarea id="discription" name="discription" cols="10" rows="1" class="form-control"></textarea>
                                 </div>
+                                <span class="text-danger" id="discription_msg"></span>
                             </div>
                         </div>
 
@@ -111,6 +114,7 @@
                                     <label for="sort ">Sort</label>
                                     <input type="text" name="sort" id="sort" class="form-control">
                                 </div>
+                                <span class="text-danger" id="sort_msg"></span>
                             </div>
                             <div class="col-md-3">
                                 <div class="field-group">
@@ -118,6 +122,7 @@
                                         <label class="form-check-label" for="active">Active/Inactive</label>
                                         <input class="form-check-input" type="checkbox" role="switch" value="1" name="status" id="status" checked>
                                     </div>
+                                    <span class="text-danger" id="status_msg"></span>
                                 </div>
                             </div>
                             <div class="col-md-12 text-center">
@@ -203,7 +208,7 @@
             success: function(res) {
 
                 if (res.status) {
-                    $('#sub_category_name').val(res.record.sub_category_name);
+                    $('#name').val(res.record.name);
                     $('#discription').val(res.record.discription);
                     $('#sort').val(res.record.sort);
                     let status = res.record.status ? true : false;

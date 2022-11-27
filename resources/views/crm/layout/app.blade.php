@@ -35,7 +35,7 @@
                             <ul class="dropdown-menu">
                                 <li><button class="dropdown-item" type="button">Profile</button></li>
                                 <li><button class="dropdown-item" type="button">Setting</button></li>
-                                <li><button class="dropdown-item" type="button">Logout</button></li>
+                                <li><button class="dropdown-item" type="button"> <a href="{{url('crm/logout')}}">logout</a> </button></li>
                             </ul>
                         </div>
 
@@ -63,12 +63,16 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 
     <script src="{{asset('assets')}}/js/main.js"></script>
+    <script src="{{asset('assets')}}/js/texteditor.js"></script>
 
     <script>
         function alertMsg(status, msg, delay = 1000, remove = false) {
 
             let classN = status ? 'success' : 'danger';
             let selector = remove ? 'messageRemove' : 'message';
+            // if(customSelector)
+            // let selector = customSelector;
+
             $('#' + selector).html(`<div class="alert alert-${classN} alert-dismissible fade show" role="alert">
                     <strong>${msg}</strong>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`).fadeIn();
@@ -100,6 +104,10 @@
                 });
 
             }
+        }
+
+        function defaultImg(size='100x100'){
+            return `https://via.placeholder.com/${size}`;
         }
     </script>
     @stack('modal');

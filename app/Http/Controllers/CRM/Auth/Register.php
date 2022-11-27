@@ -33,4 +33,5 @@ class Register extends Controller
 
         return redirect()->back()->whit('error','Account not Created.');
     }
+
 }

@@ -7,13 +7,14 @@
          font-size: 15px;
          letter-spacing: 3px;
          font-weight: bold;
-       ">Fabpiks</span>
+       ">Fabpicks</span>
+       
     </div>
     <div class="sidebar-content">
         <nav class="menu open-current-submenu">
             <ul>
                 <li class="menu-item ">
-                    <a href="dashboard.php">
+                    <a href="{{url('crm/dashboard')}}">
                         <span class="menu-icon">
                             <i class="ri-bar-chart-fill"></i>
                         </span>
@@ -31,30 +32,10 @@
                     </a>
                     <div class="sub-menu-list">
                         <ul>
-                            <li class="menu-item sub-menu">
-                                <a href="javascript:void">
-                                    <span class="menu-title">Products</span>
-                                </a>
-                                <div class="sub-menu-list">
-                                    <ul>
-                                        <li class="menu-item">
-                                            <a href="products.php">
-                                                <span class="menu-title">Product </span>
-                                            </a>
-                                        </li>
-                                       
-                                        <li class="menu-item">
-                                            <a href="product-listing.php">
-                                                <span class="menu-title">Product Listing</span>
-                                            </a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
+                            
                             <li class="menu-item">
-                                <a href="product-add.php">
-                                    <span class="menu-title">Product Add</span>
+                                <a href="{{url('crm/product')}}">
+                                    <span class="menu-title">Product</span>
                                 </a>
                             </li>
 
@@ -65,9 +46,16 @@
                             </li>
                             <li class="menu-item">
                                 <a href="{{url('crm/sub-category')}}">
-                                    <span class="menu-title">Product Sub-Category</span>
+                                    <span class="menu-title">Product Sub Category</span>
                                 </a>
                             </li>
+
+                            <li class="menu-item">
+                                <a href="{{url('crm/child-category')}}">
+                                    <span class="menu-title">Product Child Category</span>
+                                </a>
+                            </li>
+
                             <li class="menu-item">
                                 <a href="{{url('crm/attribute')}}">
                                     <span class="menu-title">Product Attribute</span>
@@ -86,17 +74,11 @@
                                 </a>
                             </li>
 
-                            <li class="menu-item">
-                                <a href="{{url('crm/brand-store')}}" class="active">
-                                    <span class="menu-title">Brand Store</span>
-                                </a>
-                            </li>
-
                         </ul>
                     </div>
                 </li>
                 <li class="menu-item  ">
-                    <a href="brand-store.php">
+                    <a href="{{url('crm/brand-store')}}">
                         <span class="menu-icon">
                             <i class="ri-user-line"></i>
                         </span>
@@ -105,7 +87,7 @@
 
                 </li>
                 <li class="menu-item ">
-                    <a href="order.php">
+                    <a href="{{url('crm/order')}}">
                         <span class="menu-icon">
                             <i class="ri-book-line"></i>
                         </span>
@@ -114,7 +96,7 @@
 
                 </li>
                 <li class="menu-item ">
-                    <a href="user.php">
+                    <a href="{{url('register')}}">
                         <span class="menu-icon">
                             <i class="ri-user-line"></i>
                         </span>
@@ -124,7 +106,7 @@
                 </li>
 
                 <li class="menu-item ">
-                    <a href="survay-question.php">
+                    <a href="{{url('crm/survay')}}">
                         <span class="menu-icon">
                             <i class="ri-booklet-line"></i>
 
@@ -134,7 +116,7 @@
 
                 </li>
                 <li class="menu-item ">
-                    <a href="survay-feedback.php">
+                    <a href="{{url('crm/sfeedback')}}">
                         <span class="menu-icon">
                             <i class="ri-booklet-line"></i>
 
@@ -144,7 +126,7 @@
 
                 </li>
                 <li class="menu-item ">
-                    <a href="push-notification.php">
+                    <a href="{{url('crm/push-notification')}}">
                         <span class="menu-icon">
                             <i class="ri-notification-4-line"></i>
 
@@ -164,27 +146,27 @@
                     <div class="sub-menu-list">
                         <ul>
                             <li class="menu-item">
-                                <a href="general-settings.php">
+                                <a href="{{url('crm/general')}}">
                                     <span class="menu-title">General Settings</span>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="about.php">
+                                <a href="{{url('crm/aboutus')}}">
                                     <span class="menu-title">About Us</span>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="privacy-policy.php">
+                                <a href="{{url('crm/privacy')}}">
                                     <span class="menu-title">Privacy Policy</span>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="teams-and-conditions.php">
+                                <a href="{{url('crm/conditions')}}">
                                     <span class="menu-title">Teams and Conditions</span>
                                 </a>
                             </li>
                             <li class="menu-item">
-                                <a href="refund-policy.php">
+                                <a href="{{url('crm/refund')}}">
                                     <span class="menu-title">Refund Policy</span>
                                 </a>
                             </li>
@@ -192,8 +174,6 @@
                         </ul>
                     </div>
                 </li>
-
-
             </ul>
         </nav>
     </div>

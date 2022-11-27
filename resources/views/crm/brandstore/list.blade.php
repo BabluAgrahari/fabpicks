@@ -13,7 +13,7 @@
             </button>
         </div>
         <div class="col-md-12 ">
-            <table class="table table-dark table-striped custom-table" id="myTable">
+            <table class="table table-light table-striped custom-table" id="myTable">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -83,22 +83,25 @@
 
                                         </select>
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Choose Store Owner</span>
+                                        <span class="text-danger" id="store_owner_msg"></span>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="store-name ">Store Name: <span class="required">*</span></label>
-                                        <input type="text" id="store_name" name="store_name" class="form-control" placeholder="Store Name" required>
+                                        <input type="text" id="store_name" name="store_name" class="form-control" placeholder="Store Name">
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Enter Store Name</span>
+                                        <span class="text-danger" id="store_name_msg"></span>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="business-email ">Business Email: <span class="required">*</span></label>
-                                        <input type="text" id="email" name="email" class="form-control" placeholder="Business Email" required>
+                                        <input type="text" id="email" name="email" class="form-control" placeholder="Business Email">
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter business email</span>
+                                        <span class="text-danger" id="email_msg"></span>
                                     </div>
                                 </div>
                             </div>
@@ -108,6 +111,7 @@
                                         <label for="vat/gstin ">VAT/GSTIN No: </label>
                                         <input type="text" id="gstin" name="gstin" class="form-control" placeholder="Please enter your VAT/GSTIN No. ">
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter your VAT/GSTIN No. </span>
+                                        <span class="text-danger" id="gstin_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -115,13 +119,15 @@
                                         <label for="phone ">Phone: </label>
                                         <input type="text" id="phone" name="phone" class="form-control" placeholder="Please enter your phone No. ">
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter your phone No. </span>
+                                        <span class="text-danger" id="phone_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="mobile ">Mobile: <span class="required">*</span></label>
-                                        <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Please enter your mobile No. " required>
+                                        <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Please enter your mobile No. ">
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter your mobile No. </span>
+                                        <span class="text-danger" id="mobile_msg"></span>
                                     </div>
                                 </div>
 
@@ -130,8 +136,9 @@
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="address ">Store Address: <span class="required">*</span></label>
-                                        <textarea name="address" id="address" class="form-control" required></textarea>
+                                        <textarea name="address" id="address" class="form-control" ></textarea>
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter store address </span>
+                                        <span class="text-danger" id="address_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -386,6 +393,7 @@
 
                                         </select>
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Please select Country</span>
+                                        <span class="text-danger" id="country_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -397,6 +405,7 @@
                                             <option value="State 2">State 2 </option>
                                         </select>
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Please select State</span>
+                                        <span class="text-danger" id="state_msg"></span>
                                     </div>
                                 </div>
                             </div>
@@ -411,6 +420,7 @@
                                             <option value="city 2">city 2 </option>
                                         </select>
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Please select city</span>
+                                        <span class="text-danger" id="city_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -418,6 +428,7 @@
                                         <label for="pincode/zipcode ">Pincode/Zipcode: </label>
                                         <input type="text" id="pincode" name="pincode" class="form-control" placeholder="Pincode/Zipcode">
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Enter Store Name</span>
+                                        <span class="text-danger" id="pincode_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
@@ -436,6 +447,7 @@
                                             <label class="form-check-label" for="store">Store</label>
                                             <input class="form-check-input" type="checkbox" role="switch" value="1" name="store" id="store" checked>
                                             <span class="note">(Toggle the store status.)</span>
+                                            <span class="text-danger" id="store_msg"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -443,8 +455,9 @@
                                     <div class="field-group">
                                         <div class="form-check form-switch custom-switch custom-switch-1">
                                             <label class="form-check-label" for="verified-store">Verified Store:</label>
-                                            <input class="form-check-input" type="checkbox" role="switch" name="" id="verified-store">
+                                            <input class="form-check-input" type="checkbox" role="switch" name="verified_store" value="1" id="verified_store">
                                             <span class="note">(On The Product Details page if store if verified than it will and () Symbol next to the store name)</span>
+                                            <span class="text-danger" id="verified_store_msg"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -551,6 +564,8 @@
                     $('#pincode').val(res.record.pincode);
                     let store = res.record.store ? true : false;
                     $('#store').prop('checked', store);
+                    let verified_store = res.record.verified_store ? true : false;
+                    $('#verified_store').prop('checked', verified_store);
 
                     $('#BrandStoreLabel').html('Edit Attribute');
                     $('#save').html('Update');

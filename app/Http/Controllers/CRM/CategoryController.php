@@ -3,23 +3,23 @@
 namespace App\Http\Controllers\crm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\ProductCategory;
+use App\Models\Category;
 use App\Http\Request\CategoryRequest;
 
 class CategoryController extends Controller
 {
     public function index()
     {
-        $data['lists']= ProductCategory::all();
+        $data['lists']= Category::all();
         return view('crm.category.list',$data);
     }
 
     public function store(CategoryRequest $request)
     {
-        $save= new ProductCategory();
-        $save->category_name    =$request->category_name;
+        $save= new Category();
+        $save->name    =$request->name;
         $save->discription      =$request->discription;
-        $save->sort             =$request->sort;
+        $save->sort             =(int)$request->sort;
         $save->status           =(int)$request->status??'0';
 
         if (!empty($request->file('banner')))
@@ -35,16 +35,16 @@ class CategoryController extends Controller
  
     public function edit($id)
     {
-        $record = ProductCategory::find($id);
+        $record = Category::find($id);
         return response(['status'=>true,'record'=>$record]);
     }
 
     public function update(CategoryRequest $request, $id)
     {
-        $save=ProductCategory::find($id);
-        $save->category_name    =$request->category_name;
+        $save=Category::find($id);
+        $save->name             =$request->name;
         $save->discription      =$request->discription;
-        $save->sort             =$request->sort;
+        $save->sort             =(int)$request->sort;
         $save->status           =(int)$request->status??'0';
 
         if (!empty($request->file('banner')))
@@ -61,7 +61,7 @@ class CategoryController extends Controller
 
     public function destroy($id)
     {
-        $res = ProductCategory::destroy($id);
+        $res = Category::destroy($id);
         if ($res)
             return response(['status' => true, 'msg' => 'Category Removed Successfully.']);
 

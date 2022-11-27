@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 
-class Product_AttributeRequest extends FormRequest
+class GeneralSettingsRequest extends FormRequest
 {
     public function authorize()
     {
@@ -16,10 +16,10 @@ class Product_AttributeRequest extends FormRequest
     public function rules()
     {
         return [
-            'category_name'     => 'required|string|min:2|max:30',
-            'sort'              => 'required|numeric',
-            'discription'       => 'required|',
-            'status'            => 'nullable|numeric|in:0,1'
+            'general_setting[company_name]'             => 'required|string|min:2|max:30',
+            'general_setting[company_email]'            => 'required|email',
+            'general_setting[company_phone]'            => 'required',
+            'general_setting[company_address]'          => 'required'   
         ];
     }
 
