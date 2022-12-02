@@ -4,12 +4,33 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use Exception;
 
 class BrandController extends Controller
 {
     public function index()
     {
-        $data = Brand::all();
-        return response()->json($data,200);
+        try {
+
+            $record = Brand::where('status', 1)->latest()->get();
+
+            if ($record->isEmpty())
+                return $this->notFoundRes();
+
+            return $this->successRes($record);
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
+
+
+    public function show($id)
+    {
+        try {
+            $record = Brand::find($id);
+            return $this->successRes($record);
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
     }
 }

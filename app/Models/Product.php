@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends BaseModel
 {
     use HasFactory;
+
+    public function SubCategory(){
+
+        return $this->hasOne(SubCategory::class,'_id','sub_category');
+    }
 }

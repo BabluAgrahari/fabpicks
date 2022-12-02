@@ -1,6 +1,16 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\BrandController;
+use App\Http\Controllers\Api\Auth\LoginController;
+use App\Http\Controllers\Api\CategoryController;
+use App\Http\controllers\Api\SubCategoryController;
+use App\Http\Controllers\Api\AttributeController;
+use App\Http\Controllers\Api\SubAttributeController;
+use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\OrderController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,9 +24,62 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::controller(BrandController::class)->group(function(){
-Route::get('brand','index');
+
+Route::post('register', [RegisterController::class, 'register']);
+Route::post('login', [LoginController::class, 'login']);
+
+Route::group(['middleware' => ['jwt.verify']], function () {
+
+    Route::controller(BrandController::class)->group(function () {
+        Route::get('brand', 'index');
+        Route::get('brand/{id}', 'show');
+    });
+
+    Route::controller(CategoryController::class)->group(function () {
+        Route::get('category', 'index');
+        Route::get('category/{id}', 'show');
+    });
+
+    Route::controller(SubCategoryController::class)->group(function () {
+        Route::get('sub-category', 'index');
+        Route::get('sub-category/{id}','show');
+    });
+
+    Route::controller(AttributeController::class)->group(function(){
+        Route::get('attribute','index');
+        Route::get('attribute/{id}','show');
+    });
+
+    Route::controller(SubAttributeController::class)->group(function(){
+        Route::get('sub-attribute','index');
+        Route::get('sub-attribute/{id}','show');
+    });
+
+    Route::controller(ClientController::class)->group(function(){
+        Route::get('client','index');
+        Route::get('client/{id}','show');
+    });
+
+    Route::controller(ProductController::class)->group(function(){
+        Route::get('product','index');
+        Route::get('product/{id}','show');
+    });
+
+    Route::controller(UserController::class)->group(function(){
+        Route::put('user/{id}','update');
+        Route::get('user/{id}','show');
+       
+    });
+
+    Route::controller(OrderController::class)->group(function(){
+        Route::post('order','store');
+        Route::get('order','index');
+        Route::get('order/{id}','show');
+    });
+      
+
 });
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();

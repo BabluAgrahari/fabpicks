@@ -33,7 +33,7 @@
                         <td>{{$list->user_group}}</td>
                         <td>{{$list->subject}}</td>
                         <td>{{$list->notification}}</td>
-                        <td><img src="{{asset('pushNotification/'.$list->icon)}}" style="height:50px; width:60px;"></td>
+                        <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                         <td>
                             <div class="action-group">
                                 <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>

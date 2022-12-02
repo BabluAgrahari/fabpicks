@@ -9,7 +9,7 @@ class Timestamp
     public function saving($model)
     {
         if (empty($model->_id)){
-            $model->login_id = Auth::user()->_id;
+            $model->user_id = Auth::user()->_id;
             $model->parent_id = Auth::user()->parent_id;
             $model->created = time();
         }

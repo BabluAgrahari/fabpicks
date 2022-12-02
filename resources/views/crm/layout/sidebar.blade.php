@@ -51,12 +51,6 @@
                             </li>
 
                             <li class="menu-item">
-                                <a href="{{url('crm/child-category')}}">
-                                    <span class="menu-title">Product Child Category</span>
-                                </a>
-                            </li>
-
-                            <li class="menu-item">
                                 <a href="{{url('crm/attribute')}}">
                                     <span class="menu-title">Product Attribute</span>
                                 </a>
@@ -78,11 +72,11 @@
                     </div>
                 </li>
                 <li class="menu-item  ">
-                    <a href="{{url('crm/brand-store')}}">
+                    <a href="{{url('crm/client')}}">
                         <span class="menu-icon">
                             <i class="ri-user-line"></i>
                         </span>
-                        <span class="menu-title">Customers</span>
+                        <span class="menu-title">Client</span>
                     </a>
 
                 </li>
@@ -100,7 +94,7 @@
                         <span class="menu-icon">
                             <i class="ri-user-line"></i>
                         </span>
-                        <span class="menu-title">User</span>
+                        <span class="menu-title">Customer</span>
                     </a>
 
                 </li>

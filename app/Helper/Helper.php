@@ -28,6 +28,7 @@ if (!function_exists('singleFile')) {
 
     function singleFile($file, $folder)
     {
+        $folder = strtolower($folder);
         if ($file) {
             if (!file_exists($folder))
                 mkdir($folder, 0777, true);
@@ -36,7 +37,8 @@ if (!function_exists('singleFile')) {
             $profileImage = date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $profileImage);
             $fileName = "$profileImage";
-            return $fileName;
+
+            return asset($folder).'/'.$fileName;
         }
         return false;
     }
@@ -64,3 +66,10 @@ function settinglogo()
     // print_r($res);die;
     return $res;
 }
+
+
+function defaultImg($size='100x100'){
+    return 'https://via.placeholder.com/'.$size;
+}
+
+

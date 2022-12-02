@@ -28,10 +28,18 @@ class Register extends Controller
         $save->name = $request->name;
         $save->email = $request->email;
         $save->password = Hash::make($request->password);
-        if($save->save())
+        $save->role = 'admin';
+        if(!$save->save())
+        return redirect()->back()->whit('error','Account not Created.');
+
+        //for store user id as a parent id in user collection
+        $id = $save->_id;
+        $user = User::find($id);
+        $user->parent_id = $id;
+        $user->save();
+        
         return redirect('/')->with('success','Account Created Successfully.');
 
-        return redirect()->back()->whit('error','Account not Created.');
     }
 
 }

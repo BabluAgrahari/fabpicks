@@ -7,134 +7,43 @@
         </div>
 
         <div class="col-md-9 product-btn-group ml-auto">
-          <a href="{{url('crm/product/create')}}" class="btn btn-success btn-sm"><i class="ri-add-circle-line"></i> Add</a>
+            <a href="{{url('crm/product/create')}}" class="btn btn-success btn-sm"><i class="ri-add-circle-line"></i> Add</a>
         </div>
 
         <div class="col-md-12 mt-5">
-            <table class="table table-light   table-striped products-table" id="myTable">
+            <table class="table table-light table-striped custom-table">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Order Id</th>
-                        <th scope="col">Price</th>
-                        <th scope="col">Sold</th>
-                        <th scope="col">Sales</th>
+                        <th>#</th>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Type</th>
+                        <th>Category</th>
+                        <th>Trail Point</th>
+                        <th>Sale Price</th>
+                        <th>Rewards Point</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
+                    @foreach($lists as $key=>$list)
                     <tr>
-                        <th scope="row">1</th>
-                        <td>Product - 1</td>
-                        <td>#4545</td>
-                        <td>Rs. 455</td>
-                        <td>984</td>
-                        <td>Rs. 12984</td>
+                        <th scope="row">{{++$key}}</th>
+                        <td><img src="{{$list->image ?? defaultImg()}}" style="height:50px; width:60px;"> </td>
+                        <td>{{ucwords($list->name)}}</td>
+                        <td>{{ucwords(str_replace('_',' ',$list->product_type))}}</td>
+                        <td>{{!empty($list->SubCategory->Category->name)?$list->SubCategory->Category->name:''}}/{{ !empty($list->SubCategory->name)?$list->SubCategory->name:''}}</td>
+                        <td>{{$list->trail_point}}</td>
+                        <td>{{$list->sale_price}}</td>
+                        <td>{{$list->rewards_point}}</td>
+                        <td>
+                            <div class="action-group">
+                                <a href="{{url('crm/product/'.$list->_id)}}/edit"  class="edit text-info"><i class="ri-pencil-line"></i></a>
+                                </a>
+                            </div>
+                        </td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Product - 2</td>
-                        <td>#45455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Product - 3</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Product - 4</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Product - 5</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Product - 6</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Product - 7</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Product - 7</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Product - 7</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Product - 7</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Product - 7</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Product - 7</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Product - 7</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Product - 7</td>
-                        <td>#455</td>
-                        <td>Rs. 4565</td>
-                        <td>9834</td>
-                        <td>Rs. 129384</td>
-                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>

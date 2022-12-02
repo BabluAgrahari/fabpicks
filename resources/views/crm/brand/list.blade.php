@@ -16,7 +16,7 @@
         </div>
 
         <div class="col-md-12 ">
-            <table class="table table-light table-striped custom-table" id="dataTable">
+            <table class="table table-light table-striped custom-table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -31,7 +31,7 @@
                     <tr>
                         <th scope="row">{{++$key}}</th>
                         <td>{{$list->name}}</td>
-                        <td><img src="{{asset('brand/'.$list->logo)}}" style="height:50px; width:60px;"></td>
+                        <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                         <td>{{$list->sort}}</td>
                         <td>
                             <div class="action-group">

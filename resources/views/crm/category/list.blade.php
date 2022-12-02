@@ -15,7 +15,7 @@
         </div>
 
         <div class="col-md-12">
-            <table class="table table-light table-striped custom-table" id="myTable">
+            <table class="table table-light table-striped custom-table">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -35,8 +35,8 @@
                         <td>{{$list->discription}}</td>
                         <td>{{$list->sort}}</td>
 
-                        <td><img src="{{asset('Category/'.$list->banner)}}" style="height:50px; width:60px;"></td>
-                        <td><img src="{{asset('Category/'.$list->icon)}}" style="height:50px; width:60px;"></td>
+                        <td><img src="{{$list->banner ?? defaultImg()}}" style="height:50px; width:60px;"></td>
+                        <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                         <td>
                             <div class="action-group">
                                 <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><i class="ri-pencil-line"></i></a>

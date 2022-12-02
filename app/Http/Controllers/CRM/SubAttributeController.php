@@ -22,12 +22,9 @@ class SubAttributeController extends Controller
     {
         $save= new SubAttribute();
         $save->attribute_id     =$request->attribute_id;
-        $save->attribute_name   =$request->attribute_name;
+        $save->name             =$request->name;
         $save->sort             =(int)$request->sort;
         $save->status           =(int)$request->status??'0';
-
-        if (!empty($request->file('banner')))
-            $save->banner  = singleFile($request->file('banner'), 'subattribute');
 
             if (!empty($request->file('icon')))
             $save->icon  = singleFile($request->file('icon'), 'subattribute');
@@ -48,7 +45,7 @@ class SubAttributeController extends Controller
     {
         $save= SubAttribute::find($id);
         $save->attribute_id      =$request->attribute_id;
-        $save->attribute_name    =$request->attribute_name;
+        $save->name              =$request->name;
         $save->sort              =(int)$request->sort;
         $save->status            =(int)$request->status??'0';
 

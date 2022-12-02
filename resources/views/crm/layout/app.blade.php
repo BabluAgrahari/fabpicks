@@ -106,9 +106,13 @@
             }
         }
 
-        function defaultImg(size='100x100'){
+        function defaultImg(size = '100x100') {
             return `https://via.placeholder.com/${size}`;
         }
+
+        $('.modal').on('hidden.bs.modal', function() {
+            location.reload();
+        })
     </script>
     @stack('modal');
     @stack('js')

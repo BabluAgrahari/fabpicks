@@ -17,7 +17,7 @@
     </div>
 
     <div class="col-md-12 ">
-      <table class="table table-light table-striped products-table" id="myTable">
+      <table class="table table-light table-striped products-table">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -58,7 +58,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="survayLabel">Survay Add</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
 
