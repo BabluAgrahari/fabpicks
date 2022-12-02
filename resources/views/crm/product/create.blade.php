@@ -6,7 +6,7 @@
         <div class="col-md-6">
             <h4 class="page-title">Add Product</h4>
         </div>
-        <div class="col-md-6"  style="text-align: right;">
+        <div class="col-md-6" style="text-align: right;">
             <a href="{{url('crm/product')}}" class="btn btn-primary btn-sm ">Back</a>
         </div>
     </div>
@@ -17,23 +17,81 @@
 
             <div class="col-md-6">
                 <div class="field-group">
-                    <label for="product-name ">Product Name </label>
+                    <label for="product-name">Product Name </label>
                     <input type="text" name="name" id="name" class="form-control" placeholder="Product Name">
                     <span class="text-danger" id="name_msg"></span>
                 </div>
 
+                <div class="field-group">
+                    <label for="product-name">Tags</label>
+                    <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter Tags">
+                    <span class="text-danger" id="tags_msg"></span>
+                </div>
+
+                <div class="row">
+                    <div class="field-group col-md-6">
+                        <label for="product-brand">Brand</label>
+                        <select name="brand_id" id="product-brand" class="form-select js-example-basic-single">
+                            <option value="">Select</option>
+                            @foreach($brands as $val)
+                            <option value="{{$val->_id}}">{{ucwords($val->name)}}</option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger" id="brand_id_msg"></span>
+                    </div>
+
+                    <div class="field-group col-md-6">
+                        <label for="sub-category">Category/Sub Category</label>
+                        <select name="sub_category" id="sub_category" class="form-select js-example-basic-single">
+                            <option value="">Select Category</option>
+                            @foreach($subCategories as $val)
+                            <option value="{{$val->_id}}">{{!empty($val->Category->name)?ucwords($val->Category->name):''}}/{{ucwords($val->name)}}</option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger" id="sub_category_msg"></span>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="field-group">
+                            <label for="mrp">MRP</label>
+                            <input type="text" name="mrp" id="mrp" class="form-control" placeholder="Enter MRP">
+                            <span class="text-danger" id="mrp_msg"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="field-group">
+                            <label for="offer-price">Offer Price</label>
+                            <input type="text" name="offer_price" id="offer-price" class="form-control" placeholder="Enter Price">
+                            <span class="text-danger" id="offer_price_msg"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="field-group">
+                            <label for="minimum-qty">Maximum Qty per User</label>
+                            <input type="text" name="maximum_qty" id="minimum-qty" class="form-control" placeholder="Enter Qty">
+                            <span class="text-danger" id="maximum_qty_msg"></span>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="field-group">
+                            <label for="product-expire-date">Product Expire Date</label>
+                            <input type="date" name="expire_date" id="product-expire-date" class="form-control">
+                            <span class="text-danger" id="expire_date_msg"></span>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="field-group ">
                     <label for="product-description ">Description</label>
-                    <textarea name="description" id="description" class="form-control " ;></textarea>
+                    <textarea name="description" id="description" rows="4" class="form-control"></textarea>
                     <span class="note"> Do not exceed 100 characters when entring the product name.</span>
                     <span class="text-danger" id="description_msg"></span>
                 </div>
 
-                <div class="field-group">
-                    <label for="product-name ">Size </label>
-                    <input type="text" id="size" name="size" class="form-control" placeholder="Size">
-                    <span class="text-danger" id="size_msg"></span>
-                </div>
             </div>
 
             <div class="col-md-6">
@@ -70,7 +128,6 @@
 
 
                 <div class="row">
-
                     <table id="MyTable" class="table">
                         <tbody id="field_wrapper">
                             <tr>
@@ -122,6 +179,34 @@
                         </tbody>
                     </table>
                 </div>
+
+                <div class="row">
+                    <div class="field-group">
+                        <label>No Feedback</label>
+                        <select name="no_feedback" id="product-feedback-form" class="form-select js-example-basic-single">
+                            <option value="">No Feedback</option>
+                            @foreach($survay as $val)
+                            @if($val->type=='no_feedback')
+                            <option value="{{$val->_id}}">{{ucwords($val->title)}}</option>
+                            @endif
+                            @endforeach
+                        </select>
+                        <span class="text-danger" id="no_feedback_msg"></span>
+                    </div>
+
+                    <div class="field-group">
+                        <label for="pre-qulifing-questions">Pre-Qulifing Questions</label>
+                        <select name="pre_qulifing_question" id="pre-qulifing-questions" class="form-select js-example-basic-single">
+                            <option value="">No Pre-Qulifing Questions</option>
+                            @foreach($survay as $val)
+                            @if($val->type=='pre_qulifing_question')
+                            <option value="{{$val->_id}}">{{ucwords($val->title)}}</option>
+                            @endif
+                            @endforeach
+                        </select>
+                        <span class="text-danger" id="pre_qulifing_question_msg"></span>
+                    </div>
+                </div>
             </div>
 
         </div>
@@ -129,49 +214,10 @@
         <div class="row">
             <div class="col-md-6">
 
-                <table class="table table-borderless" id="myproductTable">
-                    <tbody id="field_wrapper1">
-                        <tr class="product-table-row">
-
-                            <td>
-                                <div class="field-group">
-                                    <label for="product-name ">Product Tittle </label>
-                                    <input type="text" name="product_title" id="product-name" class="form-control" placeholder="Product Name">
-                                </div>
-                            </td>
-                            <td>
-
-                                <div class="field-group">
-                                    <label for="product-description">Description</label>
-                                    <textarea name="product_description" id="description" class="form-control"></textarea>
-                                    <span class="note"> Do not exceed 100 characters when entring the product name.</span>
-                                </div>
-                            </td>
-
-                            <td><button class="btn btn-success mt-4" id="myaddBtn">+</button></td>
-                        </tr>
-                    </tbody>
-
-                </table>
-            </div>
-
-            <div class="col-md-6">
-                <div class="field-group">
-                    <label for="sub-category">Category/Sub Category</label>
-                    <select name="sub_category" id="sub_category" class="form-select js-example-basic-single">
-                        <option value="">Select Category</option>
-                        @foreach($subCategories as $val)
-                        <option value="{{$val->_id}}">{{!empty($val->Category->name)?ucwords($val->Category->name):''}}/{{ucwords($val->name)}}</option>
-                        @endforeach
-                    </select>
-                    <span class="text-danger" id="sub_category_msg"></span>
-                </div>
-            </div>
-            <div class="col-md-6">
                 <div class="product-image">
                     <section>
                         <div class="form-group">
-                            <label class="control-label">Product Image</label>
+                            <label class="control-label">Thumbnail</label>
                             <div class="product-image-upload-container">
                                 <div class="preview-zone hidden">
                                     <div class="box box-solid">
@@ -192,86 +238,59 @@
                     </section>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-6">
 
-                    <div class="field-group">
-                        <label for="product-brand">Brand</label>
-                        <select name="brand_id" id="product-brand" class="form-select js-example-basic-single">
-                            <option value="">Select</option>
-                            @foreach($brands as $val)
-                            <option value="{{$val->_id}}">{{ucwords($val->name)}}</option>
-                            @endforeach
-                        </select>
-                        <span class="text-danger" id="brand_id_msg"></span>
-                    </div>
+            <div class="col-md-6">
+                <div class="product-image">
+                    <section>
+                        <div class="form-group">
+                            <label class="control-label">Images</label>
+                            <div class="product-image-upload-container">
+                                <div class="preview-zone hidden">
+                                    <div class="box box-solid">
 
-                    <div class="field-group">
-                        <label>No Feedback</label>
-                        <select name="no_feedback" id="product-feedback-form" class="form-select js-example-basic-single">
-                            <option value="">No Feedback</option>
-                            @foreach($survay as $val)
-                            @if($val->type=='no_feedback')
-                            <option value="{{$val->_id}}">{{ucwords($val->title)}}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                        <span class="text-danger" id="no_feedback_msg"></span>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div class="field-group">
-                        <label for="pre-qulifing-questions">Pre-Qulifing Questions</label>
-                        <select name="pre_qulifing_question" id="pre-qulifing-questions" class="form-select js-example-basic-single">
-                            <option value="">No Pre-Qulifing Questions</option>
-                            @foreach($survay as $val)
-                            @if($val->type=='pre_qulifing_question')
-                            <option value="{{$val->_id}}">{{ucwords($val->title)}}</option>
-                            @endif
-                            @endforeach
-                        </select>
-                        <span class="text-danger" id="pre_qulifing_question_msg"></span>
-                    </div>
+                                        <div class="box-body"><img src="https://m.media-amazon.com/images/I/81+l0HJ-iFL._AC_SS450_.jpg" class="img-fluid" alt=""></div>
+                                    </div>
+                                </div>
+                                <div class="dropzone-wrapper">
+                                    <div class="dropzone-desc">
+                                        <i class="glyphicon glyphicon-download-alt"></i>
+                                        <p>Choose an image file or drag it here.</p>
+                                    </div>
+                                    <input type="file" multiple="multiple" name="images" class="dropzone">
+                                    <span class="text-danger" id="images_msg"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col-md-6">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="field-group">
-                            <label for="mrp">MRP</label>
-                            <input type="text" name="mrp" id="mrp" class="form-control" placeholder="Enter MRP">
-                            <span class="text-danger" id="mrp_msg"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="field-group">
-                            <label for="offer-price">Offer Price</label>
-                            <input type="text" name="offer_price" id="offer-price" class="form-control" placeholder="Enter Price">
-                            <span class="text-danger" id="offer_price_msg"></span>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="field-group">
-                            <label for="minimum-qty">Maximum Qty per User</label>
-                            <input type="text" name="maximum_qty" id="minimum-qty" class="form-control" placeholder="Enter Qty">
-                            <span class="text-danger" id="maximum_qty_msg"></span>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="field-group">
-                            <label for="product-expire-date">Product Expire Date</label>
-                            <input type="date" name="expire_date" id="product-expire-date" class="form-control">
-                            <span class="text-danger" id="expire_date_msg"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <hr>
+            <table class="table table-borderless" id="myproductTable">
+                <tbody id="field_wrapper1">
+                    <tr class="product-table-row">
 
+                        <td>
+                            <div>
+                                <label>Label</label>
+                                <input type="text" name="details[0][lable]" id="product-name" class="form-control" placeholder="Label">
+                            </div>
+                        </td>
+                        <td>
+
+                            <div>
+                                <label>Description</label>
+                                <textarea name="details[0][description]" id="description" class="form-control"></textarea>
+                            </div>
+                        </td>
+
+                        <td><button type="button" class="btn btn-success mt-4" id="myaddBtn">+</button></td>
+                    </tr>
+                </tbody>
+
+            </table>
             <!-- <div class="col-md-6 mt-5">
             <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#related-products">Add Related Products</button>
         </div> -->
@@ -281,7 +300,7 @@
             <div class="col-md-12">
                 <button type="submit" id="save" class="btn btn-success">Save</button>
             </div>
-        </div>+
+        </div>
     </form>
 </div>
 
@@ -379,16 +398,16 @@
         var vendor_id = $(this).attr('vendor_id');
         var fieldHTML = `<tr id="row-${i}">
                         <td>
-                            <div class="field-group">
-                                <input type="text" id="product-name" class="form-control" placeholder="Product Name" required>
+                            <div>
+                                <input type="text" id="details[${i}][label]" class="form-control" placeholder="Label" required>
                             </div>
                         </td>
                         <td>
-                            <div class="field-group">
-                                <textarea name="" id="product-description" class="form-control"></textarea>
+                            <div>
+                                <textarea name="details[${i}][description]" id="product-description" class="form-control" required></textarea>
                             </div>
                             </td>
-                                <td class="field-group">
+                                <td>
                                 <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
                                 </td>
                             </tr>`;
@@ -417,7 +436,7 @@
                 $.each(record, (index, val) => {
                     option += `<option value="${val._id}">${val.name}</option>`;
                 });
-                $('#subAttribute-'+selector).html(option);
+                $('#subAttribute-' + selector).html(option);
 
             }
         })

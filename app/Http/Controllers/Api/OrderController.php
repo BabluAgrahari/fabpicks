@@ -21,7 +21,7 @@ class OrderController extends Controller
         $save->status                = $request->status;
         $save->shipping_details      = $request->shipping_details;
         $save->billing_details       = $request->billing_details;
-        $save->products               = $request->products;
+        $save->products              = $request->products;
 
         if ($save->save())
             return $this->successRes('Order Created Successfully.');

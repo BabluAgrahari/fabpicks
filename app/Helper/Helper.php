@@ -34,7 +34,7 @@ if (!function_exists('singleFile')) {
                 mkdir($folder, 0777, true);
 
             $destinationPath = public_path() . '/' . $folder;
-            $profileImage = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $profileImage = date('YmdHis').rand(111,999) . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath, $profileImage);
             $fileName = "$profileImage";
 

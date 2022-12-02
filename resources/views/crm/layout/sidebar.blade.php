@@ -41,24 +41,24 @@
 
                             <li class="menu-item">
                                 <a href="{{url('crm/category')}}">
-                                    <span class="menu-title">Product Category</span>
+                                    <span class="menu-title">Category</span>
                                 </a>
                             </li>
                             <li class="menu-item">
                                 <a href="{{url('crm/sub-category')}}">
-                                    <span class="menu-title">Product Sub Category</span>
+                                    <span class="menu-title">Sub Category</span>
                                 </a>
                             </li>
 
                             <li class="menu-item">
                                 <a href="{{url('crm/attribute')}}">
-                                    <span class="menu-title">Product Attribute</span>
+                                    <span class="menu-title">Attribute</span>
                                 </a>
                             </li>
 
                             <li class="menu-item">
                                 <a href="{{url('crm/sub-attribute')}}">
-                                    <span class="menu-title">Product Sub Attribute</span>
+                                    <span class="menu-title">Sub Attribute</span>
                                 </a>
                             </li>
 

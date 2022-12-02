@@ -211,6 +211,7 @@
                     $('#name').val(res.record.name);
                     $('#discription').val(res.record.discription);
                     $('#sort').val(res.record.sort);
+                    $('#category').val(res.category);
                     let status = res.record.status ? true : false;
                     $('#status').prop('checked', status);
 
