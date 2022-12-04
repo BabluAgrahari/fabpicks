@@ -90,7 +90,7 @@
 
                 </li>
                 <li class="menu-item ">
-                    <a href="{{url('register')}}">
+                    <a href="{{url('crm/show')}}">
                         <span class="menu-icon">
                             <i class="ri-user-line"></i>
                         </span>
@@ -110,12 +110,12 @@
 
                 </li>
                 <li class="menu-item ">
-                    <a href="{{url('crm/sfeedback')}}">
+                    <a href="{{url('crm/feedback')}}">
                         <span class="menu-icon">
                             <i class="ri-booklet-line"></i>
 
                         </span>
-                        <span class="menu-title">Survay Feedback</span>
+                        <span class="menu-title">Feedback</span>
                     </a>
 
                 </li>

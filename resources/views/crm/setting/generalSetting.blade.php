@@ -16,19 +16,19 @@
                         <input type="hidden" name="id" value="{{$res->_id}}">
                         <div class="field-group">
                             <label for="company-name">Company Name</label>
-                            <input type="text" id="company-name" name="general_setting[company_name]" value="{{$res->general_setting['company_name']}}" class=" form-control" placeholder="Please enter Company name" required>
+                            <input type="text" id="company-name" name="general_setting[company_name]" value="{{!empty($res->general_setting['company_name'])?$res->general_setting['company_name']:'';}}" class=" form-control" placeholder="Please enter Company name" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="field-group">
                             <label for="company-email">Company Email</label>
-                            <input type="text" id="company-email" name="general_setting[company_email]" value="{{$res->general_setting['company_email']}}" class="form-control" placeholder="Please enter Company Email" required>
+                            <input type="text" id="company-email" name="general_setting[company_email]" value="{{!empty($res->general_setting['company_email'])?$res->general_setting['company_email']:'';}}" class="form-control" placeholder="Please enter Company Email" required>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="field-group">
                             <label for="contact-number">Contact Number</label>
-                            <input type="text" id="contact-number" name="general_setting[company_phone]" value="{{$res->general_setting['company_phone']}}" class="form-control" placeholder="Please enter Contact Number"required>
+                            <input type="text" id="contact-number" name="general_setting[company_phone]" value="{{!empty($res->general_setting['company_phone'])?$res->general_setting['company_phone']:'';}}" class="form-control" placeholder="Please enter Contact Number"required>
                         </div>
                     </div>
                     <div class="col-md-6">
@@ -40,7 +40,7 @@
                     <div class="col-md-6">
                         <div class="field-group">
                             <label for="company-address">Company Address</label>
-                            <textarea id="company-address" name="general_setting[company_address]" value="" class="form-control" required >{{$res->general_setting['company_address']}}</textarea>
+                            <textarea id="company-address" name="general_setting[company_address]" value="" class="form-control" required >{{!empty($res->general_setting['company_address'])?$res->general_setting['company_address']:'';}}</textarea>
                         </div>
                     </div>
                     <div class="col-md-12">

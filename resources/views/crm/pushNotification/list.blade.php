@@ -15,7 +15,7 @@
 
     <div class="row">
         <div class="col-md-12 mt-5">
-            <table class="table table-light table-striped push-notification" id="myTable">
+            <table class="table table-light table-striped push-notification">
                 <thead>
                     <tr>
                         <th scope="col">#</th>
@@ -36,7 +36,7 @@
                         <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                         <td>
                             <div class="action-group">
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
                             </div>
                         </td>
                     </tr>

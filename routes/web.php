@@ -16,7 +16,7 @@ use App\Http\Controllers\crm\ClientController;
 use App\Http\Controllers\crm\ProductAddController;
 use App\Http\Controllers\crm\ProductController;
 use App\Http\Controllers\crm\ProductListingController;
-use App\Http\Controllers\crm\SurvayFeedbackController;
+use App\Http\Controllers\crm\FeedbackController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,7 +81,8 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
 
     Route::get('product-listing', [ProductListingController::class, 'productListing']);
 
-    Route::get('sfeedback', [SurvayFeedbackController::class, 'sfeedback']);
+     Route::get('feedback', [FeedbackController::class, 'feedback']);
+    Route::get('show', [Register::class, 'show']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

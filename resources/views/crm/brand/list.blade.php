@@ -35,8 +35,8 @@
                         <td>{{$list->sort}}</td>
                         <td>
                             <div class="action-group">
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove"><i class="ri-delete-bin-line"></i>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-danger"><i class="ri-delete-bin-line"></i>
                                 </a>
                             </div>
                         </td>
@@ -73,7 +73,7 @@
                                 <div class="col-md-3">
                                     <div class="field-group">
                                         <label for="category-name ">Brand Name</label>
-                                        <input type="text" name="name" id="brandName" class="form-control">
+                                        <input type="text" name="name" id="brandName" placeholder="Enter Name" class="form-control">
                                         <span class="text-danger" id="name_msg"></span> 
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                 <div class="col-md-3">
                                     <div class="field-group">
                                         <label for="sort ">Sort</label>
-                                        <input type="number" name="sort" id="sort" class="form-control">
+                                        <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
                                         <span class="text-danger" id="sort_msg"></span>
                                     </div>
                                 </div>

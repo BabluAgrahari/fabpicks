@@ -21,8 +21,8 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Attributes</th>
-                        <th scope="col">Icon</th>
                         <th scope="col">Sort</th>
+                        <th scope="col">Icon</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -34,7 +34,7 @@
                         <td>{{$list->sort}}</td>
                         <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                         <td>
-                            <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
+                            <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
                         </td>
                     </tr>
                     @endforeach
@@ -66,7 +66,7 @@
 
                                 <div class="field-group">
                                     <label for="category-name ">Attribute Name</label>
-                                    <input type="text" name="name" id="name" class="form-control">
+                                    <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
                                     <span class="text-danger" id="name_msg"></span>
                                 </div>
 
@@ -82,7 +82,7 @@
                             <div class="col-md-3">
                                 <div class="field-group">
                                     <label for="sort ">Sort</label>
-                                    <input type="text" name="sort" id="sort" class="form-control">
+                                    <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
                                     <span class="text-danger" id="sort_msg"></span>
                                 </div>
                             </div>

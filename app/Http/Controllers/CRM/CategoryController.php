@@ -17,7 +17,7 @@ class CategoryController extends Controller
     public function store(CategoryRequest $request)
     {
         $save= new Category();
-        $save->name    =$request->name;
+        $save->name             =$request->name;
         $save->discription      =$request->discription;
         $save->sort             =(int)$request->sort;
         $save->status           =(int)$request->status??'0';

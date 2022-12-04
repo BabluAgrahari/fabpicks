@@ -71,7 +71,7 @@
               <div class="col-md-6">
                 <div class="field-group">
                   <label>Title</label>
-                  <input type="text" name="title" id="title" class="form-control">
+                  <input type="text" name="title" id="title" placeholder="Enter Title Name" class="form-control">
                   <span class="text-danger" id="title_msg"></span>
                 </div>
               </div>
@@ -82,7 +82,7 @@
                   <select name="type" id="type" class="form-select ">
                     <option value="">Select</option>
                     <option value="pre_qulifing_question">Pre-Qulifing Questions</option>
-                    <option value="no_feedback">No Feedback</option>
+                    <option value="no_feedback">Feedback</option>
                   </select>
                   <span class="text-danger" id="type_msg"></span>
                 </div>
@@ -90,7 +90,7 @@
               <div class="col-md-12">
                 <div class="field-group">
                   <label for="type-of-survay">Discription </label>
-                  <textarea name="discription" id="discription" class="form-control"></textarea>
+                  <textarea name="discription" id="discription" placeholder="Enter Discription" class="form-control"></textarea>
                 </div>
                 <span class="text-danger" id="discription_msg"></span>
               </div>

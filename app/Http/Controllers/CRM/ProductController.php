@@ -19,17 +19,18 @@ class ProductController extends Controller
     {
         $data['lists'] = Product::with(['SubCategory.Category'])->get();
 
-        return view('crm.product.list',$data);
+        return view('crm.product.list', $data);
     }
 
-    public function create(){
+    public function create()
+    {
 
-        $data['brands'] = Brand::where('status',1)->get();
-        $data['survay'] = Survay::where('status',1)->get();
-        $data['subCategories'] = SubCategory::with(['Category'])->where('status',1)->get();
-        $data['attributes'] = Attribute::where('status',1)->get();
+        $data['brands'] = Brand::where('status', 1)->get();
+        $data['survay'] = Survay::where('status', 1)->get();
+        $data['subCategories'] = SubCategory::with(['Category'])->where('status', 1)->get();
+        $data['attributes'] = Attribute::where('status', 1)->get();
 
-        return view('crm.product.create',$data);
+        return view('crm.product.create', $data);
     }
 
     public function store(ProductRequest $request)
@@ -37,7 +38,7 @@ class ProductController extends Controller
         $save = new Product();
         $save->name                     = $request->name;
         $save->description              = $request->description;
-        $save->size                     = (int)$request->size;
+        $save->tags                     = $request->tags;
         $save->product_type             = $request->product_type;
         $save->trial_point              = (int)$request->trial_point;
         $save->sale_price               = (int)$request->sale_price;
@@ -48,46 +49,46 @@ class ProductController extends Controller
         $save->pre_qulifing_question    = $request->pre_qulifing_question;
         $save->mrp                      = (int)$request->mrp;
         $save->offer_price              = (int)$request->offer_price;
-        $save->maximum_qty              = (int)$request->maximum_qty; 
+        $save->maximum_qty              = (int)$request->maximum_qty;
         $save->expire_date              = (int)strtotime($request->expire_date);
+        $save->details                  = $request->details;
 
         if (!empty($request->file('thumbnail')))
-            $save->image  = singleFile($request->file('thumbnail'), 'product');
+            $save->thumbnail  = singleFile($request->file('thumbnail'), 'product');
 
         if (!$save->save())
-        return response(['status' => false, 'msg' => 'Product Not Added.']);
+            return response(['status' => false, 'msg' => 'Product Not Added.']);
 
 
         //for store inventory product inventory collection
-        $this->inventory($request->inventory,$save->_id);
+        $this->inventory($request->inventory, $save->_id);
         return response(['status' => true, 'msg' => 'Product Added Successfully.']);
-
     }
 
 
     public function subAttribute($id)
     {
-        $data = SubAttribute::where('attribute_id',$id)->get();
-        return response(['status'=>true,'record' => $data]);
+        $data = SubAttribute::where('attribute_id', $id)->get();
+        return response(['status' => true, 'record' => $data]);
     }
 
     public function edit($id)
     {
-        $data['brands'] = Brand::where('status',1)->get();
-        $data['survay'] = Survay::where('status',1)->get();
-        $data['subCategories'] = SubCategory::with(['Category'])->where('status',1)->get();
-        $data['attributes'] = Attribute::where('status',1)->get();
-        $data['res'] = Product::find($id);
-        return view('crm.product.edit',$data);
+        $data['brands'] = Brand::where('status', 1)->get();
+        $data['survay'] = Survay::where('status', 1)->get();
+        $data['subCategories'] = SubCategory::with(['Category'])->where('status', 1)->get();
+        $data['attributes'] = Attribute::where('status', 1)->get();
+        $data['res'] = Product::with('Inventory')->find($id);
+        return view('crm.product.edit', $data);
     }
 
-    public function update(ProductRequest $request,$id)
+    public function update(ProductRequest $request, $id)
     {
         // pr($request->all());
         $save = Product::find($id);
         $save->name                     = $request->name;
         $save->description              = $request->description;
-        $save->size                     = (int)$request->size;
+        $save->tags                     = $request->tags;
         $save->product_type             = $request->product_type;
         $save->trial_point              = (int)$request->trial_point;
         $save->sale_price               = (int)$request->sale_price;
@@ -98,35 +99,40 @@ class ProductController extends Controller
         $save->pre_qulifing_question    = $request->pre_qulifing_question;
         $save->mrp                      = (int)$request->mrp;
         $save->offer_price              = (int)$request->offer_price;
-        $save->maximum_qty              = (int)$request->maximum_qty; 
+        $save->maximum_qty              = (int)$request->maximum_qty;
         $save->expire_date              = (int)strtotime($request->expire_date);
+        $save->details                  = $request->details;
 
         if (!empty($request->file('thumbnail')))
-            $save->image  = singleFile($request->file('thumbnail'), 'product');
+            $save->thumbnail  = singleFile($request->file('thumbnail'), 'product');
 
-        if ($save->save())
+        if (!$save->save())
+            return response(['status' => false, 'msg' => 'Product Not .']);
+
+        //for store inventory product inventory collection
+        $this->inventory($request->inventory, $save->_id);
         return response(['status' => true, 'msg' => 'Product Updared Successfully.']);
-
-    return response(['status' => false, 'msg' => 'Product Not .']);
     }
 
 
-    private function inventory($inventory =array(),$product_id = false){
+    private function inventory($inventory = array(), $product_id = false)
+    {
 
-        if(empty($inventory) || !$product_id)
-        return false;
+        if (empty($inventory) || !$product_id)
+            return false;
 
-        foreach($inventory as $inv){
+        ProductInventory::where('product_id', $product_id)->delete();
+
+        foreach ($inventory as $inv) {
 
             $inv = (object)$inv;
             $save = new ProductInventory();
             $save->product_id = $product_id;
-            $save->stock =(int)$inv->stock;
+            $save->stock = (int)$inv->stock;
             $save->unit = $inv->unit;
             $save->attribute = $inv->attribute;
             $save->sub_attribute = $inv->sub_attribute;
             $save->save();
         }
-
     }
 }

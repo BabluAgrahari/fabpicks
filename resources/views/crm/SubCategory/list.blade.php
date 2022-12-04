@@ -5,7 +5,7 @@
     <div class="row">
         <div id="messageRemove"></div>
         <div class="col-md-11">
-            <h4>Products Sub Category </h4>
+            <h4>Sub Category </h4>
         </div>
 
         <div class="col-md-1 mb-3 product-btn-group">
@@ -38,8 +38,8 @@
                         <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                         <td>
                             <div class="action-group">
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove"><i class="ri-delete-bin-line"></i>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-info"><i class="ri-delete-bin-line"></i>
                                 </a>
                             </div>
                         </td>
@@ -71,7 +71,7 @@
                             <div class="col-md-4">
                                 <div class="field-group">
                                     <label>Category</label>
-                                    <select name="category_id" class="form-control" id="category"> 
+                                    <select name="category_id"  class="form-control" id="category_id"> 
                                         <option value="">Select</option>
                                         @foreach($categories as $cat)
                                         <option value="{{$cat->_id}}">{{ucwords($cat->name)}}</option>
@@ -83,14 +83,14 @@
                             <div class="col-md-4">
                                 <div class="field-group">
                                     <label for="category-name ">Sub Category Name</label>
-                                    <input type="text" id="name" name="name" class="form-control">
+                                    <input type="text" id="name" name="name" placeholder="Enter Name" class="form-control">
                                 </div>
                                 <span class="text-danger" id="name_msg"></span>
                             </div>
                             <div class="col-md-4">
                                 <div class="field-group">
                                     <label for="discription ">Discription</label>
-                                    <textarea id="discription" name="discription" cols="10" rows="1" class="form-control"></textarea>
+                                    <textarea id="discription" name="discription" cols="10" rows="1" placeholder="Enter Discription" class="form-control"></textarea>
                                 </div>
                                 <span class="text-danger" id="discription_msg"></span>
                             </div>
@@ -112,7 +112,7 @@
                             <div class="col-md-3">
                                 <div class="field-group">
                                     <label for="sort ">Sort</label>
-                                    <input type="text" name="sort" id="sort" class="form-control">
+                                    <input type="text" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
                                 </div>
                                 <span class="text-danger" id="sort_msg"></span>
                             </div>
@@ -207,7 +207,8 @@
             dataType: 'JSON',
             success: function(res) {
 
-                if (res.status) {
+                if (res.status) { 
+                    $('#category_id').val(res.record.category_id);
                     $('#name').val(res.record.name);
                     $('#discription').val(res.record.discription);
                     $('#sort').val(res.record.sort);

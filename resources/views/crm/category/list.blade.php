@@ -73,7 +73,7 @@
                             <div class="col-md-4">
                                 <div class="field-group">
                                     <label for="category-name ">Category Name</label>
-                                    <input type="text" id="name" name="name" class="form-control">
+                                    <input type="text" id="name" name="name" placeholder="Enter Nmae" class="form-control">
                                     <span class="text-danger" id="name_msg"></span>
                                 </div>
                             </div>
@@ -81,7 +81,7 @@
                             <div class="col-md-4">
                                 <div class="field-group">
                                     <label for="discription ">Discription</label>
-                                    <textarea name="discription" id="discription" cols="10" rows="1" class="form-control"></textarea>
+                                    <textarea name="discription" id="discription" cols="10" placeholder="Enter Discription" rows="1" class="form-control"></textarea>
                                     <span class="text-danger" id="discription_msg"></span>
                                 </div>
                             </div>
@@ -103,7 +103,7 @@
                             <div class="col-md-3">
                                 <div class="field-group">
                                     <label for="sort ">Sort</label>
-                                    <input type="text" id="sort" name="sort" class="form-control">
+                                    <input type="number" id="sort" name="sort" placeholder="Enter Sort" class="form-control">
                                     <span class="text-danger" id="sort_msg"></span>
                                 </div>
                             </div>

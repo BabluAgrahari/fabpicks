@@ -35,7 +35,7 @@
                         <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"> </td>
                         <td>
                             <div class="action-group">
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
                             </div>
                         </td>
                     </tr>
@@ -68,7 +68,7 @@
                             <div class="col-md-6">
                                 <div class="field-group">
                                     <label>Attribute</label>
-                                    <select name="attribute_id" class="form-control" id="attribute">
+                                    <select name="attribute_id" class="form-control" id="attribute_id">
                                         <option value="">Select</option>
                                         @foreach($attributes as $attr)
                                         <option value="{{$attr->_id}}">{{ucwords($attr->name)}}</option>
@@ -81,7 +81,7 @@
                             <div class="col-md-6">
                                 <div class="field-group">
                                     <label>Sub Attribute Name</label>
-                                    <input type="text" name="name" id="name" class="form-control">
+                                    <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
                                 </div>
                                 <span class="text-danger" id="name_msg"></span> 
                             </div>
@@ -97,7 +97,7 @@
                             <div class="col-md-3">
                                 <div class="field-group">
                                     <label for="sort ">Sort</label>
-                                    <input type="text" name="sort" id="sort" class="form-control">
+                                    <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
                                 </div>
                                 <span class="text-danger" id="sort_msg"></span> 
                             </div>
@@ -197,7 +197,8 @@
             success: function(res) {
 
                 if (res.status) {
-                    $('#category_name').val(res.record.name);
+                    $('#attribute_id').val(res.record.attribute_id);
+                    $('#name').val(res.record.name);
                     $('#sort').val(res.record.sort);
                     let status = res.record.status ? true : false;
                     $('#status').prop('checked', status);

@@ -12,7 +12,7 @@ class ProductController extends Controller
     public function index()
     {
         try{
-            $record =Product::get();
+            $record =Product::with(['Inventory.Attributes','Inventory.SubAttributes'])->get();
 
             if($record->isEmpty())
                 return $this->notFoundRes();
@@ -27,7 +27,7 @@ class ProductController extends Controller
     public function show($id)
     {
         try{
-            $record = Product::find($id);
+            $record = Product::with(['Inventory.Attributes','Inventory.SubAttributes'])->find($id);
             return $this->successRes($record);
 
         }catch(Exception $e){

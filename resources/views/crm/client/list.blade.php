@@ -136,7 +136,7 @@
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="address ">Store Address: <span class="required">*</span></label>
-                                        <textarea name="address" id="address" class="form-control"></textarea>
+                                        <textarea name="address" id="address" placeholder="Enter Address" class="form-control"></textarea>
                                         <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter store address </span>
                                         <span class="text-danger" id="address_msg"></span>
                                     </div>

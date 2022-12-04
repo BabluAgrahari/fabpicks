@@ -87,7 +87,7 @@
 
                 <div class="field-group ">
                     <label for="product-description ">Description</label>
-                    <textarea name="description" id="description" rows="4" class="form-control"></textarea>
+                    <textarea name="description" id="description" rows="4"  placeholder="Enter Discription"  class="form-control"></textarea>
                     <span class="note"> Do not exceed 100 characters when entring the product name.</span>
                     <span class="text-danger" id="description_msg"></span>
                 </div>
@@ -222,7 +222,7 @@
                                 <div class="preview-zone hidden">
                                     <div class="box box-solid">
 
-                                        <div class="box-body"><img src="https://m.media-amazon.com/images/I/81+l0HJ-iFL._AC_SS450_.jpg" class="img-fluid" alt=""></div>
+                                        <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('250x200')}}" class="img-fluid" alt=""></div>
                                     </div>
                                 </div>
                                 <div class="dropzone-wrapper">
@@ -240,7 +240,7 @@
             </div>
 
             <div class="col-md-6">
-                <div class="product-image">
+                <!-- <div class="product-image">
                     <section>
                         <div class="form-group">
                             <label class="control-label">Images</label>
@@ -262,7 +262,7 @@
                             </div>
                         </div>
                     </section>
-                </div>
+                </div> -->
             </div>
         </div>
 
@@ -275,25 +275,21 @@
                         <td>
                             <div>
                                 <label>Label</label>
-                                <input type="text" name="details[0][lable]" id="product-name" class="form-control" placeholder="Label">
+                                <input type="text" name="details[0][label]" id="product-name" class="form-control" placeholder="Label">
                             </div>
                         </td>
                         <td>
 
                             <div>
                                 <label>Description</label>
-                                <textarea name="details[0][description]" id="description" class="form-control"></textarea>
+                                <textarea name="details[0][description]" id="description"  placeholder="Enter Discription"  class="form-control"></textarea>
                             </div>
                         </td>
 
                         <td><button type="button" class="btn btn-success mt-4" id="myaddBtn">+</button></td>
                     </tr>
                 </tbody>
-
             </table>
-            <!-- <div class="col-md-6 mt-5">
-            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#related-products">Add Related Products</button>
-        </div> -->
         </div>
 
         <div class="row">
@@ -303,7 +299,6 @@
         </div>
     </form>
 </div>
-
 
 @endsection
 
@@ -381,9 +376,6 @@
                                 <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
                                 </td>
                             </tr>`;
-
-
-
         $('#field_wrapper').append(fieldHTML);
         i++;
     });
@@ -404,16 +396,13 @@
                         </td>
                         <td>
                             <div>
-                                <textarea name="details[${i}][description]" id="product-description" class="form-control" required></textarea>
+                                <textarea name="details[${i}][description]" id="product-description"  placeholder="Enter Discription"  class="form-control" required></textarea>
                             </div>
                             </td>
                                 <td>
                                 <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
                                 </td>
                             </tr>`;
-
-
-
         $('#field_wrapper1').append(fieldHTML);
         i++;
     });
@@ -490,4 +479,6 @@
         });
     });
 </script>
+
+
 @endpush
