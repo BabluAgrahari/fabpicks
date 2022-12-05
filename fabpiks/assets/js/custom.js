@@ -1,11 +1,10 @@
 $(document).ready(function () {
     $('.filter-btn').on('click', function () {
-        $('.right-side').toggleClass('active')
+        $('.filter-wrapper').toggleClass('active')
     })
 })
 
-$(document).ready(function () {
-    $('.profile-pic').on('click', function () {
-        $('.user-profile-container').toggleClass('active')
-    })
-})
+
+
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))

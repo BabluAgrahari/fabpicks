@@ -31,7 +31,7 @@
                     </div>
 
                     <div class="user-profile-view">
-                        <a href="#">
+                        <a href="user-profile.php">
                             <div class="user-profile-view-box">
                                 <div class="user-profile-icon">
                                     <i class="fa-regular fa-user"></i>
