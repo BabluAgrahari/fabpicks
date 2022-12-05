@@ -52,45 +52,45 @@
               <button type="button" class="btn btn-success  " data-bs-toggle="modal" data-bs-target="#brand">
                 <i class="fa-solid fa-plus"></i> Brand
               </button>
+              <button type="submit" class="filter-btn btn btn-success">Filter</button>
             </div>
 
-            <div class="col-md-12 mt-5 ">
-              <div class="filter-container">
-                <div class="left-side">
-                  <form action="#">
-                    <div class="search-field">
-                      <input type="text" placeholder="Search By Customer/ Vendor">
-                      <div class="search-btn">
-                        <button type="submit"><i class="ri-search-line"></i></button>
+            <div class="filter-wrapper">
+              <div class="col-md-12">
+                <div class="filter-container">
+                  <div class="left-side">
+                    <form action="#">
+                      <div class="search-field">
+                        <input type="text" placeholder="Search By Customer/ Vendor">
+                        <div class="search-btn">
+                          <button type="submit"><i class="ri-search-line"></i></button>
+                        </div>
                       </div>
-                    </div>
-                  </form>
-                </div>
+                    </form>
+                  </div>
 
-                <div class="right-side ">
-                  <form action="">
-                    <div class="custom-search-container pr-5">
-                      <div class="custom-search-field ">
-                        <select>
-                          <option value="" selected>Select Vendor</option>
-                          <option value="">Vendor 1</option>
-                        </select>
+                  <div class="right-side ">
+                    <form action="">
+                      <div class="custom-search-container pr-5">
+                        <div class="custom-search-field ">
+                          <select>
+                            <option value="" selected>Select Vendor</option>
+                            <option value="">Vendor 1</option>
+                          </select>
+                        </div>
+                        <div class="custom-search-field">
+                          <input type="date" id="start-date">
+                        </div>
+                        <div class="custom-search-field">
+                          <input type="date" id="end-date">
+                        </div>
                       </div>
-                      <div class="custom-search-field">
+                    </form>
+                  </div>
 
-                        <input type="date" id="start-date">
-                      </div>
-                      <div class="custom-search-field">
-
-                        <input type="date" id="end-date">
-                      </div>
-                    </div>
-                  </form>
-                </div>
-
-                <div class="search-btn-group">
-                  <button type="submit" class="filter-btn">Filter</button>
-                  <button type="reset" class="reset-btn"><i class="ri-restart-line"></i></button>
+                  <div class="search-btn-group">
+                    <button type="reset" class="reset-btn"><i class="ri-restart-line"></i></button>
+                  </div>
                 </div>
               </div>
             </div>
@@ -99,44 +99,6 @@
           </div>
 
           <div class="table-container ">
-            <div class="row align-items-center mb-3">
-              <div class="col-md-1">
-                <div class="list-number">
-                  <select name="" id="" class="form-select">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-                    <option value="7">7</option>
-                    <option value="8">8</option>
-                    <option value="9">9</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="13">13</option>
-                    <option value="14">14</option>
-                    <option value="15">15</option>
-                    <option value="16">16</option>
-                    <option value="17">17</option>
-                    <option value="18">18</option>
-                    <option value="19">19</option>
-                    <option value="20">20</option>
-                    <option value="21">21</option>
-                    <option value="22">22</option>
-                    <option value="23">23</option>
-                    <option value="24">24</option>
-                    <option value="25">25</option>
-                  </select>
-                </div>
-              </div>
-
-              <div class="col-md-5 ">
-                <p class="mb-0">Showing 1 to 6 of 25 Results</p>
-              </div>
-
-            </div>
             <div class="row">
               <div class="col-md-12 ">
                 <div class="table-responsive">
@@ -339,6 +301,57 @@
                   </table>
                 </div>
               </div>
+            </div>
+
+            <div class="row align-items-center mb-3">
+              <div class="col-md-1">
+                <div class="list-number">
+                  <select name="" id="" class="form-select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-5 ">
+                <p class="mb-0">Showing 1 to 6 of 25 Results</p>
+              </div>
+
+              <div class="col-md-6 d-flex justify-content-end">
+                <nav aria-label="Page navigation  pagination-sm">
+                  <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                  </ul>
+                </nav>
+              </div>
+
             </div>
           </div>
         </div>

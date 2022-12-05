@@ -33,268 +33,269 @@
             <!-- header include end -->
 
             <main class="content product-type">
+                <div class="page-container">
 
-                <div class="container product-type product-listing ">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <h4 class="page-title">Product Listing</h4>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="field-group">
-                                <label for="product-name ">Product Name </label>
-                                <input type="text" id="product-name" class="form-control" placeholder="Product Name" required>
-                            </div>
-                            <div class="field-group ">
-                                <label for="product-description ">Description</label>
-                                <textarea name="" id="product-description" class="form-control " ;></textarea>
-                                <span class="note"> Do not exceed 100 characters when entring the product name.</span>
-                            </div>
-                            <div class="field-group">
-                                <label for="product-name ">Size </label>
-                                <input type="text" id="product-name" class="form-control" placeholder="Size" required>
-                            </div>
-
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="field-group">
-                                        <label for="product-type">Package Type </label>
-                                        <select name="" id="product-type" class="form-select js-example-basic-single">
-                                            <option value="" selected>Select</option>
-                                            <option value="product-type -1">Bottle</option>
-                                            <option value="product-type -2">Box</option>
-                                            <option value="product-type -3">Role</option>
-                                        </select>
-                                    </div>
-
-
-                                </div>
-
-                                <div class="col-6">
-                                    <div class="field-group">
-                                        <label for="product-type">Product Listing Type </label>
-                                        <select name="" id="product-type" class="form-select js-example-basic-single">
-                                            <option value="" selected>Trial Store</option>
-                                            <option value="product-type -1">Brand Store</option>
-                                            <option value="product-type -2">Fixed Price</option>
-                                            <option value="product-type -4">Rewards Store</option>
-
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="field-group">
-                                        <label for="market-price1">Sale Price/ Trial Point</label>
-
-                                        <input type="text" class="form-control" placeholder="Sale Price/ Trial Point">
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <div class="field-group">
-                                        <label for="market-price1">Rewards Point</label>
-                                        <input type="text" id="market-price1" class="form-control" placeholder="Rewards Point">
-                                    </div>
-                                </div>
-                            </div>
-
-
-                            <div class="row">
-
-                                <table id="MyTable" class="table">
-                                    <tbody id="field_wrapper">
-                                        <tr>
-                                            <td style="width: 100px;">
-                                                <div class="field-group">
-                                                    <label for="stock">Stock </label>
-                                                    <input type="text" id="stock" class="form-control" placeholder="500" required>
-                                                </div>
-                                            </td>
-
-                                            <td style="width: 100px;">
-                                                <div class="field-group">
-                                                    <label for="unit">Unit</label>
-                                                    <select name="" id="unit" class="form-select  ">
-                                                        <option value="" selected>Select</option>
-                                                        <option value="kg">KG</option>
-                                                        <option value="pcs">PC</option>
-                                                        <option value="pcs">Box</option>
-                                                        <option value="pcs">Bottle</option>
-                                                        <option value="pcs">Box(4 Units)</option>
-
-                                                    </select>
-                                                </div>
-                                            </td>
-
-                                            <td>
-                                                <div class="field-group">
-                                                    <label for="add-size">Attributes</label>
-                                                    <select name="" id="add-size" class="form-select  ">
-                                                        <option value="" selected>Select</option>
-                                                        <option value="EU-44">Color</option>
-                                                        <option value="EU-36">Size</option>
-                                                        <option value="EU-30">Storage</option>
-
-                                                    </select>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="field-group">
-                                                    <label for="product-color">Color</label>
-                                                    <div class="custom-radios">
-                                                        <div>
-                                                            <input type="radio" id="color-1" name="color" value="color-1" checked>
-                                                            <label for="color-1">
-                                                                <span>
-                                                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                                                                </span>
-                                                            </label>
-                                                        </div>
-
-                                                        <div>
-                                                            <input type="radio" id="color-2" name="color" value="color-2">
-                                                            <label for="color-2">
-                                                                <span>
-                                                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                                                                </span>
-                                                            </label>
-                                                        </div>
-
-                                                        <div>
-                                                            <input type="radio" id="color-3" name="color" value="color-3">
-                                                            <label for="color-3">
-                                                                <span>
-                                                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
-                                                                </span>
-                                                            </label>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <button class="btn btn-success" id="add_more">+</button>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-
-                            <table class="table" id="myproductTable">
-                                <tbody id="field_wrapper1">
-                                    <tr class="product-table-row">
-
-                                        <td>
-                                            <div class="field-group">
-                                                <label for="product-name ">Product Tittle </label>
-                                                <input type="text" id="product-name" class="form-control" placeholder="Product Name" required>
-                                            </div>
-                                        </td>
-                                        <td>
-
-                                            <div class="field-group">
-                                                <label for="product-description ">Description</label>
-                                                <textarea name="" id="product-description" class="form-control"></textarea>
-                                                <span class="note"> Do not exceed 100 characters when entring the product name.</span>
-                                            </div>
-                                        </td>
-
-                                        <td><button class="btn btn-success mt-4" id="myaddBtn">+</button></td>
-                                    </tr>
-                                </tbody>
-
-                            </table>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="field-group">
-                                <label for="sub-category">Category/Sub Category</label>
-                                <select name="" id="sub-category" class="form-select js-example-basic-single">
-                                    <option value="" selected>Select Category</option>
-                                    <option value="sub-category 1">Category/sub-category 1</option>
-                                    <option value="sub-category 2">category/sub-category 2</option>
-                                    <option value="sub-category 3">Category/sub-category 3</option>
-
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="product-image">
-                                <section>
-                                    <form action="" method="POST" enctype="multipart/form-data">
-                                        <div class="form-group">
-                                            <label class="control-label">Product Image</label>
-                                            <div class="product-image-upload-container">
-                                                <div class="preview-zone hidden">
-                                                    <div class="box box-solid">
-
-                                                        <div class="box-body"><img src="https://m.media-amazon.com/images/I/81+l0HJ-iFL._AC_SS450_.jpg" class="img-fluid" alt=""></div>
-                                                    </div>
-                                                </div>
-                                                <div class="dropzone-wrapper">
-                                                    <div class="dropzone-desc">
-                                                        <i class="glyphicon glyphicon-download-alt"></i>
-                                                        <p>Choose an image file or drag it here.</p>
-                                                    </div>
-                                                    <input type="file" name="img_logo" class="dropzone">
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </section>
+                    <div class="container-fluid product-type product-listing ">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h4 class="page-title">Product Listing</h4>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-
                                 <div class="field-group">
-                                    <label for="product-brand">Brand</label>
-                                    <select name="" id="product-brand" class="form-select js-example-basic-single">
-                                        <option value="" selected>Select</option>
-                                        <option value="product-brand -1">product-brand -1</option>
-                                        <option value="product-brand -2">product-brand -2</option>
-                                        <option value="product-brand -3">product-brand -3</option>
-                                        <option value="product-brand -4">product-brand -4</option>
-                                        <option value="product-brand -5">product-brand -5</option>
-                                        <option value="product-brand -6">product-brand -6</option>
-
-                                    </select>
+                                    <label for="product-name ">Product Name </label>
+                                    <input type="text" id="product-name" class="form-control" placeholder="Product Name" required>
+                                </div>
+                                <div class="field-group ">
+                                    <label for="product-description ">Description</label>
+                                    <textarea name="" id="product-description" class="form-control " ;></textarea>
+                                    <span class="note"> Do not exceed 100 characters when entring the product name.</span>
                                 </div>
                                 <div class="field-group">
-                                    <label for=" "> </label>
-                                    <select name="" id="product-feedback-form" class="form-select js-example-basic-single">
-                                        <option value="" selected>No Feedback</option>
-                                        <option value="Feedback Form 1">Feedback Form 1</option>
-                                        <option value="Feedback Form 2">Feedback Form 2</option>
-                                        <option value="Feedback Form 3">Feedback Form 3</option>
+                                    <label for="product-name ">Size </label>
+                                    <input type="text" id="product-name" class="form-control" placeholder="Size" required>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="field-group">
+                                            <label for="product-type">Package Type </label>
+                                            <select name="" id="product-type" class="form-select js-example-basic-single">
+                                                <option value="" selected>Select</option>
+                                                <option value="product-type -1">Bottle</option>
+                                                <option value="product-type -2">Box</option>
+                                                <option value="product-type -3">Role</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="col-6">
+                                        <div class="field-group">
+                                            <label for="product-type">Product Listing Type </label>
+                                            <select name="" id="product-type" class="form-select js-example-basic-single">
+                                                <option value="" selected>Trial Store</option>
+                                                <option value="product-type -1">Brand Store</option>
+                                                <option value="product-type -2">Fixed Price</option>
+                                                <option value="product-type -4">Rewards Store</option>
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="field-group">
+                                            <label for="market-price1">Sale Price/ Trial Point</label>
+
+                                            <input type="text" class="form-control" placeholder="Sale Price/ Trial Point">
+                                        </div>
+                                    </div>
+                                    <div class="col-6">
+                                        <div class="field-group">
+                                            <label for="market-price1">Rewards Point</label>
+                                            <input type="text" id="market-price1" class="form-control" placeholder="Rewards Point">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="row mt-18">
+
+                                    <table id="MyTable" class="table">
+                                        <tbody id="field_wrapper">
+                                            <tr>
+                                                <td style="width: 100px;">
+                                                    <div class="field-group">
+                                                        <label for="stock">Stock </label>
+                                                        <input type="text" id="stock" class="form-control" placeholder="500" required>
+                                                    </div>
+                                                </td>
+
+                                                <td style="width: 100px;">
+                                                    <div class="field-group">
+                                                        <label for="unit">Unit</label>
+                                                        <select name="" id="unit" class="form-select  ">
+                                                            <option value="" selected>Select</option>
+                                                            <option value="kg">KG</option>
+                                                            <option value="pcs">PC</option>
+                                                            <option value="pcs">Box</option>
+                                                            <option value="pcs">Bottle</option>
+                                                            <option value="pcs">Box(4 Units)</option>
+
+                                                        </select>
+                                                    </div>
+                                                </td>
+
+                                                <td>
+                                                    <div class="field-group">
+                                                        <label for="add-size">Attributes</label>
+                                                        <select name="" id="add-size" class="form-select  ">
+                                                            <option value="" selected>Select</option>
+                                                            <option value="EU-44">Color</option>
+                                                            <option value="EU-36">Size</option>
+                                                            <option value="EU-30">Storage</option>
+
+                                                        </select>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="field-group">
+                                                        <label for="product-color">Color</label>
+                                                        <div class="custom-radios">
+                                                            <div>
+                                                                <input type="radio" id="color-1" name="color" value="color-1" checked>
+                                                                <label for="color-1">
+                                                                    <span>
+                                                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                                                                    </span>
+                                                                </label>
+                                                            </div>
+
+                                                            <div>
+                                                                <input type="radio" id="color-2" name="color" value="color-2">
+                                                                <label for="color-2">
+                                                                    <span>
+                                                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                                                                    </span>
+                                                                </label>
+                                                            </div>
+
+                                                            <div>
+                                                                <input type="radio" id="color-3" name="color" value="color-3">
+                                                                <label for="color-3">
+                                                                    <span>
+                                                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/242518/check-icn.svg" alt="Checked Icon" />
+                                                                    </span>
+                                                                </label>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-success" id="add_more">+</button>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+
+                                <table class="table" id="myproductTable">
+                                    <tbody id="field_wrapper1">
+                                        <tr class="product-table-row">
+
+                                            <td>
+                                                <div class="field-group">
+                                                    <label for="product-name ">Product Tittle </label>
+                                                    <input type="text" id="product-name" class="form-control" placeholder="Product Name" required>
+                                                </div>
+                                            </td>
+                                            <td>
+
+                                                <div class="field-group">
+                                                    <label for="product-description ">Description</label>
+                                                    <textarea name="" id="product-description" class="form-control"></textarea>
+                                                    <span class="note"> Do not exceed 100 characters when entring the product name.</span>
+                                                </div>
+                                            </td>
+
+                                            <td><button class="btn btn-success mt-4" id="myaddBtn">+</button></td>
+                                        </tr>
+                                    </tbody>
+
+                                </table>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="field-group">
+                                    <label for="sub-category">Category/Sub Category</label>
+                                    <select name="" id="sub-category" class="form-select js-example-basic-single">
+                                        <option value="" selected>Select Category</option>
+                                        <option value="sub-category 1">Category/sub-category 1</option>
+                                        <option value="sub-category 2">category/sub-category 2</option>
+                                        <option value="sub-category 3">Category/sub-category 3</option>
 
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="field-group">
-                                    <label for="pre-qulifing-questions">Pre-Qulifing Questions</label>
-                                    <select name="" id="pre-qulifing-questions" class="form-select js-example-basic-single">
-                                        <option value="" selected>No Pre-Qulifing Questions</option>
-                                        <option value="pre-qulifing-questions -1">pre-qulifing-questions -1</option>
-                                        <option value="pre-qulifing-questions -2">pre-qulifing-questions -2</option>
-                                        <option value="pre-qulifing-questions -3">pre-qulifing-questions -3</option>
-                                        <option value="pre-qulifing-questions -4">pre-qulifing-questions -4</option>
-                                        <option value="pre-qulifing-questions -5">pre-qulifing-questions -5</option>
-                                        <option value="pre-qulifing-questions -6">pre-qulifing-questions -6</option>
+                                <div class="product-image">
+                                    <section>
+                                        <form action="" method="POST" enctype="multipart/form-data">
+                                            <div class="form-group">
+                                                <label class="control-label">Product Image</label>
+                                                <div class="product-image-upload-container">
+                                                    <div class="preview-zone hidden">
+                                                        <div class="box box-solid">
 
-                                    </select>
+                                                            <div class="box-body"><img src="https://m.media-amazon.com/images/I/81+l0HJ-iFL._AC_SS450_.jpg" class="img-fluid" alt=""></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="dropzone-wrapper">
+                                                        <div class="dropzone-desc">
+                                                            <i class="glyphicon glyphicon-download-alt"></i>
+                                                            <p>Choose an image file or drag it here.</p>
+                                                        </div>
+                                                        <input type="file" name="img_logo" class="dropzone">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </section>
                                 </div>
-                                <!-- <div class="field-group">
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+
+                                    <div class="field-group">
+                                        <label for="product-brand">Brand</label>
+                                        <select name="" id="product-brand" class="form-select js-example-basic-single">
+                                            <option value="" selected>Select</option>
+                                            <option value="product-brand -1">product-brand -1</option>
+                                            <option value="product-brand -2">product-brand -2</option>
+                                            <option value="product-brand -3">product-brand -3</option>
+                                            <option value="product-brand -4">product-brand -4</option>
+                                            <option value="product-brand -5">product-brand -5</option>
+                                            <option value="product-brand -6">product-brand -6</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="field-group">
+                                        <label for=" "> </label>
+                                        <select name="" id="product-feedback-form" class="form-select js-example-basic-single">
+                                            <option value="" selected>No Feedback</option>
+                                            <option value="Feedback Form 1">Feedback Form 1</option>
+                                            <option value="Feedback Form 2">Feedback Form 2</option>
+                                            <option value="Feedback Form 3">Feedback Form 3</option>
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="field-group">
+                                        <label for="pre-qulifing-questions">Pre-Qulifing Questions</label>
+                                        <select name="" id="pre-qulifing-questions" class="form-select js-example-basic-single">
+                                            <option value="" selected>No Pre-Qulifing Questions</option>
+                                            <option value="pre-qulifing-questions -1">pre-qulifing-questions -1</option>
+                                            <option value="pre-qulifing-questions -2">pre-qulifing-questions -2</option>
+                                            <option value="pre-qulifing-questions -3">pre-qulifing-questions -3</option>
+                                            <option value="pre-qulifing-questions -4">pre-qulifing-questions -4</option>
+                                            <option value="pre-qulifing-questions -5">pre-qulifing-questions -5</option>
+                                            <option value="pre-qulifing-questions -6">pre-qulifing-questions -6</option>
+
+                                        </select>
+                                    </div>
+                                    <!-- <div class="field-group">
                                     <label for="product-feedback">Product Feedback </label>
                                     <select name="" id="product-feedback" class="form-select js-example-basic-single">
                                         <option value="" selected>Select</option>
@@ -302,60 +303,74 @@
                                         <option value="no">No</option>
                                     </select>
                                 </div> -->
+                                </div>
+
                             </div>
 
+
                         </div>
 
-
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="field-group">
-                                        <label for="mrp">MRP</label>
-                                        <input type="text" id="mrp" class="form-control" placeholder="1000" required>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="field-group">
+                                            <label for="mrp">MRP</label>
+                                            <input type="text" id="mrp" class="form-control" placeholder="1000" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="field-group">
+                                            <label for="offer-price">Offer Price</label>
+                                            <input type="text" id="offer-price" class="form-control" placeholder="200" required>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="field-group">
-                                        <label for="offer-price">Offer Price</label>
-                                        <input type="text" id="offer-price" class="form-control" placeholder="200" required>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="field-group">
+                                            <label for="minimum-qty">Maximum Qty per User</label>
+                                            <input type="text" id="minimum-qty" class="form-control" placeholder="1000" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="field-group">
+                                            <label for="product-expire-date">Product Expire Date</label>
+                                            <input type="date" id="product-expire-date" class="form-control">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-6">
+
+                            <div class="col-md-6 mt-30">
+                                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#related-products">Add Related Products</button>
+
+
+                                <div class="col-md-12 mt-25">
+
                                     <div class="field-group">
-                                        <label for="minimum-qty">Maximum Qty per User</label>
-                                        <input type="text" id="minimum-qty" class="form-control" placeholder="1000" required>
+                                        <label for="tags">Tags</label>
+                                        <input type="text" class="form-control" id="tag-input1">
                                     </div>
+
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="field-group">
-                                        <label for="product-expire-date">Product Expire Date</label>
-                                        <input type="date" id="product-expire-date" class="form-control">
-                                    </div>
-                                </div>
+
+                            </div>
+
+
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <button class="btn btn-success">Add Product</button>
+                                <button class="btn btn-success">Save Product</button>
                             </div>
                         </div>
-
-                        <div class="col-md-6 mt-5">
-                            <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#related-products">Add Related Products</button>
-                        </div>
                     </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <button class="btn btn-primary">Add Product</button>
-                            <button class="btn btn-success">Save Product</button>
-                        </div>
-                    </div>
+                    <!-- footer include start -->
+                    <?php include "footer.php" ?>
+                    <!-- footer include end -->
                 </div>
-                <!-- footer include start -->
-                <?php include "footer.php" ?>
-                <!-- footer include end -->
             </main>
 
         </div>
@@ -369,7 +384,7 @@
     <script src="./assets/js/popper.min.js"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="./assets/js/drag-drop.js"></script>
-
+    <script src="./assets/js/tags.js"></script>
     <script src="./assets/js/main.js"></script>
     <script>
         $(document).ready(function() {
