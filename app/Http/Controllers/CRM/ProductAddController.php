@@ -9,28 +9,26 @@ use App\Models\Category;
 use App\Models\ChildCategory;
 use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use Exception;
 
 class ProductAddController extends Controller
 {
    
     public function index()
     {
+        try{
         $data['categories']=Category::where('status',1)->get();
         $data['subcategories']=SubCategory::where('status',1)->get();
-        $data['childcategories']=ChildCategory::where('status',1)->get();
         $data['brands']= Brand::where('status',1)->get();
-    //    pr($data['brands']);
         return view('crm.addProduct.list',$data);
-    }
-
-   
-    public function create()
-    {
-        //
+        }catch(Exception $e){
+            return redirect('500')->with(['error',$e->getMessage()]);
+        }
     }
 
     public function store(Request $request)
     {
+        try{
         $save= new ProductAdd();
         $save->prodcut_name             =$request->prodcut_name;
         $save->brand_id                 =$request->brand_id;
@@ -59,6 +57,9 @@ class ProductAddController extends Controller
             if ($save->save())
             return response(['status' => true, 'msg' => 'Category Added Successfully.']);
         return response(['status' => false, 'msg' => 'Category not Added.']);
+    } catch (Exception $e) {
+        return response(['status' => false, 'msg' => $e->getMessage()]);
+    }
     }
 
     public function show($id)
