@@ -12,7 +12,7 @@ use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OrderController;
-use App\Http\Controllers\Api\Shipping_billingController;
+use App\Http\Controllers\Api\ShippingBillingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -83,7 +83,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('order/{id}', 'show');
     });
 
-    Route::controller(Shipping_billingController::class)->group(function(){
+    Route::controller(ShippingBillingController::class)->group(function(){
         Route::post('shipping','store');
        
     });
