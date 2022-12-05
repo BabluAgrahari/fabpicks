@@ -60,7 +60,7 @@ class LoginOtpController extends Controller
 
         #Validation Logic
         $user = User::where([['mobile_no', $request->mobile_no], ['otp', $request->otp]])->first();
-
+        // pr($user);
         if (empty($user))
             return $this->unauthorizedRes('Your OTP is not correct.');
 

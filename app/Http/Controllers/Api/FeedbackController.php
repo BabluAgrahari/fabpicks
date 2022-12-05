@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Feedback;
+use App\Http\Request\FeedbackRequest;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -12,7 +13,7 @@ use Exception;
 
 class FeedbackController extends Controller
 {
-    public function store(Request $request)
+    public function store(FeedbackRequest $request)
     {
         $save = new Feedback();
         $save->user_id          = Auth::user()->_id;
