@@ -1,4 +1,4 @@
-   <aside id="sidebar" class="sidebar break-point-lg has-bg-image">
+   <aside id="sidebar" class="sidebar break-point-lg has-bg-image collapsed">
 
        <div class="sidebar-layout">
            <div class="sidebar-header">

@@ -2,7 +2,7 @@
 <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
 @section('content')
 
-<div class="container ">
+<div class="container " id="test">
     <div class="row">
         <div class="col-md-12">
             <h4 class="page-title">About Us</h4>

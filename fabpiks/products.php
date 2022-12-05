@@ -33,31 +33,28 @@
       <!-- header include end -->
 
       <main class="content">
-
-
-
-        <div class="container ">
+        <div class="container-fluid ">
           <div class="row">
             <div class="col-md-3">
               <h4>All Products </h4>
             </div>
 
-            <div class="col-md-9 product-btn-group">
+            <div class="col-md-9 product-btn-group d-flex justify-content-end">
               <button type="button" class="btn btn-success  " data-bs-toggle="modal" data-bs-target="#productcategory">
-                <i class="ri-add-circle-line"></i> Product Category
+                <i class="fa-solid fa-plus"></i> Product Category
               </button>
               <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#product-sub-category">
-                <i class="ri-add-circle-line"></i> Product Sub-Category
+                <i class="fa-solid fa-plus"></i> Product Sub-Category
               </button>
               <button type="button" class="btn btn-success  " data-bs-toggle="modal" data-bs-target="#product-child-category">
-                <i class="ri-add-circle-line"></i> Product Child-Category
+                <i class="fa-solid fa-plus"></i> Product Child-Category
               </button>
               <button type="button" class="btn btn-success  " data-bs-toggle="modal" data-bs-target="#brand">
-                <i class="ri-add-circle-line"></i> Brand
+                <i class="fa-solid fa-plus"></i> Brand
               </button>
             </div>
 
-            <div class="col-md-12 mt-5">
+            <div class="col-md-12 mt-5 ">
               <div class="filter-container">
                 <div class="left-side">
                   <form action="#">
@@ -98,133 +95,250 @@
               </div>
             </div>
 
-            <div class="col-md-12 mt-5">
-              <table class="table table-light   table-striped products-table" id="myTable">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Product Name</th>
-                    <th scope="col">Order Id</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">Sold</th>
-                    <th scope="col">Sales</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Product - 1</td>
-                    <td>#4545</td>
-                    <td>Rs. 455</td>
-                    <td>984</td>
-                    <td>Rs. 12984</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Product - 2</td>
-                    <td>#45455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Product - 3</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">4</th>
-                    <td>Product - 4</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">5</th>
-                    <td>Product - 5</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">6</th>
-                    <td>Product - 6</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>Product - 7</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>Product - 7</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>Product - 7</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>Product - 7</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>Product - 7</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>Product - 7</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>Product - 7</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">7</th>
-                    <td>Product - 7</td>
-                    <td>#455</td>
-                    <td>Rs. 4565</td>
-                    <td>9834</td>
-                    <td>Rs. 129384</td>
-                  </tr>
-                </tbody>
-              </table>
+
+          </div>
+
+          <div class="table-container ">
+            <div class="row align-items-center mb-3">
+              <div class="col-md-1">
+                <div class="list-number">
+                  <select name="" id="" class="form-select">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                    <option value="13">13</option>
+                    <option value="14">14</option>
+                    <option value="15">15</option>
+                    <option value="16">16</option>
+                    <option value="17">17</option>
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                    <option value="23">23</option>
+                    <option value="24">24</option>
+                    <option value="25">25</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="col-md-5 ">
+                <p class="mb-0">Showing 1 to 6 of 25 Results</p>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-md-12 ">
+                <div class="table-responsive">
+                  <table class="table products-table">
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Order Id</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Sold</th>
+                        <th scope="col">Sales</th>
+                        <th scope="col">Action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Product - 1</td>
+                        <td>#4545</td>
+                        <td>Rs. 455</td>
+                        <td>984</td>
+                        <td>Rs. 12984</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Product - 2</td>
+                        <td>#45455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">3</th>
+                        <td>Product - 3</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>Product - 4</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">5</th>
+                        <td>Product - 5</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">6</th>
+                        <td>Product - 6</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">7</th>
+                        <td>Product - 7</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">7</th>
+                        <td>Product - 7</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">7</th>
+                        <td>Product - 7</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">7</th>
+                        <td>Product - 7</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">7</th>
+                        <td>Product - 7</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">7</th>
+                        <td>Product - 7</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">7</th>
+                        <td>Product - 7</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <th scope="row">7</th>
+                        <td>Product - 7</td>
+                        <td>#455</td>
+                        <td>Rs. 4565</td>
+                        <td>9834</td>
+                        <td>Rs. 129384</td>
+                        <td>
+                          <div class="form-check form-switch">
+                            <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         </div>
