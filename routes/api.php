@@ -12,7 +12,11 @@ use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OrderController;
+<<<<<<< HEAD
 use App\Http\Controllers\Api\FeedbackController;
+=======
+use App\Http\Controllers\Api\Shipping_billingController;
+>>>>>>> sunil
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -82,6 +86,15 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('order', 'index');
         Route::get('order/{id}', 'show');
     });
+<<<<<<< HEAD
+=======
+
+    Route::controller(Shipping_billingController::class)->group(function(){
+        Route::post('shipping','store');
+       
+    });
+      
+>>>>>>> sunil
 
     Route::controller(FeedbackController::class)->group(function () {
         Route::post('feedback', 'store');
