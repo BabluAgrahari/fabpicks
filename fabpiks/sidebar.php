@@ -13,7 +13,7 @@
                <nav class="menu open-current-submenu">
                    <ul>
                        <li class="menu-item ">
-                           <a href="dashboard.php">
+                           <a href="dashboard.php" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard">
                                <span class="menu-icon">
                                    <i class="ri-bar-chart-fill"></i>
                                </span>
@@ -23,7 +23,7 @@
 
                        </li>
                        <li class="menu-item sub-menu">
-                           <a href="javascript:void">
+                           <a href="javascript:void" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Catalog">
                                <span class="menu-icon">
                                    <i class="ri-shopping-bag-line"></i>
                                </span>
@@ -98,7 +98,7 @@
                            </div>
                        </li>
                        <li class="menu-item  ">
-                           <a href="brand-store.php">
+                           <a href="brand-store.php" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Customers">
                                <span class="menu-icon">
                                    <i class="ri-user-line"></i>
                                </span>
@@ -107,7 +107,7 @@
 
                        </li>
                        <li class="menu-item ">
-                           <a href="order.php">
+                           <a href="order.php" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Orders">
                                <span class="menu-icon">
                                    <i class="ri-book-line"></i>
                                </span>
@@ -116,7 +116,7 @@
 
                        </li>
                        <li class="menu-item ">
-                           <a href="user.php">
+                           <a href="user.php" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="User">
                                <span class="menu-icon">
                                    <i class="ri-user-line"></i>
                                </span>
@@ -126,7 +126,7 @@
                        </li>
 
                        <li class="menu-item ">
-                           <a href="survay-question.php">
+                           <a href="survay-question.php" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Survay Questions">
                                <span class="menu-icon">
                                    <i class="ri-booklet-line"></i>
 
@@ -136,7 +136,7 @@
 
                        </li>
                        <li class="menu-item ">
-                           <a href="survay-feedback.php">
+                           <a href="survay-feedback.php" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Survay Feedback">
                                <span class="menu-icon">
                                    <i class="ri-booklet-line"></i>
 
@@ -146,7 +146,7 @@
 
                        </li>
                        <li class="menu-item ">
-                           <a href="push-notification.php">
+                           <a href="push-notification.php" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Push Notification">
                                <span class="menu-icon">
                                    <i class="ri-notification-4-line"></i>
 
@@ -157,7 +157,7 @@
                        </li>
 
                        <li class="menu-item sub-menu">
-                           <a href="#">
+                           <a href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Settings">
                                <span class="menu-icon">
                                    <i class="ri-settings-2-line"></i>
                                </span>
