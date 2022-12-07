@@ -32,7 +32,7 @@ class SubCategoryController extends Controller
                 // ];
                 // }
 
-            return $this->successRes($data);
+            return $this->recordsRes($data);
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }
@@ -42,7 +42,7 @@ class SubCategoryController extends Controller
     {
         try {
             $record = SubCategory::with(['Category'])->find($id);
-            return $this->successRes($record);
+            return $this->recordRes($record);
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }

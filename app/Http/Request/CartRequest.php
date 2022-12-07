@@ -6,9 +6,10 @@ use App\Traits\Response;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request as HttpRequest;
 use Illuminate\Support\Facades\Request;
 
-class OrderRequest extends FormRequest
+class CartRequest extends FormRequest
 {
     use Response;
 
@@ -17,19 +18,19 @@ class OrderRequest extends FormRequest
         return true;
     }
 
-    public function rules(Request $request)
+    public function rules(HttpRequest $request)
     {
-        return [
-            'order_date'            => 'required',
-            'amount'                =>  'required',
-            'fix_amount'            =>  'required',
-            'shipping_details'      =>  'required',
-            'billing_details'       =>  'required',
-            'products'              =>  'required',
-            'status'                =>  'required|string|in:success,pending,false'
-
-
-        ];
+        if ($request->isMethod('put')) {
+            return [
+                'qty'          => 'required|numeric',
+            ];
+        } else {
+            return [
+                'product_id'   => 'required',
+                'qty'          => 'required|numeric',
+                'code'         => 'nullable',
+            ];
+        }
     }
 
     protected function failedValidation(Validator $validator)

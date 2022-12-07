@@ -37,7 +37,7 @@ class LoginOtpController extends Controller
 
         $id = $user->_id;
         $update = User::find($id);
-        $update->otp = rand(123456, 999999);
+        $update->otp = rand(1234,9999);
         $update->expire_at = strtotime(Carbon::now()->addMinutes(5));
 
         if ($update->save())
@@ -52,7 +52,7 @@ class LoginOtpController extends Controller
         #Validation
         $validator = Validator::make($request->all(), [
             'mobile_no' => 'required|numeric|digits:10',
-            'otp' => 'required|numeric|digits:6'
+            'otp' => 'required|numeric|digits:4'
         ]);
 
         if ($validator->fails())

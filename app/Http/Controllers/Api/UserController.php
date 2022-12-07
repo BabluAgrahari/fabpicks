@@ -12,14 +12,25 @@ use Exception;
 
 class UserController extends Controller
 {
+
+    public function show($id)
+    {
+        try {
+            $record = User::find($id);
+            return $this->recordRes($record);
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
+
     public function update(UserRequest $request, $id)
     {
         try {
             $save = User::find($id);
-            $save->name = $request->name;
-            $save->email = $request->email;
-            $save->city = $request->city;
-            $save->state = $request->state;
+            $save->name    = $request->name;
+            $save->email   = $request->email;
+            $save->city    = $request->city;
+            $save->state   = $request->state;
             $save->pincode = $request->pincode;
             $save->address = $request->address;
             // $save->role = 'customer';
@@ -27,19 +38,9 @@ class UserController extends Controller
                 $save->image  = singleFile($request->file('image'), 'user');
 
             if ($save->save())
-                return $this->successRes('Account Created Successfully.');
+                return $this->successRes('Account Updated Successfully.');
 
-            return $this->failRes('Account not Created.');
-        } catch (Exception $e) {
-            return $this->failRes($e->getMessage());
-        }
-    }
-
-    public function show($id)
-    {
-        try {
-            $record = User::find($id);
-            return $this->successRes($record);
+            return $this->failRes('Account not Updated.');
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }

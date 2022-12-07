@@ -17,19 +17,17 @@ class FeedbackRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'review'            => 'required',
-            'quality'           =>  'required',
-            'price'             =>  'required',
-            'value'             =>  'required',
-            'remarks'           =>  'required',
-            'status'            =>  'required|string|in:success,fales'
-            
-            
+            'review'       =>  'required',
+            'quality'      =>  'required',
+            'price'        =>  'required',
+            'value'        =>  'required',
+            'remarks'      =>  'required',
+            // 'status'            =>  'required|string|in:success,fales'  
         ];
     }
 
     protected function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(response(json_encode(array('validation' => $validator->errors()))));
+        throw new HttpResponseException($this->validationRes($validator->errors()));
     }
 }

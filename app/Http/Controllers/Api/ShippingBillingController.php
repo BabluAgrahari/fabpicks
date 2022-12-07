@@ -12,7 +12,6 @@ class ShippingBillingController extends Controller
 {
     public function store(Request $request)
     {
-        getLatitude();
         try {
             $save = new ShippingBilling();
 
@@ -43,9 +42,9 @@ class ShippingBillingController extends Controller
             }
             $save->billing_same = $request->same_billing;
             if ($save->save())
-                return $this->successRes('Shipping And Billing Created Successfully.');
+                return $this->successRes('Shipping & Billing Created Successfully.');
 
-            return $this->failRes('Shipping And Billing not Created.');
+            return $this->failRes('Shipping & Billing not Created.');
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }

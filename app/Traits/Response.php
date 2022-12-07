@@ -6,6 +6,19 @@ use function PHPUnit\Framework\isEmpty;
 
 trait Response
 {
+    public function recordsRes($record)
+    {
+        if ($record->isEmpty())
+            return $this->default();
+
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'count' => $record->count() ?? 0,
+            'records' => $record
+        ]);
+    }
+
     public function recordRes($record)
     {
         if (empty($record))
@@ -14,7 +27,6 @@ trait Response
         return response()->json([
             'status' => true,
             'code' => 200,
-            'count' => $record->count() ?? 0,
             'record' => $record
         ]);
     }
@@ -24,17 +36,11 @@ trait Response
         if (!$msg)
             return $this->default();
 
-        $res = [
+        return response()->json([
             'status' => true,
             'code' => 200,
-        ];
-
-        if (is_array($msg)) {
-            $res['data'] = $msg;
-        } else {
-            $res['msg'] = $msg;
-        }
-        return response()->json($res);
+            'msg' => $msg
+        ]);
     }
 
 

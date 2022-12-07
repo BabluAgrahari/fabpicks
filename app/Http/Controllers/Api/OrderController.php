@@ -11,6 +11,31 @@ use Exception;
 
 class OrderController extends Controller
 {
+
+    public function index()
+    {
+        try {
+            $record = Order::get();
+
+            if ($record->isEmpty())
+                return $this->notFoundRes();
+                
+            return $this->recordsRes($record);
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
+
+    public function show($id)
+    {
+        try {
+            $record = Order::find($id);
+            return $this->recordRes($record);
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
+
     public function store(OrderRequest $request)
     {
         try {
@@ -28,29 +53,6 @@ class OrderController extends Controller
                 return $this->successRes('Order Created Successfully.');
 
             return $this->failRes('Order not Created.');
-        } catch (Exception $e) {
-            return $this->failRes($e->getMessage());
-        }
-    }
-
-    public function index()
-    {
-        try {
-            $record = Order::get();
-
-            if ($record->isEmpty())
-                return $this->notFoundRes();
-            return $this->successRes($record);
-        } catch (Exception $e) {
-            return $this->failRes($e->getMessage());
-        }
-    }
-
-    public function show($id)
-    {
-        try {
-            $record = Order::find($id);
-            return $this->successRes($record);
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }

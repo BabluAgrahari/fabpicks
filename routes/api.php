@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\controllers\Api\SubCategoryController;
 use App\Http\Controllers\Api\AttributeController;
 use App\Http\Controllers\Api\Auth\LoginOtpController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\SubAttributeController;
 use App\Http\Controllers\Api\ClientController;
 use App\Http\Controllers\Api\ProductController;
@@ -72,6 +73,8 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('product/{id}', 'show');
     });
 
+    Route::resource('cart',CartController::class);
+
     Route::controller(UserController::class)->group(function () {
         Route::put('user/{id}', 'update');
         Route::get('user/{id}', 'show');
@@ -83,11 +86,10 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('order/{id}', 'show');
     });
 
-    Route::controller(ShippingBillingController::class)->group(function(){
-        Route::post('shipping','store');
-       
+    Route::controller(ShippingBillingController::class)->group(function () {
+        Route::post('shipping', 'store');
     });
-      
+
 
     Route::controller(FeedbackController::class)->group(function () {
         Route::post('feedback', 'store');

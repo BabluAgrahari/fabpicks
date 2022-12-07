@@ -17,7 +17,7 @@ class CategoryController extends Controller
             if ($data->isEmpty())
                 return $this->notFoundRes();
 
-            return $this->successRes($data);
+            return $this->recordsRes($data);
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }
@@ -26,8 +26,7 @@ class CategoryController extends Controller
     {
         try {
             $record = Category::find($id);
-            return $this->successRes($record);
- 
+            return $this->recordRes($record);
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }

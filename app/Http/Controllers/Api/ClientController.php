@@ -16,7 +16,7 @@ class ClientController extends Controller
 
             if($record->isEmpty())
                 return $this->notFoundRes();
-            return $this->successRes($record);
+            return $this->recordsRes($record);
 
         }catch(Exception $e){
             return $this->failRes($e->getMessage());
@@ -28,7 +28,7 @@ class ClientController extends Controller
     {
         try{
             $record = Client::find($id);
-            return $this->successRes($record);
+            return $this->recordRes($record);
 
         }catch(Exception $e){
             return $this->failRes($e->getMessage());
