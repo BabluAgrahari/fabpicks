@@ -9,12 +9,28 @@ use App\Http\Request\CategoryRequest;
 use SebastianBergmann\Exporter\Exporter;
 use Exception;
 
-class CategoryController extends Controller
+class CategoryController extends Controller 
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data['lists'] = Category::all();
+
+            
+            $query = Category::userAccess();
+
+            if (!empty($request->name))
+                $query->where('name', 'LIKE', "%$request->name%");
+
+                if (!empty($request->discription))
+                $query->where('discription', 'LIKE', "%$request->discription%");
+
+            $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+            $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
+
+            $request->request->remove('page');
+            $request->request->remove('perPage');
+            $data['filter']  = $request->all();
+
             return view('crm.category.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);

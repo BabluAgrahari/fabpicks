@@ -16,10 +16,22 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    public function index()
+
+    public function index(Request $request)
     {
         try {
-            $data['lists'] = Product::with(['SubCategory.Category'])->get();
+
+            $query = Product::with(['SubCategory.Category'])->userAccess();
+
+            if (!empty($request->name))
+                $query->where('name', 'LIKE', "%$request->name%");
+
+            $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+            $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
+
+            $request->request->remove('page');
+            $request->request->remove('perPage');
+            $data['filter']  = $request->all();
 
             return view('crm.product.list', $data);
         } catch (Exception $e) {

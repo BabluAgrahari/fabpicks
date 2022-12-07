@@ -5,14 +5,28 @@ namespace App\Http\Controllers\crm;
 use App\Http\Controllers\Controller;
 use App\Http\Request\AttributeRequest;
 use App\Models\Attribute;
+use Illuminate\Http\Request;
 use Exception;
 
 class AttributeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data['lists'] = Attribute::all();
+
+            $query = Attribute::userAccess();
+
+            if (!empty($request->name))
+                $query->where('name', 'LIKE', "%$request->name%");
+
+
+            $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+            $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
+
+            $request->request->remove('page');
+            $request->request->remove('perPage');
+            $data['filter']  = $request->all();
+
             return view('crm.attribute.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);

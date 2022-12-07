@@ -11,10 +11,23 @@ use Exception;
 
 class SubCategoryController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data['lists'] = SubCategory::all();
+            $query = SubCategory::userAccess();
+
+            if (!empty($request->name))
+                $query->where('name', 'LIKE', "%$request->name%");
+
+                if (!empty($request->discription))
+                $query->where('discription', 'LIKE', "%$request->discription%");
+
+            $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+            $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
+
+            $request->request->remove('page');
+            $request->request->remove('perPage');
+            $data['filter']  = $request->all();
             $data['categories'] = Category::where('status', 1)->get();
             return view('crm.SubCategory.list', $data);
         } catch (Exception $e) {

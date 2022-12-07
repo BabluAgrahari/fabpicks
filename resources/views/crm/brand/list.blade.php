@@ -1,50 +1,63 @@
 @extends('crm.layout.app')
 @section('content')
 
-<div class="container ">
-    <div class="row">
+<div id="messageRemove"></div>
+<div class="card">
+    <div class="card-header ">
+        <div class="row">
 
-    <div id="messageRemove"></div>
-        <div class="col-md-11">
-            <h4>Brand</h4>
-        </div>
+            <div class="col-md-9">
+                <h4>Brand</h4>
+            </div>
 
-        <div class="col-md-1 mb-3 product-btn-group">
-            <button type="button" class="btn btn-success" id="addBrand">
-                <i class="ri-add-circle-line"></i> Add
-            </button>
-        </div>
+            <div class="col-md-3 product-btn-group d-flex justify-content-end">
+                @if(!empty($filter))
+                <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="far fa-times-circle"></i>&nbsp;Close</a>
+                @else
+                <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
+                @endif
+                <a href="javascript:void(0);" class="btn btn-sm btn-success ri-add-circle-line" id="addBrand">Add</a>
+            </div>
+        </div> 
+    </div>
 
-        <div class="col-md-12 ">
-            <table class="table table-light table-striped custom-table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Brand Name</th>
-                        <th scope="col">Logo</th>
-                        <th scope="col">Sort</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($lists as $key=>$list)
-                    <tr>
-                        <th scope="row">{{++$key}}</th>
-                        <td>{{$list->name}}</td>
-                        <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
-                        <td>{{$list->sort}}</td>
-                        <td>
-                            <div class="action-group">
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-danger"><i class="ri-delete-bin-line"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    <div class="card-body">
+    @include('crm.brand.filter')
+        <div class="row">
+            <div class="col-md-12 ">
+                <div class="table-responsive">
+                    <table class="table products-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Brand Name</th>
+                                <th scope="col">Logo</th>
+                                <th scope="col">Sort</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($lists as $key=>$list)
+                            <tr>
+                                <th scope="row">{{++$key}}</th>
+                                <td>{{ucWords($list->name)}}</td>
+                                <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
+                                <td>{{$list->sort}}</td>
+                                <td>
+                                    <div class="action-group">
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-danger"><i class="ri-delete-bin-line"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
+        {{ $lists->appends($_GET)->links()}}
     </div>
 </div>
 
@@ -74,7 +87,7 @@
                                     <div class="field-group">
                                         <label for="category-name ">Brand Name</label>
                                         <input type="text" name="name" id="brandName" placeholder="Enter Name" class="form-control">
-                                        <span class="text-danger" id="name_msg"></span> 
+                                        <span class="text-danger" id="name_msg"></span>
                                     </div>
                                 </div>
 

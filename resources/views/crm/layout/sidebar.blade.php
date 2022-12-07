@@ -1,4 +1,4 @@
-<aside id="sidebar" class="sidebar break-point-lg has-bg-image">
+<aside id="sidebar" class="sidebar break-point-lg has-bg-image collapsed">
 
 <div class="sidebar-layout">
     <div class="sidebar-header">
@@ -7,11 +7,10 @@
          font-size: 15px;
          letter-spacing: 3px;
          font-weight: bold;
-       ">Fabpicks</span>
-       
+       ">Fabpiks</span>
     </div>
     <div class="sidebar-content">
-        <nav class="menu open-current-submenu">
+    <nav class="menu open-current-submenu">
             <ul>
                 <li class="menu-item ">
                     <a href="{{url('crm/dashboard')}}">
@@ -162,6 +161,12 @@
                             <li class="menu-item">
                                 <a href="{{url('crm/refund')}}">
                                     <span class="menu-title">Refund Policy</span>
+                                </a>
+                            </li>
+
+                            <li class="menu-item">
+                                <a href="{{url('crm/coupon')}}">
+                                    <span class="menu-title">Coupon</span>
                                 </a>
                             </li>
 

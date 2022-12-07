@@ -1,51 +1,58 @@
 @extends('crm.layout.app')
 @section('content')
 
-<div class="container ">
-  <div class="row">
-    <div class="col-md-6">
-      <h4 class="page-title">Survay </h4>
+<div class="card">
+  <div class="card-header ">
+    <div class="row">
+      <div class="col-md-6">
+        <h5>Survay </h5>
+      </div>
+      <div class="col-md-6 ">
+        <div class="product-btn d-flex justify-content-end">
 
-    </div>
-    <div class="col-md-6 ">
-      <div class="product-btn d-flex justify-content-end">
-
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" id="addSurvay" data-bs-target="#survayModel">
-          <i class="ri-add-circle-line"></i> Add
-        </button>
+          <button type="button" class="btn btn-success" data-bs-toggle="modal" id="addSurvay" data-bs-target="#survayModel">
+            <i class="ri-add-circle-line"></i> Add
+          </button>
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="col-md-12 ">
-      <table class="table table-light table-striped products-table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Discription</th>
-            <th scope="col">Survay Type</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($lists as $keys=> $list)
-          <tr>
-            <th scope="row">{{++$keys}}</th>
-            <td>{{$list->survay_title}}</td>
-            <td>{{$list->discription}}</td>
-            <td>{{$list->survay_type}}</td>
-            <td>
-              <div class="action-group ">
-                <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><i class="ri-pencil-line"></i></a>
-                <!-- <a href="#"><i class="ri-delete-bin-line"></i></a> -->
-                <a href="javascript:void(0);" class="addQuestion text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a>
-                <a href="javascript:void(0);" class="text-primary viewQuestion" _id="{{$list->_id}}"><i class="ri-eye-line"></i></a>
-              </div>
-            </td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="table-responsive">
+          <table class="table products-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Discription</th>
+                <th scope="col">Survay Type</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($lists as $keys=> $list)
+              <tr>
+                <th scope="row">{{++$keys}}</th>
+                <td>{{$list->title}}</td>
+                <td>{{$list->discription}}</td>
+                <td>{{$list->type}}</td>
+                <td>
+                  <div class="action-group ">
+                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><i class="ri-pencil-line"></i></a>
+                    <!-- <a href="#"><i class="ri-delete-bin-line"></i></a> -->
+                    <a href="javascript:void(0);" class="addQuestion text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a>
+                    <a href="javascript:void(0);" class="text-primary viewQuestion" _id="{{$list->_id}}"><i class="ri-eye-line"></i></a>
+                  </div>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
 </div>

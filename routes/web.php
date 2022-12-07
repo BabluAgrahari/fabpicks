@@ -13,6 +13,7 @@ use App\Http\Controllers\crm\PushController;
 use App\Http\Controllers\crm\SettingController;
 use App\Http\Controllers\crm\OrderController;
 use App\Http\Controllers\crm\ClientController;
+use App\Http\Controllers\crm\CouponController;
 use App\Http\Controllers\crm\ProductAddController;
 use App\Http\Controllers\crm\ProductController;
 use App\Http\Controllers\crm\ProductListingController;
@@ -46,6 +47,8 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::resource('sub-attribute', SubAttributeController::class);
 
     Route::resource('client', ClientController::class);
+
+    Route::resource('coupon', CouponController::class);
 
     Route::resource('product', ProductController::class);
     Route::controller(ProductController::class)->group(function () {

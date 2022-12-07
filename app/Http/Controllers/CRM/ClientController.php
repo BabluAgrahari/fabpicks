@@ -6,16 +6,45 @@ use App\Http\Controllers\Controller;
 use App\Models\Client;
 use App\Http\Request\ClientRequest;
 use App\Models\User;
+use App\Models\Brand;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data['lists'] = Client::all();
+
+            $query = Client::userAccess();
+
+            if (!empty($request->store_name))
+                $query->where('store_name', 'LIKE', "%$request->store_name%");
+
+                if (!empty($request->email))
+                $query->where('email', 'LIKE', "%$request->email%");
+
+                if (!empty($request->phone))
+                $query->where('phone', 'LIKE', "%$request->phone%");
+
+                if (!empty($request->state))
+                $query->where('state', 'LIKE', "%$request->state%");
+
+                if (!empty($request->city))
+                $query->where('city', 'LIKE', "%$request->city%");
+
+                if (!empty($request->pincode))
+                $query->where('pincode', 'LIKE', "%$request->pincode%");
+
+            $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+            $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
+
+            $request->request->remove('page');
+            $request->request->remove('perPage');
+            $data['filter']  = $request->all();
+            $data['brands'] = Brand::get();
             return view('crm.Client.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);
@@ -26,7 +55,7 @@ class ClientController extends Controller
     {
         try {
             $save = new Client();
-            $save->store_owner          = $request->store_owner;
+            $save->Brand_id          = $request->Brand_id;
             $save->store_name           = $request->store_name;
             $save->email                = $request->email;
             $save->gstin                = $request->gstin;
@@ -45,12 +74,12 @@ class ClientController extends Controller
                 $save->logo  = singleFile($request->file('logo'), 'Client');
 
             if (!$save->save())
-                return response(['status' => false, 'msg' => 'Brand Store not Added.']);
+                return response(['status' => false, 'msg' => 'Client Store not Added.']);
 
             $data = ['name' => $request->store_name, 'email' => $request->email, 'password' => $request->password];
             $this->register($data); //for register new client
 
-            return response(['status' => true, 'msg' => 'Brand Store Added Successfully.']);
+            return response(['status' => true, 'msg' => 'Client Store Added Successfully.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }
@@ -70,7 +99,7 @@ class ClientController extends Controller
     {
         try {
             $save = Client::find($id);
-            $save->store_owner   = $request->store_owner;
+            $save->Brand_id   = $request->Brand_id;
             $save->store_name    = $request->store_name;
             $save->email         = $request->email;
             $save->gstin         = $request->gstin;

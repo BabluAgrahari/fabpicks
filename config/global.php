@@ -2,9 +2,7 @@
 
 return [
 
-    'perPage' => 500,
-
-
+    'perPage' => 10,
 
     'state' => [
         'Arunachal Pradesh',

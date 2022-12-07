@@ -10,10 +10,21 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data['lists'] = Brand::all();
+
+            $query = Brand::userAccess();
+
+            if (!empty($request->name))
+                $query->where('name', 'LIKE', "%$request->name%");
+
+            $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+            $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
+
+            $request->request->remove('page');
+            $request->request->remove('perPage');
+            $data['filter']  = $request->all();
             return view('crm.brand.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);
@@ -23,6 +34,7 @@ class BrandController extends Controller
     public function store(BrandRequest $request)
     {
         try {
+
             $save = new Brand();
             $save->name       = $request->name;
             $save->sort       = (int)$request->sort;

@@ -12,11 +12,25 @@ use Exception;
 
 class SubAttributeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
+
+            
+            $query = SubAttribute::userAccess();
+
+            if (!empty($request->name))
+                $query->where('name', 'LIKE', "%$request->name%");
+
+
+            $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+            $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
+
+            $request->request->remove('page');
+            $request->request->remove('perPage');
+            $data['filter']  = $request->all();
+
             $data['attributes'] = Attribute::where('status', 1)->get();
-            $data['lists'] = SubAttribute::all();
             return view('crm.subattribute.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['erroe', $e->getMessage()]);

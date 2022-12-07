@@ -2,54 +2,67 @@
 @section('content')
 
 
-<div class="container ">
-    <div class="row">
-        <div class="col-md-10">
-            <h4>Client</h4>
-        </div>
-        <div class="col-md-2 mb-3 product-btn-group">
-            <button type="button" class="btn btn-success btn-sm" id="addClient" data-bs-toggle="modal" data-bs-target="#ClientModal">
+<div class="card">
+    <div class="card-header ">
+        <div class="row">
+            <div class="col-md-3">
+                <h5>Client</h5>
+            </div>
+            <div class="col-md-9 product-btn-group d-flex justify-content-end">
+                @if(!empty($filter))
+                <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="far fa-times-circle"></i>&nbsp;Close</a>
+                @else
+                <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
+                @endif
+                <button type="button" class="btn btn-success btn-sm" id="addClient" data-bs-toggle="modal" data-bs-target="#ClientModal">
                 <i class="ri-add-circle-line"></i> Add
             </button>
+            </div>
         </div>
-        <div class="col-md-12 ">
-            <table class="table table-light table-striped custom-table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Store Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Phone</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">Country</th>
-                        <th scope="col">State</th>
-                        <th scope="col">City</th>
-                        <th scope="col">Pin Code</th>
-                        <th scope="col">Logo</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($lists as $key=>$list)
-                    <tr>
-                        <th scope="row">{{++$key}}</th>
-                        <td>{{$list->store_name}}</td>
-                        <td>{{$list->email}}</td>
-                        <td>{{$list->phone}}</td>
-                        <td>{{$list->address}}</td>
-                        <td>{{$list->country}}</td>
-                        <td>{{$list->state}}</td>
-                        <td>{{$list->city}}</td>
-                        <td>{{$list->pincode}}</td>
-                        <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
-                        <td>
-                            <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    </div>
+    <div class="card-body ">
+        @include('crm.client.filter')
+        <div class="row">
+            <div class="col-md-12 ">
+                <table class="table products-table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Store Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Phone</th>
+                            <th scope="col">Address</th>
+                            <th scope="col">Country</th>
+                            <th scope="col">State</th>
+                            <th scope="col">City</th>
+                            <th scope="col">Pin Code</th>
+                            <th scope="col">Logo</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($lists as $key=>$list)
+                        <tr>
+                            <th scope="row">{{++$key}}</th>
+                            <td>{{$list->store_name}}</td>
+                            <td>{{$list->email}}</td>
+                            <td>{{$list->phone}}</td>
+                            <td>{{$list->address}}</td>
+                            <td>{{$list->country}}</td>
+                            <td>{{$list->state}}</td>
+                            <td>{{$list->city}}</td>
+                            <td>{{$list->pincode}}</td>
+                            <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
+                            <td>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
+                            </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
+        {{ $lists->appends($_GET)->links()}}
     </div>
 </div>
 
@@ -71,18 +84,13 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="store-owner ">Store Owner: <span class="required">*</span></label>
-                                        <select name="store_owner" id="store_owner" class="form-select js-example-basic-single">
-                                            <option value="" selected>Select</option>
-                                            <option value="Store Owner -1">Store Owner -1</option>
-                                            <option value="Store Owner -2">Store Owner -2</option>
-                                            <option value="Store Owner -3">Store Owner -3</option>
-                                            <option value="Store Owner -4">Store Owner -4</option>
-                                            <option value="Store Owner -5">Store Owner -5</option>
-                                            <option value="Store Owner -6">Store Owner -6</option>
-
+                                        <label for="store-owner ">Brand: <span class="required">*</span></label>
+                                        <select name="Brand_id" id="Brand_id" class="form-select js-example-basic-single">
+                                        <option value="" selected>Select</option>
+                                            @foreach($brands as $res)
+                                            <option value="{{$res->_id}}">{{$res->name}}</option>
+                                            @endforeach
                                         </select>
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Choose Store Owner</span>
                                         <span class="text-danger" id="store_owner_msg"></span>
                                     </div>
                                 </div>
@@ -91,7 +99,6 @@
                                     <div class="field-group">
                                         <label for="store-name ">Store Name: <span class="required">*</span></label>
                                         <input type="text" id="store_name" name="store_name" class="form-control" placeholder="Store Name">
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Enter Store Name</span>
                                         <span class="text-danger" id="store_name_msg"></span>
                                     </div>
                                 </div>
@@ -100,7 +107,6 @@
                                     <div class="field-group">
                                         <label for="business-email ">Business Email: <span class="required">*</span></label>
                                         <input type="text" id="email" name="email" class="form-control" placeholder="Business Email">
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter business email</span>
                                         <span class="text-danger" id="email_msg"></span>
                                     </div>
                                 </div>
@@ -110,7 +116,6 @@
                                     <div class="field-group">
                                         <label for="vat/gstin ">VAT/GSTIN No: </label>
                                         <input type="text" id="gstin" name="gstin" class="form-control" placeholder="Please enter your VAT/GSTIN No. ">
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter your VAT/GSTIN No. </span>
                                         <span class="text-danger" id="gstin_msg"></span>
                                     </div>
                                 </div>
@@ -118,7 +123,6 @@
                                     <div class="field-group">
                                         <label for="phone ">Phone: </label>
                                         <input type="text" id="phone" name="phone" class="form-control" placeholder="Please enter your phone No. ">
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter your phone No. </span>
                                         <span class="text-danger" id="phone_msg"></span>
                                     </div>
                                 </div>
@@ -126,7 +130,6 @@
                                     <div class="field-group">
                                         <label for="mobile ">Mobile: <span class="required">*</span></label>
                                         <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Please enter your mobile No. ">
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter your mobile No. </span>
                                         <span class="text-danger" id="mobile_msg"></span>
                                     </div>
                                 </div>
@@ -137,14 +140,13 @@
                                     <div class="field-group">
                                         <label for="address ">Store Address: <span class="required">*</span></label>
                                         <textarea name="address" id="address" placeholder="Enter Address" class="form-control"></textarea>
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Please enter store address </span>
                                         <span class="text-danger" id="address_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="country ">Country: <span class="required">*</span></label>
-                                        <input type="text" name="country" id="country" class="form-control" placeholder="Enter Country" >
+                                        <input type="text" name="country" id="country" class="form-control" placeholder="Enter Country">
                                         <span class="text-danger" id="country_msg"></span>
                                     </div>
                                 </div>
@@ -152,11 +154,11 @@
                                     <div class="field-group">
                                         <label for="state ">State: <span class="required">*</span></label>
                                         <select name="state" id="state" class="form-select js-example-basic-single">
-                                            <option value="" selected>Please Choose</option>
-                                            <option value="State 1">State 1 </option>
-                                            <option value="State 2">State 2 </option>
+                                            <option value=" ">Select</option>
+                                            @foreach(config('global.state') as $state)
+                                            <option value="{{$state}}">{{$state}}</option>
+                                            @endforeach
                                         </select>
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Please select State</span>
                                         <span class="text-danger" id="state_msg"></span>
                                     </div>
                                 </div>
@@ -166,7 +168,7 @@
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="city ">City: <span class="required">*</span></label>
-                                        <input type="text" name="city" id="city" placeholder="Enter City" class="form-control" >
+                                        <input type="text" name="city" id="city" placeholder="Enter City" class="form-control">
 
                                         <span class="text-danger" id="city_msg"></span>
                                     </div>
@@ -175,7 +177,6 @@
                                     <div class="field-group">
                                         <label for="pincode/zipcode ">Pincode/Zipcode: </label>
                                         <input type="text" id="pincode" name="pincode" class="form-control" placeholder="Pincode/Zipcode">
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Enter Store Name</span>
                                         <span class="text-danger" id="pincode_msg"></span>
                                     </div>
                                 </div>
@@ -183,7 +184,6 @@
                                     <div class="field-group">
                                         <label for="logo ">Logo: </label>
                                         <input type="file" id="logo" name="logo" class="form-control">
-                                        <span class="note"><i class="fa-solid fa-circle-info"></i>Please upload your store logo</span>
                                     </div>
                                 </div>
                             </div>
@@ -208,7 +208,6 @@
                                         <div class="form-check form-switch custom-switch custom-switch-1">
                                             <label class="form-check-label" for="verified-store">Verified Store:</label>
                                             <input class="form-check-input" type="checkbox" role="switch" name="verified_store" value="1" id="verified_store">
-                                            <span class="note">(On The Product Details page if store if verified than it will and () Symbol next to the store name)</span>
                                             <span class="text-danger" id="verified_store_msg"></span>
                                         </div>
                                     </div>
@@ -244,6 +243,11 @@
                                         <span class="text-danger" id="password_msg"></span>
                                     </div>`);
     });
+
+    function removeRow(id) {
+        var element = document.getElementById("row-" + id);
+        element.parentNode.removeChild(element);
+    }
 
     /*start form submit functionality*/
     $("form#ClientSave").submit(function(e) {
@@ -308,7 +312,7 @@
             success: function(res) {
 
                 if (res.status) {
-                    $('#store_owner').val(res.record.store_owner);
+                    $('#Brand_id').val(res.record.Brand_id);
                     $('#store_name').val(res.record.store_name);
                     $('#email').val(res.record.email);
                     $('#gstin').val(res.record.gstin);

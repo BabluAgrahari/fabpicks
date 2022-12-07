@@ -99,6 +99,7 @@ class LoginOtpController extends Controller
     {
         $save = new User();
         $save->mobile_no = $mobile_no;
+        $save->trail_point = (int)6;
         // $save->email = $request->email;
         // $save->password = Hash::make($request->password);
         $save->role = 'customer';
