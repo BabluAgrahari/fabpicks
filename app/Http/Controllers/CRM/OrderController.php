@@ -9,10 +9,29 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function indexOrder()
+    public function indexOrder(Request $request)
     {
 
-        $data['lists'] = Order::get();
+        $query = Order::query();
+
+        if (!empty($request->order_number))
+            $query->where('order_number', 'LIKE', "%$request->order_number%");
+
+            if (!empty($request->order_date))
+            $query->where('order_date', 'LIKE', "%$request->order_date%");
+
+            if (!empty($request->amount))
+            $query->where('amount', 'LIKE', "%$request->amount%");
+
+            if (!empty($request->Status))
+            $query->where('Status', 'LIKE', "%$request->Status%");
+
+        $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+        $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
+
+        $request->request->remove('page');
+        $request->request->remove('perPage');
+        $data['filter']  = $request->all();
         return view('crm/order/list',$data);
         try {
             return view('crm/order/list');

@@ -22,7 +22,7 @@ class FeedbackRequest extends FormRequest
             'price'        =>  'required',
             'value'        =>  'required',
             'remarks'      =>  'required',
-            // 'status'            =>  'required|string|in:success,fales'  
+            // 'status'            =>  'required|string|in:success,false'  
         ];
     }
 

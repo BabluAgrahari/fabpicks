@@ -43,7 +43,7 @@ class OrderController extends Controller
             $save->order_number          = rand(100000, 999999);
             $save->order_date            = (int)strtotime($request->order_date);
             $save->amount                = $request->amount;
-            $save->fix_amount            = $request->fix_amount;
+            $save->tax_amount            = $request->tax_amount;
             $save->status                = $request->status;
             $save->shipping_details      = $request->shipping_details;
             $save->billing_details       = $request->billing_details;

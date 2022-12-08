@@ -11,10 +11,27 @@ use Illuminate\Http\Request;
 
 class SurvayController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $data['lists'] = Survay::all();
+
+            $query = Survay::userAccess();
+
+            if (!empty($request->title))
+                $query->where('title', 'LIKE', "%$request->title%");
+
+                if (!empty($request->discription))
+                $query->where('discription', 'LIKE', "%$request->discription%");
+
+                if (!empty($request->type))
+                $query->where('type', 'LIKE', "%$request->type%");
+
+            $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+            $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
+
+            $request->request->remove('page');
+            $request->request->remove('perPage');
+            $data['filter']  = $request->all();
             return view('crm.survay.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['erroe', $e->getMessage()]);
@@ -101,3 +118,4 @@ class SurvayController extends Controller
         }
     }
 }
+ 

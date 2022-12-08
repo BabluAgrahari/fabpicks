@@ -11,6 +11,32 @@ use Exception;
 
 class FeedbackController extends Controller
 {
+    public function index()
+    {
+        try {
+
+            $record = Feedback::where('status','success')->latest()->get();
+
+            if ($record->isEmpty())
+                return $this->notFoundRes();
+
+            return $this->recordsRes($record);
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
+
+
+    public function show($id)
+    {
+        try {
+            $record = Feedback::find($id);
+            return $this->recordRes($record);
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
+
     public function store(FeedbackRequest $request)
     {
         $save = new Feedback();

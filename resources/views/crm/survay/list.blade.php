@@ -4,11 +4,16 @@
 <div class="card">
   <div class="card-header ">
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-9">
         <h5>Survay </h5>
       </div>
-      <div class="col-md-6 ">
-        <div class="product-btn d-flex justify-content-end">
+      <div class="col-md-3 ">
+        <div class=" product-btn-group d-flex justify-content-end">
+          @if(!empty($filter))
+          <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="far fa-times-circle"></i>&nbsp;Close</a>
+          @else
+          <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
+          @endif
 
           <button type="button" class="btn btn-success" data-bs-toggle="modal" id="addSurvay" data-bs-target="#survayModel">
             <i class="ri-add-circle-line"></i> Add
@@ -19,6 +24,7 @@
   </div>
 
   <div class="card-body">
+    @include('crm.survay.filter')
     <div class="row">
       <div class="col-md-12 ">
         <div class="table-responsive">
@@ -36,9 +42,9 @@
               @foreach($lists as $keys=> $list)
               <tr>
                 <th scope="row">{{++$keys}}</th>
-                <td>{{$list->title}}</td>
-                <td>{{$list->discription}}</td>
-                <td>{{$list->type}}</td>
+                <td>{{ucWords($list->title)}}</td>
+                <td>{{ucWords($list->discription)}}</td>
+                <td>{{ucWords($list->type)}}</td>
                 <td>
                   <div class="action-group ">
                     <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><i class="ri-pencil-line"></i></a>
@@ -54,11 +60,13 @@
         </div>
       </div>
     </div>
+    {{ $lists->appends($_GET)->links()}}
   </div>
 </div>
 
 @push('modal')
 
+<!-- onclick="javascript:window.location.reload()" put in button close-->
 <!--Survay Add Modal -->
 <div class="modal fade" id="survayModel" tabindex="-1" aria-labelledby="survayLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg ">

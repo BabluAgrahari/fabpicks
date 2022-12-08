@@ -13,6 +13,7 @@ use App\Http\Controllers\crm\PushController;
 use App\Http\Controllers\crm\SettingController;
 use App\Http\Controllers\crm\OrderController;
 use App\Http\Controllers\crm\ClientController;
+use App\Http\Controllers\crm\UserController;
 use App\Http\Controllers\crm\CouponController;
 use App\Http\Controllers\crm\ProductAddController;
 use App\Http\Controllers\crm\ProductController;
@@ -85,7 +86,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::get('product-listing', [ProductListingController::class, 'productListing']);
 
      Route::get('feedback', [FeedbackController::class, 'feedback']);
-    Route::get('show', [Register::class, 'show']);
+    Route::get('user', [UserController::class, 'indexuser']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

@@ -10,6 +10,33 @@ use Exception;
 
 class ShippingBillingController extends Controller
 {
+
+    public function index()
+    {
+        try {
+
+            $record = ShippingBilling::latest()->get();
+
+            if ($record->isEmpty())
+                return $this->notFoundRes();
+
+            return $this->recordsRes($record);
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
+
+
+    public function show($id)
+    {
+        try {
+            $record = ShippingBilling::find($id);
+            return $this->recordRes($record);
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
+
     public function store(Request $request)
     {
         try {
