@@ -15,7 +15,7 @@ var options = {
         }]
     },
     chart: {
-        height: 350,
+        height: 250,
         type: 'bar',
     },
     plotOptions: {
@@ -32,7 +32,7 @@ var options = {
     },
     series: [{
         name: 'Sales',
-        data: [44, 55, 41, 67, 22, 43, 21, 33, 45, 31, 87, 65, 35]
+        data: [44, 55, 41, 67, 22, 43]
     }],
     grid: {
         row: {
@@ -43,8 +43,7 @@ var options = {
         labels: {
             rotate: -45
         },
-        categories: ['Product-1', 'Product-2', 'Product-3', 'Product-4', 'Product-5', 'Product-6',
-            'Product-7', 'Product-8', 'Product-9', 'Product-10', 'Product-11', 'Product-12', 'Product-13'
+        categories: ['Product-1', 'Product-2', 'Product-3', 'Product-4', 'Product-5', 'Product-6' 
         ],
     },
     yaxis: {
