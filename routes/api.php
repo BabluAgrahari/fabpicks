@@ -10,6 +10,7 @@ use App\Http\Controllers\Api\Auth\LoginOtpController;
 use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\SubAttributeController;
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OrderController;
@@ -88,11 +89,15 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::controller(ShippingBillingController::class)->group(function () {
         Route::post('shipping', 'store');
+        Route::get('shipping', 'index');
+        Route::get('shipping/{id}', 'show');
     });
 
 
     Route::controller(FeedbackController::class)->group(function () {
         Route::post('feedback', 'store');
+        Route::get('feedback', 'index');
+        Route::get('feedback/{id}', 'show');
     });
 });
 

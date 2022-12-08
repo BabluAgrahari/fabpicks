@@ -42,10 +42,4 @@ class Register extends Controller
 
     }
 
-    public function show()
-    {
-        $data['lists'] = User::all();
-        return view('crm.customers.list',$data);
-    }
-
 }

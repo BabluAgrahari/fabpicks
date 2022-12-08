@@ -89,7 +89,7 @@
 
                 </li>
                 <li class="menu-item ">
-                    <a href="{{url('crm/show')}}">
+                    <a href="{{url('crm/user')}}">
                         <span class="menu-icon">
                             <i class="ri-user-line"></i>
                         </span>
