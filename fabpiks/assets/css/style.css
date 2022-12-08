@@ -529,21 +529,11 @@ a {
 }
 
 .dashboard-box {
-    background-color: #243d7d;
     padding: 15px 20px;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    margin-bottom: 50px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 15px;
+    border: 1px solid rgb(224, 222, 222);
+    margin-bottom: 20px;
     cursor: pointer;
-}
-
-.dashboard-box.active {
-    background-color: #243d7d;
-    background-position: right;
-    background-size: cover;
-}
-
-.dashboard-box * {
-    color: #fff;
 }
 
 .dashboard-box.b-right {
@@ -553,17 +543,37 @@ a {
     display: flex;
     align-items: center;
     margin-bottom: 10px;
+    justify-content: space-between;
 }
 .dashboard-box .dashboard-box-top .icon-box {
-    border: 1px solid #fff;
     width: 30px;
     height: 30px;
     border-radius: 50%;
     display: grid;
     place-content: center;
+    color: #fff;
 }
-.dashboard-box.active .dashboard-box-top .icon-box {
-    border-color: #000;
+.dashboard-box .dashboard-box-top .icon-box.icon-1 {
+    background-color: #03bd8b;
+}
+.dashboard-box .dashboard-box-top .icon-box.icon-2 {
+    background-color: #e979e9e0;
+}
+.dashboard-box .dashboard-box-top .icon-box.icon-3 {
+    background-color: #e9bc79e0;
+}
+.dashboard-box .dashboard-box-top .icon-box.icon-4 {
+    background-color: #e9797fe0;
+}
+.dashboard-box .dashboard-box-top .icon-box.icon-5 {
+    background-color: #79d8e9e0;
+}
+.dashboard-box .dashboard-box-top .icon-box.icon-6 {
+    background-color: #9179e9e0;
+}
+
+.dashboard-box .dashboard-box-top .icon-box i {
+    color: #fff;
 }
 .dashboard-box .dashboard-box-top p {
     margin-bottom: 0;
@@ -699,6 +709,7 @@ textarea.form-control {
 
 .chart-box.show {
     display: block;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
 }
 
 .product-btn-group i {
@@ -1435,5 +1446,34 @@ span.required {
     margin: 0 7px 3px;
     display: inline-block;
     cursor: pointer;
-     
+}
+
+.daterange-search {
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px;
+    width: 100%;
+    padding: 10px 20px;
+    margin-bottom: 30px;
+}
+
+.daterange-box {
+    display: flex;
+    align-items: center;
+}
+.daterange-field {
+    margin-right: 10px;
+}
+.daterange-field input {
+    border: 1px solid lightgray;
+    padding: 6px 20px;
+    border-radius: 50px;
+}
+.daterange-field input:focus,
+.daterange-field input:active {
+    border: 1px solid #03bd8b;
+    box-shadow: none;
+    outline: none;
+}
+.chart.chart-show {
+    width: 100%;
+    min-height: 320px;
 }
