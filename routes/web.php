@@ -81,12 +81,12 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::get('refund', [SettingController::class, 'refundIndex']);
     Route::post('refund/{id}', [SettingController::class, 'refundupdate']);
 
-    Route::get('order', [OrderController::class, 'indexOrder']);
+    Route::get('order', [OrderController::class, 'index']);
 
     Route::get('product-listing', [ProductListingController::class, 'productListing']);
 
-     Route::get('feedback', [FeedbackController::class, 'feedback']);
-    Route::get('user', [UserController::class, 'indexuser']);
+    Route::get('feedback', [FeedbackController::class, 'index']);
+    Route::get('user', [UserController::class, 'index']);
 });
 
 Route::group(['middleware' => 'guest'], function () {

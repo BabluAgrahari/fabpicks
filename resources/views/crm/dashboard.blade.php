@@ -1,7 +1,7 @@
  @extends('crm.layout.app')
  @section('content')
 
- <div class="container">
+ <div class="container-fluid">
      <div class="row g-0">
          <div class="col-md-3" id="button">
              <div class="dashboard-box b-right active">
@@ -167,136 +167,188 @@
 
  <!-- custom-chart -->
  <div class="product-sales-area ">
-     <div class="container">
+     <div class="container-fluid">
          <div class="row g-0">
 
              <div class="col-md-7">
-                 <table class="table table-light table-striped products-table" id="myTable">
-                     <thead>
-                         <tr>
-                             <th scope="col">#</th>
-                             <th scope="col">Product Name</th>
-                             <th scope="col">Order Id</th>
-                             <th scope="col">Price</th>
-                             <th scope="col">Sold</th>
-                             <th scope="col">Sales</th>
-                         </tr>
-                     </thead>
-                     <tbody>
-                         <tr>
-                             <th scope="row">1</th>
-                             <td>Product - 1</td>
-                             <td>#4545</td>
-                             <td>Rs. 455</td>
-                             <td>984</td>
-                             <td>Rs. 12984</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">2</th>
-                             <td>Product - 2</td>
-                             <td>#45455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">3</th>
-                             <td>Product - 3</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">4</th>
-                             <td>Product - 4</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">5</th>
-                             <td>Product - 5</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">6</th>
-                             <td>Product - 6</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">7</th>
-                             <td>Product - 7</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">7</th>
-                             <td>Product - 7</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">7</th>
-                             <td>Product - 7</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">7</th>
-                             <td>Product - 7</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">7</th>
-                             <td>Product - 7</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">7</th>
-                             <td>Product - 7</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">7</th>
-                             <td>Product - 7</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                         <tr>
-                             <th scope="row">7</th>
-                             <td>Product - 7</td>
-                             <td>#455</td>
-                             <td>Rs. 4565</td>
-                             <td>9834</td>
-                             <td>Rs. 129384</td>
-                         </tr>
-                     </tbody>
-                 </table>
+                 <div class="table-responsive">
+                     <table class="table products-table">
+                         <thead>
+                             <tr>
+                                 <th scope="col">#</th>
+                                 <th scope="col">Product Name</th>
+                                 <th scope="col">Order Id</th>
+                                 <th scope="col">Price</th>
+                                 <th scope="col">Sold</th>
+                                 <th scope="col">Sales</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                             <tr>
+                                 <th scope="row">1</th>
+                                 <td>Product - 1</td>
+                                 <td>#4545</td>
+                                 <td>Rs. 455</td>
+                                 <td>984</td>
+                                 <td>Rs. 12984</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">2</th>
+                                 <td>Product - 2</td>
+                                 <td>#45455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">3</th>
+                                 <td>Product - 3</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">4</th>
+                                 <td>Product - 4</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">5</th>
+                                 <td>Product - 5</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">6</th>
+                                 <td>Product - 6</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">7</th>
+                                 <td>Product - 7</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">7</th>
+                                 <td>Product - 7</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">7</th>
+                                 <td>Product - 7</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">7</th>
+                                 <td>Product - 7</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">7</th>
+                                 <td>Product - 7</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">7</th>
+                                 <td>Product - 7</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">7</th>
+                                 <td>Product - 7</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                             <tr>
+                                 <th scope="row">7</th>
+                                 <td>Product - 7</td>
+                                 <td>#455</td>
+                                 <td>Rs. 4565</td>
+                                 <td>9834</td>
+                                 <td>Rs. 129384</td>
+                             </tr>
+                         </tbody>
+                     </table>
+                 </div>
+                 <div class="row align-items-center mb-3">
+                     <div class="col-md-2">
+                         <div class="list-number">
+                             <select name="" id="" class="form-select">
+                                 <option value="1">1</option>
+                                 <option value="2">2</option>
+                                 <option value="3">3</option>
+                                 <option value="4">4</option>
+                                 <option value="5">5</option>
+                                 <option value="6">6</option>
+                                 <option value="7">7</option>
+                                 <option value="8">8</option>
+                                 <option value="9">9</option>
+                                 <option value="10">10</option>
+                                 <option value="11">11</option>
+                                 <option value="12">12</option>
+                                 <option value="13">13</option>
+                                 <option value="14">14</option>
+                                 <option value="15">15</option>
+                                 <option value="16">16</option>
+                                 <option value="17">17</option>
+                                 <option value="18">18</option>
+                                 <option value="19">19</option>
+                                 <option value="20">20</option>
+                                 <option value="21">21</option>
+                                 <option value="22">22</option>
+                                 <option value="23">23</option>
+                                 <option value="24">24</option>
+                                 <option value="25">25</option>
+                             </select>
+                         </div>
+                     </div>
+
+                     <div class="col-md-4 ">
+                         <p class="mb-0">Showing 1 to 6 of 25 Results</p>
+                     </div>
+
+                     <div class="col-md-6 d-flex justify-content-end">
+                         <nav aria-label="Page navigation  pagination-sm">
+                             <ul class="pagination">
+                                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                             </ul>
+                         </nav>
+                     </div>
+
+                 </div>
              </div>
              <div class="col-md-5 ">
                  <div class="product-sales-chart">
@@ -341,6 +393,7 @@
      </div>
  </div>
  <!-- custom-end -->
+
 
  @push('js')
 

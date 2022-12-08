@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class FeedbackController extends Controller
 {
-    public function feedback(Request $request)
+    public function index(Request $request)
     {
         // $query = Feedback::with('User')->get()->query();
         $query = Feedback::query();
