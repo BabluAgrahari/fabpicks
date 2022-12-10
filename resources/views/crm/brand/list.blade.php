@@ -6,19 +6,27 @@
     <div class="card-header ">
         <div class="row">
 
-            <div class="col-md-9">
-                <h4>Brand</h4>
+            <div class="col-md-6">
+                <h5>Brand</h5>
             </div>
 
-            <div class="col-md-3 product-btn-group d-flex justify-content-end">
+            <div class="col-md-6 product-btn-group d-flex justify-content-end">
                 @if(!empty($filter))
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="far fa-times-circle"></i>&nbsp;Close</a>
                 @else
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
-                @if(isAdmin())
-                <a href="javascript:void(0);" class="btn btn-sm btn-success ri-add-circle-line" id="addBrand">Add</a>
-                @endif
+                @can('isAdmin')
+                <a href="javascript:void(0);" class="btn btn-sm btn-success" id="">
+                    <x-icon type="export" />Export
+                </a>
+                <a href="javascript:void(0);" class="btn btn-sm btn-success" id="import">
+                    <x-icon type="import" />Import
+                </a>
+                <a href="javascript:void(0);" class="btn btn-sm btn-success" id="addBrand">
+                    <x-icon type="add" />Add
+                </a>
+                @endcan
             </div>
         </div>
     </div>
@@ -50,8 +58,11 @@
                                 @if(isAdmin())
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-danger"><i class="ri-delete-bin-line"></i>
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info">
+                                            <x-icon type="edit" />
+                                        </a>
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-danger">
+                                            <x-icon type="remove" />
                                         </a>
                                     </div>
                                 </td>
