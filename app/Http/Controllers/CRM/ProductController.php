@@ -10,6 +10,7 @@ use App\Models\SubCategory;
 use App\Models\Product;
 use App\Models\Survay;
 use App\Http\Request\ProductRequest;
+use App\Models\Category;
 use App\Models\ProductInventory;
 use Exception;
 use Illuminate\Http\Request;
@@ -167,4 +168,15 @@ class ProductController extends Controller
             $save->save();
         }
     }
+
+    public function show($id)
+    {
+        try {
+            $record = Product::Where('sub_category',$id)->get();
+            return response(['status' => true, 'record' => $record]);
+        } catch (Exception $e) {
+            return response(['status' => false, 'msg' => $e->getMessage()]);
+        }
+    }
+
 }

@@ -44,7 +44,7 @@ class WishlistController extends Controller
             $save->qty = (int)$request->qty;
             $save->code = $request->code;
             if ($save->save())
-                return $this->successRes('Product added in cart.');
+                return $this->successRes('Product added in Wishlist.');
 
             return $this->failRes('Product not added.');
         } catch (Exception $e) {

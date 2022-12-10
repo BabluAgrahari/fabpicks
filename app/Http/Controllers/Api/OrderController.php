@@ -57,4 +57,19 @@ class OrderController extends Controller
             return $this->failRes($e->getMessage());
         }
     }
+
+    public function update(OrderRequest $request,$id)
+    {
+        try {
+            $save = Order::find($id);
+            $save->status    = $request->status;
+
+            if ($save->save())
+                return $this->successRes('Order updated Successfully.');
+
+            return $this->failRes('Order not updated.');
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
 }

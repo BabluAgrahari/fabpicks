@@ -52,8 +52,8 @@
                                 <td>{{$list->rewards_point}}</td>
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" class="view text-info"><i class="ri-add-circle-line"></i></a>
-                                        <a href="{{url('crm/product/'.$list->_id)}}/edit" class="edit text-info"><i class="ri-pencil-line"></i></a>
+                                        <a href="javascript:void(0)" _id="{{$list->sub_category}}" class="view text-info"><i class="ri-add-circle-line"></i></a>
+                                        <a href="{{url('crm/product/'.$list->_id)}}/edit"  class="edit text-info"><i class="ri-pencil-line"></i></a>
                                     </div>
                                 </td>
                             </tr>
@@ -99,13 +99,8 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td><img src="{{defaultImg('50x50')}}"></td>
-                                    <td>Product Name</td>
-                                    <td><input type="number" class="form-control" name="sort" value="1"></td>
-                                </tr>
+                            <tbody id="list">
+                                
                             </tbody>
                         </table>
                     </div>
@@ -117,4 +112,37 @@
 </div>
 <!-- related products End -->
 @endpush
+
+@push('js')
+<script>
+    // //for edit
+    $(document).on('click', '.view', function(e) {
+        e.preventDefault(0);
+
+        let id = $(this).attr('_id');
+        let url = "{{url('crm/product')}}/" + id ;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(res) {
+
+                if (res.status) {
+                    let list = '';
+                    $.each(res.record, (index, val) => {
+                        list += `<tr><td>${++index}</td>
+                        <td><img src="${val.image}" style="height:50px; width:60px;"></td>
+                        <td>${val.name}</td>
+                        <td> <input type="number" class="form-control form-control-sm" > </td>
+                        
+                        </tr>`;
+                    });
+                    $('#list').html(list);
+                }
+            }
+        })
+    });
+    </script>
+    @endpush;
+
 @endsection
