@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    public function dasindex()
+    public function index()
     {
         try {
             return view('crm.dashboard');

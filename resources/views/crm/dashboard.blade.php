@@ -1,160 +1,18 @@
  @extends('crm.layout.app')
  @section('content')
+ <div class="page-container">
+     <div class="daterange-search ">
+         <div class="container-fluid">
+             <div class="row">
+                 <div class="col-md-6">
+                     <div class="daterange-box">
+                         <div class="daterange-field">
 
- <div class="container-fluid">
-     <div class="row g-0">
-         <div class="col-md-3" id="button">
-             <div class="dashboard-box b-right active">
-                 <div class="dashboard-box-top">
-                     <div class="icon-box">
-                         <i class="fa-sharp fa-solid fa-bag-shopping"></i>
-                     </div>
-                     <div class="title">
-                         <p>Total Orders</p>
-                     </div>
-                 </div>
-                 <div class="dashboard-box-middle">
-                     <div class="price-box">
-                         <h1>999<span style="font-size:15px;"> +60</span></h1>
-                     </div>
-
-                     <div class="dashboard-box-chart">
-                         <div id="progress" data-donut="60">
+                             <input type="text" name="dates">
                          </div>
 
-                     </div>
-                 </div>
-
-                 <div class="bottom-container">
-                     <div class="date-range ">
-                         <div class="date-title">Date Range</div>
-                         <div id="reportrange">
-                             <span style="color:#fff"></span> <b class="caret"></b>
-                             <i class="fa-regular fa-square-caret-down" style="color:#fff;font-size:20px;"></i>
-                         </div>
-                     </div>
-                     <div class="short-graph">
-                         <div class="d-flex justify-content-center">
-                             <div id="chart1"> </div>
-                         </div>
-                     </div>
-                 </div>
-
-
-             </div>
-         </div>
-         <div class="col-md-3" id="button2">
-             <div class="dashboard-box b-right">
-                 <div class="dashboard-box-top">
-                     <div class="icon-box">
-                         <i class="fa-solid fa-users"></i>
-                     </div>
-                     <div class="title">
-                         <p>Brand Store</p>
-                     </div>
-                 </div>
-                 <div class="dashboard-box-middle">
-                     <div class="price-box">
-                         <h1>625<span style="font-size:15px;"> +60</span></h1>
-                     </div>
-                     <div class="dashboard-box-chart">
-                         <div id="progress1" data-donut="80">
-                         </div>
-                     </div>
-                 </div>
-
-
-
-                 <div class="bottom-container">
-                     <div class="date-range">
-                         <div class="date-title">Date Range</div>
-                         <div id="reportrange1">
-                             <span style="color:#fff"></span> <b class="caret"></b>
-                             <i class="fa-regular fa-square-caret-down" style="color:#fff;font-size:20px;"></i>
-                         </div>
-                     </div>
-                     <div class="short-graph">
-                         <div class="d-flex justify-content-center">
-                             <div id="chart2"> </div>
-                         </div>
-                     </div>
-                 </div>
-
-
-             </div>
-         </div>
-         <div class="col-md-3" id="button3">
-             <div class="dashboard-box b-right">
-                 <div class="dashboard-box-top">
-                     <div class="icon-box">
-                         <i class="fa-regular fa-star"></i>
-                     </div>
-                     <div class="title">
-                         <p>Fixed Price</p>
-                     </div>
-                 </div>
-                 <div class="dashboard-box-middle">
-                     <div class="price-box">
-                         <h1>643<span style="font-size:15px;"> +60</span></h1>
-                     </div>
-                     <div class="dashboard-box-chart">
-                         <div id="progress2" data-donut="40">
-                         </div>
-                     </div>
-                 </div>
-
-
-
-                 <div class="bottom-container">
-                     <div class="date-range">
-                         <div class="date-title">Date Range</div>
-                         <div id="reportrange2">
-                             <span style="color:#fff"></span> <b class="caret"></b>
-                             <i class="fa-regular fa-square-caret-down" style="color:#fff;font-size:20px;"></i>
-                         </div>
-                     </div>
-                     <div class="short-graph">
-                         <div class="d-flex justify-content-center">
-                             <div id="chart3"> </div>
-                         </div>
-                     </div>
-                 </div>
-
-
-             </div>
-         </div>
-         <div class="col-md-3" id="button4">
-             <div class="dashboard-box">
-                 <div class="dashboard-box-top">
-                     <div class="icon-box">
-                         <i class="fa-solid fa-rotate-left"></i>
-                     </div>
-                     <div class="title">
-                         <p>Rewards Store </p>
-                     </div>
-                 </div>
-                 <div class="dashboard-box-middle">
-                     <div class="price-box">
-                         <h1>780<span style="font-size:15px;"> +60</span></h1>
-                     </div>
-                     <div class="dashboard-box-chart">
-                         <div id="progress3" data-donut="90">
-                         </div>
-
-                     </div>
-                 </div>
-
-                 <div class="bottom-container">
-                     <div class="date-range">
-                         <div class="date-title">Date Range</div>
-                         <div id="reportrange3">
-                             <span style="color:#fff"></span> <b class="caret"></b>
-                             <i class="fa-regular fa-square-caret-down" style="color:#fff;font-size:20px;"></i>
-                         </div>
-                     </div>
-                     <div class="short-graph">
-                         <div class="d-flex justify-content-center">
-                             <div id="chart4"> </div>
+                         <div class="search-btn">
+                             <button type="submit" class="btn btn-success">Search</button>
                          </div>
                      </div>
                  </div>
@@ -162,145 +20,370 @@
              </div>
          </div>
      </div>
- </div>
 
+     <!-- custom-chart -->
+     <div class="product-sales-area ">
+         <div class="container-fluid">
+             <div class="row  ">
+                 <div class="col-md-7">
+                     <div class="row">
+                         <div class="col-md-4">
+                             <div class="dashboard-box">
+                                 <div class="dashboard-title-group dashboard-box-top">
+                                     <div class="dashboard-title">
+                                         <h6>Total Sell</h6>
+                                     </div>
+                                     <div class="dashboard-icon icon-box icon-1">
+                                         <i class="fa-solid fa-basket-shopping"></i>
+                                     </div>
+                                 </div>
 
- <!-- custom-chart -->
- <div class="product-sales-area ">
-     <div class="container-fluid">
-         <div class="row g-0">
+                                 <div class="dashboard-stats">
+                                     <h2>0</h2>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-4">
+                             <div class="dashboard-box">
+                                 <div class="dashboard-title-group dashboard-box-top">
+                                     <div class="dashboard-title">
+                                         <h6>New Order</h6>
+                                     </div>
+                                     <div class="dashboard-icon icon-box icon-2">
+                                         <i class="fa-sharp fa-solid fa-cart-shopping"></i>
+                                     </div>
+                                 </div>
 
-             <div class="col-md-7">
-                 <div class="table-responsive">
-                     <table class="table products-table">
-                         <thead>
-                             <tr>
-                                 <th scope="col">#</th>
-                                 <th scope="col">Product Name</th>
-                                 <th scope="col">Order Id</th>
-                                 <th scope="col">Price</th>
-                                 <th scope="col">Sold</th>
-                                 <th scope="col">Sales</th>
-                             </tr>
-                         </thead>
-                         <tbody>
-                             <tr>
-                                 <th scope="row">1</th>
-                                 <td>Product - 1</td>
-                                 <td>#4545</td>
-                                 <td>Rs. 455</td>
-                                 <td>984</td>
-                                 <td>Rs. 12984</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">2</th>
-                                 <td>Product - 2</td>
-                                 <td>#45455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">3</th>
-                                 <td>Product - 3</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">4</th>
-                                 <td>Product - 4</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">5</th>
-                                 <td>Product - 5</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">6</th>
-                                 <td>Product - 6</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">7</th>
-                                 <td>Product - 7</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">7</th>
-                                 <td>Product - 7</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">7</th>
-                                 <td>Product - 7</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">7</th>
-                                 <td>Product - 7</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">7</th>
-                                 <td>Product - 7</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">7</th>
-                                 <td>Product - 7</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">7</th>
-                                 <td>Product - 7</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                             <tr>
-                                 <th scope="row">7</th>
-                                 <td>Product - 7</td>
-                                 <td>#455</td>
-                                 <td>Rs. 4565</td>
-                                 <td>9834</td>
-                                 <td>Rs. 129384</td>
-                             </tr>
-                         </tbody>
-                     </table>
+                                 <div class="dashboard-stats">
+                                     <h2>0</h2>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-4">
+                             <div class="dashboard-box">
+                                 <div class="dashboard-title-group dashboard-box-top">
+                                     <div class="dashboard-title">
+                                         <h6>Total Income</h6>
+                                     </div>
+                                     <div class="dashboard-icon icon-box  icon-3">
+                                         <i class="fa-solid fa-dollar-sign"></i>
+                                     </div>
+                                 </div>
+
+                                 <div class="dashboard-stats">
+                                     <h2>0</h2>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-4">
+                             <div class="dashboard-box">
+                                 <div class="dashboard-title-group dashboard-box-top">
+                                     <div class="dashboard-title">
+                                         <h6>Total Expense</h6>
+                                     </div>
+                                     <div class="dashboard-icon icon-box icon-4">
+                                         <i class="fa-solid fa-chart-line"></i>
+                                     </div>
+                                 </div>
+
+                                 <div class="dashboard-stats">
+                                     <h2>0</h2>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-4">
+                             <div class="dashboard-box">
+                                 <div class="dashboard-title-group dashboard-box-top">
+                                     <div class="dashboard-title">
+                                         <h6>New User</h6>
+                                     </div>
+                                     <div class="dashboard-icon icon-box icon-5">
+                                         <i class="fa-solid fa-users"></i>
+                                     </div>
+                                 </div>
+
+                                 <div class="dashboard-stats">
+                                     <h2>0</h2>
+                                 </div>
+                             </div>
+                         </div>
+                         <div class="col-md-4">
+                             <div class="dashboard-box">
+                                 <div class="dashboard-title-group dashboard-box-top">
+                                     <div class="dashboard-title">
+                                         <h6>Pending Order</h6>
+                                     </div>
+                                     <div class="dashboard-icon icon-box icon-6">
+                                         <i class="fa-solid fa-cart-plus"></i>
+                                     </div>
+                                 </div>
+
+                                 <div class="dashboard-stats">
+                                     <h2>0</h2>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
                  </div>
+                 <div class="col-md-5 ">
+                     <div class="product-sales-chart">
+                         <div class="portlet-title">
+                             <div class="chart-box chart-box-1 chart-box show ">
+
+                                 <div class="myChartDiv">
+                                     <div id="chart_div"></div>
+                                 </div>
+                             </div>
+
+                             <div class="chart-box chart-box-3 " id="newpost3">
+                                 <div class="chart">
+                                     <h2 class="text-center">Fixed Price :-</h2>
+                                     <div class="d-flex justify-content-center">
+                                         <div id="myPlot"></div>
+                                     </div>
+                                 </div>
+                             </div>
+
+                         </div>
+                     </div>
+
+                 </div>
+
+             </div>
+
+             <div class="row ">
+                 <div class="col-md-7">
+                     <div class="chart-box chart-box-2 show">
+
+                         <div id="chart_div1" class="chart chart-show"></div>
+                     </div>
+                 </div>
+
+                 <div class="col-md-5">
+                     <div class="chart-box chart-box-4 show pt-5" id="newpost4">
+                         <div class="chart">
+
+                             <div class="d-flex justify-content-center">
+                                 <div id="chart">
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!-- custom-end -->
+
+     <div class="product-order-list">
+         <div class="contianer">
+             <div class="table-container ">
+                 <div class="row">
+                     <div class="col-md-12 ">
+                         <div class="table-responsive">
+                             <table class="table products-table">
+                                 <thead>
+                                     <tr>
+                                         <th scope="col">#</th>
+                                         <th scope="col">Product Name</th>
+                                         <th scope="col">Order Id</th>
+                                         <th scope="col">Price</th>
+                                         <th scope="col">Sold</th>
+                                         <th scope="col">Sales</th>
+                                         <th scope="col">Action</th>
+                                     </tr>
+                                 </thead>
+                                 <tbody>
+                                     <tr>
+                                         <th scope="row">1</th>
+                                         <td>Product - 1</td>
+                                         <td>#4545</td>
+                                         <td>Rs. 455</td>
+                                         <td>984</td>
+                                         <td>Rs. 12984</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">2</th>
+                                         <td>Product - 2</td>
+                                         <td>#45455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">3</th>
+                                         <td>Product - 3</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">4</th>
+                                         <td>Product - 4</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">5</th>
+                                         <td>Product - 5</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">6</th>
+                                         <td>Product - 6</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">7</th>
+                                         <td>Product - 7</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">7</th>
+                                         <td>Product - 7</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">7</th>
+                                         <td>Product - 7</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">7</th>
+                                         <td>Product - 7</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">7</th>
+                                         <td>Product - 7</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">7</th>
+                                         <td>Product - 7</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">7</th>
+                                         <td>Product - 7</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                     <tr>
+                                         <th scope="row">7</th>
+                                         <td>Product - 7</td>
+                                         <td>#455</td>
+                                         <td>Rs. 4565</td>
+                                         <td>9834</td>
+                                         <td>Rs. 129384</td>
+                                         <td>
+                                             <div class="form-check form-switch">
+                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
+                                             </div>
+                                         </td>
+                                     </tr>
+                                 </tbody>
+                             </table>
+                         </div>
+                     </div>
+                 </div>
+
                  <div class="row align-items-center mb-3">
-                     <div class="col-md-2">
+                     <div class="col-md-1">
                          <div class="list-number">
                              <select name="" id="" class="form-select">
                                  <option value="1">1</option>
@@ -332,7 +415,7 @@
                          </div>
                      </div>
 
-                     <div class="col-md-4 ">
+                     <div class="col-md-5 ">
                          <p class="mb-0">Showing 1 to 6 of 25 Results</p>
                      </div>
 
@@ -350,51 +433,9 @@
 
                  </div>
              </div>
-             <div class="col-md-5 ">
-                 <div class="product-sales-chart">
-                     <div class="portlet-title">
-                         <div class="chart-box chart-box-1 chart-box show" id="newpost">
-                             <h4 class="text-center">Total Order Chart</h4>
-                             <div class="myChartDiv">
-                                 <div id="chart_div"></div>
-                             </div>
-                         </div>
-                         <div class="chart-box chart-box-2" id="newpost2">
-                             <div class="chart">
-                                 <h2 class="text-center"> Brand Store</h2>
-                                 <div class="d-flex justify-content-center">
-                                     <div id="myPlot2"></div>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="chart-box chart-box-3" id="newpost3">
-                             <div class="chart">
-                                 <h2 class="text-center">Fixed Price :-</h2>
-                                 <div class="d-flex justify-content-center">
-                                     <div id="myPlot"></div>
-                                 </div>
-                             </div>
-                         </div>
-                         <div class="chart-box chart-box-4" id="newpost4">
-                             <div class="chart">
-                                 <h2 class="text-center">Feedback</h2>
-                                 <div class="d-flex justify-content-center">
-                                     <div id="chart">
-                                     </div>
-                                 </div>
-                             </div>
-                         </div>
-                     </div>
-                 </div>
-
-             </div>
-
          </div>
      </div>
  </div>
- <!-- custom-end -->
-
-
  @push('js')
 
  <script src="https://cdn.amcharts.com/lib/4/core.js"></script>
@@ -408,6 +449,8 @@
  <script src="{{asset('assets')}}/js/short-chart.js"></script>
  <script src="{{asset('assets')}}/js/product-chart.js"></script>
  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
 
  <!-- second chart start-->
  <script>
@@ -484,131 +527,44 @@
  <!-- fouth chart End -->
 
 
- <!-- date range first start -->
- <script type="text/javascript">
-     $(function() {
-
-         var start = moment().subtract(29, 'days');
-         var end = moment();
-
-         function cb(start, end) {
-             $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-         }
-
-         $('#reportrange').daterangepicker({
-             startDate: start,
-             endDate: end,
-             ranges: {
-                 'Today': [moment(), moment()],
-                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                 'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                 'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                 'This Month': [moment().startOf('month'), moment().endOf('month')],
-                 'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-             }
-         }, cb);
-
-         cb(start, end);
-
+ <!--  -->
+ <script>
+     google.load("visualization", "1", {
+         packages: ["corechart"]
      });
- </script>
- <!-- date range first End -->
+     google.setOnLoadCallback(drawChart1);
+
+     function drawChart1() {
+         var data = google.visualization.arrayToDataTable([
+             ['Year', 'Sales', 'Expenses'],
+             ['2004', 1000, 400],
+             ['2005', 1170, 460],
+             ['2006', 660, 1120],
+             ['2007', 1030, 540]
+         ]);
+
+         var options = {
+             title: 'Company Performance',
+             hAxis: {
+                 title: 'Year',
+                 titleTextStyle: {
+                     color: 'red'
+                 }
+             },
 
 
- <!-- date range second start -->
+         };
 
-
- <script type="text/javascript">
-     $(function() {
-
-         var start = moment().subtract(29, 'days');
-         var end = moment();
-
-         function cb(start, end) {
-             $('#reportrange1 span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-         }
-
-         $('#reportrange1').daterangepicker({
-             startDate: start,
-             endDate: end,
-             ranges: {
-                 'Today': [moment(), moment()],
-                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                 'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                 'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                 'This Month': [moment().startOf('month'), moment().endOf('month')],
-                 'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-             }
-         }, cb);
-
-         cb(start, end);
-
-     });
- </script>
- <!-- date range second end -->
-
- <!-- date range third start -->
-
- <script type="text/javascript">
-     $(function() {
-
-         var start = moment().subtract(29, 'days');
-         var end = moment();
-
-         function cb(start, end) {
-             $('#reportrange2 span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-         }
-
-         $('#reportrange2').daterangepicker({
-             startDate: start,
-             endDate: end,
-             ranges: {
-                 'Today': [moment(), moment()],
-                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                 'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                 'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                 'This Month': [moment().startOf('month'), moment().endOf('month')],
-                 'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-             }
-         }, cb);
-
-         cb(start, end);
-
-     });
- </script>
- <!-- date range third end -->
-
- <!-- date range fourth start -->
-
- <script type="text/javascript">
-     $(function() {
-
-         var start = moment().subtract(29, 'days');
-         var end = moment();
-
-         function cb(start, end) {
-             $('#reportrange3 span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
-         }
-
-         $('#reportrange3').daterangepicker({
-             startDate: start,
-             endDate: end,
-             ranges: {
-                 'Today': [moment(), moment()],
-                 'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                 'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                 'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                 'This Month': [moment().startOf('month'), moment().endOf('month')],
-                 'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-             }
-         }, cb);
-
-         cb(start, end);
-
-     });
+         var chart = new google.visualization.ColumnChart(document.getElementById('chart_div1'));
+         chart.draw(data, options);
+     }
  </script>
 
- <!-- date range fourth End -->
+ <!-- Date Range -->
+ <script>
+     $('input[name="dates"]').daterangepicker();
+ </script>
+
 
  @endpush
  @endsection

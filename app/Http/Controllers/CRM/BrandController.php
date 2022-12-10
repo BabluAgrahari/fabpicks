@@ -10,6 +10,12 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('can:isAdmin')->except(['index']);
+    }
+
     public function index(Request $request)
     {
         try {

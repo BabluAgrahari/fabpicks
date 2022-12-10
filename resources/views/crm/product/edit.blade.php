@@ -527,7 +527,7 @@
         e.preventDefault();
 
         formData = new FormData(this);
-        var url = $(this).attr('action');
+       
 
         $.ajax({
             data: formData,

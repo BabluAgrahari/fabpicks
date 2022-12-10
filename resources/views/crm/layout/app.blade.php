@@ -1,5 +1,12 @@
 @include('crm.layout.header')
 
+<style>
+    .text-danger {
+        color: red !important;
+        font-size: 14px !important;
+    }
+</style>
+
 <body>
     <div class="layout has-sidebar fixed-sidebar fixed-header">
         <!-- header include start -->
@@ -41,7 +48,7 @@
                             </div>
 
                             <div class="user-profile-view">
-                                <a href="user-profile.php">
+                                <a href="{{url('crm/profile')}}">
                                     <div class="user-profile-view-box">
                                         <div class="user-profile-icon">
                                             <i class="fa-regular fa-user"></i>
@@ -94,7 +101,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-   
+
     <script src="{{asset('assets')}}/js/main.js"></script>
     <script src="{{asset('assets')}}/js/texteditor.js"></script>
 
