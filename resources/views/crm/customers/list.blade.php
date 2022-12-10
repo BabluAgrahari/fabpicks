@@ -19,45 +19,45 @@
     </div>
   </div>
 
-      <div class="card-body">
-      @include('crm.customers.filter')
-        <div class="row">
-          <div class="col-md-12 ">
-            <div class="table-responsive">
-              <table class="table products-table">
-                <thead>
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Role</th>
-                    <th scope="col">City</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Pincode</th>
-                    <th scope="col">State</th>
+  <div class="card-body">
+    @include('crm.customers.filter')
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="table-responsive">
+          <table class="table products-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role</th>
+                <th scope="col">City</th>
+                <th scope="col">Address</th>
+                <th scope="col">Pincode</th>
+                <th scope="col">State</th>
 
-                  </tr>
-                </thead>
-                <tbody>
-                  @foreach($lists as $key => $list)
-                  <tr>
-                    <td>{{++$key}}</td>
-                    <td>{{$list->name}}</td>
-                    <td>{{$list->email}}</td>
-                    <td>{{$list->role}}</td>
-                    <td>{{$list->city}}</td>
-                    <td>{{$list->address}}</td>
-                    <td>{{$list->pincode}}</td>
-                    <td>{{$list->state}}</td>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($lists as $key => $list)
+              <tr>
+                <td>{{++$key}}</td>
+                <td>{{$list->name}}</td>
+                <td>{{$list->email}}</td>
+                <td>{{$list->role}}</td>
+                <td>{{$list->city}}</td>
+                <td>{{$list->address}}</td>
+                <td>{{$list->pincode}}</td>
+                <td>{{$list->state}}</td>
 
-                  </tr>
-                  @endforeach
-                </tbody>
-              </table>
-            </div>
-          </div>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
         </div>
-        
       </div>
+    </div>
+    {{ $lists->appends($_GET)->links()}}
+  </div>
 </div>
-        @endsection
+@endsection

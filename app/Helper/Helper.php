@@ -73,6 +73,19 @@ function defaultImg($size = '100x100')
     return 'https://via.placeholder.com/' . $size;
 }
 
+if (!function_exists('isClient')) {
+    function isClient()
+    {
+        return Auth::user()->role == 'client' ? true : false;
+    }
+}
+
+if (!function_exists('isAdmin')) {
+    function isAdmin()
+    {
+        return Auth::user()->role == 'admin' ? true : false;
+    }
+}
 
 function getLatitude()
 {

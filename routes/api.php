@@ -15,6 +15,8 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ShippingBillingController;
+use App\Http\Controllers\Api\BannerController;
+use App\Http\Controllers\Api\WishlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -99,6 +101,14 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('feedback', 'index');
         Route::get('feedback/{id}', 'show');
     });
+
+    Route::controller(BannerController::class)->group(function () {
+     
+        Route::get('banner', 'index');
+    });  
+    
+    Route::resource('wishlist',WishlistController::class);
+
 });
 
 

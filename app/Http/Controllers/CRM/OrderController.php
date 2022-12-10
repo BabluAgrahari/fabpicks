@@ -9,22 +9,22 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    public function indexOrder(Request $request)
+    public function index(Request $request)
     {
 
         $query = Order::query();
 
         if (!empty($request->order_number))
-            $query->where('order_number', 'LIKE', "%$request->order_number%");
+            $query->where('order_number', (int)$request->order_number);
 
-            if (!empty($request->order_date))
+        if (!empty($request->order_date))
             $query->where('order_date', 'LIKE', "%$request->order_date%");
 
-            if (!empty($request->amount))
+        if (!empty($request->amount))
             $query->where('amount', 'LIKE', "%$request->amount%");
 
-            if (!empty($request->Status))
-            $query->where('Status', 'LIKE', "%$request->Status%");
+        if (!empty($request->Status))
+            $query->where('Status',$request->status);
 
         $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
         $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
@@ -32,7 +32,7 @@ class OrderController extends Controller
         $request->request->remove('page');
         $request->request->remove('perPage');
         $data['filter']  = $request->all();
-        return view('crm/order/list',$data);
+        return view('crm/order/list', $data);
         try {
             return view('crm/order/list');
         } catch (Exception $e) {

@@ -10,6 +10,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 use Illuminate\Support\Facades\Auth;
+use App\Observers\Timestamp;
 
 
 class User extends Authenticatable implements JWTSubject
@@ -21,6 +22,14 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
+
+    const CREATED_AT = 'created';
+    const UPDATED_AT = 'updated';
+    const DELETED_AT = 'deleted';
+
+
+    public $timestamps = false;
+
     protected $fillable = [
         'name',
         'email',
@@ -46,7 +55,8 @@ class User extends Authenticatable implements JWTSubject
         'email_verified_at' => 'datetime',
     ];
 
-    public function getJWTIdentifier() {
+    public function getJWTIdentifier()
+    {
         return $this->getKey();
     }
     /**
@@ -54,9 +64,18 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return array
      */
-    public function getJWTCustomClaims() {
+    public function getJWTCustomClaims()
+    {
         return [];
     }
+
+
+    protected static function boot()
+    {
+        parent::boot();
+        self::observe(Timestamp::class);
+    }
+
 
     public function scopeUserAccess($query)
     {

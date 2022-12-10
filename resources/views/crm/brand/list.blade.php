@@ -16,13 +16,15 @@
                 @else
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
+                @if(isAdmin())
                 <a href="javascript:void(0);" class="btn btn-sm btn-success ri-add-circle-line" id="addBrand">Add</a>
+                @endif
             </div>
-        </div> 
+        </div>
     </div>
 
     <div class="card-body">
-    @include('crm.brand.filter')
+        @include('crm.brand.filter')
         <div class="row">
             <div class="col-md-12 ">
                 <div class="table-responsive">
@@ -33,7 +35,9 @@
                                 <th scope="col">Brand Name</th>
                                 <th scope="col">Logo</th>
                                 <th scope="col">Sort</th>
+                                @if(isAdmin())
                                 <th scope="col">Action</th>
+                                @endif
                             </tr>
                         </thead>
                         <tbody>
@@ -43,6 +47,7 @@
                                 <td>{{ucWords($list->name)}}</td>
                                 <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>{{$list->sort}}</td>
+                                @if(isAdmin())
                                 <td>
                                     <div class="action-group">
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
@@ -50,6 +55,7 @@
                                         </a>
                                     </div>
                                 </td>
+                                @endif
                             </tr>
                             @endforeach
                         </tbody>
@@ -68,7 +74,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="brandLabel">Add Brand</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
