@@ -13,4 +13,12 @@ class Product extends BaseModel
 
         return $this->hasOne(SubCategory::class,'_id','sub_category');
     }
+
+
+    public function Inventory(){
+
+        return $this->hasMany(ProductInventory::class,'product_id','_id');
+    }
+
+   
 }

@@ -274,15 +274,13 @@
 
               </form>
             </div>
-
-
           </div>
-
+        </div>
 
           <!-- footer include start -->
           <?php include "footer.php" ?>
           <!-- footer include end -->
-        </div>
+        
       </main>
 
     </div>

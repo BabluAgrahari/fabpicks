@@ -37,7 +37,7 @@
           <div class="row">
             <div class="col-md-3">
               <h4>All Products </h4>
-            </div>
+            </div> 
 
             <div class="col-md-9 product-btn-group d-flex justify-content-end">
               <button type="button" class="btn btn-success  " data-bs-toggle="modal" data-bs-target="#productcategory">

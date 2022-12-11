@@ -17,7 +17,7 @@ class ClientRequest extends FormRequest
     public function rules(Request $request)
     {
         return [
-            'store_owner'    => 'required|string|min:2|max:30',
+            'Brand_id'    => 'required|string|min:2|max:30',
             'store_name'     => 'required|string|min:2|max:30',
             'email'          => 'required|email',
             'gstin'          => 'required|min:15|max:15',

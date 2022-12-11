@@ -11,4 +11,10 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests,Response;
+
+    public $prePage = NULL;
+    public function __construct()
+    {
+        $this->prePage =config('global.perPage');
+    }
 }

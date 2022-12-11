@@ -6,11 +6,17 @@ use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\controllers\Api\SubCategoryController;
 use App\Http\Controllers\Api\AttributeController;
+use App\Http\Controllers\Api\Auth\LoginOtpController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\SubAttributeController;
 use App\Http\Controllers\Api\ClientController;
+use App\Http\Controllers\Api\FeedbackController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OrderController;
+use App\Http\Controllers\Api\ShippingBillingController;
+use App\Http\Controllers\Api\BannerController;
+use App\Http\Controllers\Api\WishlistController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,8 +31,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('register', [RegisterController::class, 'register']);
-Route::post('login', [LoginController::class, 'login']);
+// Route::post('register', [RegisterController::class, 'register']);
+// Route::post('login', [LoginController::class, 'login']);
+
+Route::controller(LoginOtpController::class)->group(function () {
+    Route::post('/verify-otp', 'verifyOtp');
+    Route::post('/otp', 'otp');
+});
 
 Route::group(['middleware' => ['jwt.verify']], function () {
 
@@ -42,41 +53,63 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::controller(SubCategoryController::class)->group(function () {
         Route::get('sub-category', 'index');
-        Route::get('sub-category/{id}','show');
+        Route::get('sub-category/{id}', 'show');
     });
 
-    Route::controller(AttributeController::class)->group(function(){
-        Route::get('attribute','index');
-        Route::get('attribute/{id}','show');
+    Route::controller(AttributeController::class)->group(function () {
+        Route::get('attribute', 'index');
+        Route::get('attribute/{id}', 'show');
     });
 
-    Route::controller(SubAttributeController::class)->group(function(){
-        Route::get('sub-attribute','index');
-        Route::get('sub-attribute/{id}','show');
+    Route::controller(SubAttributeController::class)->group(function () {
+        Route::get('sub-attribute', 'index');
+        Route::get('sub-attribute/{id}', 'show');
     });
 
-    Route::controller(ClientController::class)->group(function(){
-        Route::get('client','index');
-        Route::get('client/{id}','show');
+    Route::controller(ClientController::class)->group(function () {
+        Route::get('client', 'index');
+        Route::get('client/{id}', 'show');
     });
 
-    Route::controller(ProductController::class)->group(function(){
-        Route::get('product','index');
-        Route::get('product/{id}','show');
+    Route::controller(ProductController::class)->group(function () {
+        Route::get('product', 'index');
+        Route::get('product/{id}', 'show');
     });
 
-    Route::controller(UserController::class)->group(function(){
-        Route::put('user/{id}','update');
-        Route::get('user/{id}','show');
-       
+    Route::resource('cart',CartController::class);
+
+    Route::controller(UserController::class)->group(function () {
+        Route::put('user/{id}', 'update');
+        Route::get('user/{id}', 'show');
     });
 
-    Route::controller(OrderController::class)->group(function(){
-        Route::post('order','store');
-        Route::get('order','index');
-        Route::get('order/{id}','show');
+    // Route::controller(OrderController::class)->group(function () {
+    //     Route::post('order', 'store');
+    //     Route::get('order', 'index');
+    //     Route::get('order/{id}', 'show');
+    // });
+    Route::resource('order',OrderController::class);
+
+
+    Route::controller(ShippingBillingController::class)->group(function () {
+        Route::post('shipping', 'store');
+        Route::get('shipping', 'index');
+        Route::get('shipping/{id}', 'show');
     });
-      
+
+
+    Route::controller(FeedbackController::class)->group(function () {
+        Route::post('feedback', 'store');
+        Route::get('feedback', 'index');
+        Route::get('feedback/{id}', 'show');
+    });
+
+    Route::controller(BannerController::class)->group(function () {
+     
+        Route::get('banner', 'index');
+    });  
+    
+    Route::resource('wishlist',WishlistController::class);
 
 });
 

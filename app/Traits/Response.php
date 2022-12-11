@@ -6,23 +6,35 @@ use function PHPUnit\Framework\isEmpty;
 
 trait Response
 {
-    public function recordRes($record)
+    public function recordsRes($record)
     {
-        if(isEmpty())
-        return $this->default();
+        if ($record->isEmpty())
+            return $this->default();
 
         return response()->json([
             'status' => true,
             'code' => 200,
             'count' => $record->count() ?? 0,
+            'records' => $record
+        ]);
+    }
+
+    public function recordRes($record)
+    {
+        if (empty($record))
+            return $this->default();
+
+        return response()->json([
+            'status' => true,
+            'code' => 200,
             'record' => $record
         ]);
     }
 
-    public function successRes($msg=false)
+    public function successRes($msg = false)
     {
-        if(!$msg)
-        return $this->default();
+        if (!$msg)
+            return $this->default();
 
         return response()->json([
             'status' => true,
@@ -32,10 +44,10 @@ trait Response
     }
 
 
-    public function failRes($msg=false)
+    public function failRes($msg = false)
     {
-        if(!$msg)
-        return $this->default();
+        if (!$msg)
+            return $this->default();
 
         return response()->json([
             'status' => false,
@@ -45,46 +57,50 @@ trait Response
     }
 
 
-    public function validationRes($error){
+    public function validationRes($error)
+    {
 
-        if(empty($error))
-        return $this->default();
+        if (empty($error))
+            return $this->default();
 
         return response()->json([
-            'status'=>false,
-            'code'=>400,
-            'validation'=>$error
+            'status' => false,
+            'code' => 400,
+            'validation' => $error
         ]);
     }
 
 
-    public function unauthorizedRes($msg=false){
+    public function unauthorizedRes($msg = false)
+    {
 
-        if(!$msg)
-        return $this->default();
+        if (!$msg)
+            return $this->default();
 
         return response()->json([
-            'status'=>false,
-            'code'=>401,
-            'msg'=>$msg
+            'status' => false,
+            'code' => 401,
+            'msg' => $msg
         ]);
     }
 
-    public function notFoundRes(){
+    public function notFoundRes()
+    {
 
         return response()->json([
-            'stauts'=>false,
-            'code'=>404,
-            'msg'=>'Not Found.'
+            'stauts' => false,
+            'code' => 404,
+            'msg' => 'Not Found.'
         ]);
     }
 
-    public function default(){
+    public function default()
+    {
 
         return response()->json([
-            'status'=>false,
-            'code'=>428,
-            'msg'=>'Parameter is missing.'
+            'status' => false,
+            'code' => 428,
+            'msg' => 'Parameter is missing.'
         ]);
     }
 }

@@ -1,57 +1,75 @@
 @extends('crm.layout.app')
 @section('content')
 
-<div class="container ">
-  <div class="row">
-    <div class="col-md-6">
-      <h4 class="page-title">Survay </h4>
-
-    </div>
-    <div class="col-md-6 ">
-      <div class="product-btn d-flex justify-content-end">
-
-        <button type="button" class="btn btn-success" data-bs-toggle="modal" id="addSurvay" data-bs-target="#survayModel">
-          <i class="ri-add-circle-line"></i> Add
-        </button>
+<div class="card">
+  <div class="card-header ">
+    <div class="row">
+      <div class="col-md-9">
+        <h5>Survay </h5>
+      </div>
+      <div class="col-md-3 ">
+        <div class=" product-btn-group d-flex justify-content-end">
+          @if(!empty($filter))
+          <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="far fa-times-circle"></i>&nbsp;Close</a>
+          @else
+          <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
+          @endif
+          @if(isAdmin())
+          <button type="button" class="btn btn-success" data-bs-toggle="modal" id="addSurvay" data-bs-target="#survayModel">
+            <i class="ri-add-circle-line"></i> Add
+          </button>
+          @endif
+        </div>
       </div>
     </div>
+  </div>
 
-    <div class="col-md-12 ">
-      <table class="table table-light table-striped products-table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Title</th>
-            <th scope="col">Discription</th>
-            <th scope="col">Survay Type</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach($lists as $keys=> $list)
-          <tr>
-            <th scope="row">{{++$keys}}</th>
-            <td>{{$list->survay_title}}</td>
-            <td>{{$list->discription}}</td>
-            <td>{{$list->survay_type}}</td>
-            <td>
-              <div class="action-group ">
-                <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><i class="ri-pencil-line"></i></a>
-                <!-- <a href="#"><i class="ri-delete-bin-line"></i></a> -->
-                <a href="javascript:void(0);" class="addQuestion text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a>
-                <a href="javascript:void(0);" class="text-primary viewQuestion" _id="{{$list->_id}}"><i class="ri-eye-line"></i></a>
-              </div>
-            </td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
+  <div class="card-body">
+    @include('crm.survay.filter')
+    <div class="row">
+      <div class="col-md-12 ">
+        <div class="table-responsive">
+          <table class="table products-table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Title</th>
+                <th scope="col">Discription</th>
+                <th scope="col">Survay Type</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              @foreach($lists as $keys=> $list)
+              <tr>
+                <th scope="row">{{++$keys}}</th>
+                <td>{{ucWords($list->title)}}</td>
+                <td>{{ucWords($list->discription)}}</td>
+                <td>{{ucWords($list->type)}}</td>
+                <td>
+                  <div class="action-group ">
+                    @if(isAdmin())
+                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><i class="ri-pencil-line"></i></a>
+                    <!-- <a href="#"><i class="ri-delete-bin-line"></i></a> -->
+                    <a href="javascript:void(0);" class="addQuestion text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a>
+                    @endif
+                    <a href="javascript:void(0);" class="text-primary viewQuestion" _id="{{$list->_id}}"><i class="ri-eye-line"></i></a>
+                  </div>
+                </td>
+              </tr>
+              @endforeach
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
+    {{ $lists->appends($_GET)->links()}}
   </div>
 </div>
 
 @push('modal')
 
+<!-- onclick="javascript:window.location.reload()" put in button close-->
 <!--Survay Add Modal -->
 <div class="modal fade" id="survayModel" tabindex="-1" aria-labelledby="survayLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg ">
@@ -71,7 +89,7 @@
               <div class="col-md-6">
                 <div class="field-group">
                   <label>Title</label>
-                  <input type="text" name="title" id="title" class="form-control">
+                  <input type="text" name="title" id="title" placeholder="Enter Title Name" class="form-control">
                   <span class="text-danger" id="title_msg"></span>
                 </div>
               </div>
@@ -82,7 +100,7 @@
                   <select name="type" id="type" class="form-select ">
                     <option value="">Select</option>
                     <option value="pre_qulifing_question">Pre-Qulifing Questions</option>
-                    <option value="no_feedback">No Feedback</option>
+                    <option value="no_feedback">Feedback</option>
                   </select>
                   <span class="text-danger" id="type_msg"></span>
                 </div>
@@ -90,7 +108,7 @@
               <div class="col-md-12">
                 <div class="field-group">
                   <label for="type-of-survay">Discription </label>
-                  <textarea name="discription" id="discription" class="form-control"></textarea>
+                  <textarea name="discription" id="discription" placeholder="Enter Discription" class="form-control"></textarea>
                 </div>
                 <span class="text-danger" id="discription_msg"></span>
               </div>

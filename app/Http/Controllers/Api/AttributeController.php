@@ -17,7 +17,7 @@ class AttributeController extends Controller
             if ($record->isEmpty())
                 return $this->notFoundRes();
 
-            return $this->successRes($record);
+            return $this->recordsRes($record);
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }
@@ -28,7 +28,7 @@ class AttributeController extends Controller
     {
         try {
             $record = Attribute::find($id);
-            return $this->successRes($record);
+            return $this->recordRes($record);
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }

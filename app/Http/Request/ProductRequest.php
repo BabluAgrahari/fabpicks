@@ -19,7 +19,7 @@ class ProductRequest extends FormRequest
         return [
             'name'                  => 'required|string|min:2|max:30',
             'description'           => 'required',
-            'size'                  => 'required|numeric',
+            // 'size'                  => 'required|numeric',
             'product_type'          => 'required',
             // 'trial_point'           => 'required',
             'sale_price'            => 'nullable|numeric',
@@ -31,7 +31,7 @@ class ProductRequest extends FormRequest
             'mrp'                   => 'nullable|numeric',
             'offer_price'           => 'required|numeric',
             'maximum_qty'           => 'required|numeric',
-            'thumbnail'             => 'required',
+            'thumbnail'             => 'nullable',
             'expire_date'           => 'required'
             
         ];

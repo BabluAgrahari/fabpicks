@@ -12,11 +12,11 @@ class ProductController extends Controller
     public function index()
     {
         try{
-            $record =Product::get();
+            $record =Product::with(['Inventory.Attributes','Inventory.SubAttributes'])->get();
 
             if($record->isEmpty())
                 return $this->notFoundRes();
-            return $this->successRes($record);
+            return $this->recordsRes($record);
 
         }catch(Exception $e){
             return $this->failRes($e->getMessage());
@@ -27,8 +27,8 @@ class ProductController extends Controller
     public function show($id)
     {
         try{
-            $record = Product::find($id);
-            return $this->successRes($record);
+            $record = Product::with(['Inventory.Attributes','Inventory.SubAttributes'])->find($id);
+            return $this->recordRes($record);
 
         }catch(Exception $e){
             return $this->failRes($e->getMessage());
