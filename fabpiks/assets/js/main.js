@@ -266,11 +266,20 @@ INNER_SUB_MENUS_BTN.forEach(element => {
 
 
 
-$(document).ready(function () {
-    $('#myTable').DataTable();
-    $('#myTable1').DataTable();
-});
+if ($('#myTable').length) {
+    $(document).ready(function () {
+        $('#myTable').DataTable();
 
+    });
+
+}
+if ($('#myTable1').length) {
+    $(document).ready(function () {
+        $('#myTable1').DataTable();
+
+    });
+
+}
 
 
 $('#button').on('click', function () {
