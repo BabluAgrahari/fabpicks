@@ -40,7 +40,7 @@
                                 @if(isAdmin())
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}"  class="edit text-info"><x-icon type="edit"/></a>
 
                                     </div>
                                 </td>

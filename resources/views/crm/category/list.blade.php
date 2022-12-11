@@ -14,7 +14,7 @@
                 @else
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
-                <a href="javascript:void(0);" class="btn btn-sm btn-success ri-add-circle-line" id="AddCategory">Add</a>
+                <a href="javascript:void(0);" class="btn btn-sm btn-success" id="AddCategory"><x-icon type="add" />Add</a>
             </div>
         </div>
     </div>
@@ -47,7 +47,7 @@
                                 <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><i class="ri-pencil-line"></i></a>
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><x-icon type="edit" /></a>
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove"><i class="ri-delete-bin-line"></i>
                                         </a>
                                     </div>

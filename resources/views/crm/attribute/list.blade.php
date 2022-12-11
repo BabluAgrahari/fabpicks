@@ -16,7 +16,7 @@
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
                 <button type="button" class="btn btn-success" id="AddAttribute" data-bs-toggle="modal" data-bs-target="#Attribute">
-                    <i class="ri-add-circle-line"></i> Add</button>
+                <x-icon type="add" /> Add</button>
             </div>
         </div>
     </div>
@@ -44,7 +44,7 @@
                                 <td>{{$list->sort}}</td>
                                 <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>
-                                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
+                                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><x-icon type="edit" /></a>
                                 </td>
                             </tr>
                             @endforeach

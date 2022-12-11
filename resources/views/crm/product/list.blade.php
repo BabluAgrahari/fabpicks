@@ -13,7 +13,7 @@
                 @else
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
-                <a href="{{url('crm/product/create')}}" class="btn btn-success btn-sm"><i class="ri-add-circle-line"></i> Add</a>
+                <a href="{{url('crm/product/create')}}" class="btn btn-success btn-sm"><x-icon type="add" /> Add</a> 
             </div>
         </div>
     </div>
@@ -52,8 +52,8 @@
                                 <td>{{$list->rewards_point}}</td>
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" _id="{{$list->sub_category}}" class="view text-info"><i class="ri-add-circle-line"></i></a>
-                                        <a href="{{url('crm/product/'.$list->_id)}}/edit"  class="edit text-info"><i class="ri-pencil-line"></i></a>
+                                        <a href="javascript:void(0)" _id="{{$list->sub_category}}" product_id="{{$list->_id}}" class="view text-info"></a>
+                                        <a href="{{url('crm/product/'.$list->_id)}}/edit"  class="edit text-info"><x-icon type="edit" /></a>
                                     </div>
                                 </td>
                             </tr>
@@ -120,11 +120,13 @@
         e.preventDefault(0);
 
         let id = $(this).attr('_id');
+        let product_id = $(this).attr('product_id');
         let url = "{{url('crm/product')}}/" + id ;
         $.ajax({
             url: url,
             type: 'GET',
             dataType: 'JSON',
+            data : {'product_id':product_id},
             success: function(res) {
 
                 if (res.status) {
@@ -133,15 +135,17 @@
                         list += `<tr><td>${++index}</td>
                         <td><img src="${val.image}" style="height:50px; width:60px;"></td>
                         <td>${val.name}</td>
-                        <td> <input type="number" class="form-control form-control-sm" > </td>
+                        <td> <input type="number" name="sort" id="updatesort" class="form-control form-control-sm" > </td>
                         
                         </tr>`;
                     });
                     $('#list').html(list);
+                   
                 }
             }
         })
     });
+
     </script>
     @endpush;
 
