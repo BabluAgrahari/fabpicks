@@ -169,11 +169,25 @@ class ProductController extends Controller
         }
     }
 
-    public function show($id)
+    public function show(Request $request, $id)
     {
         try {
-            $record = Product::Where('sub_category',$id)->get();
+            $record = Product::where([['sub_category',$id],['_id', "!=", $request->product_id]])->get();
             return response(['status' => true, 'record' => $record]);
+        } catch (Exception $e) {
+            return response(['status' => false, 'msg' => $e->getMessage()]);
+        }
+    }
+
+
+    public function sortupdate(Request $request, $id)
+    {
+        try {
+            $save = Product::find($id);
+            $save->sort        = $request->sort;
+    
+            $save->save();
+         
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }

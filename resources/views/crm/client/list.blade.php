@@ -15,7 +15,7 @@
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
                 <button type="button" class="btn btn-success btn-sm" id="addClient" data-bs-toggle="modal" data-bs-target="#ClientModal">
-                <i class="ri-add-circle-line"></i> Add
+                <x-icon type="add"/> Add
             </button>
             </div>
         </div>
@@ -54,7 +54,7 @@
                             <td>{{$list->pincode}}</td>
                             <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                             <td>
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><i class="ri-pencil-line"></i></a>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><x-icon type="edit"/></a>
                             </td>
                         </tr>
                         @endforeach

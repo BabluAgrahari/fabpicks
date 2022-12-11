@@ -13,7 +13,7 @@
                 @else
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
-                <a href="javascript:void(0);" class="btn btn-sm btn-success ri-add-circle-line" data-bs-toggle="modal" data-bs-target="#Attribute" id="AddSubCategory">Add</a>
+                <a href="javascript:void(0);" class="btn btn-sm btn-success ri-add-circle-line" data-bs-toggle="modal" data-bs-target="#Attribute" id="AddSubCategory"><x-icon type="add"/>Add</a>
             </div>
         </div>
     </div>
@@ -46,8 +46,8 @@
                                 <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-info"><i class="ri-delete-bin-line"></i>
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><x-icon type="edit"/></a>
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-info"><x-icon type="remove"/>
                                         </a>
                                     </div>
                                 </td>

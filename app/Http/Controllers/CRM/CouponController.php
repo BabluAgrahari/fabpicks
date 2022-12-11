@@ -5,7 +5,7 @@ namespace App\Http\Controllers\crm;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
-use Illuminate\Console\View\Components\Alert;
+use Illuminate\Console\View\Components\Alert; 
 
 class CouponController extends Controller
 {
@@ -14,9 +14,15 @@ class CouponController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $data['lists'] = Coupon::all();
+        $query = Coupon::userAccess();
+
+            $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
+            $data['lists'] = $query->latest()->paginate($perPage);
+
+            $request->request->remove('page');
+            $request->request->remove('perPage');
         return view('crm.coupon.list', $data);
     }
 

@@ -16,7 +16,7 @@
           @endif
           @if(isAdmin())
           <button type="button" class="btn btn-success" data-bs-toggle="modal" id="addSurvay" data-bs-target="#survayModel">
-            <i class="ri-add-circle-line"></i> Add
+          <x-icon type="add" /> Add
           </button>
           @endif
         </div>
@@ -49,7 +49,7 @@
                 <td>
                   <div class="action-group ">
                     @if(isAdmin())
-                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><i class="ri-pencil-line"></i></a>
+                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><x-icon type="edit"/></a>
                     <!-- <a href="#"><i class="ri-delete-bin-line"></i></a> -->
                     <a href="javascript:void(0);" class="addQuestion text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a>
                     @endif
