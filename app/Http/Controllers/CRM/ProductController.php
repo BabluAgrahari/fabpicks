@@ -169,7 +169,7 @@ class ProductController extends Controller
         }
     }
 
-    public function show(Request $request, $id)
+    public function viewProduct(Request $request, $id)
     {
         try {
             $record = Product::where([['sub_category',$id],['_id', "!=", $request->product_id]])->get();
@@ -180,13 +180,17 @@ class ProductController extends Controller
     }
 
 
-    public function sortupdate(Request $request, $id)
+    public function sortupdate(ProductRequest $request, $id)
     {
+        // pr($request->all());
         try {
             $save = Product::find($id);
             $save->sort        = $request->sort;
     
-            $save->save();
+            if ($save->save())
+            return response(['status' => true, 'msg' => 'Sort Updared Successfully.']);
+
+        return response(['status' => false, 'msg' => 'Sort Not Update.']);
          
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);

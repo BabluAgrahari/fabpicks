@@ -58,7 +58,7 @@ class OrderController extends Controller
         }
     }
 
-    public function update(OrderRequest $request,$id)
+    public function update(Request $request,$id)
     {
         try {
             $save = Order::find($id);

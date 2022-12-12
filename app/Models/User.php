@@ -97,4 +97,9 @@ class User extends Authenticatable implements JWTSubject
 
         $query->whereBetween('created', [$start_date, $end_date]);
     }
+
+    public function Product(){
+
+        return $this->hasOne(Product::class,'user_id','_id')->select('*');
+    }
 }

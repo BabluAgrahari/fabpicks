@@ -4,16 +4,20 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 use Exception;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index( Request $request)
     {
         try{
             $record =Product::with(['Inventory.Attributes','Inventory.SubAttributes'])->get();
 
+            if (!empty($request->name))
+                $record->where('name', 'LIKE', "%$request->name%");
+               
             if($record->isEmpty())
                 return $this->notFoundRes();
             return $this->recordsRes($record);

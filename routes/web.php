@@ -54,10 +54,13 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
 
     Route::resource('coupon', CouponController::class)->middleware('can:isAdmin');
 
+    Route::get('product-view/{id}',[ProductController::class,'viewProduct']);
+    Route::post('product-update/{id}',[ProductController::class,'sortupdate']);
+
     Route::resource('product', ProductController::class)->middleware('can:isAdmin');
     Route::controller(ProductController::class)->group(function () {
         Route::get('sub-attributes/{id}', 'subAttribute')->middleware('can:isAdmin');
-        // Route::post('update-sort/{id}', 'sortupdate');
+        
     });
 
     // Route::get('show/{id}', [ProductController::class, 'show']);
@@ -87,6 +90,8 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::post('refund/{id}',        [SettingController::class, 'refundupdate'])->middleware('can:isAdmin');
 
     Route::get('order', [OrderController::class, 'index']);
+    Route::get('order-details', [OrderController::class, 'details']);
+
 
     Route::get('product-listing', [ProductListingController::class, 'productListing'])->middleware('can:isAdmin');
 

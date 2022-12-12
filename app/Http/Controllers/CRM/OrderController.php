@@ -28,7 +28,6 @@ class OrderController extends Controller
 
         $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
         $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
-
         $request->request->remove('page');
         $request->request->remove('perPage');
         $data['filter']  = $request->all();
@@ -38,5 +37,11 @@ class OrderController extends Controller
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);
         }
+    }
+
+    public function details(Request $request,$id)
+    {
+        $data['shows']=Order::find($id);
+        return view('crm/order/orderdetails',$data);
     }
 }

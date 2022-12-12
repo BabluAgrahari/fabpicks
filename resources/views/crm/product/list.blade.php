@@ -13,7 +13,9 @@
                 @else
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
-                <a href="{{url('crm/product/create')}}" class="btn btn-success btn-sm"><x-icon type="add" /> Add</a> 
+                <a href="{{url('crm/product/create')}}" class="btn btn-success btn-sm">
+                    <x-icon type="add" /> Add
+                </a>
             </div>
         </div>
     </div>
@@ -52,8 +54,10 @@
                                 <td>{{$list->rewards_point}}</td>
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" _id="{{$list->sub_category}}" product_id="{{$list->_id}}" class="view text-info"></a>
-                                        <a href="{{url('crm/product/'.$list->_id)}}/edit"  class="edit text-info"><x-icon type="edit" /></a>
+                                        <a href="javascript:void(0)" _id="{{$list->sub_category}}" product_id="{{$list->_id}}" class="view text-info"><i class="ri-add-circle-line"></i></a>
+                                        <a href="{{url('crm/product/'.$list->_id)}}/edit" class="edit text-info">
+                                            <x-icon type="edit" />
+                                        </a>
                                     </div>
                                 </td>
                             </tr>
@@ -83,11 +87,11 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="related-product">Related products</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" onclick="javascript:window.location.reload()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="container">
-
+                    <div id="message"></div>
                     <div class="col-md-12">
                         <table class="table table-light table-striped products-table">
                             <thead>
@@ -100,11 +104,10 @@
                                 </tr>
                             </thead>
                             <tbody id="list">
-                                
+
                             </tbody>
                         </table>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -121,12 +124,18 @@
 
         let id = $(this).attr('_id');
         let product_id = $(this).attr('product_id');
-        let url = "{{url('crm/product')}}/" + id ;
+        let url = "{{url('crm/product-view')}}/" + id;
+
         $.ajax({
             url: url,
             type: 'GET',
             dataType: 'JSON',
-            data : {'product_id':product_id},
+            cache: false,
+            contentType: false,
+            processData: false,
+            data: {
+                'product_id': product_id
+            },
             success: function(res) {
 
                 if (res.status) {
@@ -135,18 +144,38 @@
                         list += `<tr><td>${++index}</td>
                         <td><img src="${val.image}" style="height:50px; width:60px;"></td>
                         <td>${val.name}</td>
-                        <td> <input type="number" name="sort" id="updatesort" class="form-control form-control-sm" > </td>
+                        <td> <input type="text" _id="${val._id}" value="${val.sort}" name="sort" class="updatesort form-control form-control-sm" > </td>
                         
                         </tr>`;
                     });
                     $('#list').html(list);
-                   
+
                 }
             }
-        })
+        });
     });
 
-    </script>
-    @endpush;
+    $(document).on('keyup', '.updatesort', function(e) {
+        e.preventDefault(0);
+        let id = $(this).attr('_id');
+        let sort = $(this).val();
+        $.ajax({
+            url: "{{url('crm/product-update')}}/" + id,
+            type: 'post',
+            datatype: 'JSON',
+            data: {
+                _token: '{{ csrf_token() }}',
+                'sort': sort,
+            },
+            success: function(res) {
+                if (res.status || !res.status) {
+                    alertMsg(res.status, res.msg, 2000);
+                }
+            }
+
+        });
+    });
+</script>
+@endpush;
 
 @endsection

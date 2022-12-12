@@ -31,6 +31,7 @@
                 <th scope="col">Order Date</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Status</th>
+                <th scope="col">Action</th>
               </tr>
             </thead>
             <tbody>
@@ -41,6 +42,7 @@
                 <td>{{date('d-m-Y',(int)$list->order_date)}}</td>
                 <td>{{$list->amount}}</td>
                 <td>{{$list->status}}</td>
+                <td><a href="{{url('crm/order-details')}}" class="orderDetails text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a></td>
               </tr>
               @endforeach
             </tbody>
