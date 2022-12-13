@@ -101,21 +101,48 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-
+    <script src="{{asset('assets')}}/js/tags.js"></script>
     <script src="{{asset('assets')}}/js/main.js"></script>
     <script src="{{asset('assets')}}/js/texteditor.js"></script>
+
+    <div class="alert alert-box alert-danger d-flex align-items-center w-50 " role="alert">
+        <i class="bi bi-exclamation-circle"></i>
+        <div class="alr-mgs">
+            <p> This is an error alert - check it out!</p>
+        </div>
+    </div>
+    <div class="alert alert-box alert-warning d-flex align-items-center w-50 " role="alert">
+        <i class="bi bi-exclamation-triangle"></i>
+        <div class="alr-mgs">
+            <p> This is an warning alert - check it out!</p>
+        </div>
+    </div>
+    <div class="alert alert-box alert-info d-flex align-items-center w-50 " role="alert">
+        <i class="bi bi-info-circle"></i>
+        <div class="alr-mgs">
+            <p> This is an info alert - check it out!</p>
+        </div>
+    </div>
+    <div class="alert alert-box alert-success d-flex align-items-center w-50 " role="alert">
+        <i class="bi bi-check2-circle"></i>
+        <div class="alr-mgs">
+            <p> This is an success alert - check it out!</p>
+        </div>
+    </div>
 
     <script>
         function alertMsg(status, msg, delay = 1000, remove = false) {
 
             let classN = status ? 'success' : 'danger';
             let selector = remove ? 'messageRemove' : 'message';
+            let icon = status ? '<i class="fa-regular fa-circle-check"></i>' : '<i class="fa-regular fa-circle-xmark"></i>';
             // if(customSelector)
             // let selector = customSelector;
 
-            $('#' + selector).html(`<div class="alert alert-${classN} alert-dismissible fade show" role="alert">
-                    <strong>${msg}</strong>
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button></div>`).fadeIn();
+
+            $('#' + selector).html(`<div class="alert alert-box alert-${classN} d-flex align-items-center w-100" role="alert">
+           ${icon}
+            <div class="alr-mgs"> <p>${msg}</p></div></div>`).fadeIn();
             setTimeout(function() {
                 $('#' + selector).fadeOut('slow');
             }, delay)

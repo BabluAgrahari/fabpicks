@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\crm;
+namespace App\Http\Controllers\CRM;
 
 use App\Http\Controllers\Controller;
 use App\Models\Client;
@@ -45,7 +45,7 @@ class ClientController extends Controller
             $request->request->remove('perPage');
             $data['filter']  = $request->all();
             $data['brands'] = Brand::get();
-            return view('crm.Client.list', $data);
+            return view('crm.client.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);
         }

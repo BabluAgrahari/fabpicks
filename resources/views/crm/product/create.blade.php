@@ -9,7 +9,9 @@
                 <h5>Add Product</h5>
             </div>
             <div class="col-md-6" style="text-align: right;">
-                <a href="{{url('crm/product')}}" class="btn btn-warning btn-sm ">Back</a>
+                <a href="{{url('crm/product')}}" class="btn btn-warning btn-sm">
+                    <x-icon type="back" /> Back
+                </a>
             </div>
         </div>
     </div>
@@ -28,7 +30,7 @@
 
                         <div class="field-group">
                             <label for="product-name">Tags</label>
-                            <input type="text" name="tags" id="tags" class="form-control" placeholder="Enter Tags">
+                            <input type="text" name="tags" id="ta1" class="form-control" placeholder="Enter Tags">
                             <span class="text-danger" id="tags_msg"></span>
                         </div>
 
@@ -45,7 +47,7 @@
                             </div>
 
                             <div class="field-group col-md-6">
-                                <label for="sub-category">Category/Sub Category</label>
+                                <label for="sub-category">Category</label>
                                 <select name="sub_category" id="sub_category" class="form-select js-example-basic-single">
                                     <option value="">Select Category</option>
                                     @foreach($subCategories as $val)
@@ -75,14 +77,14 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="field-group">
-                                    <label for="minimum-qty">Maximum Qty per User</label>
+                                    <label for="minimum-qty">Maximum Qty/User</label>
                                     <input type="text" name="maximum_qty" id="minimum-qty" class="form-control" placeholder="Enter Qty">
                                     <span class="text-danger" id="maximum_qty_msg"></span>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="field-group">
-                                    <label for="product-expire-date">Product Expire Date</label>
+                                    <label for="product-expire-date">Expire Date</label>
                                     <input type="date" name="expire_date" id="product-expire-date" class="form-control">
                                     <span class="text-danger" id="expire_date_msg"></span>
                                 </div>
@@ -92,7 +94,6 @@
                         <div class="field-group ">
                             <label for="product-description ">Description</label>
                             <textarea name="description" id="description" rows="4" placeholder="Enter Discription" class="form-control"></textarea>
-                            <span class="note"> Do not exceed 100 characters when entring the product name.</span>
                             <span class="text-danger" id="description_msg"></span>
                         </div>
 
@@ -102,7 +103,7 @@
 
                         <div class="field-group">
                             <label for="product-type">Product Type </label>
-                            <select name="product_type" id="productType" class="form-control">
+                            <select name="product_type" id="productType" class="form-select">
                                 <option value="trial_store">Trial Store</option>
                                 <option value="brand_store">Brand Store</option>
                                 <option value="fixed_price">Fixed Price</option>
@@ -130,65 +131,11 @@
                             </div>
                         </div>
 
-
                         <div class="row">
-                            <table id="MyTable" class="table">
-                                <tbody id="field_wrapper">
-                                    <tr>
-                                        <td style="width: 100px;">
-                                            <div class="field-group">
-                                                <label for="stock">Stock </label>
-                                                <input type="text" name="inventory[0][stock]" id="stock" class="form-control" placeholder="Stock">
-                                            </div>
-                                        </td>
-
-                                        <td style="width: 100px;">
-                                            <div class="field-group">
-                                                <label for="unit">Unit</label>
-                                                <select name="inventory[0][unit]" id="unit" class="form-select  ">
-                                                    <option value="" selected>Select</option>
-                                                    <option value="kg">KG</option>
-                                                    <option value="pcs">PC</option>
-                                                    <option value="pcs">Box</option>
-                                                    <option value="pcs">Bottle</option>
-                                                    <option value="pcs">Box(4 Units)</option>
-
-                                                </select>
-                                            </div>
-                                        </td>
-
-                                        <td>
-                                            <div class="field-group">
-                                                <label for="add-size">Attributes</label>
-                                                <select name="inventory[0][attribute]" id="attribute" option='0' class="form-select attribute">
-                                                    <option value="">Select</option>
-                                                    @foreach($attributes as $val)
-                                                    <option value="{{$val->_id}}">{{ucwords($val->name)}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class="field-group">
-                                                <label for="product-color">Sub Attr</label>
-                                                <select name="inventory[0][sub_attribute]" id="subAttribute-0" class="form-control">
-                                                    <option value="">Select</option>
-                                                </select>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <button type="button" class="btn btn-success" id="add_more">+</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="row">
-                            <div class="field-group">
-                                <label>No Feedback</label>
+                            <div class=" col-md-6 field-group">
+                                <label>Feedback</label>
                                 <select name="no_feedback" id="product-feedback-form" class="form-select js-example-basic-single">
-                                    <option value="">No Feedback</option>
+                                    <option selected disabled value="">No Feedback</option>
                                     @foreach($survay as $val)
                                     @if($val->type=='no_feedback')
                                     <option value="{{$val->_id}}">{{ucwords($val->title)}}</option>
@@ -198,7 +145,7 @@
                                 <span class="text-danger" id="no_feedback_msg"></span>
                             </div>
 
-                            <div class="field-group">
+                            <div class="col-md-6 field-group">
                                 <label for="pre-qulifing-questions">Pre-Qulifing Questions</label>
                                 <select name="pre_qulifing_question" id="pre-qulifing-questions" class="form-select js-example-basic-single">
                                     <option value="">No Pre-Qulifing Questions</option>
@@ -210,38 +157,37 @@
                                 </select>
                                 <span class="text-danger" id="pre_qulifing_question_msg"></span>
                             </div>
+
+                            <div class="form-group col-md-6">
+                                <label>Thumbnail</label>
+                                <div class="input-group">
+                                    <input type="file" name="thumbnail" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                </div>
+                                <span class="text-danger" id="thumbnail_msg"></span>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('150x100')}}" class="img-fluid" alt=""></div>
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <!-- <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('150x100')}}" class="img-fluid" alt=""></div> -->
+                            </div>
+
+                            <div class="form-group col-md-12">
+                                <label>Images</label>
+                                <div class="input-group">
+                                    <input type="file" multiple="multiple" name="images" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                </div>
+                                <span class="text-danger" id="thumbnail_msg"></span>
+                            </div>
+
+
                         </div>
                     </div>
 
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
-
-                        <div class="product-image">
-                            <section>
-                                <div class="form-group">
-                                    <label class="control-label">Thumbnail</label>
-                                    <div class="product-image-upload-container">
-                                        <div class="preview-zone hidden">
-                                            <div class="box box-solid">
-
-                                                <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('250x200')}}" class="img-fluid" alt=""></div>
-                                            </div>
-                                        </div>
-                                        <div class="dropzone-wrapper">
-                                            <div class="dropzone-desc">
-                                                <i class="glyphicon glyphicon-download-alt"></i>
-                                                <p>Choose an image file or drag it here.</p>
-                                            </div>
-                                            <input type="file" name="thumbnail" class="dropzone">
-                                            <span class="text-danger" id="thumbnail_msg"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
-                        </div>
-                    </div>
 
                     <div class="col-md-6">
                         <!-- <div class="product-image">
@@ -270,6 +216,50 @@
                     </div>
                 </div>
 
+                <div class="" id="stock">
+                    <div class="row">
+                        <div class="col-md-2 field-group">
+                            <label for="stock">Stock </label>
+                            <input type="text" name="inventory[0][stock]" id="stock" class="form-control" placeholder="Stock">
+                        </div>
+
+                        <div class="col-md-2 field-group">
+                            <label for="unit">Unit</label>
+                            <select name="inventory[0][unit]" id="unit" class="form-select  ">
+                                <option value="" selected>Select</option>
+                                <option value="kg">KG</option>
+                                <option value="pcs">PC</option>
+                                <option value="pcs">Box</option>
+                                <option value="pcs">Bottle</option>
+                                <option value="pcs">Box(4 Units)</option>
+
+                            </select>
+                        </div>
+
+                        <div class="col-md-2 field-group">
+                            <label for="add-size">Attributes</label>
+                            <select name="inventory[0][attribute]" id="attribute" option='0' class="form-select attribute">
+                                <option value="">Select</option>
+                                @foreach($attributes as $val)
+                                <option value="{{$val->_id}}">{{ucwords($val->name)}}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-2 field-group">
+                            <label for="product-color">Sub Attributes</label>
+                            <select name="inventory[0][sub_attribute]" id="subAttribute-0" class="form-select">
+                                <option value="">Select</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-1 mt-4">
+                            <button type="button" class="btn btn-success" id="add_more">+</button>
+                        </div>
+
+                    </div>
+                </div>
+
                 <div class="row">
                     <hr>
                     <table class="table table-borderless" id="myproductTable">
@@ -286,7 +276,7 @@
 
                                     <div>
                                         <label>Description</label>
-                                        <textarea name="details[0][description]" id="description" placeholder="Enter Discription" class="form-control"></textarea>
+                                        <textarea name="details[0][description]" id="description" placeholder="Enter Discription" rows="1" class="form-control"></textarea>
                                     </div>
                                 </td>
 
@@ -297,8 +287,9 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-12">
-                        <button type="submit" id="save" class="btn btn-success">Save</button>
+                    <div class="col-md-12 text-center">
+                        <button type="submit" id="save" class="btn btn-success"> <x-icon type="save" />Save</button>
+                        <button type="reset" class="btn btn-danger"> <x-icon type="reset" />Reset</button>
                     </div>
                 </div>
             </form>
@@ -306,7 +297,7 @@
     </div>
 </div>
 
-@endsection 
+@endsection
 
 @push('js')
 
@@ -336,17 +327,11 @@
     var i = 1;
     $('#add_more').click(function() {
         var vendor_id = $(this).attr('vendor_id');
-        var fieldHTML = `<tr id="row-${i}">
-                                            <td style="width: 100px;">
-                                                <div class="field-group">
-                                                    <label for="stock">Stock </label>
+        var fieldHTML = `<div class="row" id="row-${i}"> 
+                                                <div class="col-md-2 field-group">
                                                     <input type="text" name="inventory[${i}][stock]" class="form-control" placeholder="stock">
                                                 </div>
-                                            </td>
-
-                                            <td style="width: 100px;">
-                                                <div class="field-group">
-                                                    <label for="unit">Unit</label>
+                                                <div class="col-md-2 field-group">
                                                     <select name="inventory[${i}][unit]" id="unit" class="form-select  ">
                                                         <option value="" selected>Select</option>
                                                         <option value="kg">KG</option>
@@ -356,11 +341,7 @@
                                                         <option value="pcs">Box(4 Units)</option>
                                                     </select>
                                                 </div>
-                                            </td>
-
-                                            <td>
-                                                <div class="field-group">
-                                                    <label for="add-size">Attributes</label>
+                                                <div class="col-md-2 field-group">
                                                     <select name="inventory[${i}][attribute]" option='${i}' class="form-select attribute">
                                                         <option value="">Select</option>
                                                         @foreach($attributes as $val)
@@ -368,21 +349,16 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                            </td>
-                                            <td>
-                                                <div class="field-group">
-                                                    <label for="product-color">Sub Attr</label>
-                                                    <select name="inventory[${i}][sub_attribute]" id="subAttribute-${i}" class="form-control">
-                                               <option value="">Select</option>
-                                              </select>
-                                                    </div>
+                                                <div class="col-md-2 field-group">
+                                                    <select name="inventory[${i}][sub_attribute]" id="subAttribute-${i}" class="form-select">
+                                                    <option value="">Select</option>
+                                                    </select>
                                                 </div>
-                                            </td>
-                                <td>
+                                                <div class="col-md-1 field-group">           
                                 <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
-                                </td>
-                            </tr>`;
-        $('#field_wrapper').append(fieldHTML);
+                              </div>
+                                </div>`;
+        $('#stock').append(fieldHTML);
         i++;
     });
 
@@ -402,7 +378,7 @@
                         </td>
                         <td>
                             <div>
-                                <textarea name="details[${i}][description]" id="product-description"  placeholder="Enter Discription"  class="form-control" required></textarea>
+                                <textarea name="details[${i}][description]" rows="1" id="product-description"  placeholder="Enter Discription"  class="form-control" required></textarea>
                             </div>
                             </td>
                                 <td>

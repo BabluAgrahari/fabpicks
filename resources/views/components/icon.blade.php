@@ -14,6 +14,15 @@
 @case('export')
 <i class="fa-solid fa-cloud-arrow-down"></i>&nbsp;
 @break
+@case('save')
+<i class="fa-solid fa-circle-check"></i>&nbsp;
+@break
+@case('back')
+<i class="fa-solid fa-hand-point-left"></i>&nbsp;
+@break
+@case('reset')
+<i class="fa-solid fa-arrow-rotate-right"></i>&nbsp;
+@break
 @default
 ''
 @endswitch

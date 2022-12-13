@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\crm;
+namespace App\Http\Controllers\CRM;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -29,7 +29,7 @@ class SubCategoryController extends Controller
             $request->request->remove('perPage');
             $data['filter']  = $request->all();
             $data['categories'] = Category::where('status', 1)->get();
-            return view('crm.SubCategory.list', $data);
+            return view('crm.sub_category.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);
         }
