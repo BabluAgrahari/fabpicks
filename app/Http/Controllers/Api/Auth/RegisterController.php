@@ -15,7 +15,9 @@ class RegisterController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:2|max:255',
             'email' => 'required|unique:users|min:3|max:255',
-            'password' => 'required|min:6|max:16'
+            'phone' => 'required|numeric|digits:10',
+            'gender' => 'required|in:male,female',
+            'married' => 'required|in:yes,no'
         ]);
 
         if ($validator->fails())
@@ -24,7 +26,9 @@ class RegisterController extends Controller
         $save = new User();
         $save->name = $request->name;
         $save->email = $request->email;
-        $save->password = Hash::make($request->password);
+        $save->phone = $request->phone;
+        $save->gender = $request->gender;
+        $save->married = $request->married;
         $save->role = 'customer';
         if ($save->save())
             return $this->successRes('Account Created Successfully.');

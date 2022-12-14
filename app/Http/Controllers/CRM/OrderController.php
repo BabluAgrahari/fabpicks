@@ -39,9 +39,10 @@ class OrderController extends Controller
         }
     }
 
-    public function details(Request $request,$id)
+    public function details($id)
     {
-        $data['shows']=Order::find($id);
+        $data['shows']=Order::with(['User','Product'])->find($id);
+        // pr($data['shows']);
         return view('crm/order/orderdetails',$data);
     }
 }

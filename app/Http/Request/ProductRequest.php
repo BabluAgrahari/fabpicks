@@ -18,11 +18,11 @@ class ProductRequest extends FormRequest
 
     public function rules(HttpRequest $request)
     {
-        // if ($request->isMethod('post')) {
-        //     return [
-        //         'sort'          => 'required|numeric|min:1',
-        //     ];
-        // } else {
+        if ($request->isMethod('post')) {
+            return [
+                'sort'          => 'required|numeric|min:1',
+            ];
+        } else {
             return [
 
                 'name'                  => 'required|string|min:2|max:30',
@@ -43,7 +43,7 @@ class ProductRequest extends FormRequest
                 'expire_date'           => 'required'
 
             ];
-        // }
+        }
     }
 
     protected function failedValidation(Validator $validator)

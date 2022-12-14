@@ -45,7 +45,7 @@ class ProductController extends Controller
         try {
 
             $data['brands'] = Brand::where('status', 1)->get();
-            $data['survay'] = Survay::where('status', 1)->get();
+            $data['survay'] = Survay::get();
             $data['subCategories'] = SubCategory::with(['Category'])->where('status', 1)->get();
             $data['attributes'] = Attribute::where('status', 1)->get();
 
@@ -105,7 +105,7 @@ class ProductController extends Controller
     {
         try {
             $data['brands'] = Brand::where('status', 1)->get();
-            $data['survay'] = Survay::where('status', 1)->get();
+            $data['survay'] = Survay::get();
             $data['subCategories'] = SubCategory::with(['Category'])->where('status', 1)->get();
             $data['attributes'] = Attribute::where('status', 1)->get();
             $data['res'] = Product::find($id);

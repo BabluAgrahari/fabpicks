@@ -42,7 +42,7 @@
                 <td>{{date('d-m-Y',(int)$list->order_date)}}</td>
                 <td>{{$list->amount}}</td>
                 <td>{{$list->status}}</td>
-                <td><a href="{{url('crm/order-details')}}" class="orderDetails text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a></td>
+                <td><a href="{{url('crm/order-details/'.$list->_id)}}" class="orderDetails text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a></td>
               </tr>
               @endforeach
             </tbody>

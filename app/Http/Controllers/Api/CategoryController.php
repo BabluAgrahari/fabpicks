@@ -12,7 +12,7 @@ class CategoryController extends Controller
     {
         try {
 
-            $data = Category::where('status', 1)->get();
+            $data = Category::with(['SubCategory'])->where('status', 1)->get();
 
             if ($data->isEmpty())
                 return $this->notFoundRes();

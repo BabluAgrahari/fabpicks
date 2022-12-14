@@ -21,6 +21,7 @@ use App\Http\Controllers\CRM\ProductController;
 use App\Http\Controllers\CRM\ProductListingController;
 use App\Http\Controllers\CRM\FeedbackController;
 use App\Http\Controllers\CRM\ShippingCostController;
+use App\Http\Controllers\CRM\TexController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -53,6 +54,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::resource('client', ClientController::class)->middleware('can:isAdmin');
 
     Route::resource('coupon', CouponController::class)->middleware('can:isAdmin');
+    Route::resource('tex', TexController::class)->middleware('can:isAdmin');
 
     Route::get('product-view/{id}',[ProductController::class,'viewProduct']);
     Route::post('product-update/{id}',[ProductController::class,'sortupdate']);
@@ -90,7 +92,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::post('refund/{id}',        [SettingController::class, 'refundupdate'])->middleware('can:isAdmin');
 
     Route::get('order', [OrderController::class, 'index']);
-    Route::get('order-details', [OrderController::class, 'details']);
+    Route::get('order-details/{id}', [OrderController::class, 'details']);
 
 
     Route::get('product-listing', [ProductListingController::class, 'productListing'])->middleware('can:isAdmin');

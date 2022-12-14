@@ -83,11 +83,10 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('user/{id}', 'show');
     });
 
-    // Route::controller(OrderController::class)->group(function () {
-    //     Route::post('order', 'store');
-    //     Route::get('order', 'index');
-    //     Route::get('order/{id}', 'show');
-    // });
+    Route::controller(RegisterController::class)->group(function () {
+        Route::post('register', 'register');
+     
+    });
     Route::resource('order',OrderController::class);
 
 
