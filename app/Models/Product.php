@@ -9,16 +9,22 @@ class Product extends BaseModel
 {
     use HasFactory;
 
-    public function SubCategory(){
+    public function SubCategory()
+    {
 
-        return $this->hasOne(SubCategory::class,'_id','sub_category');
+        return $this->hasOne(SubCategory::class, '_id', 'sub_category');
+    }
+
+    public function Brand()
+    {
+
+        return $this->hasOne(Brand::class, '_id', 'brand_id');
     }
 
 
-    public function Inventory(){
+    public function Inventory()
+    {
 
-        return $this->hasMany(ProductInventory::class,'product_id','_id');
+        return $this->hasMany(ProductInventory::class, 'product_id', '_id');
     }
-
-   
 }

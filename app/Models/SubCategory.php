@@ -11,6 +11,6 @@ class SubCategory extends BaseModel
 
     public function Category(){
 
-        return $this->hasOne(Category::class,'_id','category_id')->select('_id','name');
+        return $this->hasOne(Category::class,'_id','category_id');
     }
 }

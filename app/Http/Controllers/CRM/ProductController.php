@@ -58,6 +58,9 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         try {
+
+            $category_id = SubCategory::find($request->sub_category)->category_id;
+
             $save = new Product();
             $save->name                     = $request->name;
             $save->description              = $request->description;
@@ -67,6 +70,7 @@ class ProductController extends Controller
             $save->sale_price               = (int)$request->sale_price;
             $save->rewards_point            = (int)$request->rewards_point;
             $save->sub_category             = $request->sub_category;
+            $save->category_id              = $category_id;
             $save->brand_id                 = $request->brand_id;
             $save->no_feedback              = $request->no_feedback;
             $save->pre_qulifing_question    = $request->pre_qulifing_question;
@@ -90,17 +94,6 @@ class ProductController extends Controller
         }
     }
 
-
-    public function subAttribute($id)
-    {
-        try {
-            $data = SubAttribute::where('attribute_id', $id)->get();
-            return response(['status' => true, 'record' => $data]);
-        } catch (Exception $e) {
-            return response(['status' => false, 'msg' => $e->getMessage()]);
-        }
-    }
-
     public function edit($id)
     {
         try {
@@ -118,6 +111,8 @@ class ProductController extends Controller
     public function update(ProductRequest $request, $id)
     {
         try {
+            $category_id = SubCategory::find($request->sub_category)->category_id;
+
             $save = Product::find($id);
             $save->name                     = $request->name;
             $save->description              = $request->description;
@@ -127,6 +122,7 @@ class ProductController extends Controller
             $save->sale_price               = (int)$request->sale_price;
             $save->rewards_point            = (int)$request->rewards_point;
             $save->sub_category             = $request->sub_category;
+            $save->category_id              = $category_id;
             $save->brand_id                 = $request->brand_id;
             $save->no_feedback              = $request->no_feedback;
             $save->pre_qulifing_question    = $request->pre_qulifing_question;
@@ -147,6 +143,16 @@ class ProductController extends Controller
         }
     }
 
+
+    public function subAttribute($id)
+    {
+        try {
+            $data = SubAttribute::where('attribute_id', $id)->get();
+            return response(['status' => true, 'record' => $data]);
+        } catch (Exception $e) {
+            return response(['status' => false, 'msg' => $e->getMessage()]);
+        }
+    }
 
     private function inventory($inventory = array(), $product_id = false)
     {
@@ -172,7 +178,7 @@ class ProductController extends Controller
     public function viewProduct(Request $request, $id)
     {
         try {
-            $record = Product::where([['sub_category',$id],['_id', "!=", $request->product_id]])->get();
+            $record = Product::where([['sub_category', $id], ['_id', "!=", $request->product_id]])->get();
             return response(['status' => true, 'record' => $record]);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
@@ -186,15 +192,13 @@ class ProductController extends Controller
         try {
             $save = Product::find($id);
             $save->sort        = $request->sort;
-    
-            if ($save->save())
-            return response(['status' => true, 'msg' => 'Sort Updared Successfully.']);
 
-        return response(['status' => false, 'msg' => 'Sort Not Update.']);
-         
+            if ($save->save())
+                return response(['status' => true, 'msg' => 'Sort Updared Successfully.']);
+
+            return response(['status' => false, 'msg' => 'Sort Not Update.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }
     }
-
 }

@@ -13,7 +13,7 @@ class ProductController extends Controller
     public function index( Request $request)
     {
         try{
-            $record =Product::with(['Inventory.Attributes','Inventory.SubAttributes'])->get();
+            $record =Product::with(['Inventory.Attributes','Inventory.SubAttributes','SubCategory.Category','Brand'])->get();
 
             if (!empty($request->name))
                 $record->where('name', 'LIKE', "%$request->name%");

@@ -105,31 +105,6 @@
     <script src="{{asset('assets')}}/js/main.js"></script>
     <script src="{{asset('assets')}}/js/texteditor.js"></script>
 
-    <div class="alert alert-box alert-danger d-flex align-items-center w-50 " role="alert">
-        <i class="bi bi-exclamation-circle"></i>
-        <div class="alr-mgs">
-            <p> This is an error alert - check it out!</p>
-        </div>
-    </div>
-    <div class="alert alert-box alert-warning d-flex align-items-center w-50 " role="alert">
-        <i class="bi bi-exclamation-triangle"></i>
-        <div class="alr-mgs">
-            <p> This is an warning alert - check it out!</p>
-        </div>
-    </div>
-    <div class="alert alert-box alert-info d-flex align-items-center w-50 " role="alert">
-        <i class="bi bi-info-circle"></i>
-        <div class="alr-mgs">
-            <p> This is an info alert - check it out!</p>
-        </div>
-    </div>
-    <div class="alert alert-box alert-success d-flex align-items-center w-50 " role="alert">
-        <i class="bi bi-check2-circle"></i>
-        <div class="alr-mgs">
-            <p> This is an success alert - check it out!</p>
-        </div>
-    </div>
-
     <script>
         function alertMsg(status, msg, delay = 1000, remove = false) {
 
