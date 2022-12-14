@@ -1244,6 +1244,10 @@ span.required {
     margin-bottom: 12px;
 }
 
+.text-success {
+    color: #03bd8b !important;
+}
+
 #reportrange span,
 #reportrange1 span,
 #reportrange2 span,

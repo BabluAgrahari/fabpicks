@@ -15,6 +15,12 @@ class Product extends BaseModel
         return $this->hasOne(SubCategory::class, '_id', 'sub_category');
     }
 
+    public function Category()
+    {
+        return $this->hasOne(Category::class, '_id', 'category_id');
+    }
+
+
     public function Brand()
     {
 

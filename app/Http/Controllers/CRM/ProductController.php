@@ -82,6 +82,9 @@ class ProductController extends Controller
             if (!empty($request->file('thumbnail')))
                 $save->image  = singleFile($request->file('thumbnail'), 'product');
 
+            if (!empty($request->file('images')))
+                $save->images = multiFile($request->file('images'), 'product');
+                
             if (!$save->save())
                 return response(['status' => false, 'msg' => 'Product Not Added.']);
 

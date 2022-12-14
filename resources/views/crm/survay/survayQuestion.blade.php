@@ -3,21 +3,21 @@
   <div class="modal-dialog modal-dialog-centered modal-lg ">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="survayLabel">Survay Question</h1>
+        <h1 class="modal-title fs-6" id="survayLabel">Survay Question</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div class="container">
+        <div class="container-flude">
           <div id="messageRem"></div>
           <form id="saveSingleChoise" action="{{url('crm/survay-question')}}" enctype="multipart/form-data" class="custom-form">
             @csrf
             <input type="hidden" id="survay_id" name="survay_id" value="">
             <div class="row">
-              <div class="col-md-4">
+              <div class="col-md-6">
                 <div class="field-group">
-                  <label for="type-of-questions">Type of Questions: </label>
+                  <label for="type-of-questions">Questions Type </label>
                   <select name="survay_type" class="form-select " id="question_type">
-                    <option value="">Please select user group</option>
+                    <option selected value="">Select</option>
                     <option value="single_choise">Signle Choice</option>
                     <option value="multi_choise">Multi Choice</option>
                     <option value="yes_no">Yes/No</option>
@@ -28,45 +28,44 @@
                 </div>
               </div>
 
-            </div>
-            <div class="row">
               <div class="col-md-12">
 
                 <div class="feedback-question d-none" id="question">
+                  <hr>
                   <div class="row">
-                  <div class="field-group col-md-8">
-                    <label for="question">Write Your Question <span class="required">*</span></label>
-                    <div class="required-feild">
-                      <input type="text" name="survay_question" id="question" class="form-control" placeholder="Write Your Question">
-                      <input type="checkbox" class="checkbox-required" value="1" name="required">
+                    <div class="field-group col-md-8">
+                      <label for="question">Write Your Question <span class="required">*</span></label>
+                      <div class="required-feild">
+                        <input type="text" name="survay_question" id="question" class="form-control" placeholder="Write Your Question">
+                        <input type="checkbox" class="checkbox-required" value="1" name="required">
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="field-group col-md-4">
-                    <label for="question">Rewards Point <span class="required">*</span></label>
-                    <div class="required-feild">
-                      <input type="number" name="reward" id="reward" class="form-control" placeholder="Enter Rewards Point">
+                    <div class="field-group col-md-4">
+                      <label for="question">Rewards Point <span class="required">*</span></label>
+                      <div class="required-feild">
+                        <input type="number" name="reward" id="reward" class="form-control" placeholder="Enter Rewards Point">
+                      </div>
                     </div>
-                  </div>
 
-                </div>
+                  </div>
                 </div>
 
                 <div id="content"></div>
 
               </div>
+            </div>
 
-              <div class="row d-none" id="showBtn">
-                <div class="col-md-4">
-                  <button type="submit" id="saveBtn" class="btn btn-success btn-sm">Save</button>
-                </div>
+            <div class="row d-none mt-2" id="showBtn">
+              <div class="col-md-4 text center">
+                <button type="" class="btn btn-danger">Cancle</button>
+                <button type="submit" id="saveBtn" class="btn btn-success">Save</button>
               </div>
-
+            </div>
           </form>
         </div>
-
       </div>
-
+      <div class="modal-footer"></div>
     </div>
   </div>
 </div>
@@ -94,30 +93,35 @@
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="data[answer]" value="0" id="feedbackoption1" checked>
                         <label class="form-check-label " for="feedbackoption1">
-                          <input type="text" name="data[option][]" class="form-control" placeholder="write your option">
+                          <input type="text" name="data[option][]" class="form-control" placeholder="Option1">
                         </label>
                       </div>
                     
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="data[answer]" value="1" id="feedbackoption1">
                         <label class="form-check-label " for="feedbackoption1">
-                          <input type="text" name="data[option][]" class="form-control" placeholder="write your option">
+                          <input type="text" name="data[option][]" class="form-control" placeholder="Option2">
                         </label>
                       </div>
                    
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="data[answer]" value="2" id="feedbackoption1">
                         <label class="form-check-label " for="feedbackoption1">
-                          <input type="text" name="data[option][]" class="form-control" placeholder="write your option">
+                          <input type="text" name="data[option][]" class="form-control" placeholder="Option3">
                         </label>
                       </div>
                     
                       <div class="form-check">
                         <input class="form-check-input" type="radio" name="data[answer]" value="3" id="feedbackoption1">
                         <label class="form-check-label " for="feedbackoption1">
-                          <input type="text" name="data[option][]" class="form-control" placeholder="write your option">
+                          <input type="text" name="data[option][]" class="form-control" placeholder="Option4">
                         </label>
                       </div>
+
+                      <div class="form-check">
+                      <button type="button" class="btn btn-sm btn-success">Save</button>
+                      </div>
+
                     </div>
 
                   </div>
@@ -200,8 +204,7 @@
                       </div>
                     </div>
                   </div>`;
-      } else if(val=='subjective_question'){
-       }else {
+      } else if (val == 'subjective_question') {} else {
         $('#question').addClass('d-none');
         $('#showBtn').addClass('d-none');
       }

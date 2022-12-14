@@ -176,7 +176,7 @@
                             <div class="form-group col-md-12">
                                 <label>Images</label>
                                 <div class="input-group">
-                                    <input type="file" multiple="multiple" name="images" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                    <input type="file" multiple="multiple" name="images[]" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                 </div>
                                 <span class="text-danger" id="thumbnail_msg"></span>
                             </div>

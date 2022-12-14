@@ -16,7 +16,7 @@
           @endif
           @if(isAdmin())
           <button type="button" class="btn btn-success" data-bs-toggle="modal" id="addSurvay" data-bs-target="#survayModel">
-          <x-icon type="add" /> Add
+            <x-icon type="add" /> Add
           </button>
           @endif
         </div>
@@ -34,8 +34,8 @@
               <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Discription</th>
                 <th scope="col">Survay Type</th>
+                <th scope="col">Description</th>
                 <th scope="col">Action</th>
               </tr>
             </thead>
@@ -43,17 +43,20 @@
               @foreach($lists as $keys=> $list)
               <tr>
                 <th scope="row">{{++$keys}}</th>
-                <td>{{ucWords($list->title)}}</td>
-                <td>{{ucWords($list->discription)}}</td>
-                <td>{{ucWords($list->type)}}</td>
+                <td>{{ucwords($list->title)}}</td>
+                <td>{{ucwords(str_replace('_',' ',$list->type))}}</td>
+                <td>{{$list->description}}</td>
+
                 <td>
                   <div class="action-group ">
                     @if(isAdmin())
-                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit"><x-icon type="edit"/></a>
+                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit">
+                      <x-icon type="edit" />
+                    </a>
                     <!-- <a href="#"><i class="ri-delete-bin-line"></i></a> -->
-                    <a href="javascript:void(0);" class="addQuestion text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a>
+                    <a href="javascript:void(0);" class="addQuestion text-success" _id="{{$list->_id}}"><i class="fa-solid fa-circle-plus"></i></a>
                     @endif
-                    <a href="javascript:void(0);" class="text-primary viewQuestion" _id="{{$list->_id}}"><i class="ri-eye-line"></i></a>
+                    <a href="javascript:void(0);" class="text-primary viewQuestion" _id="{{$list->_id}}"><i class="fa-solid fa-eye"></i></a>
                   </div>
                 </td>
               </tr>
@@ -75,7 +78,7 @@
   <div class="modal-dialog modal-dialog-centered modal-lg ">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="survayLabel">Survay Add</h1>
+        <h1 class="modal-title fs-6" id="survayLabel">Survay Add</h1>
         <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -107,21 +110,28 @@
               </div>
               <div class="col-md-12">
                 <div class="field-group">
-                  <label for="type-of-survay">Discription </label>
-                  <textarea name="discription" id="discription" placeholder="Enter Discription" class="form-control"></textarea>
+                  <label for="type-of-survay">Description </label>
+                  <textarea name="description" id="description" placeholder="Enter Description" class="form-control"></textarea>
                 </div>
-                <span class="text-danger" id="discription_msg"></span>
+                <span class="text-danger" id="description_msg"></span>
               </div>
 
-              <div class="col-md-6 mt-3">
-                <div class="field-group text-center">
-                  <button type="submit" class="btn btn-success btn-sm" id="save">Save</button>
+              <div class="col-md-12 mt-3">
+                <div class="col-md-12 mt-1 text-center">
+                  <button type="reset" class="btn btn-danger">
+                    <x-icon type="reset" />Reset
+                  </button>
+                  <button type="submit" class="btn btn-success" id="save">Add</button>
                 </div>
               </div>
             </div>
           </form>
         </div>
       </div>
+      <div class="modal-footer">
+
+      </div>
+
     </div>
   </div>
 </div>
@@ -155,7 +165,7 @@
   $('#addSurvay').click(function(e) {
     e.preventDefault();
     $('#survayLabel').html('Add Survay');
-    $('#save').html('Save');
+    $('#save').html(`<x-icon type="save" />Add`);
     $('form#saveSurvay').attr('action', '{{ url("crm/survay") }}');
     $('#put').html('');
     $('#survayModel').modal('show');
@@ -167,8 +177,8 @@
     formData = new FormData(this);
     var url = $(this).attr('action');
     let update = $('#putInput').val();
-    let label1 = update == 'PUT' ? 'Update' : 'Save';
-    let label2 = update == 'PUT' ? 'Updating...' : 'Saving...';
+    let label1 = update == 'PUT' ? 'Update' : `<x-icon type="save" />Add`;
+    let label2 = update == 'PUT' ? 'Updating...' : 'Adding...';
     $.ajax({
       data: formData,
       type: "POST",
@@ -222,7 +232,7 @@
 
         if (res.status) {
           $('#title').val(res.record.title);
-          $('#discription').val(res.record.discription);
+          $('#description').val(res.record.description);
           $('#type').val(res.record.type);
           $('#survayLabel').html('Edit Survay');
           $('#save').html('Update');

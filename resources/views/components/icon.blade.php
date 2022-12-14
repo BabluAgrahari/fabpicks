@@ -15,7 +15,7 @@
 <i class="fa-solid fa-cloud-arrow-down"></i>&nbsp;
 @break
 @case('save')
-<i class="fa-solid fa-circle-check"></i>&nbsp;
+<i class="fa-regular fa-circle-check"></i>&nbsp;
 @break
 @case('back')
 <i class="fa-solid fa-hand-point-left"></i>&nbsp;

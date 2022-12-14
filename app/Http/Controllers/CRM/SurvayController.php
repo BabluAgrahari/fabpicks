@@ -20,8 +20,8 @@ class SurvayController extends Controller
             if (!empty($request->title))
                 $query->where('title', 'LIKE', "%$request->title%");
 
-                if (!empty($request->discription))
-                $query->where('discription', 'LIKE', "%$request->discription%");
+                if (!empty($request->description))
+                $query->where('description', 'LIKE', "%$request->description%");
 
                 if (!empty($request->type))
                 $query->where('type', 'LIKE', "%$request->type%");
@@ -44,7 +44,7 @@ class SurvayController extends Controller
             $save = new Survay();
             $save->title  = $request->title;
             $save->type  = $request->type;
-            $save->discription  = $request->discription;
+            $save->description  = $request->description;
 
             if ($save->save())
                 return response(['status' => true, 'msg' => 'Survay Added Successfully.']);
@@ -71,7 +71,7 @@ class SurvayController extends Controller
             $save = Survay::find($id);
             $save->title  = $request->title;
             $save->type  = $request->type;
-            $save->discription  = $request->discription;
+            $save->description  = $request->description;
 
             if ($save->save())
                 return response(['status' => true, 'msg' => 'Survay Update Successfully.']);

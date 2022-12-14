@@ -45,6 +45,26 @@ if (!function_exists('singleFile')) {
 }
 
 
+if (!function_exists('multiFile')) {
+
+    function multiFile($files, $folder)
+    {
+        $fileNames = [];
+        foreach ($files as $key => $file) {
+            if ($file) {
+                if (!file_exists($folder))
+                    mkdir($folder, 0777, true);
+
+                $filename = date('YmdHis') .rand(111, 999)."." . $file->getClientOriginalExtension();
+                $file->move(public_path() . '/' . $folder, $filename);
+                $fileNames[$key] =  asset($folder) . '/' . $filename; //$filename;
+            }
+        }
+        return $fileNames;
+    }
+}
+
+
 if (!function_exists('pr')) {
     function pr($data)
     {
