@@ -11,7 +11,12 @@ class Order extends BaseModel
 
     public function User(){
 
-        return $this->hasOne(User::class,'_id','user_id')->select('_id','name','profile_img');
+        return $this->hasOne(User::class,'_id','user_id')->select('*');
+    }
+
+    public function Product(){
+
+        return $this->hasOne(Product::class,'_id','product_id')->select('*');
     }
 
     

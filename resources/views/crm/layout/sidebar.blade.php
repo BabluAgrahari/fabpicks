@@ -191,6 +191,12 @@
                                     </a>
                                 </li>
 
+                                <li class="menu-item">
+                                    <a href="{{url('crm/tex')}}">
+                                        <span class="menu-title">TEX</span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </li>

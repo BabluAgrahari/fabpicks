@@ -45,11 +45,11 @@
                             @foreach($lists as $key=>$list)
                             <tr>
                                 <th scope="row">{{++$key}}</th>
-                                <td><img src="{{$list->thumbnail ?? defaultImg()}}" style="height:50px; width:60px;"> </td>
+                                <td><img src="{{$list->image ?? defaultImg()}}" style="height:50px; width:60px;"> </td>
                                 <td>{{ucwords($list->name)}}</td>
                                 <td>{{ucwords(str_replace('_',' ',$list->product_type))}}</td>
                                 <td>{{!empty($list->SubCategory->Category->name)?$list->SubCategory->Category->name:''}}/{{ !empty($list->SubCategory->name)?$list->SubCategory->name:''}}</td>
-                                <td>{{$list->trail_point}}</td>
+                                <td>{{$list->trial_point}}</td>
                                 <td>{{$list->sale_price}}</td>
                                 <td>{{$list->rewards_point}}</td>
                                 <td>
