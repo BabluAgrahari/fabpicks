@@ -17,11 +17,8 @@
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
                 @can('isAdmin')
-                <a href="javascript:void(0);" class="btn btn-sm btn-success" id="">
+                <a href="{{url('crm/brand-export')}}{{ !empty($_SERVER['QUERY_STRING'])?'?'.$_SERVER['QUERY_STRING']:''}}" class="btn btn-sm btn-success" id="">
                     <x-icon type="export" />Export
-                </a>
-                <a href="javascript:void(0);" class="btn btn-sm btn-success" id="import">
-                    <x-icon type="import" />Import
                 </a>
                 <a href="javascript:void(0);" class="btn btn-sm btn-success" id="addBrand">
                     <x-icon type="add" />Add
@@ -81,7 +78,7 @@
 
 @push('modal')
 <div class="modal fade" id="brandModal" tabindex="-1" aria-labelledby="productcategoryLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg ">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="brandLabel">Add Brand</h1>
@@ -100,7 +97,7 @@
                             <div id="put"></div>
                             <div class="row">
 
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="field-group">
                                         <label for="category-name ">Brand Name</label>
                                         <input type="text" name="name" id="brandName" placeholder="Enter Name" class="form-control">
@@ -108,7 +105,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="field-group">
                                         <label for="banner">Logo</label>
                                         <input type="file" name="logo" id="" class="form-control">
@@ -116,7 +113,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
+                                <div class="col-md-6">
                                     <div class="field-group">
                                         <label for="sort ">Sort</label>
                                         <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
@@ -124,27 +121,34 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-3">
-                                    <div class="field-group">
-                                        <div class="form-check form-switch custom-switch">
-                                            <label class="form-check-label" for="active">Active/Inactive</label>
-                                            <input class="form-check-input" name="status" type="checkbox" value="1" role="switch" id="status" checked>
-                                            <span class="text-danger" id="status_msg"></span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-success btn-sm" id="save">Save</button>
+                                <div class="col-md-6">
+                                    <label>Status</label>
+                                    <select class="form-select" name="status" id="status">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactivce</option>
+                                    </select>
                                 </div>
                             </div>
-                        </form>
+
+                            <div class="col-md-12 text-center">
+                                <button type="reset" class="btn btn-danger">
+                                    <x-icon type="reset" />Reset
+                                </button>
+                                <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
+                            </div>
                     </div>
+                    </form>
                 </div>
+
+            </div>
+            <div class="modal-footer">
+
             </div>
 
         </div>
+
     </div>
+</div>
 </div>
 @endpush
 
@@ -153,7 +157,7 @@
     $('#addBrand').click(function(e) {
         e.preventDefault();
         $('#brandLabel').html('Add Brand');
-        $('#save').html('Save');
+        $('#save').html(`<x-icon type="save" />Add`);
         $('form#saveBrand').attr('action', '{{ url("crm/brand") }}');
         $('#put').html('');
         $('#brandModal').modal('show');
@@ -166,8 +170,8 @@
         formData = new FormData(this);
         var url = $(this).attr('action');
         let update = $('#putInput').val();
-        let label1 = update == 'PUT' ? 'Update' : 'Save';
-        let label2 = update == 'PUT' ? 'Updating...' : 'Saving...';
+        let label1 = update == 'PUT' ? 'Update' : `<x-icon type="save" />Add`;
+        let label2 = update == 'PUT' ? 'Updating...' : 'Adding...';
         $.ajax({
             data: formData,
             type: "POST",
@@ -227,7 +231,7 @@
                     $('#status').prop('checked', status);
 
                     $('#brandLabel').html('Edit Brand');
-                    $('#save').html('Update');
+                    $('#save').html(`<x-icon type="update" />Update`);
                     $('form#saveBrand').attr('action', '{{ url("crm/brand") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#brandModal').modal('show');

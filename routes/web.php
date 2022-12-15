@@ -54,6 +54,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::resource('client', ClientController::class)->middleware('can:isAdmin');
 
     Route::resource('coupon', CouponController::class)->middleware('can:isAdmin');
+    
     Route::resource('tex', TexController::class)->middleware('can:isAdmin');
 
     Route::get('product-view/{id}',[ProductController::class,'viewProduct']);
@@ -64,6 +65,9 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
         Route::get('sub-attributes/{id}', 'subAttribute')->middleware('can:isAdmin');
         
     });
+
+
+    Route::get('brand-export',  [BrandController::class, 'export']);
 
     // Route::get('show/{id}', [ProductController::class, 'show']);
 

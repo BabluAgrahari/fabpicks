@@ -15,8 +15,8 @@
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
                 <button type="button" class="btn btn-success btn-sm" id="addClient" data-bs-toggle="modal" data-bs-target="#ClientModal">
-                <x-icon type="add"/> Add
-            </button>
+                    <x-icon type="add" /> Add
+                </button>
             </div>
         </div>
     </div>
@@ -54,7 +54,9 @@
                             <td>{{$list->pincode}}</td>
                             <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                             <td>
-                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit"><x-icon type="edit"/></a>
+                                <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit">
+                                    <x-icon type="edit" />
+                                </a>
                             </td>
                         </tr>
                         @endforeach
@@ -86,7 +88,7 @@
                                     <div class="field-group">
                                         <label for="store-owner ">Brand: <span class="required">*</span></label>
                                         <select name="Brand_id" id="Brand_id" class="form-select js-example-basic-single">
-                                        <option value="" selected>Select</option>
+                                            <option value="" selected>Select</option>
                                             @foreach($brands as $res)
                                             <option value="{{$res->_id}}">{{$res->name}}</option>
                                             @endforeach
@@ -115,21 +117,21 @@
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="vat/gstin ">VAT/GSTIN No: </label>
-                                        <input type="text" id="gstin" name="gstin" class="form-control" placeholder="Please enter your VAT/GSTIN No. ">
+                                        <input type="text" id="gstin" name="gstin" class="form-control" placeholder="VAT/GSTIN No. ">
                                         <span class="text-danger" id="gstin_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="phone ">Phone: </label>
-                                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Please enter your phone No. ">
+                                        <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone No. ">
                                         <span class="text-danger" id="phone_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="mobile ">Mobile: <span class="required">*</span></label>
-                                        <input type="text" name="mobile" id="mobile" class="form-control" placeholder="Please enter your mobile No. ">
+                                        <input type="text" name="mobile" id="mobile" class="form-control" placeholder=" Mobile No. ">
                                         <span class="text-danger" id="mobile_msg"></span>
                                     </div>
                                 </div>
@@ -216,7 +218,10 @@
 
                             <div class="row">
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-success btn-sm" id="save">Save</button>
+                                    <button type="reset" class="btn btn-danger">
+                                        <x-icon type="reset" />Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
                                 </div>
                             </div>
                         </form>
@@ -233,7 +238,7 @@
     $('#addClient').click(function(e) {
         e.preventDefault();
         $('#clientLabel').html('Add Client');
-        $('#save').html('Save');
+        $('#save').html(`<x-icon type="save"/>Add`);
         $('form#ClientSave').attr('action', '{{ url("crm/client") }}');
         $('#put').html('');
         $('#ClientModal').modal('show');
@@ -256,8 +261,8 @@
         formData = new FormData(this);
         var url = $(this).attr('action');
         let update = $('#putInput').val();
-        let label1 = update == 'PUT' ? 'Update' : 'Save';
-        let label2 = update == 'PUT' ? 'Updating...' : 'Saving...';
+        let label1 = update == 'PUT' ? 'Update' : `<x-icon type="save"/>Add`;
+        let label2 = update == 'PUT' ? 'Updating...' : 'Adding...';
         $.ajax({
             data: formData,
             type: "POST",
@@ -329,7 +334,7 @@
                     $('#verified_store').prop('checked', verified_store);
 
                     $('#clientLabel').html('Edit Client');
-                    $('#save').html('Update');
+                    $('#save').html(`<x-icon type="update"/>Update`);
                     $('form#ClientSave').attr('action', '{{ url("crm/client") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#passwordField').html('');

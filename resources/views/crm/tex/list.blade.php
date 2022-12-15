@@ -10,7 +10,7 @@
             </div>
 
             <div class="col-md-6 product-btn-group d-flex justify-content-end">
-               
+
                 <a href="javascript:void(0);" class="btn btn-sm btn-success" id="addTex">
                     <x-icon type="add" />Add
                 </a>
@@ -29,7 +29,7 @@
                                 <th scope="col">Tex Name</th>
                                 <th scope="col">Tex Amount</th>
                                 <th scope="col">Action</th>
-                               
+
                             </tr>
                         </thead>
                         <tbody>
@@ -94,7 +94,10 @@
                                 </div>
 
                                 <div class="col-md-12 text-center">
-                                    <button type="submit" class="btn btn-success btn-sm" id="save">Save</button>
+                                    <button type="reset" class="btn btn-danger">
+                                        <x-icon type="reset" />Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
                                 </div>
                             </div>
                         </form>
@@ -112,7 +115,7 @@
     $('#addTex').click(function(e) {
         e.preventDefault();
         $('#texLabel').html('Add Tex');
-        $('#save').html('Save');
+        $('#save').html(`<x-icon type="save" />Add`);
         $('form#texsave').attr('action', '{{ url("crm/tex") }}');
         $('#put').html('');
         $('#texModal').modal('show');
@@ -125,8 +128,8 @@
         formData = new FormData(this);
         var url = $(this).attr('action');
         let update = $('#putInput').val();
-        let label1 = update == 'PUT' ? 'Update' : 'Save';
-        let label2 = update == 'PUT' ? 'Updating...' : 'Saving...';
+        let label1 = update == 'PUT' ? 'Update' : `<x-icon type="save" />Add`;
+        let label2 = update == 'PUT' ? 'Updating...' : 'Adding...';
         $.ajax({
             data: formData,
             type: "POST",
@@ -184,7 +187,7 @@
                     $('#amount').val(res.record.amount);
 
                     $('#texLabel').html('Edit Tex');
-                    $('#save').html('Update');
+                    $('#save').html(`<x-icon type="update" />Update`);
                     $('form#texsave').attr('action', '{{ url("crm/tex") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#texModal').modal('show');

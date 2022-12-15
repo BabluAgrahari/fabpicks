@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\CRM;
 
+use App\Exports\BrandExport;
 use App\Http\Controllers\Controller;
 use App\Http\Request\BrandRequest;
 use App\Models\Brand;
 use Exception;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 class BrandController extends Controller
 {
@@ -101,5 +104,10 @@ class BrandController extends Controller
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }
+    }
+
+    public function export(Request $request)
+    {
+        return Excel::download(new BrandExport($request), 'Brand.xlsx');
     }
 }

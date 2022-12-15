@@ -288,7 +288,7 @@
 
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <button type="submit" id="save" class="btn btn-success"> <x-icon type="save" />Save</button>
+                        <button type="submit" id="save" class="btn btn-success"> <x-icon type="save" />Add</button>
                         <button type="reset" class="btn btn-danger"> <x-icon type="reset" />Reset</button>
                     </div>
                 </div>
@@ -420,8 +420,8 @@
         formData = new FormData(this);
         var url = $(this).attr('action');
         let update = $('#putInput').val();
-        let label1 = update == 'PUT' ? 'Update' : 'Save';
-        let label2 = update == 'PUT' ? 'Updating...' : 'Saving...';
+        let label1 = update == 'PUT' ? 'Update' : `<x-icon type="save"/>Add`;
+        let label2 = update == 'PUT' ? 'Updating...' : 'Add...';
         $.ajax({
             data: formData,
             type: "POST",

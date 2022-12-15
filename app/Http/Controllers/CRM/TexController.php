@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CRM;
 
 use App\Http\Controllers\Controller;
+use App\Http\Request\TexRequest;
 use App\Models\Tex;
 use Exception;
 use Illuminate\Http\Request;
@@ -22,7 +23,7 @@ class TexController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(TexRequest $request)
     {
         try {
 
@@ -49,7 +50,7 @@ class TexController extends Controller
         }
     }
 
-    public function update(Request $request, $id)
+    public function update(TexRequest $request, $id)
     {
         try {
             $save = Tex::find($id);

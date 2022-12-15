@@ -49,7 +49,7 @@
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-success" id="update">Update</button>
+                            <button class="btn btn-success" id="update"><x-icon type="update"/>Update</button>
                         </div>
                     </div>
                 </form>

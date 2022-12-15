@@ -43,7 +43,7 @@
                             <span class="text-danger" id="shipping_amount_msg"></span>
                         </div>
                         <div class="col-md-3 mt-4">
-                            <button type="submit" class='btn btn-sm btn-success' id="save">Save</button>
+                            <button type="submit" class='btn btn-sm btn-success' id="save">Add</button>
                         </div>
                     </div>
                 </form>
@@ -111,12 +111,12 @@
             contentType: false,
             processData: false,
             beforeSend: function() {
-                $('#save').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Saving`).attr('disabled', true);
+                $('#save').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Adding`).attr('disabled', true);
             },
             success: function(res) {
 
                 //hide loader
-                $('#save').html('Save').removeAttr('disabled');
+                $('#save').html(`<x-icon type="save"/>Add`).removeAttr('disabled');
 
                 /*Start Validation Error Message*/
                 $('span.text-danger').html('');
