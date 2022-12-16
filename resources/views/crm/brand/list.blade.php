@@ -37,9 +37,12 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Brand Name</th>
                                 <th scope="col">Logo</th>
+                                <th scope="col">Brand Name</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Sort</th>
+                                <th scope="col">Status</th>
+
                                 @if(isAdmin())
                                 <th scope="col">Action</th>
                                 @endif
@@ -49,10 +52,14 @@
                             @foreach($lists as $key=>$list)
                             <tr>
                                 <th scope="row">{{++$key}}</th>
-                                <td>{{ucWords($list->name)}}</td>
                                 <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
+                                <td>{{ucWords($list->name)}}</td>
+                                <td>{{$list->description}}</td>
                                 <td>{{$list->sort}}</td>
-                                @if(isAdmin())
+
+                                <td>{!!listStatus($list->status,$list->_id)!!}</td>
+
+                                @can('isAdmin')
                                 <td>
                                     <div class="action-group">
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info">
@@ -63,7 +70,7 @@
                                         </a>
                                     </div>
                                 </td>
-                                @endif
+                                @endcan
                             </tr>
                             @endforeach
                         </tbody>
@@ -101,6 +108,12 @@
                                     <label for="category-name ">Brand Name</label>
                                     <input type="text" name="name" id="brandName" placeholder="Enter Name" class="form-control">
                                     <span class="text-danger" id="name_msg"></span>
+                                </div>
+
+                                <div class="field-group">
+                                    <label for="description ">Description</label>
+                                    <textarea name="description" id="description" rows="3" placeholder="Enter Description" rows="1" class="form-control"></textarea>
+                                    <span class="text-danger" id="description_msg"></span>
                                 </div>
 
                                 <div class="col-md-6">
@@ -152,6 +165,15 @@
 
 @push('js')
 <script>
+    $(document).on('click', '.activeVer', function() {
+        let id = $(this).attr('_id');
+        let val = $(this).attr('val');
+        let selector = $(this);
+        let url = "{{ url('crm/brand-status') }}";
+        chagneStatus(id, val, selector, url);
+    })
+
+
     $('#addBrand').click(function(e) {
         e.preventDefault();
         $('#brandLabel').html('Add Brand');
@@ -224,6 +246,7 @@
 
                 if (res.status) {
                     $('#brandName').val(res.record.name);
+                    $('#description').val(res.record.description);
                     $('#sort').val(res.record.sort);
                     let status = res.record.status ? true : false;
                     $('#status').prop('checked', status);

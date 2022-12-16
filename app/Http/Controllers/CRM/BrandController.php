@@ -45,9 +45,10 @@ class BrandController extends Controller
         try {
 
             $save = new Brand();
-            $save->name       = $request->name;
-            $save->sort       = (int)$request->sort;
-            $save->status     = (int)$request->status ?? 0;
+            $save->name             = $request->name;
+            $save->description      = $request->description;
+            $save->sort             = (int)$request->sort;
+            $save->status           = (int)$request->status ?? 0;
 
             //for logo upload
             if (!empty($request->file('logo')))
@@ -76,9 +77,10 @@ class BrandController extends Controller
     {
         try {
             $save = Brand::find($id);
-            $save->name       = $request->name;
-            $save->sort       = (int)$request->sort;
-            $save->status     = (int)$request->status ?? 0;
+            $save->name             = $request->name;
+            $save->description      = $request->description;
+            $save->sort             = (int)$request->sort;
+            $save->status           = (int)$request->status ?? 0;
 
             //for logo upload
             if (!empty($request->file('logo')))
@@ -103,6 +105,29 @@ class BrandController extends Controller
             return response(['status' => false, 'msg' => 'Brand not Removed.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
+        }
+    }
+
+    public function status(Request $request)
+
+    {
+
+        try {
+
+            $save = Brand::find($request->id);
+// pr($request->all());die;
+            $save->status = (int)$request->status;
+
+            $save->save();
+
+            if ($save->status == 1)
+
+                return response(['status' => 'success', 'msg' => 'This Brand is Active!', 'val' => $save->status]);
+
+            return response(['status' => 'success', 'msg' => 'This Brand is Inactive!', 'val' => $save->status]);
+        } catch (Exception $e) {
+
+            return response(['status' => 'error', 'msg' => 'Something went wrong!!']);
         }
     }
 

@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Foundation\Http\FormRequest;
 
-class TexRequest extends FormRequest
+class TaxRequest extends FormRequest
 {
     public function authorize()
     {

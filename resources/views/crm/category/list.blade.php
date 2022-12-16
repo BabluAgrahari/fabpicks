@@ -14,6 +14,11 @@
                 @else
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
+
+                <a href="{{url('crm/category-export')}}{{ !empty($_SERVER['QUERY_STRING'])?'?'.$_SERVER['QUERY_STRING']:''}}" class="btn btn-sm btn-success" id="">
+                    <x-icon type="export" />Export
+                </a>
+
                 <a href="javascript:void(0);" class="btn btn-sm btn-success" id="AddCategory">
                     <x-icon type="add" />Add
                 </a>
@@ -30,7 +35,7 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Category Name</th>
-                                <th scope="col">Discription</th>
+                                <th scope="col">Description</th>
                                 <th scope="col">Sort</th>
                                 <th scope="col">Banner</th>
                                 <th scope="col">Icon</th>
@@ -42,7 +47,7 @@
                             <tr>
                                 <th scope="row">{{++$key}}</th>
                                 <td>{{ucWords($list->name)}}</td>
-                                <td>{{ucWords($list->discription)}}</td>
+                                <td>{{ucWords($list->description)}}</td>
                                 <td>{{$list->sort}}</td>
 
                                 <td><img src="{{$list->banner ?? defaultImg()}}" style="height:50px; width:60px;"></td>
@@ -89,9 +94,9 @@
                     </div>
 
                     <div class="field-group">
-                        <label for="discription ">Discription</label>
-                        <textarea name="discription" id="discription" rows="3" placeholder="Enter Discription" rows="1" class="form-control"></textarea>
-                        <span class="text-danger" id="discription_msg"></span>
+                        <label for="description ">Description</label>
+                        <textarea name="description" id="description" rows="3" placeholder="Enter Description" rows="1" class="form-control"></textarea>
+                        <span class="text-danger" id="description_msg"></span>
                     </div>
 
                     <div class="field-group">
@@ -215,7 +220,7 @@
 
                 if (res.status) {
                     $('#name').val(res.record.name);
-                    $('#discription').val(res.record.discription);
+                    $('#description').val(res.record.description);
                     $('#sort').val(res.record.sort);
                     let status = res.record.status ? true : false;
                     $('#status').prop('checked', status);

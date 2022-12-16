@@ -6,12 +6,12 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-6">
-                <h5>Tex</h5>
+                <h5>Tax</h5>
             </div>
 
             <div class="col-md-6 product-btn-group d-flex justify-content-end">
 
-                <a href="javascript:void(0);" class="btn btn-sm btn-success" id="addTex">
+                <a href="javascript:void(0);" class="btn btn-sm btn-success" id="addTax">
                     <x-icon type="add" />Add
                 </a>
             </div>
@@ -26,8 +26,8 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Tex Name</th>
-                                <th scope="col">Tex Amount</th>
+                                <th scope="col">Tax Name</th>
+                                <th scope="col">Tax Amount</th>
                                 <th scope="col">Action</th>
 
                             </tr>
@@ -57,11 +57,11 @@
 
 
 @push('modal')
-<div class="modal fade" id="texModal" tabindex="-1" aria-labelledby="productcategoryLabel" aria-hidden="true">
+<div class="modal fade" id="taxModal" tabindex="-1" aria-labelledby="productcategoryLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="texLabel">Add Brand</h1>
+                <h1 class="modal-title fs-5" id="taxLabel">Add Brand</h1>
                 <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -72,14 +72,14 @@
 
                     <div class="row">
 
-                        <form id="texsave" action="{{url('crm/tex')}}" method="post" enctype="multipart/form-data">
+                        <form id="taxsave" action="{{url('crm/tax')}}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div id="put"></div>
                             <div class="row">
 
                                 <div class="col-md-6">
                                     <div class="field-group">
-                                        <label for="category-name ">Tex Name</label>
+                                        <label for="category-name ">Tax Name</label>
                                         <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
                                         <span class="text-danger" id="name_msg"></span>
                                     </div>
@@ -87,7 +87,7 @@
 
                                 <div class="col-md-6">
                                     <div class="field-group">
-                                        <label for="sort ">Tex Amount</label>
+                                        <label for="sort ">Tax Amount</label>
                                         <input type="text" name="amount" id="amount" placeholder="Enter Amount" class="form-control">
                                         <span class="text-danger" id="amount_msg"></span>
                                     </div>
@@ -112,17 +112,17 @@
 
 @push('js')
 <script>
-    $('#addTex').click(function(e) {
+    $('#addTax').click(function(e) {
         e.preventDefault();
-        $('#texLabel').html('Add Tex');
+        $('#taxLabel').html('Add Tax');
         $('#save').html(`<x-icon type="save" />Add`);
-        $('form#texsave').attr('action', '{{ url("crm/tex") }}');
+        $('form#taxsave').attr('action', '{{ url("crm/tax") }}');
         $('#put').html('');
-        $('#texModal').modal('show');
+        $('#taxModal').modal('show');
     });
 
     /*start form submit functionality*/
-    $("form#texsave").submit(function(e) {
+    $("form#taxsave").submit(function(e) {
         e.preventDefault();
 
         formData = new FormData(this);
@@ -164,7 +164,7 @@
 
                 //for reset all field
                 if (res.status)
-                    $('form#texsave').trigger('reset');
+                    $('form#taxsave').trigger('reset');
             }
         });
     });
@@ -175,7 +175,7 @@
         e.preventDefault(0);
 
         let id = $(this).attr('_id');
-        let url = "{{url('crm/tex')}}/" + id + "/edit";
+        let url = "{{url('crm/tax')}}/" + id + "/edit";
         $.ajax({
             url: url,
             type: 'GET',
@@ -186,11 +186,11 @@
                     $('#name').val(res.record.name);
                     $('#amount').val(res.record.amount);
 
-                    $('#texLabel').html('Edit Tex');
+                    $('#taxLabel').html('Edit Tax');
                     $('#save').html(`<x-icon type="update" />Update`);
-                    $('form#texsave').attr('action', '{{ url("crm/tex") }}/' + id);
+                    $('form#taxsave').attr('action', '{{ url("crm/tax") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
-                    $('#texModal').modal('show');
+                    $('#taxModal').modal('show');
                 }
             }
         })

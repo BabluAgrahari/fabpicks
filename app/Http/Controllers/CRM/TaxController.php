@@ -3,12 +3,12 @@
 namespace App\Http\Controllers\CRM;
 
 use App\Http\Controllers\Controller;
-use App\Http\Request\TexRequest;
-use App\Models\Tex;
+use App\Http\Request\TaxRequest;
+use App\Models\Tax;
 use Exception;
 use Illuminate\Http\Request;
 
-class TexController extends Controller
+class TaxController extends Controller
 {
 
 
@@ -16,25 +16,25 @@ class TexController extends Controller
     {
         try {
 
-            $data['lists']=Tex::all();
-            return view('crm.tex.list', $data);
+            $data['lists']=Tax::all();
+            return view('crm.tax.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);
         }
     }
 
-    public function store(TexRequest $request)
+    public function store(TaxRequest $request)
     {
         try {
 
-            $save = new Tex();
+            $save = new Tax();
             $save->name       = $request->name;
             $save->amount       = (int)$request->amount;
 
             if ($save->save())
-                return response(['status' => true, 'msg' => 'Tex Added Successfully.']);
+                return response(['status' => true, 'msg' => 'Tax Added Successfully.']);
 
-            return response(['status' => false, 'msg' => 'Tex not Added.']);
+            return response(['status' => false, 'msg' => 'Tax not Added.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }
@@ -43,24 +43,24 @@ class TexController extends Controller
     public function edit($id)
     {
         try {
-            $record = Tex::find($id);
+            $record = Tax::find($id);
             return response(['status' => true, 'record' => $record]);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }
     }
 
-    public function update(TexRequest $request, $id)
+    public function update(TaxRequest $request, $id)
     {
         try {
-            $save = Tex::find($id);
+            $save = Tax::find($id);
             $save->name       = $request->name;
             $save->amount       = (int)$request->amount;
             
             if ($save->save())
-                return response(['status' => true, 'msg' => 'Tex Updated Successfully.']);
+                return response(['status' => true, 'msg' => 'Tax Updated Successfully.']);
 
-            return response(['status' => false, 'msg' => 'Tex not Updated.']);
+            return response(['status' => false, 'msg' => 'Tax not Updated.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }

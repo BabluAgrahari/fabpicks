@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\CRM;
 
+use App\Exports\SubCategoryExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SubCategory;
 use App\Http\Request\SubCategoryRequest;
 use App\Models\Category;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SubCategoryController extends Controller
 {
@@ -41,7 +43,7 @@ class SubCategoryController extends Controller
             $save = new SubCategory();
             $save->category_id          = $request->category_id;
             $save->name                 = $request->name;
-            $save->discription          = $request->discription;
+            $save->description          = $request->description;
             $save->sort                 = $request->sort;
             $save->status               = (int)$request->status ?? '0';
 
@@ -77,7 +79,7 @@ class SubCategoryController extends Controller
             $save = SubCategory::find($id);
             $save->category_id          = $request->category_id;
             $save->name                 = $request->name;
-            $save->discription          = $request->discription;
+            $save->description          = $request->description;
             $save->sort                 = $request->sort;
             $save->status               = (int)$request->status ?? '0';
 
@@ -107,5 +109,11 @@ class SubCategoryController extends Controller
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getmessage()]);
         }
+    }
+
+    public function export(Request $request)
+    {
+        
+         return Excel::download(new SubCategoryExport($request), 'subcategory.xlsx');
     }
 }
