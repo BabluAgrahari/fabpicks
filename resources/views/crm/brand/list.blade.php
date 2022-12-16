@@ -81,12 +81,12 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="brandLabel">Add Brand</h1>
+                <h1 class="modal-title fs-6" id="brandLabel">Add Brand</h1>
                 <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
-                <div class="container ">
+                <div class="container-flude">
 
                     <div id="message"></div>
 
@@ -97,20 +97,10 @@
                             <div id="put"></div>
                             <div class="row">
 
-                                <div class="col-md-6">
-                                    <div class="field-group">
-                                        <label for="category-name ">Brand Name</label>
-                                        <input type="text" name="name" id="brandName" placeholder="Enter Name" class="form-control">
-                                        <span class="text-danger" id="name_msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <div class="field-group">
-                                        <label for="banner">Logo</label>
-                                        <input type="file" name="logo" id="" class="form-control">
-                                        <span class="text-danger" id="logo_msg"></span>
-                                    </div>
+                                <div class="field-group">
+                                    <label for="category-name ">Brand Name</label>
+                                    <input type="text" name="name" id="brandName" placeholder="Enter Name" class="form-control">
+                                    <span class="text-danger" id="name_msg"></span>
                                 </div>
 
                                 <div class="col-md-6">
@@ -122,33 +112,41 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <label>Status</label>
-                                    <select class="form-select" name="status" id="status">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactivce</option>
-                                    </select>
+                                    <div class="field-group">
+                                        <label>Status</label>
+                                        <select class="form-select" name="status" id="status">
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactivce</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="field-group">
+                                    <label for="banner">Logo</label>
+                                    <input type="file" name="logo" id="" class="form-control">
+                                    <span class="text-danger" id="logo_msg"></span>
+                                </div>
+
+
+                                <div class="col-md-12 mb-1 text-center">
+                                    <button type="reset" class="btn btn-danger">
+                                        <x-icon type="reset" />Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-success" id="save">Add</button>
                                 </div>
                             </div>
-
-                            <div class="col-md-12 text-center">
-                                <button type="reset" class="btn btn-danger">
-                                    <x-icon type="reset" />Reset
-                                </button>
-                                <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
-                            </div>
+                        </form>
                     </div>
-                    </form>
-                </div>
 
-            </div>
-            <div class="modal-footer">
+                </div>
+                <div class="modal-footer">
+
+                </div>
 
             </div>
 
         </div>
-
     </div>
-</div>
 </div>
 @endpush
 

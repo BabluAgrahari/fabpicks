@@ -108,6 +108,7 @@ class BrandController extends Controller
 
     public function export(Request $request)
     {
-        return Excel::download(new BrandExport($request), 'Brand.xlsx');
+        
+         return Excel::download(new BrandExport($request), 'brand.xlsx');
     }
 }

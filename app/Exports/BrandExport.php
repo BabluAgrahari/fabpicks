@@ -3,12 +3,10 @@
 namespace App\Exports;
 
 use App\Models\Brand;
-use App\Services\OrderService;
-use Illuminate\Support\Facades\Auth;
 use Maatwebsite\Excel\Concerns\FromArray;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class BrandExport extends Export 
+class BrandExport extends Export implements FromArray, WithHeadings
 {
     protected $request;
 
@@ -30,19 +28,20 @@ class BrandExport extends Export
         if (!empty($request->sort))
             $query->where('sort', $request->sort);
 
-        $records = $query->orderBy('created', 'DESC')->get();
+        $records = $query->dateRange($request->date_range)->latest()->get();
 
-        $reults = [];
+        $result = [];
         if (!$records->isEmpty()) {
             foreach ($records as $record) {
-                $reults[] = [
-                    'name'              => $record->name,
-                    'sort'              => $record->sort,
-                    'created'          => $record->dformat($record->created)
+                $result[] = [
+                    'name'          => $record->name,
+                    'sort'          => $record->sort,
+                    'description'   => $record->description,
+                    'created'       => $record->dFormat($record->created)
                 ];
             }
         }
-        return $reults;
+        return $result;
     }
 
     public function headings(): array
@@ -50,6 +49,7 @@ class BrandExport extends Export
         return [
             'Brand Name',
             'Sort',
+            'Description',
             'Created'
         ];
     }
