@@ -1,3 +1,8 @@
+<style>
+  .custom-form .row {
+    margin-bottom: 0px !important;
+  }
+</style>
 <!--Survay Question Modal -->
 <div class="modal fade" id="survaryQuestionModel" tabindex="-1" aria-labelledby="survayLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg ">
@@ -9,6 +14,7 @@
       <div class="modal-body">
         <div class="container-flude">
           <div id="messageRem"></div>
+
           <form id="saveSingleChoise" action="{{url('crm/survay-question')}}" enctype="multipart/form-data" class="custom-form">
             @csrf
             <input type="hidden" id="survay_id" name="survay_id" value="">
@@ -26,6 +32,10 @@
                     <option value="subjective_question">Subjective Question</option>
                   </select>
                 </div>
+              </div>
+
+              <div id="previewQuestion">
+
               </div>
 
               <div class="col-md-12">
@@ -56,12 +66,13 @@
               </div>
             </div>
 
-            <div class="row d-none mt-2" id="showBtn">
+            <!-- <div class="row d-none mt-2" id="showBtn">
               <div class="col-md-4 text center">
                 <button type="" class="btn btn-danger">Cancle</button>
                 <button type="submit" id="saveBtn" class="btn btn-success">Save</button>
               </div>
-            </div>
+            </div> -->
+
           </form>
         </div>
       </div>
@@ -119,7 +130,7 @@
                       </div>
 
                       <div class="form-check">
-                      <button type="button" class="btn btn-sm btn-success">Save</button>
+                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
                       </div>
 
                     </div>
@@ -159,6 +170,10 @@
                         </label>
                       </div>
 
+                      <div class="form-check">
+                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
+                      </div>
+
                     </div>
                   </div>
                 </div>`;
@@ -175,6 +190,11 @@
                         <input class="form-check-input" type="radio" name="data[answer]" value="0" id="feedbackyesno2">
                         <label class="form-check-label" for="feedbackyesno2">No</label>
                       </div>
+
+                      <div class="form-check">
+                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
+                      </div>
+
                     </div>
                   </div>
                 </div>`;
@@ -194,6 +214,11 @@
                         </div>
                       </div>
 
+                       <div class="form-check">
+                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
+                      </div>
+
+                      </div>
                     </div>
                   </div>`;
       } else if (val == 'upload_image') {
@@ -203,6 +228,11 @@
                         <input type="file" name="image" class="form-control">
                       </div>
                     </div>
+
+                    <div class="form-check">
+                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
+                      </div>
+                      
                   </div>`;
       } else if (val == 'subjective_question') {} else {
         $('#question').addClass('d-none');
@@ -255,6 +285,10 @@
 
         /*Start Status message*/
         if (res.status || !res.status) {
+          if (res.response) {
+            console.log(res.response);
+            $('#previewQuestion').append(res.response);
+          }
           alertMsg(res.status, res.msg, 2000);
         }
         /*End Status message*/
