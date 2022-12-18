@@ -479,7 +479,7 @@
             success: function(res) {
 
                 //hide loader
-                $('#save').html('Update').removeAttr('disabled');
+                $('#save').html(`<x-icon type="update"/>Update`).removeAttr('disabled');
 
                 /*Start Validation Error Message*/
                 $('span.text-danger').html('');

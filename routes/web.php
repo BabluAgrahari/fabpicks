@@ -21,7 +21,10 @@ use App\Http\Controllers\CRM\ProductController;
 use App\Http\Controllers\CRM\ProductListingController;
 use App\Http\Controllers\CRM\FeedbackController;
 use App\Http\Controllers\CRM\ShippingCostController;
-use App\Http\Controllers\CRM\TexController;
+use App\Http\Controllers\CRM\TaxController;
+use App\Models\Banner;
+use App\Models\Setting;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -54,7 +57,8 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::resource('client', ClientController::class)->middleware('can:isAdmin');
 
     Route::resource('coupon', CouponController::class)->middleware('can:isAdmin');
-    Route::resource('tex', TexController::class)->middleware('can:isAdmin');
+
+    Route::resource('tax', TaxController::class)->middleware('can:isAdmin');
 
     Route::get('product-view/{id}', [ProductController::class, 'viewProduct']);
     Route::post('product-update/{id}', [ProductController::class, 'sortupdate']);
@@ -63,6 +67,12 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::controller(ProductController::class)->group(function () {
         Route::get('sub-attributes/{id}', 'subAttribute')->middleware('can:isAdmin');
     });
+    Route::get('sub-category-export',  [SubCategoryController::class, 'export']);
+    Route::get('sub-attribute-export',  [SubAttributeController::class, 'export']);
+    Route::get('attribute-export',  [AttributeController::class, 'export']);
+    Route::get('category-export',  [CategoryController::class, 'export']);
+    Route::get('brand-export',  [BrandController::class, 'export']);
+    Route::post('brand-status',  [BrandController::class, 'status']);
 
     // Route::get('show/{id}', [ProductController::class, 'show']);
 
@@ -117,3 +127,23 @@ Route::group(['middleware' => 'guest'], function () {
     Route::get('register',  [Register::class, 'index']);
     Route::post('register', [Register::class, 'register']);
 });
+
+Route::get('optimize', function () {
+    Artisan::call('optimize');
+});
+
+Route::get('banner-table', function () {
+
+    for ($i = 1; $i <= 5; $i++) {
+        $banner = new Banner();
+        $banner->save();
+    }
+    echo "Banner collection created Successfully.";
+})->middleware('throttle:1,60');
+
+Route::get('setting', function () {
+    $setting = new Setting();
+    $setting->save();
+
+    echo "Setting Collection Created Successfully.";
+})->middleware('throttle:1,60');

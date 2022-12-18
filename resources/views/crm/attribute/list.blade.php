@@ -15,14 +15,18 @@
                 @else
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
+                <a href="{{url('crm/attribute-export')}}{{ !empty($_SERVER['QUERY_STRING'])?'?'.$_SERVER['QUERY_STRING']:''}}" class="btn btn-sm btn-success" id="">
+                    <x-icon type="export" />Export
+                </a>
                 <button type="button" class="btn btn-success" id="AddAttribute" data-bs-toggle="modal" data-bs-target="#Attribute">
-                <x-icon type="add" /> Add</button>
+                    <x-icon type="add" /> Add
+                </button>
             </div>
         </div>
     </div>
 
     <div class="card-body">
-    @include('crm.attribute.filter')
+        @include('crm.attribute.filter')
         <div class="row">
             <div class="col-md-12 ">
                 <div class="table-responsive">
@@ -44,7 +48,9 @@
                                 <td>{{$list->sort}}</td>
                                 <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>
-                                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><x-icon type="edit" /></a>
+                                    <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info">
+                                        <x-icon type="edit" />
+                                    </a>
                                 </td>
                             </tr>
                             @endforeach
@@ -58,161 +64,168 @@
     </div>
 </div>
 
-        @push('modal')
-        <div class="modal fade" id="Attributemodal" tabindex="-1" aria-labelledby="AttributeLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg ">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="AttributeLabel"> Attributes</h1>
-                        <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
+@push('modal')
+<div class="modal fade" id="Attributemodal" tabindex="-1" aria-labelledby="AttributeLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="AttributeLabel"> Attributes</h1>
+                <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
 
-                        <div class="container">
-                            <div id="message"></div>
-                            <form id="SaveAttribute" action="{{url('crm/attribute')}}" method="post" enctype="multipart/form-data">
-                                @csrf
-                                <div id="put"></div>
-                                <div class="row">
+                <div class="container">
+                    <div id="message"></div>
+                    <form id="SaveAttribute" action="{{url('crm/attribute')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div id="put"></div>
+                        <div class="row">
 
-                                    <div class="col-md-12">
+                            <div class="col-md-12">
 
-                                        <div class="field-group">
-                                            <label for="category-name ">Attribute Name</label>
-                                            <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
-                                            <span class="text-danger" id="name_msg"></span>
-                                        </div>
-
-                                    </div>
+                                <div class="field-group">
+                                    <label for="category-name ">Attribute Name</label>
+                                    <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
+                                    <span class="text-danger" id="name_msg"></span>
                                 </div>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="field-group">
-                                            <label for="icon">Icon</label>
-                                            <input type="file" name="icon" id="icon" class="form-control">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="field-group">
-                                            <label for="sort ">Sort</label>
-                                            <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
-                                            <span class="text-danger" id="sort_msg"></span>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="field-group">
-                                            <div class="form-check form-switch custom-switch">
-                                                <label class="form-check-label" for="active">Active/Inactive</label>
-                                                <input class="form-check-input" type="checkbox" role="switch" value="1" name="status" id="status" checked>
-                                                <span class="text-danger" id="status_msg"></span>
-                                            </div>
-                                        </div>
-                                    </div>
 
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn btn-success btn-sm" id="save">Save</button>
-                                    </div>
-                                </div>
-                            </form>
+                            </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="field-group">
+                                    <label for="icon">Icon</label>
+                                    <input type="file" name="icon" id="icon" class="form-control">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field-group">
+                                    <label for="sort ">Sort</label>
+                                    <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
+                                    <span class="text-danger" id="sort_msg"></span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="field-group">
+                                    <label>Status</label>
+                                    <select class="form-select" name="status" id="status">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactivce</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 
                 </div>
+                <div class="row">
+                    <div class="col-md-12 text-center">
+                    <button type="reset" class="btn btn-danger">
+                            <x-icon type="reset" />Reset
+                        </button>
+                        <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
+                    </div>
+                </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+
             </div>
         </div>
 
-        @endpush
+    </div>
+</div>
+</div>
 
-        @push('js')
+@endpush
 
-        <script>
-            $('#AddAttribute').click(function(e) {
-                e.preventDefault();
-                $('#AttributeLabel').html('Add Attribute');
-                $('#save').html('Save');
-                $('form#SaveAttribute').attr('action', '{{ url("crm/attribute") }}');
-                $('#put').html('');
-                $('#Attributemodal').modal('show');
-            });
+@push('js')
 
-            $("form#SaveAttribute").submit(function(e) {
-                e.preventDefault();
+<script>
+    $('#AddAttribute').click(function(e) {
+        e.preventDefault();
+        $('#AttributeLabel').html('Add Attribute');
+        $('#save').html(`<x-icon type="save" />Add`);
+        $('form#SaveAttribute').attr('action', '{{ url("crm/attribute") }}');
+        $('#put').html('');
+        $('#Attributemodal').modal('show');
+    });
 
-                formData = new FormData(this);
-                var url = $(this).attr('action');
-                let update = $('#putInput').val();
-                let label1 = update == 'PUT' ? 'Update' : 'Save';
-                let label2 = update == 'PUT' ? 'Updating...' : 'Saving...';
-                $.ajax({
-                    data: formData,
-                    type: "POST",
-                    url: url,
-                    dataType: 'json',
-                    cache: false,
-                    contentType: false,
-                    processData: false,
-                    beforeSend: function() {
-                        $('#save').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;${label2}`).attr('disabled', true);
-                    },
-                    success: function(res) {
+    $("form#SaveAttribute").submit(function(e) {
+        e.preventDefault();
 
-                        //hide loader
-                        $('#save').html(label1).removeAttr('disabled');
+        formData = new FormData(this);
+        var url = $(this).attr('action');
+        let update = $('#putInput').val();
+        let label1 = update == 'PUT' ? 'Update' : `<x-icon type="save" />Add`;
+        let label2 = update == 'PUT' ? 'Updating...' : 'Adding...';
+        $.ajax({
+            data: formData,
+            type: "POST",
+            url: url,
+            dataType: 'json',
+            cache: false,
+            contentType: false,
+            processData: false,
+            beforeSend: function() {
+                $('#save').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;${label2}`).attr('disabled', true);
+            },
+            success: function(res) {
 
-                        /*Start Validation Error Message*/
-                        $('span.text-danger').html('');
-                        if (res.validation) {
-                            $.each(res.validation, (index, msg) => {
-                                $(`#${index}_msg`).html(`${msg}`);
-                            })
-                            return false;
-                        }
-                        /*End Validation Error Message*/
+                //hide loader
+                $('#save').html(label1).removeAttr('disabled');
 
-                        /*Start Status message*/
-                        if (res.status || !res.status) {
-                            alertMsg(res.status, res.msg, 2000);
-                        }
-                        /*End Status message*/
+                /*Start Validation Error Message*/
+                $('span.text-danger').html('');
+                if (res.validation) {
+                    $.each(res.validation, (index, msg) => {
+                        $(`#${index}_msg`).html(`${msg}`);
+                    })
+                    return false;
+                }
+                /*End Validation Error Message*/
 
-                        //for reset all field
-                        if (res.status)
-                            $('form#SaveAttribute').trigger('reset');
-                    }
-                });
-            });
-            //for edit 
+                /*Start Status message*/
+                if (res.status || !res.status) {
+                    alertMsg(res.status, res.msg, 2000);
+                }
+                /*End Status message*/
 
-            $(document).on('click', '.edit', function(e) {
-                e.preventDefault(0);
+                //for reset all field
+                if (res.status)
+                    $('form#SaveAttribute').trigger('reset');
+            }
+        });
+    });
+    //for edit 
 
-                let id = $(this).attr('_id');
-                let url = "{{url('crm/attribute')}}/" + id + "/edit";
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    dataType: 'JSON',
-                    success: function(res) {
+    $(document).on('click', '.edit', function(e) {
+        e.preventDefault(0);
 
-                        if (res.status) {
-                            $('#name').val(res.record.name);
-                            $('#sort').val(res.record.sort);
-                            let status = res.record.status ? true : false;
-                            $('#status').prop('checked', status);
+        let id = $(this).attr('_id');
+        let url = "{{url('crm/attribute')}}/" + id + "/edit";
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'JSON',
+            success: function(res) {
 
-                            $('#AttributeLabel').html('Edit Attribute');
-                            $('#save').html('Update');
-                            $('form#SaveAttribute').attr('action', '{{ url("crm/attribute") }}/' + id);
-                            $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
-                            $('#Attributemodal').modal('show');
-                        }
-                    }
-                })
-            });
-        </script>
+                if (res.status) {
+                    $('#name').val(res.record.name);
+                    $('#sort').val(res.record.sort);
+                    let status = res.record.status ? true : false;
+                    $('#status').prop('checked', status);
 
-        @endpush
+                    $('#AttributeLabel').html('Edit Attribute');
+                    $('#save').html(`<x-icon type="update" />Update`);
+                    $('form#SaveAttribute').attr('action', '{{ url("crm/attribute") }}/' + id);
+                    $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
+                    $('#Attributemodal').modal('show');
+                }
+            }
+        })
+    });
+</script>
 
-        @endsection
+@endpush
+
+@endsection

@@ -214,8 +214,8 @@
                                 </li>
 
                                 <li class="menu-item">
-                                    <a href="{{url('crm/tex')}}">
-                                        <span class="menu-title">TEX</span>
+                                    <a href="{{url('crm/tax')}}">
+                                        <span class="menu-title">TAX</span>
                                     </a>
                                 </li>
 

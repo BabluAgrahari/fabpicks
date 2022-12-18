@@ -11,7 +11,7 @@
 
             <div class="col-md-1 ">
                 <button type="button" class="btn btn-success" id="addcoupon">
-                <x-icon type="add"/> Add
+                    <x-icon type="add" /> Add
                 </button>
             </div>
         </div>
@@ -40,7 +40,9 @@
                                 <td>{{$list->discount}}</td>
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><x-icon type="edit"/></a>
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info">
+                                            <x-icon type="edit" />
+                                        </a>
 
                                     </div>
                                 </td>
@@ -77,7 +79,7 @@
                             <div id="put"></div>
                             <div class="row">
 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="field-group">
                                         <label>From Amount</label>
                                         <input type="text" name="from_amount" id="from_amount" placeholder="From Amount" class="form-control">
@@ -85,7 +87,7 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="field-group">
                                         <label>To Amount</label>
                                         <input type="text" name="to_amount" id="to_amount" class="form-control" placeholder="To Amount">
@@ -96,7 +98,7 @@
                             </div>
                             <div class="row">
 
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="field-group">
                                         <label>Discount</label>
                                         <input type="text" name="discount" id="discount" class="form-control" placeholder="Discount">
@@ -104,8 +106,11 @@
                                     </div>
                                 </div>
 
-                                <div class="col-md-6 mt-4">
-                                    <button type="submit" class="btn btn-success btn-sm" id="save">Save</button>
+                                <div class="col-md-6 mt-4 text-center">
+                                    <button type="reset" class="btn btn-danger">
+                                        <x-icon type="reset" />Reset
+                                    </button>
+                                    <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
                                 </div>
                             </div>
 
@@ -124,7 +129,7 @@
     $('#addcoupon').click(function(e) {
         e.preventDefault();
         $('#couponLabel').html('Add Discount');
-        $('#save').html('Save');
+        $('#save').html(`<x-icon type="save"/>Add`);
         $('form#savecoupon').attr('action', '{{ url("crm/coupon") }}');
         $('#put').html('');
         $('#couponModal').modal('show');
@@ -137,8 +142,8 @@
         formData = new FormData(this);
         var url = $(this).attr('action');
         let update = $('#putInput').val();
-        let label1 = update == 'PUT' ? 'Update' : 'Save';
-        let label2 = update == 'PUT' ? 'Updating...' : 'Saving...';
+        let label1 = update == 'PUT' ? 'Update' : `<x-icon type="save"/>Add`;
+        let label2 = update == 'PUT' ? 'Updating...' : 'Adding...';
         $.ajax({
             data: formData,
             type: "POST",
@@ -198,7 +203,7 @@
                     $('#discount').val(res.record.discount);
 
                     $('#couponLabel').html('Edit Discount');
-                    $('#save').html('Update');
+                    $('#save').html(`<x-icon type="update"/>Update`);
                     $('form#savecoupon').attr('action', '{{ url("crm/coupon") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#couponModal').modal('show');

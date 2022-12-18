@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers\CRM;
 
+use App\Exports\CategoryExport;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Http\Request\CategoryRequest;
 use SebastianBergmann\Exporter\Exporter;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 
 class CategoryController extends Controller 
 {
@@ -105,5 +107,11 @@ class CategoryController extends Controller
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }
+    }
+
+    public function export(Request $request)
+    {
+        
+         return Excel::download(new CategoryExport($request), 'categort.xlsx');
     }
 }

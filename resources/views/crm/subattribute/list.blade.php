@@ -15,6 +15,9 @@
                 @else
                 <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                 @endif
+                <a href="{{url('crm/sub-attribute-export')}}{{ !empty($_SERVER['QUERY_STRING'])?'?'.$_SERVER['QUERY_STRING']:''}}" class="btn btn-sm btn-success" id="">
+                    <x-icon type="export" />Export
+                </a>
                 <button type="button" class="btn btn-success" id="AddSubAttribute" data-bs-toggle="modal" data-bs-target="#SubAttribute">
                     <i class="ri-add-circle-line"></i> Add
                 </button>
@@ -64,7 +67,7 @@
 
 @push('modal')
 <div class="modal fade" id="SubAttributemodal" tabindex="-1" aria-labelledby="SubAttributeLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg ">
+    <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="SubAttributeLabel">Sub Attributes</h1>
@@ -80,7 +83,7 @@
 
                         <div class="row">
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="field-group">
                                     <label>Attribute</label>
                                     <select name="attribute_id" class="form-control" id="attribute_id">
@@ -93,7 +96,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="field-group">
                                     <label>Sub Attribute Name</label>
                                     <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
@@ -103,25 +106,26 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="field-group">
                                     <label for="icon">Icon</label>
                                     <input type="file" name="icon" id="icon" class="form-control">
                                 </div>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="field-group">
                                     <label for="sort ">Sort</label>
                                     <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
                                 </div>
                                 <span class="text-danger" id="sort_msg"></span>
                             </div>
-                            <div class="col-md-3">
+                            <div class="col-md-6">
                                 <div class="field-group">
-                                    <div class="form-check form-switch custom-switch">
-                                        <label class="form-check-label" for="active">Active/Inactive</label>
-                                        <input class="form-check-input" type="checkbox" role="switch" value="1" name="status" id="status" checked>
-                                    </div>
+                                <label>Status</label>
+                                    <select class="form-select" name="status" id="status">
+                                        <option value="1">Active</option>
+                                        <option value="0">Inactivce</option>
+                                    </select>
                                     <span class="text-danger" id="status_msg"></span>
                                 </div>
                             </div>
@@ -129,11 +133,17 @@
 
                         <div class="row">
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-success btn-sm" id="save">Save</button>
+                            <button type="reset" class="btn btn-danger">
+                                    <x-icon type="reset" />Reset
+                                </button>
+                                <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
                             </div>
                         </div>
                     </form>
                 </div>
+            </div>
+            <div class="modal-footer">
+
             </div>
         </div>
     </div>
@@ -147,7 +157,7 @@
     $('#AddSubAttribute').click(function(e) {
         e.preventDefault();
         $('#SubAttributeLabel').html('Add Sub Attribute');
-        $('#save').html('Save');
+        $('#save').html(`<x-icon type="save" />Add`);
         $('form#SaveSubAttribute').attr('action', '{{ url("crm/sub-attribute") }}');
         $('#put').html('');
         $('#SubAttributemodal').modal('show');
@@ -158,8 +168,8 @@
         formData = new FormData(this);
         var url = $(this).attr('action');
         let update = $('#putInput').val();
-        let label1 = update == 'PUT' ? 'Update' : 'Save';
-        let label2 = update == 'PUT' ? 'Updating...' : 'Saving...';
+        let label1 = update == 'PUT' ? 'Update' : `<x-icon type="save" />Add`;
+        let label2 = update == 'PUT' ? 'Updating...' : 'Adding...';
         $.ajax({
             data: formData,
             type: "POST",
@@ -219,7 +229,7 @@
                     $('#status').prop('checked', status);
 
                     $('#SubAttributeLabel').html('Edit Sub Attribute');
-                    $('#save').html('Update');
+                    $('#save').html(`<x-icon type="update" />Update`);
                     $('form#SaveSubAttribute').attr('action', '{{ url("crm/sub-attribute") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#SubAttributemodal').modal('show');

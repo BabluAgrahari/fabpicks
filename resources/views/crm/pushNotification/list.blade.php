@@ -15,7 +15,7 @@
                     <a href="javascript:void(0);" class="btn btn-sm btn-success " id="filter-btn"><i class="fas fa-filter"></i>&nbsp;Filter</a>
                     @endif
                     <button type="button" class="btn btn-success" data-bs-toggle="modal" id="addPush" data-bs-target="#pushNotification">
-                        Add Push Notification
+                    <x-icon type="add" />Add 
                     </button>
                 </div>
             </div>
@@ -49,7 +49,7 @@
                                     <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                     <td>
                                         <div class="action-group">
-                                            <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><i class="ri-pencil-line"></i></a>
+                                            <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><x-icon type="edit" /></a>
                                         </div>
                                     </td>
                                 </tr>
@@ -67,11 +67,11 @@
 
     <!-- push notification Modal -->
     <div class="modal fade" id="pushNotification" tabindex="-1" aria-labelledby="pushNotificationLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" id="pushNotificationLabel">Add Push Notification</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div id="message"></div>
@@ -79,7 +79,7 @@
                         @csrf
                         <div id="put"></div>
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="field-group">
                                     <label for="user-group ">Select User Group: <span class="required">*</span></label>
                                     <select name="user_group" id="user_group" class="form-select  ">
@@ -95,7 +95,7 @@
                                 <span class="text-danger" id="user_group_msg"></span>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="field-group">
                                     <label for="subject">Subject: <span class="required">*</span></label>
                                     <input type="text" id="subject" name="subject" class="form-control" placeholder="Hey! New stock arrived!">
@@ -105,7 +105,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="field-group">
                                     <label for="notification-body">Notification Body: <span class="required">*</span></label>
                                     <textarea name="notification" id="notification" placeholder="Hey I want to tell you something awesome thing!" class="form-control"></textarea>
@@ -113,7 +113,7 @@
                                 <span class="text-danger" id="notification_msg"></span>
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="field-group">
                                     <label for="notification-icon">Notification Icon: <span class="required">*</span></label>
                                     <input type="file" id="icon" name="icon" class="form-control">
@@ -124,7 +124,10 @@
 
                         <div class="row">
                             <div class="field-group text-center">
-                                <button type="submit" class="btn btn-success btn-sm" id="save">Save</button>
+                            <button type="reset" class="btn btn-danger">
+                                    <x-icon type="reset" />Reset
+                                </button>
+                                <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
                             </div>
                         </div>
 
@@ -140,7 +143,7 @@
         $('#addPush').click(function(e) {
             e.preventDefault();
             $('#pushNotificationLabel').html('Add Push Notification');
-            $('#save').html('Save');
+            $('#save').html(`<x-icon type="save"/>Add`);
             $('form#savePush').attr('action', '{{ url("crm/push-notification") }}');
             $('#put').html('');
             $('#pushNotification').modal('show');
@@ -152,8 +155,8 @@
             formData = new FormData(this);
             var url = $(this).attr('action');
             let update = $('#putInput').val();
-            let label1 = update == 'PUT' ? 'Update' : 'Save';
-            let label2 = update == 'PUT' ? 'Updating...' : 'Saving...';
+            let label1 = update == 'PUT' ? 'Update' : `<x-icon type="save"/>Add`;
+            let label2 = update == 'PUT' ? 'Updating...' : 'Adding...';
             $.ajax({
                 data: formData,
                 type: "POST",
@@ -209,7 +212,7 @@
                         $('#notification').val(res.record.notification);
                         $('#subject').val(res.record.subject);
                         $('#pushNotificationLabel').html('Edit Push Notification');
-                        $('#save').html('Update');
+                        $('#save').html(`<x-icon type="update"/>Update`);
                         $('form#savePush').attr('action', '{{ url("crm/push-notification") }}/' + id);
                         $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                         $('#pushNotification').modal('show');
