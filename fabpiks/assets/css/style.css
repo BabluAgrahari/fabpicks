@@ -1846,19 +1846,19 @@ span.required {
     padding-bottom: 10px;
     border-bottom: 1px solid lightgray;
 }
-.customer-info-box h4{
+.customer-info-box h4 {
     margin-bottom: 20px;
 }
-.customer-info-box .cutomer-info-group a{
+.customer-info-box .cutomer-info-group a {
     color: gray;
 }
-.customer-info-box .cutomer-info-group{
+.customer-info-box .cutomer-info-group {
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     padding-left: 20px;
 }
-.customer-info-box .cutomer-info-group i{
+.customer-info-box .cutomer-info-group i {
     margin: 0;
     padding: 0;
     margin-right: 10px;
@@ -1866,12 +1866,12 @@ span.required {
     color: gray;
 }
 
-.customer-address{
-      margin-top: 20px;
+.customer-address {
+    margin-top: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid lightgray;
 }
-.customer-address p{
+.customer-address p {
     margin-bottom: 0;
     color: gray;
     padding-left: 20px;
@@ -1972,3 +1972,10 @@ span.required {
     margin: 0;
 }
 /* alert  design end */
+
+.layout .sidebar {
+    width: 220px;
+    min-width: 220px;
+    -webkit-transition: width, left, right, 0.3s;
+    transition: width, left, right, 0.3s;
+}

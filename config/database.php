@@ -95,18 +95,23 @@ return [
 
         'mongodb' => [
             'driver' => 'mongodb',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', 27017),
-            'database' => env('DB_DATABASE', 'new'),
-            'username' => env('DB_USERNAME'),
-            'password' => env('DB_PASSWORD'),
-            'options' => [
-                // here you can pass more settings to the Mongo Driver Manager
-                // see https://www.php.net/manual/en/mongodb-driver-manager.construct.php under "Uri Options" for a list of complete parameters that you can use
-
-                'database' => env('DB_DATABASE', 'new'), // required with Mongo 3+
-            ],
+            'dsn' => 'mongodb+srv://callcenter:ZsQV4Vpihi6vVqAZ@cluster0.gcdem.mongodb.net/callcenter?retryWrites=true&w=majority',
+            'database' => 'test21',
         ],
+        // 'mongodb' => [
+        //     'driver' => 'mongodb',
+        //     'host' => env('DB_HOST', '127.0.0.1'),
+        //     'port' => env('DB_PORT', 27017),
+        //     'database' => env('DB_DATABASE', 'new'),
+        //     'username' => env('DB_USERNAME'),
+        //     'password' => env('DB_PASSWORD'),
+        //     'options' => [
+        //         // here you can pass more settings to the Mongo Driver Manager
+        //         // see https://www.php.net/manual/en/mongodb-driver-manager.construct.php under "Uri Options" for a list of complete parameters that you can use
+
+        //         'database' => env('DB_DATABASE', 'new'),  
+        //     ],
+        // ],
 
     ],
 
