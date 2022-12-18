@@ -86,6 +86,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::controller(SurvayController::class)->group(function () {
         Route::get('survay-question/{id}', 'survayQuestionView');
         Route::post('survay-question', 'survayQuestion')->middleware('can:isAdmin');
+        Route::get('edit-question/{id}', 'editQuestion')->middleware('can:isAdmin');
     });
     // Route::post('survay-question',[SurvayController::class,'survayQuestion']);
 
