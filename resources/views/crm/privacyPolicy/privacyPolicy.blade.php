@@ -22,7 +22,7 @@
                         <input type="hidden" value="{{$res->id}}">
                         <div class="field-group">
                             <label for="about-us-content">Privacy Policy Content</label>
-                            <textarea name="privacy" id="privacy" class="form-control" required>{{$res->privacy}}</textarea>
+                            <textarea name="privacy" id="privacy" class="form-control textediter" required>{{$res->privacy}}</textarea>
                         </div>
                     </div>
                     <button class="btn btn-success mt-5 text-center"><x-icon type="update"/>Update</button>

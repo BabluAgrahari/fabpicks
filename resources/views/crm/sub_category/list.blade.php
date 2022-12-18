@@ -35,6 +35,7 @@
                                 <th scope="col">Sub Category Name</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Sort</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Banner</th>
                                 <th scope="col">Icon</th>
                                 <th scope="col">Action</th>
@@ -47,6 +48,7 @@
                                 <td>{{$list->name}}</td>
                                 <td>{{$list->description}}</td>
                                 <td>{{$list->sort}}</td>
+                                <td>{!!listStatus($list->status,$list->_id)!!}</td>
                                 <td><img src="{{$list->banner ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>
@@ -167,6 +169,15 @@
 @push('js')
 
 <script>
+
+$(document).on('click', '.activeVer', function() {
+        let id = $(this).attr('_id');
+        let val = $(this).attr('val');
+        let selector = $(this);
+        let url = "{{ url('crm/sub-category-status') }}";
+        chagneStatus(id, val, selector, url);
+    })
+
     $('#AddSubCategory').click(function(e) {
         e.preventDefault();
         $('#SubCategoryLabel').html('Add Sub Category');

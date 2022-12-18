@@ -106,7 +106,7 @@
                             <select name="product_type" id="productType" class="form-select">
                                 <option value="trial_store">Trial Store</option>
                                 <option value="brand_store">Brand Store</option>
-                                <option value="fixed_price">Fixed Price</option>
+                                <option value="hot_deals">Hot Deals</option>
                                 <option value="rewards_store">Rewards Store</option>
                             </select>
                             <span class="text-danger" id="product_type_msg"></span>

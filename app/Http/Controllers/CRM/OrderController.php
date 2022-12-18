@@ -45,4 +45,20 @@ class OrderController extends Controller
         // pr($data['shows']);
         return view('crm/order/orderdetails',$data);
     }
+
+    public function update(Request $request, $id)
+    {
+        // pr($request->all());
+        try {
+            $save = Order::find($id);
+            $save->order_status        = $request->order_status;
+
+            if ($save->save())
+                return response(['status' => true, 'msg' => 'Status Updared Successfully.']);
+
+            return response(['status' => false, 'msg' => 'Status Not Update.']);
+        } catch (Exception $e) {
+            return response(['status' => false, 'msg' => $e->getMessage()]);
+        }
+    }
 }

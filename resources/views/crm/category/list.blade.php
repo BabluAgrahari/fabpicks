@@ -37,6 +37,7 @@
                                 <th scope="col">Category Name</th>
                                 <th scope="col">Description</th>
                                 <th scope="col">Sort</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Banner</th>
                                 <th scope="col">Icon</th>
                                 <th scope="col">Action</th>
@@ -49,7 +50,7 @@
                                 <td>{{ucWords($list->name)}}</td>
                                 <td>{{ucWords($list->description)}}</td>
                                 <td>{{$list->sort}}</td>
-
+                                <td>{!!listStatus($list->status,$list->_id)!!}</td>
                                 <td><img src="{{$list->banner ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>
@@ -57,7 +58,8 @@
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit">
                                             <x-icon type="edit" />
                                         </a>
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove"><x-icon type="remove" />
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove">
+                                            <x-icon type="remove" />
                                         </a>
                                     </div>
                                 </td>
@@ -95,7 +97,7 @@
 
                     <div class="field-group">
                         <label for="description ">Description</label>
-                        <textarea name="description" id="description" rows="3" placeholder="Enter Description" rows="1" class="form-control"></textarea>
+                        <textarea name="description" id="description" placeholder="Enter Description"  class="form-control"></textarea>
                         <span class="text-danger" id="description_msg"></span>
                     </div>
 
@@ -138,7 +140,7 @@
             </div>
 
             <div class="modal-footer">
-                
+
             </div>
 
         </div>
@@ -149,6 +151,14 @@
 
 @push('js')
 <script>
+    $(document).on('click', '.activeVer', function() {
+        let id = $(this).attr('_id');
+        let val = $(this).attr('val');
+        let selector = $(this);
+        let url = "{{ url('crm/category-status') }}";
+        chagneStatus(id, val, selector, url);
+    })
+
     $('#AddCategory').click(function(e) {
         e.preventDefault();
         $('#CategoryLabel').html('Add Category');

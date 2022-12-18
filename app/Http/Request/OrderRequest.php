@@ -26,14 +26,28 @@ class OrderRequest extends FormRequest
         } else {
 
             return [
-                'order_date'            => 'required',
-                'amount'                =>  'required',
-                'fix_amount'            =>  'required',
-                'shipping_details'      =>  'required',
-                'billing_details'       =>  'required',
-                'products'              =>  'required',
-                'status'                =>  'required|string|in:success,pending,cancel'
-
+                'order_date'                    => 'required',
+                'amount'                        =>  'required',
+                'tax_amount'                    =>  'required',
+                'status'                        =>  'required|string|in:success,pending,cancel',
+                'shipping_details.name'         =>  'required',
+                'shipping_details.email'        =>  'required',
+                'shipping_details.phone'        =>  'required',
+                'shipping_details.city'         =>  'required',
+                'shipping_details.state'        =>  'required',
+                'shipping_details.pincode'      =>  'required',
+                'shipping_details.address'      =>  'required',
+                'billing_details.name'          =>  'required',
+                'billing_details.email'         =>  'required',
+                'billing_details.phone'         =>  'required',
+                'billing_details.city'          =>  'required',
+                'billing_details.state'         =>  'required',
+                'billing_details.pincode'       =>  'required',
+                'billing_details.address'       =>  'required',
+                'products.*.name'               =>  'required',
+                'products.*.price'              =>  'required',
+                'products.*.qty'                =>  'required',
+                'products.*.sku'                =>  'required'
 
             ];
         }

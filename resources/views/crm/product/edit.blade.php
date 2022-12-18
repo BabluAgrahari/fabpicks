@@ -106,7 +106,7 @@
                             <select name="product_type" id="productType" class="form-select">
                                 <option value="trial_store" @selected($res->product_type=='trial_store')>Trial Store</option>
                                 <option value="brand_store" @selected($res->product_type=='brand_store')>Brand Store</option>
-                                <option value="fixed_price" @selected($res->product_type=='fixed_price')>Fixed Price</option>
+                                <option value="hot_deals" @selected($res->product_type=='hot_deals')>Hot Deals</option>
                                 <option value="rewards_store" @selected($res->product_type=='rewards_store')>Rewards Store</option>
                             </select>
                             <span class="text-danger" id="product_type_msg"></span>
@@ -356,7 +356,7 @@
             $('#saleTrail').html(`<label for="market-price1">Trial Point</label>
                             <input type="text" name="trial_point" value="${value}" class="form-control" placeholder="Trial Point" ${disabled}>
                             <span class="text-danger" id="trial_point_msg"></span>${span}`);
-        } else if (val == 'fixed_price' || val == 'rewards_store') {
+        } else if (val == 'hot_deals' || val == 'rewards_store') {
 
             let required = (val == 'rewards_store') ? '*' : '';
             $('#rewareField').html(required);

@@ -34,9 +34,10 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Icon</th>
                                 <th scope="col">Attributes</th>
                                 <th scope="col">Sort</th>
-                                <th scope="col">Icon</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -44,9 +45,10 @@
                             @foreach($lists as $key=>$list)
                             <tr>
                                 <th scope="row">{{++$key}}</th>
+                                <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>{{ucWords($list->name)}}</td>
                                 <td>{{$list->sort}}</td>
-                                <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"></td>
+                                <td>{!!listStatus($list->status,$list->_id)!!}</td>
                                 <td>
                                     <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info">
                                         <x-icon type="edit" />
@@ -141,6 +143,15 @@
 @push('js')
 
 <script>
+
+$(document).on('click', '.activeVer', function() {
+        let id = $(this).attr('_id');
+        let val = $(this).attr('val');
+        let selector = $(this);
+        let url = "{{ url('crm/attribute-status') }}";
+        chagneStatus(id, val, selector, url);
+    })
+
     $('#AddAttribute').click(function(e) {
         e.preventDefault();
         $('#AttributeLabel').html('Add Attribute');

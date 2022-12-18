@@ -94,6 +94,31 @@ class SubAttributeController extends Controller
         }
     }
 
+    public function status(Request $request)
+
+    {
+
+        try {
+
+            $save = SubAttribute::find($request->id);
+// pr($request->all());die;
+            $save->status = (int)$request->status;
+
+            $save->save();
+
+            if ($save->status == 1)
+
+                return response(['status' => 'success', 'msg' => 'This Status is Active!', 'val' => $save->status]);
+
+            return response(['status' => 'success', 'msg' => 'This Status is Inactive!', 'val' => $save->status]);
+        } catch (Exception $e) {
+
+            return response(['status' => 'error', 'msg' => 'Something went wrong!!']);
+        }
+
+    }
+
+
     public function export(Request $request)
     {
         
