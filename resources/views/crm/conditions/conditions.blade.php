@@ -24,7 +24,7 @@
                             <textarea name="conditions" id="conditions" class="form-control" required>{{$res->conditions}}</textarea>
                         </div>
                     </div>
-                    <button class="btn btn-success mt-5 text-center">Update</button>
+                    <button class="btn btn-success mt-5 text-center"><x-icon type="update"/>Update</button>
                 </div>
             </form>
 

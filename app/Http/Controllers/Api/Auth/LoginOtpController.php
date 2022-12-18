@@ -51,8 +51,8 @@ class LoginOtpController extends Controller
     {
         #Validation
         $validator = Validator::make($request->all(), [
-            'mobile_no' => 'required|numeric|digits:10',
-            'otp' => 'required|numeric|digits:4'
+            'mobile_no' => 'required|integer|digits:10',
+            'otp' => 'required|integer|digits:4'
         ]);
 
         if ($validator->fails())
@@ -84,7 +84,7 @@ class LoginOtpController extends Controller
             return response()->json([
                 'status' => true,
                 'code' => 200,
-                'user' => Auth::user(),
+                'user' => $user,
                 'authorisation' => [
                     'token' => $token,
                     'type' => 'bearer',

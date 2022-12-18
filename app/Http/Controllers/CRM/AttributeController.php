@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\CRM;
 
+use App\Exports\AttributeExport;
 use App\Http\Controllers\Controller;
 use App\Http\Request\AttributeRequest;
 use App\Models\Attribute;
 use Illuminate\Http\Request;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 
 class AttributeController extends Controller
 {
@@ -89,8 +91,9 @@ class AttributeController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function export(Request $request)
     {
-        //
+        
+         return Excel::download(new AttributeExport($request), 'attribute.xlsx');
     }
 }

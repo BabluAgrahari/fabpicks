@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\CRM;
 
+use App\Exports\SubAttributeExport;
 use App\Http\Controllers\Controller;
 use App\Models\SubAttribute;
 use App\Models\ProductAttribute;
@@ -9,6 +10,7 @@ use App\Http\Request\SubAttributeRequest;
 use App\Models\Attribute;
 use Illuminate\Http\Request;
 use Exception;
+use Maatwebsite\Excel\Facades\Excel;
 
 class SubAttributeController extends Controller
 {
@@ -92,8 +94,9 @@ class SubAttributeController extends Controller
         }
     }
 
-    public function destroy($id)
+    public function export(Request $request)
     {
-        //
+        
+         return Excel::download(new SubAttributeExport($request), 'subattribute.xlsx');
     }
 }

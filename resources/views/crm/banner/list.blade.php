@@ -11,6 +11,7 @@
             </div>
 
             <div class="col-md-3 product-btn-group d-flex justify-content-end">
+                
             </div>
         </div>
     </div>
@@ -59,7 +60,7 @@
 
 @push('modal')
 <div class="modal fade" id="bannerModal" tabindex="-1" aria-labelledby="productcategoryLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg ">
+    <div class="modal-dialog modal-dialog-centered  ">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="brandLabel">Update Banner</h1>
@@ -77,27 +78,27 @@
                             @csrf
                             <input type="hidden" id="putInput" name="_method" value="PUT">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="field-group">
                                         <label>Name</label>
                                         <input type="text" id="name" name="name" class=" form-control" placeholder="Enter Name">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-12">
                                     <div class="field-group">
                                         <label>URL</label>
                                         <input type="text" id="url" name="url" class=" form-control" placeholder="Enter URL">
                                     </div>
                                 </div>
 
-                                <div class="col-md-4">
+                                <div class="col-md-12">
                                     <div class="field-group">
                                         <label>Banner</label>
                                         <input type="file" id="banner" name="banner" class="form-control">
                                     </div>
                                 </div>
 
-                                <div class="col-md-12">
+                                <div class="col-md-12 text-center">
                                     <button class="btn btn-success" id="update">Update</button>
                                 </div>
                             </div>

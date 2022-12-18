@@ -55,7 +55,7 @@ if (!function_exists('multiFile')) {
                 if (!file_exists($folder))
                     mkdir($folder, 0777, true);
 
-                $filename = date('YmdHis') .rand(111, 999)."." . $file->getClientOriginalExtension();
+                $filename = date('YmdHis') . rand(111, 999) . "." . $file->getClientOriginalExtension();
                 $file->move(public_path() . '/' . $folder, $filename);
                 $fileNames[$key] =  asset($folder) . '/' . $filename; //$filename;
             }
@@ -104,6 +104,17 @@ if (!function_exists('isAdmin')) {
     function isAdmin()
     {
         return Auth::user()->role == 'admin' ? true : false;
+    }
+}
+
+
+if (!function_exists('listStatus')) {
+
+    function listStatus($status, $id)
+    {
+        return $status == 1 ? '<a href="javascript:void(0)">
+        <span class="activeVer badge bg-success" _id="' . $id . '" val="0">Active</span></a>'
+            : '<a href="javascript:void(0);"><span class="activeVer badge bg-warning" _id="' . $id . '" val="1">Inactive</span></a>';
     }
 }
 
