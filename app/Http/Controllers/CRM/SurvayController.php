@@ -103,9 +103,9 @@ class SurvayController extends Controller
                 return response(['status' => false, 'msg' => 'Survay not Added.']);
 
             $data['list'] = $save;
-            $respose = view('crm.survay.preview',$data)->render();
+            $respose = view('crm.survay.preview', $data)->render();
 
-            return response(['status' => true, 'response'=>$respose, 'msg' => 'Survay Added Successfully.']);
+            return response(['status' => true, 'response' => $respose, 'msg' => 'Survay Added Successfully.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getmessage()]);
         }
@@ -120,5 +120,14 @@ class SurvayController extends Controller
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getmessage()]);
         }
+    }
+
+
+    public function editQuestion($id)
+    {
+        $data['list'] = SurvayQuestion::find($id);
+        $respose = view('crm.survay.editQuestion', $data)->render();
+
+        return response(['status' => true, 'response' => $respose]);
     }
 }

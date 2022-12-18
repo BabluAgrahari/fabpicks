@@ -2,6 +2,41 @@
   .custom-form .row {
     margin-bottom: 0px !important;
   }
+
+  /* question box start */
+
+  .question-box {
+    border: 1px solid lightgray;
+    padding: 10px;
+  }
+
+  .ans-options {
+    display: flex;
+    align-items: center;
+  }
+
+  .ans-options .form-check {
+    margin-right: 25px;
+  }
+
+  .ans-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .ans-group .ans-group-action .ans-btn {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    margin: 0 10px;
+  }
+
+  /* question box end */
+
+  .star-rating {
+    margin: 0px !important;
+  }
 </style>
 <!--Survay Question Modal -->
 <div class="modal fade" id="survaryQuestionModel" tabindex="-1" aria-labelledby="survayLabel" aria-hidden="true">
@@ -15,7 +50,7 @@
         <div class="container-flude">
           <div id="messageRem"></div>
 
-          <form id="saveSingleChoise" action="{{url('crm/survay-question')}}" enctype="multipart/form-data" class="custom-form">
+          <form name="form1" id="saveSingleChoise" action="{{url('crm/survay-question')}}" enctype="multipart/form-data" class="custom-form">
             @csrf
             <input type="hidden" id="survay_id" name="survay_id" value="">
             <div class="row">
@@ -35,7 +70,6 @@
               </div>
 
               <div id="previewQuestion">
-
               </div>
 
               <div class="col-md-12">
@@ -82,6 +116,21 @@
 </div>
 <!-- End survay Type Modal -->
 
+
+<div class="modal fade" id="editQuestionModel" tabindex="-1" aria-labelledby="survayLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-6" id="survayLabel">Edit Survay Question</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="formContent">
+
+      </div>
+      <div class="modal-footer"></div>
+    </div>
+  </div>
+</div>
 
 <script>
   $(document).ready(function() {
@@ -130,7 +179,7 @@
                       </div>
 
                       <div class="form-check">
-                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
+                      <button type="submit" class="btn btn-sm btn-success" id="saveBtn" id="singleChoice"><x-icon type="save" />Save</button>
                       </div>
 
                     </div>
@@ -171,7 +220,7 @@
                       </div>
 
                       <div class="form-check">
-                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
+                      <button type="submit" class="btn btn-sm btn-success" id="saveBtn" id="singleChoice"><x-icon type="save" />Save</button>
                       </div>
 
                     </div>
@@ -192,7 +241,7 @@
                       </div>
 
                       <div class="form-check">
-                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
+                      <button type="submit" class="btn btn-sm btn-success" id="saveBtn" id="singleChoice"><x-icon type="save" />Save</button>
                       </div>
 
                     </div>
@@ -215,7 +264,7 @@
                       </div>
 
                        <div class="form-check">
-                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
+                      <button type="submit" class="btn btn-sm btn-success" id="saveBtn" id="singleChoice"><x-icon type="save" />Save</button>
                       </div>
 
                       </div>
@@ -223,18 +272,28 @@
                   </div>`;
       } else if (val == 'upload_image') {
         html += `<div id="Upload_Image" class="size_chart">
-                    <div class="feedback-container">
+        <div class="row">            
+        <div class="col-md-8 feedback-container">
                       <div class="feedback-option mt-3">
                         <input type="file" name="image" class="form-control">
                       </div>
                     </div>
 
-                    <div class="form-check">
-                      <button type="submit" class="btn btn-sm btn-success" id="save" id="singleChoice">Save</button>
+                    <div class="col-md-4 mt-4 form-check">
+                      <button type="submit" class="btn btn-sm btn-success" id="saveBtn" id="singleChoice"><x-icon type="save" />Save</button>
                       </div>
-                      
+                      </div>
+
                   </div>`;
-      } else if (val == 'subjective_question') {} else {
+      } else if (val == 'subjective_question') {
+        html += `<div class="size_chart">
+                  <div class="row">            
+                    <div class="col-md-12 mt-2 text-center form-check">
+                      <button type="submit" class="btn btn-sm btn-success" id="saveBtn" id="singleChoice"> <x-icon type="save" />Save</button>
+                      </div>
+                      </div>
+                  </div>`;
+      } else {
         $('#question').addClass('d-none');
         $('#showBtn').addClass('d-none');
       }
@@ -299,4 +358,24 @@
       }
     });
   });
+
+  /*edit questions*/
+  // $(document).on('click', '.question-edit', function(e) {
+  //   e.preventDefault(0);
+
+  //   let id = $(this).attr('_id');
+  //   var selector = $(this);
+  //   $.ajax({
+  //     url: "{{url('crm/edit-question')}}/" + id,
+  //     type: "GET",
+  //     dataType: 'JSON',
+  //     success: function(res) {
+
+  //       if (res.status) {
+  //         $('#formContent').html(res.response);
+  //         $('#editQuestionModel').modal('show');
+  //       }
+  //     }
+  //   })
+  // })
 </script>

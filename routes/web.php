@@ -56,13 +56,12 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::resource('coupon', CouponController::class)->middleware('can:isAdmin');
     Route::resource('tex', TexController::class)->middleware('can:isAdmin');
 
-    Route::get('product-view/{id}',[ProductController::class,'viewProduct']);
-    Route::post('product-update/{id}',[ProductController::class,'sortupdate']);
+    Route::get('product-view/{id}', [ProductController::class, 'viewProduct']);
+    Route::post('product-update/{id}', [ProductController::class, 'sortupdate']);
 
     Route::resource('product', ProductController::class)->middleware('can:isAdmin');
     Route::controller(ProductController::class)->group(function () {
         Route::get('sub-attributes/{id}', 'subAttribute')->middleware('can:isAdmin');
-        
     });
 
     // Route::get('show/{id}', [ProductController::class, 'show']);
@@ -73,6 +72,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::controller(SurvayController::class)->group(function () {
         Route::get('survay-question/{id}', 'survayQuestionView');
         Route::post('survay-question', 'survayQuestion')->middleware('can:isAdmin');
+        Route::get('edit-question/{id}', 'editQuestion')->middleware('can:isAdmin');
     });
     // Route::post('survay-question',[SurvayController::class,'survayQuestion']);
 
@@ -109,7 +109,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::get('shipping-cost-list', [ShippingCostController::class, 'getList'])->middleware('can:isAdmin');
 });
 
-Route::group(['middleware' => 'guest'], function () { 
+Route::group(['middleware' => 'guest'], function () {
 
     Route::get('/',         [LoginController::class, 'index']);
     Route::post('login',    [LoginController::class, 'login']);
