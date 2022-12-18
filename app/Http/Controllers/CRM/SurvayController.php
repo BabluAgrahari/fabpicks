@@ -20,10 +20,10 @@ class SurvayController extends Controller
             if (!empty($request->title))
                 $query->where('title', 'LIKE', "%$request->title%");
 
-                if (!empty($request->description))
+            if (!empty($request->description))
                 $query->where('description', 'LIKE', "%$request->description%");
 
-                if (!empty($request->type))
+            if (!empty($request->type))
                 $query->where('type', 'LIKE', "%$request->type%");
 
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
@@ -85,6 +85,7 @@ class SurvayController extends Controller
     public function survayQuestion(Request $request)
     {
         try {
+
             $save = new SurvayQuestion();
             $save->survay_id = $request->survay_id;
             $save->survay_type = $request->survay_type;
@@ -98,10 +99,13 @@ class SurvayController extends Controller
             $save->reward = (int)$request->reward;
             $save->required = (int)$request->required ?? 0;
 
-            if ($save->save())
-                return response(['status' => true, 'msg' => 'Survay Added Successfully.']);
+            if (!$save->save())
+                return response(['status' => false, 'msg' => 'Survay not Added.']);
 
-            return response(['status' => false, 'msg' => 'Survay not Added.']);
+            $data['list'] = $save;
+            $respose = view('crm.survay.preview', $data)->render();
+
+            return response(['status' => true, 'response' => $respose, 'msg' => 'Survay Added Successfully.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getmessage()]);
         }
@@ -117,5 +121,13 @@ class SurvayController extends Controller
             return response(['status' => false, 'msg' => $e->getmessage()]);
         }
     }
+
+
+    public function editQuestion($id)
+    {
+        $data['list'] = SurvayQuestion::find($id);
+        $respose = view('crm.survay.editQuestion', $data)->render();
+
+        return response(['status' => true, 'response' => $respose]);
+    }
 }
- 
