@@ -101,10 +101,13 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
     <script src="<?php echo e(asset('assets')); ?>/js/tags.js"></script>
     <script src="<?php echo e(asset('assets')); ?>/js/main.js"></script>
-    <script src="<?php echo e(asset('assets')); ?>/js/texteditor.js"></script>
+    <script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/4/tinymce.min.js"></script>
+    <!-- <script src="<?php echo e(asset('assets')); ?>/js/texteditor.js"></script> -->
 
+ 
     <script>
         function alertMsg(status, msg, delay = 1000, remove = false) {
 
@@ -211,6 +214,33 @@
             }
         });
         /*end single image preview*/
+
+        //for update status
+        function chagneStatus(id = false, val = false, selector = false, url = false) {
+
+            if (!id || !val || !selector || !url) {
+                alert('Invalid Request.');
+                return false;
+            }
+            $.ajax({
+                'url': url,
+                data: {
+                    "_token": "<?php echo e(csrf_token()); ?>",
+                    'id': id,
+                    'status': val
+                },
+                type: 'POST',
+                dataType: 'json',
+                success: function(res) {
+                    // console.log(res);
+                    if (res.val == 1) {
+                        $(selector).text('Active').attr('val', '0').removeClass('badge bg-warning').addClass('badge bg-success');
+                    } else {
+                        $(selector).text('Inactive').attr('val', '1').removeClass('badge bg-success').addClass('badge bg-warning');
+                    }
+                }
+            })
+        }
     </script>
     <?php echo $__env->yieldPushContent('modal'); ?>;
     <?php echo $__env->yieldPushContent('js'); ?>

@@ -57,7 +57,8 @@
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit">
                                             <x-icon type="edit" />
                                         </a>
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove"><x-icon type="remove" />
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove">
+                                            <x-icon type="remove" />
                                         </a>
                                     </div>
                                 </td>
@@ -95,7 +96,8 @@
 
                     <div class="field-group">
                         <label for="description ">Description</label>
-                        <textarea name="description" id="description" rows="3" placeholder="Enter Description" rows="1" class="form-control"></textarea>
+                        <textarea name="description" id="description" rows="3" placeholder="Enter Description" rows="1" class="form-control textarea"></textarea>
+
                         <span class="text-danger" id="description_msg"></span>
                     </div>
 
@@ -138,7 +140,7 @@
             </div>
 
             <div class="modal-footer">
-                
+
             </div>
 
         </div>

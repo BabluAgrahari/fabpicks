@@ -189,6 +189,7 @@
                                          <th scope="col">Order Id</th>
                                          <th scope="col">Price</th>
                                          <th scope="col">Sold</th>
+                                         <th scope="col">Status</th>
                                          <th scope="col">Sales</th>
                                          <th scope="col">Action</th>
                                      </tr>
@@ -200,6 +201,11 @@
                                          <td>#4545</td>
                                          <td>Rs. 455</td>
                                          <td>984</td>
+                                         <td>
+                                             <div class="status-box failed">
+                                                 Failed
+                                             </div>
+                                         </td>
                                          <td>Rs. 12984</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -213,6 +219,12 @@
                                          <td>#45455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+
+                                         <td>
+                                             <div class="status-box pending">
+                                                 Pending
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -226,6 +238,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box success">
+                                                 Success
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -239,6 +256,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box success">
+                                                 Success
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -252,6 +274,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box failed">
+                                                 Failed
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -265,6 +292,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box failed">
+                                                 Failed
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -278,6 +310,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box pending">
+                                                 Pending
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -291,6 +328,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box pending">
+                                                 Pending
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -304,6 +346,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box pending">
+                                                 Pending
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -317,6 +364,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box pending">
+                                                 Pending
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -330,6 +382,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box failed">
+                                                 Failed
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -343,6 +400,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box failed">
+                                                 Failed
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -356,6 +418,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box failed">
+                                                 Failed
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">
@@ -369,6 +436,11 @@
                                          <td>#455</td>
                                          <td>Rs. 4565</td>
                                          <td>9834</td>
+                                         <td>
+                                             <div class="status-box failed">
+                                                 Failed
+                                             </div>
+                                         </td>
                                          <td>Rs. 129384</td>
                                          <td>
                                              <div class="form-check form-switch">

@@ -1,3 +1,25 @@
+<style>
+    /* .tooltip-inner {
+        background-color: #03bd8b;
+    }
+
+    .tooltip.bs-tooltip-right .tooltip-arrow::before {
+        border-right-color: #03bd8b !important;
+    }
+
+    .tooltip.bs-tooltip-left .tooltip-arrow::before {
+        border-left-color: #03bd8b !important;
+    }
+
+    .tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+        border-bottom-color: #03bd8b !important;
+    }
+
+    .tooltip.bs-tooltip-top .tooltip-arrow::before {
+        border-top-color: #03bd8b !important;
+    } */
+</style>
+
 <aside id="sidebar" class="sidebar break-point-lg has-bg-image collapsed">
 
     <div class="sidebar-layout">
@@ -14,7 +36,7 @@
                 <ul>
 
                     <li class="menu-item ">
-                        <a href="<?php echo e(url('crm/dashboard')); ?>">
+                        <a href="<?php echo e(url('crm/dashboard')); ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Dashboard">
                             <span class="menu-icon">
                                 <i class="ri-bar-chart-fill"></i>
                             </span>
@@ -24,7 +46,7 @@
 
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isClient')): ?>
                     <li class="menu-item">
-                        <a href="<?php echo e(url('crm/brand')); ?>" class="active">
+                        <a href="<?php echo e(url('crm/brand')); ?>" class="active" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Brand">
                             <span class="menu-icon">
                                 <i class="ri-shopping-bag-line"></i>
                             </span>
@@ -34,7 +56,7 @@
                     <?php endif; ?>
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
                     <li class="menu-item sub-menu">
-                        <a href="javascript:void">
+                        <a href="javascript:void" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Catalog">
                             <span class="menu-icon">
                                 <i class="ri-shopping-bag-line"></i>
                             </span>
@@ -82,7 +104,7 @@
                         </div>
                     </li>
                     <li class="menu-item  ">
-                        <a href="<?php echo e(url('crm/client')); ?>">
+                        <a href="<?php echo e(url('crm/client')); ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Client">
                             <span class="menu-icon">
                                 <i class="ri-user-line"></i>
                             </span>
@@ -92,9 +114,9 @@
                     <?php endif; ?>
 
                     <li class="menu-item ">
-                        <a href="<?php echo e(url('crm/order')); ?>">
+                        <a href="<?php echo e(url('crm/order')); ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Order">
                             <span class="menu-icon">
-                                <i class="ri-book-line"></i>
+                                <i class="ri-shopping-basket-line"></i>
                             </span>
                             <span class="menu-title">Orders</span>
                         </a>
@@ -102,7 +124,7 @@
 
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
                     <li class="menu-item ">
-                        <a href="<?php echo e(url('crm/user')); ?>">
+                        <a href="<?php echo e(url('crm/user')); ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Customer">
                             <span class="menu-icon">
                                 <i class="ri-user-line"></i>
                             </span>
@@ -112,17 +134,15 @@
                     <?php endif; ?>
 
                     <li class="menu-item ">
-                        <a href="<?php echo e(url('crm/survay')); ?>">
-                            <span class="menu-icon">
-                                <i class="ri-booklet-line"></i>
-                            </span>
+                        <a href="<?php echo e(url('crm/survay')); ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Survay Question">
+                            <span class="menu-icon"><i class="ri-survey-line"></i></span>
                             <span class="menu-title">Survay Questions</span>
                         </a>
                     </li>
 
                     <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('isAdmin')): ?>
                     <li class="menu-item ">
-                        <a href="<?php echo e(url('crm/feedback')); ?>">
+                        <a href="<?php echo e(url('crm/feedback')); ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Feedback">
                             <span class="menu-icon">
                                 <i class="ri-booklet-line"></i>
                             </span>
@@ -130,7 +150,7 @@
                         </a>
                     </li>
                     <li class="menu-item ">
-                        <a href="<?php echo e(url('crm/push-notification')); ?>">
+                        <a href="<?php echo e(url('crm/push-notification')); ?>" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Push Notification">
                             <span class="menu-icon">
                                 <i class="ri-notification-4-line"></i>
                             </span>
@@ -139,7 +159,7 @@
                     </li>
 
                     <li class="menu-item sub-menu">
-                        <a href="#">
+                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Settings">
                             <span class="menu-icon">
                                 <i class="ri-settings-2-line"></i>
                             </span>
@@ -192,8 +212,8 @@
                                 </li>
 
                                 <li class="menu-item">
-                                    <a href="<?php echo e(url('crm/tex')); ?>">
-                                        <span class="menu-title">TEX</span>
+                                    <a href="<?php echo e(url('crm/tax')); ?>">
+                                        <span class="menu-title">TAX</span>
                                     </a>
                                 </li>
 

@@ -141,7 +141,7 @@ Route::get('banner-table', function () {
     echo "Banner collection created Successfully.";
 })->middleware('throttle:1,60');
 
-Route::get('setting', function () {
+Route::get('setting-1', function () {
     $setting = new Setting();
     $setting->save();
 

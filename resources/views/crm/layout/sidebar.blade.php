@@ -116,7 +116,7 @@
                     <li class="menu-item ">
                         <a href="{{url('crm/order')}}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Order">
                             <span class="menu-icon">
-                                <i class="ri-book-line"></i>
+                                <i class="ri-shopping-basket-line"></i>
                             </span>
                             <span class="menu-title">Orders</span>
                         </a>
@@ -135,9 +135,7 @@
 
                     <li class="menu-item ">
                         <a href="{{url('crm/survay')}}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Survay Question">
-                            <span class="menu-icon">
-                                <i class="ri-booklet-line"></i>
-                            </span>
+                            <span class="menu-icon"><i class="ri-survey-line"></i></span>
                             <span class="menu-title">Survay Questions</span>
                         </a>
                     </li>
