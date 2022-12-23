@@ -19,7 +19,7 @@
 
                                 <div class="order-date-group">
                                     <i class='bx bxs-calendar'></i>
-                                    <p>{{$shows->order_date}}</p>
+                                    <p>{{date('d-m-y',$shows->order_date)}}</p>
                                 </div>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                 <td>
                                     <div class="order-product-price">
                                         <span class="new-price">{{$product->price}}</span>
-                                        <span class="old-price">$130.00</span>
+                                        <span class="old-price">{{($product->price)*1.5}}</span>
                                     </div>
                                 </td>
                                 <td>
@@ -70,7 +70,7 @@
                                 </td>
                                 <td>
                                     <div class="order-total-price">
-                                        <p>$80.00</p>
+                                        <p>{{($product->qty)*($product->price)}}</p>
                                     </div>
                                 </td>
                             </tr>
@@ -150,7 +150,7 @@
                                     <span>Shipped</span>
                                 </div>
                                 <div class="step">
-                                    <span>Delivered</span>
+                                    <span>{{$shows->status}}</span>
                                 </div>
                             </div>
 

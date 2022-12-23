@@ -28,10 +28,23 @@
                             <span class="text-danger" id="name_msg"></span>
                         </div>
 
-                        <div class="field-group">
-                            <label for="product-name">Tags</label>
-                            <input type="text" name="tags" id="tags" value="{{$res->tags}}" class="form-control" placeholder="Enter Tags">
-                            <span class="text-danger" id="tags_msg"></span>
+                        <div class="row">
+                            <div class="field-group col-md-6">
+                                <label for="product-name">Tags</label>
+                                <input type="text" name="tags" id="tags" value="{{$res->tags}}" class="form-control" placeholder="Enter Tags">
+                                <span class="text-danger" id="tags_msg"></span>
+                            </div>
+
+                            <div class="field-group col-md-6">
+                                <label for="tax">Tax</label>
+                                <select name="tax_id" id="tax_id" class="form-select js-example-basic-single">
+                                    <option value="">Select</option>
+                                    @foreach($taxes as $val)
+                                    <option value="{{$val->_id}}"{{$val->_id==$res->tax_id?'selected':''}}>{{ucwords($val->name)}}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger" id="tax_id_msg"></span>
+                            </div>
                         </div>
 
                         <div class="row">
@@ -166,7 +179,7 @@
                                 <span class="text-danger" id="thumbnail_msg"></span>
                             </div>
                             <div class="form-group col-md-6">
-                                <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('150x100')}}" class="img-fluid" alt=""></div>
+                                <div class="box-body"><img src="{{$res->image ?? defaultImg('150x100')}}" class="img-fluid" alt=""></div>
                             </div>
 
                             <div class="form-group mt-3 col-md-12">
@@ -188,7 +201,7 @@
                 </div>
 
                 <div class="" id="stock">
-                    @forelse($res->Inventory as $inv_key=>$inv)
+                    @forelse($res->inventory as $inv_key=>$inv)
                     <div class="row">
 
                         <div class="field-group col-md-2">

@@ -12,6 +12,7 @@ use App\Models\Survay;
 use App\Http\Request\ProductRequest;
 use App\Models\Category;
 use App\Models\ProductInventory;
+use App\Models\Tax;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -45,6 +46,7 @@ class ProductController extends Controller
         try {
 
             $data['brands'] = Brand::where('status', 1)->get();
+            $data['taxes'] = Tax::get();
             $data['survay'] = Survay::get();
             $data['subCategories'] = SubCategory::with(['Category'])->where('status', 1)->get();
             $data['attributes'] = Attribute::where('status', 1)->get();
@@ -72,6 +74,8 @@ class ProductController extends Controller
             $save->sub_category             = $request->sub_category;
             $save->category_id              = $category_id;
             $save->brand_id                 = $request->brand_id;
+            $save->tags                     = $request->tags;
+            $save->tax_id                   = $request->tax_id;
             $save->no_feedback              = $request->no_feedback;
             $save->pre_qulifing_question    = $request->pre_qulifing_question;
             $save->mrp                      = (int)$request->mrp;
@@ -102,9 +106,11 @@ class ProductController extends Controller
         try {
             $data['brands'] = Brand::where('status', 1)->get();
             $data['survay'] = Survay::get();
+            $data['taxes'] = Tax::get();
             $data['subCategories'] = SubCategory::with(['Category'])->where('status', 1)->get();
             $data['attributes'] = Attribute::where('status', 1)->get();
-            $data['res'] = Product::find($id);
+            $data['res'] = Product::with(['Inventory'])->find($id);
+            // pr($data['res']);
             return view('crm.product.edit', $data);
         } catch (Exception $e) {
             return response('500')->with(['error', $e->getMessage()]);
@@ -127,6 +133,8 @@ class ProductController extends Controller
             $save->sub_category             = $request->sub_category;
             $save->category_id              = $category_id;
             $save->brand_id                 = $request->brand_id;
+            $save->tags                     = $request->tags;
+            $save->tax_id                   = $request->tax_id;
             $save->no_feedback              = $request->no_feedback;
             $save->pre_qulifing_question    = $request->pre_qulifing_question;
             $save->mrp                      = (int)$request->mrp;

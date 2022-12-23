@@ -19,5 +19,10 @@ class Order extends BaseModel
         return $this->hasOne(Product::class,'_id','product_id')->select('*');
     }
 
+    // public function ShippingCost(){
+
+    //     return $this->hasOne(Product::class,'_id','product_id')->select('*');
+    // }
+
     
 }
