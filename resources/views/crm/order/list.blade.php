@@ -41,7 +41,15 @@
                 <td>{{$list->order_number}}</td>
                 <td>{{date('d-m-Y',(int)$list->order_date)}}</td>
                 <td>{{$list->amount}}</td>
-                <td>{{$list->status}}</td>
+                <td>
+               
+                <select  _id="{{$list->_id}}" class="status">
+                                <option value="pending" {{$list->order_status =='pending'?'selected':''}}>Pending</option>
+                                <option value="accept"{{$list->order_status =='accept'?'selected':''}}>Accept</option>
+                                <option value="dispatch"{{$list->order_status =='dispatch'?'selected':''}}>Dispatch</option>
+                                <option value="delivared"{{$list->order_status =='delivared'?'selected':''}}>Delivared</option>
+                            </select>
+                </td>
                 <td><a href="{{url('crm/order-details/'.$list->_id)}}" class="orderDetails text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a></td>
               </tr>
               @endforeach
@@ -55,4 +63,30 @@
 </div>
 
 
+@push('js')
+<script>
+    $(document).on('change', '.status', function(e) {
+        e.preventDefault(0);
+        // alert('hellow');
+        let id = $(this).attr('_id');
+        let order_status = $(this).val();
+        $.ajax({
+            url: "{{url('crm/order')}}/" + id,
+            type: 'post',
+            datatype: 'JSON',
+            data: {
+                _token: '{{ csrf_token() }}',
+                'order_status': order_status,
+            },
+            success: function(res) {
+                if (res.status || !res.status) {
+                    alertMsg(res.status, res.msg, 2000);
+                }
+            }
+
+        });
+    });
+</script>
+
+@endpush
 @endsection

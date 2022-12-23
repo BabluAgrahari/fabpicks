@@ -72,6 +72,10 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::get('attribute-export',  [AttributeController::class, 'export']);
     Route::get('category-export',  [CategoryController::class, 'export']);
     Route::get('brand-export',  [BrandController::class, 'export']);
+    Route::post('category-status',  [CategoryController::class, 'status']);
+    Route::post('sub-category-status',  [SubCategoryController::class, 'status']);
+    Route::post('attribute-status',  [AttributeController::class, 'status']);
+    Route::post('sub-attribute-status',  [SubAttributeController::class, 'status']);
     Route::post('brand-status',  [BrandController::class, 'status']);
 
     // Route::get('show/{id}', [ProductController::class, 'show']);
@@ -103,6 +107,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
 
     Route::get('order', [OrderController::class, 'index']);
     Route::get('order-details/{id}', [OrderController::class, 'details']);
+    Route::post('order/{id}', [OrderController::class, 'update']);
 
 
     Route::get('product-listing', [ProductListingController::class, 'productListing'])->middleware('can:isAdmin');

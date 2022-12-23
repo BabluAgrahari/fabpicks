@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Request\ShippingBillingControllerRequest;
+use App\Http\Request\ShippingBillingRequest;
 use Illuminate\Http\Request;
 use App\Models\ShippingBilling;
 
@@ -37,41 +39,87 @@ class ShippingBillingController extends Controller
         }
     }
 
-    public function store(Request $request)
+    public function store(ShippingBillingRequest $request)
     {
         try {
             $save = new ShippingBilling();
 
             $save->shipping_name        = $request->shipping_name;
-            $save->shipping_email       = $request->shipping_email;
+            $save->shipping_landmark    = $request->shipping_landmark;
             $save->shipping_phone       = $request->shipping_phone;
             $save->shipping_city        = $request->shipping_city;
             $save->shipping_state       = $request->shipping_state;
             $save->shipping_address     = $request->shipping_address;
             $save->shipping_pincode     = $request->shipping_pincode;
+            $save->shipping_alternate_phone     = $request->shipping_alternate_phone;
 
             if ($request->same_billing) {
                 $save->billing_name         = $request->shipping_name;
-                $save->billing_email        = $request->shipping_email;
+                $save->billing_landmark     = $request->shipping_landmark;
                 $save->billing_phone        = $request->shipping_phone;
                 $save->billing_city         = $request->shipping_city;
                 $save->billing_state        = $request->shipping_state;
                 $save->billing_address      = $request->shipping_address;
                 $save->billing_pincode      = $request->shipping_pincode;
+                $save->billing_alternate_phone     = $request->billing_alternate_phone;
             } else {
                 $save->billing_name         = $request->billing_name;
-                $save->billing_email        = $request->billing_email;
+                $save->billing_landmark     = $request->billing_landmark;
                 $save->billing_phone        = $request->billing_phone;
                 $save->billing_city         = $request->billing_city;
                 $save->billing_state        = $request->billing_state;
                 $save->billing_address      = $request->billing_address;
                 $save->billing_pincode      = $request->billing_pincode;
+                $save->billing_alternate_phone     = $request->billing_alternate_phone;
             }
             $save->billing_same = $request->same_billing;
             if ($save->save())
                 return $this->successRes('Shipping & Billing Created Successfully.');
 
             return $this->failRes('Shipping & Billing not Created.');
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
+    }
+
+    public function update(ShippingBillingRequest $request,$id)
+    {
+        try {
+            $save =ShippingBilling::find($id);
+
+            $save->shipping_name        = $request->shipping_name;
+            $save->shipping_landmark    = $request->shipping_landmark;
+            $save->shipping_phone       = $request->shipping_phone;
+            $save->shipping_city        = $request->shipping_city;
+            $save->shipping_state       = $request->shipping_state;
+            $save->shipping_address     = $request->shipping_address;
+            $save->shipping_pincode     = $request->shipping_pincode;
+            $save->shipping_alternate_phone     = $request->shipping_alternate_phone;
+
+            if ($request->same_billing) {
+                $save->billing_name         = $request->shipping_name;
+                $save->billing_landmark     = $request->shipping_landmark;
+                $save->billing_phone        = $request->shipping_phone;
+                $save->billing_city         = $request->shipping_city;
+                $save->billing_state        = $request->shipping_state;
+                $save->billing_address      = $request->shipping_address;
+                $save->billing_pincode      = $request->shipping_pincode;
+                $save->billing_alternate_phone     = $request->billing_alternate_phone;
+            } else {
+                $save->billing_name         = $request->billing_name;
+                $save->billing_landmark     = $request->billing_landmark;
+                $save->billing_phone        = $request->billing_phone;
+                $save->billing_city         = $request->billing_city;
+                $save->billing_state        = $request->billing_state;
+                $save->billing_address      = $request->billing_address;
+                $save->billing_pincode      = $request->billing_pincode;
+                $save->billing_alternate_phone     = $request->billing_alternate_phone;
+            }
+            $save->billing_same = $request->same_billing;
+            if ($save->save())
+                return $this->successRes('Shipping & Billing Updated Successfully.');
+
+            return $this->failRes('Shipping & Billing not Updated.');
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }

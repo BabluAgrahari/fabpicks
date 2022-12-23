@@ -56,9 +56,7 @@
                                 <td>{{ucWords($list->name)}}</td>
                                 <td>{{$list->description}}</td>
                                 <td>{{$list->sort}}</td>
-
                                 <td>{!!listStatus($list->status,$list->_id)!!}</td>
-
                                 @can('isAdmin')
                                 <td>
                                     <div class="action-group">

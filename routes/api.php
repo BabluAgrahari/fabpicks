@@ -83,10 +83,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('user/{id}', 'show');
     });
 
-    Route::controller(RegisterController::class)->group(function () {
-        Route::post('register', 'register');
-     
-    });
+   
     Route::resource('order',OrderController::class);
 
 
@@ -94,6 +91,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::post('shipping', 'store');
         Route::get('shipping', 'index');
         Route::get('shipping/{id}', 'show');
+        Route::put('shipping/{id}', 'update');
     });
 
 
@@ -110,6 +108,11 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     
     Route::resource('wishlist',WishlistController::class);
 
+});
+
+Route::controller(RegisterController::class)->group(function () {
+    Route::post('register', 'register');
+ 
 });
 
 

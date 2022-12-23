@@ -21,7 +21,7 @@
                         <input type="hidden" value="{{$res->id}}">
                         <div class="field-group">
                             <label for="about-us-content">Refund Policy Content</label>
-                            <textarea name="refund" id="refund" class="form-control" required>{{$res->refund}}</textarea>
+                            <textarea name="refund" id="refund" class="form-control textediter" required>{{$res->refund}}</textarea>
                         </div>
                     </div>
                     <button class="btn btn-success mt-5 text-center"><x-icon type="update"/>Update</button>
