@@ -39,12 +39,12 @@
   }
 </style>
 <!--Survay Question Modal -->
-<div class="modal fade" id="survaryQuestionModel" tabindex="-1" aria-labelledby="survayLabel" aria-hidden="true">
+<div class="modal fade" id="survaryQuestionModel" data-bs-keyboard="false" data-bs-backdrop="static">
   <div class="modal-dialog modal-dialog-centered modal-lg ">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-6" id="survayLabel">Survay Question</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="container-flude">
@@ -52,12 +52,13 @@
 
           <form name="form1" id="saveSingleChoise" action="{{url('crm/survay-question')}}" enctype="multipart/form-data" class="custom-form">
             @csrf
+            <div id="counter"></div>
             <input type="hidden" id="survay_id" name="survay_id" value="">
             <div class="row">
               <div class="col-md-6">
                 <div class="field-group">
-                  <label for="type-of-questions">Questions Type </label>
-                  <select name="survay_type" class="form-select " id="question_type">
+                  <label for="type-of-questions">Questions Type <span class="required">*</span></label>
+                  <select name="survay_type" class="form-select " id="survay_type">
                     <option selected value="">Select</option>
                     <option value="single_choise">Signle Choice</option>
                     <option value="multi_choise">Multi Choice</option>
@@ -66,6 +67,7 @@
                     <option value="upload_image">Upload Image</option>
                     <option value="subjective_question">Subjective Question</option>
                   </select>
+                  <span id="survay_type_msg" class="text-danger"></span>
                 </div>
               </div>
 
@@ -83,13 +85,15 @@
                         <input type="text" name="survay_question" id="question" class="form-control" placeholder="Write Your Question">
                         <input type="checkbox" class="checkbox-required" value="1" name="required">
                       </div>
+                      <span id="survay_question_msg" class="text-danger"></span>
                     </div>
 
                     <div class="field-group col-md-4">
                       <label for="question">Rewards Point <span class="required">*</span></label>
                       <div class="required-feild">
-                        <input type="number" name="reward" id="reward" class="form-control" placeholder="Enter Rewards Point">
+                        <input type="number" name="reward" id="reward" class="form-control" placeholder="Rewards Point">
                       </div>
+                      <span id="reward_msg" class="text-danger"></span>
                     </div>
 
                   </div>
@@ -139,8 +143,9 @@
     $(".size_chart").hide();
 
     //listen to dropdown for change
-    $("#question_type").change(function() {
+    $("#survay_type").change(function() {
 
+      $('span.text-danger').html('');
       let val = $(this).val();
       let html = '';
       $('#question').removeClass('d-none');
@@ -155,6 +160,7 @@
                         <label class="form-check-label " for="feedbackoption1">
                           <input type="text" name="data[option][]" class="form-control" placeholder="Option1">
                         </label>
+                        <span id="single_option_0_msg" class="text-danger"></span>
                       </div>
                     
                       <div class="form-check">
@@ -162,6 +168,7 @@
                         <label class="form-check-label " for="feedbackoption1">
                           <input type="text" name="data[option][]" class="form-control" placeholder="Option2">
                         </label>
+                        <span id="single_option_1_msg" class="text-danger"></span>
                       </div>
                    
                       <div class="form-check">
@@ -169,6 +176,7 @@
                         <label class="form-check-label " for="feedbackoption1">
                           <input type="text" name="data[option][]" class="form-control" placeholder="Option3">
                         </label>
+                        <span id="single_option_2_msg" class="text-danger"></span>
                       </div>
                     
                       <div class="form-check">
@@ -176,6 +184,7 @@
                         <label class="form-check-label " for="feedbackoption1">
                           <input type="text" name="data[option][]" class="form-control" placeholder="Option4">
                         </label>
+                        <span id="single_option_3_msg" class="text-danger"></span>
                       </div>
 
                       <div class="form-check">
@@ -194,29 +203,33 @@
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="data[answer][]" value="0" id="feedbackcheckbox1" checked>
                         <label class="form-check-label" for="feedbackcheckbox">
-                          <input type="text" name="data[option][]" class="form-control" placeholder="write your option">
+                          <input type="text" name="data[option][]" class="form-control" placeholder="Option1">
                         </label>
+                        <span id="multi_option_0_msg" class="text-danger"></span>
                       </div>
 
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="data[answer][]" value="1" id="feedbackcheckbox2">
                         <label class="form-check-label" for="feedbackcheckbox2">
-                          <input type="text" name="data[option][]" class="form-control" placeholder="write your option">
+                          <input type="text" name="data[option][]" class="form-control" placeholder="Option2">
                         </label>
+                        <span id="multi_option_1_msg" class="text-danger"></span>
                       </div>
 
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="data[answer][]" value="2" id="feedbackcheckbox3">
                         <label class="form-check-label" for="feedbackcheckbox3">
-                          <input type="text" name="data[option][]" class="form-control" placeholder="write your option">
+                          <input type="text" name="data[option][]" class="form-control" placeholder="Option3">
                         </label>
+                        <span id="multi_option_2_msg" class="text-danger"></span>
                       </div>
 
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="data[answer][]" value="3" id="feedbackcheckbox4">
                         <label class="form-check-label" for="feedbackcheckbox4">
-                          <input type="text" name="data[option][]" class="form-control" placeholder="write your option">
+                          <input type="text" name="data[option][]" class="form-control" placeholder="Option4">
                         </label>
+                        <span id="multi_option_3_msg" class="text-danger"></span>
                       </div>
 
                       <div class="form-check">
@@ -276,6 +289,7 @@
         <div class="col-md-8 feedback-container">
                       <div class="feedback-option mt-3">
                         <input type="file" name="image" class="form-control">
+                        <span id="image_msg" class="text-danger"></span>
                       </div>
                     </div>
 
@@ -311,8 +325,11 @@
   })
 
   /*start form submit functionality*/
+  var i = 1;
   $("form#saveSingleChoise").submit(function(e) {
     e.preventDefault();
+    var survay_type = $('#survay_type').val();
+    $('#counter').html(`<input type="hidden" name="counter" value="${i}"> `);
     //alert('Your book is overdue');
     formData = new FormData(this);
     var url = $(this).attr('action');
@@ -330,14 +347,12 @@
       },
       success: function(res) {
         //hide loader
-        $('#saveBtn').html('Save').removeAttr('disabled');
+        $('#saveBtn').html(`<x-icon type="save" />Save`).removeAttr('disabled');
 
         /*Start Validation Error Message*/
         $('span.text-danger').html('');
         if (res.validation) {
-          $.each(res.validation, (index, msg) => {
-            $(`#${index}_msg`).html(`${msg}`);
-          })
+          ValidationMsg(res.validation, res.type)
           return false;
         }
         /*End Validation Error Message*/
@@ -345,7 +360,6 @@
         /*Start Status message*/
         if (res.status || !res.status) {
           if (res.response) {
-            console.log(res.response);
             $('#previewQuestion').append(res.response);
           }
           alertMsg(res.status, res.msg, 2000);
@@ -355,9 +369,49 @@
         //for reset all field
         if (res.status)
           $('form#saveSingleChoise').trigger('reset');
+          $('#survay_type').val(survay_type)
       }
     });
+    i++;
   });
+
+  function ValidationMsg(validation, type) {
+
+    if (type == 'single_choise') {
+      $.each(validation, (index, msg) => {
+        if (index == 'data.option.0') {
+          $('#single_option_0_msg').html(`${msg}`);
+        } else if (index == 'data.option.1') {
+          $('#single_option_1_msg').html(`${msg}`);
+        } else if (index == 'data.option.2') {
+          $('#single_option_2_msg').html(`${msg}`);
+        } else if (index == 'data.option.3') {
+          $('#single_option_3_msg').html(`${msg}`);
+        }
+        $(`#${index}_msg`).html(`${msg}`);
+      });
+
+    } else if (type == 'multi_choise') {
+      $.each(validation, (index, msg) => {
+        if (index == 'data.option.0') {
+          $('#multi_option_0_msg').html(`${msg}`);
+        } else if (index == 'data.option.1') {
+          $('#multi_option_1_msg').html(`${msg}`);
+        } else if (index == 'data.option.2') {
+          $('#multi_option_2_msg').html(`${msg}`);
+        } else if (index == 'data.option.3') {
+          $('#multi_option_3_msg').html(`${msg}`);
+        }
+        $(`#${index}_msg`).html(`${msg}`);
+      });
+
+    } else {
+      $.each(validation, (index, msg) => {
+
+        $(`#${index}_msg`).html(`${msg}`);
+      });
+    }
+  }
 
   /*edit questions*/
   // $(document).on('click', '.question-edit', function(e) {

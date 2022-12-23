@@ -2,13 +2,13 @@
 @case('single_choise')
 
 <div class="question-box mb-2">
-    <span>Q- {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}</span>
     <div class="ans-group">
         <div class="all-feedback-options">
             @foreach($list->data['option'] as $key=>$val)
-            <?php $checked = $key == $list->data['answer'] ? 'checked' : 'disabled' ?>
+            <?php $checked = $key == $list->data['answer'] ? '<i class="fa-solid fa-circle-check text-success"></i>' : '<i class="fa-regular fa-circle"></i>' ?>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="ans" id="ans1" {{$checked}}>
+                {!!$checked!!}
                 <label class="form-check-label " for="ans1"> {{$val}} </label>
             </div>
             @endforeach
@@ -16,9 +16,9 @@
 
         <div class="ans-group-action">
             <!-- <button class="ans-edit-btn ans-btn"><i class="ri-pencil-line"></i></button> -->
-            <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
+            <!-- <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
                 <x-icon type="remove" />
-            </a>
+            </a> -->
         </div>
     </div>
 </div>
@@ -27,22 +27,22 @@
 @case('multi_choise')
 
 <div class="question-box mb-2">
-    <span>Q- {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}</span>
     <div class="ans-group">
         <div class="all-feedback-options">
             @foreach($list->data['option'] as $key=>$val)
-            <?php $checked = in_array($key, $list->data['answer']) ? 'checked' : '' ?>
+            <?php $checked = in_array($key, $list->data['answer']) ? '<i class="fa-solid fa-circle-check text-success"></i>' : '<i class="fa-regular fa-circle"></i>' ?>
             <div class="form-check">
-                <input class="form-check-input" type="checkbox" {{$checked}}>
+                {!!$checked!!}
                 <label class="form-check-label">{{$val}}</label>
             </div>
             @endforeach
         </div>
         <div class="ans-group-action">
             <!-- <button class="ans-edit-btn ans-btn"><i class="ri-pencil-line"></i></button> -->
-            <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
+            <!-- <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
                 <x-icon type="remove" />
-            </a>
+            </a> -->
         </div>
 
     </div>
@@ -51,24 +51,24 @@
 
 @case('yes_no')
 <div class="question-box mb-2">
-    <span>Q- {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}</span>
     <div class="ans-group">
-        <?php $checked1 = ($list->data['answer'] == "1") ? 'checked' : 'disabled'; ?>
-        <?php $checked2 = ($list->data['answer'] == "0") ? 'checked' : 'disabled'; ?>
+        <?php $checked1 = ($list->data['answer'] == "1") ? '<i class="fa-solid fa-circle-check text-success"></i>' : '<i class="fa-regular fa-circle"></i>'; ?>
+        <?php $checked2 = ($list->data['answer'] == "0") ? '<i class="fa-solid fa-circle-check text-success"></i>' : '<i class="fa-regular fa-circle"></i>'; ?>
         <div class="form-check">
-            <input class="form-check-input" type="radio" {{$checked1}}>
+            {!!$checked1!!}
             <label class="form-check-label">Yes</label>
         </div>
         <div class="form-check">
-            <input class="form-check-input" type="radio" {{$checked2}}>
+            {!!$checked2!!}
             <label class="form-check-label">No</label>
         </div>
 
         <div class="ans-group-action">
             <!-- <button class="ans-edit-btn ans-btn"><i class="ri-pencil-line"></i></button> -->
-            <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
+            <!-- <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
                 <x-icon type="remove" />
-            </a>
+            </a> -->
         </div>
     </div>
 </div>
@@ -77,7 +77,7 @@
 
 @case('rating')
 <div class="question-box mb-2">
-    <span>Q- {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}</span>
     <div class="ans-group">
         <div class="hello mt-0">
             <div class="star-rating js-star-rating">
@@ -92,9 +92,9 @@
 
         <div class="ans-group-action">
             <!-- <button class="ans-edit-btn ans-btn"><i class="ri-pencil-line"></i></button> -->
-            <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
+            <!-- <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
                 <x-icon type="remove" />
-            </a>
+            </a> -->
         </div>
     </div>
 </div>
@@ -103,7 +103,7 @@
 @case('upload_image')
 
 <div class="question-box mb-2">
-    <span>Q- {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}</span>
     <div class="ans-group">
         <div class="all-feedback-img-option">
             <img src="{{$list->data['image'] ?? defaultImg('400x300')}}" alt="">
@@ -111,9 +111,9 @@
 
         <div class="ans-group-action">
             <!-- <button class="ans-edit-btn ans-btn"><i class="ri-pencil-line"></i></button> -->
-            <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
+            <!-- <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
                 <x-icon type="remove" />
-            </a>
+            </a> -->
         </div>
     </div>
 </div>
@@ -122,12 +122,12 @@
 @case('subjective_question')
 <div class="question-box mb-2">
     <div class="ans-group">
-        <span>Q- {{$list->survay_question}}</span>
+        <span>Q-{{$counter}} {{$list->survay_question}}</span>
         <div class="ans-group-action">
             <!-- <button class="ans-edit-btn ans-btn"><i class="ri-pencil-line"></i></button> -->
-            <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
+            <!-- <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">
                 <x-icon type="remove" />
-            </a>
+            </a> -->
         </div>
     </div>
 </div>

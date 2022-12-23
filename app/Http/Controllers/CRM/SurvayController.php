@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CRM;
 
 use App\Http\Controllers\Controller;
+use App\Http\Request\SuQuestionRequest;
 use App\Http\Request\SurvayRequest;
 use App\Models\Survay;
 use App\Models\SurvayQuestion;
@@ -82,7 +83,7 @@ class SurvayController extends Controller
         }
     }
 
-    public function survayQuestion(Request $request)
+    public function survayQuestion(SuQuestionRequest $request)
     {
         try {
 
@@ -103,6 +104,8 @@ class SurvayController extends Controller
                 return response(['status' => false, 'msg' => 'Survay not Added.']);
 
             $data['list'] = $save;
+            $data['counter'] = $request->counter;
+       
             $respose = view('crm.survay.preview', $data)->render();
 
             return response(['status' => true, 'response' => $respose, 'msg' => 'Survay Added Successfully.']);
