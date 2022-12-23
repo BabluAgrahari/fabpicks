@@ -30,6 +30,7 @@ class RegisterController extends Controller
         $save->mobile_no = $request->phone;
         $save->gender = $request->gender;
         $save->married = $request->married;
+        $save->trail_point = 6;
         $save->role = 'customer';
         if ($save->save()) {
             return $this->otp($save->mobile_no);

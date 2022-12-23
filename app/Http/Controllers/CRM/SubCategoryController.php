@@ -21,8 +21,8 @@ class SubCategoryController extends Controller
             if (!empty($request->name))
                 $query->where('name', 'LIKE', "%$request->name%");
 
-                if (!empty($request->discription))
-                $query->where('discription', 'LIKE', "%$request->discription%");
+                if (!empty($request->description))
+                $query->where('description', 'LIKE', "%$request->description%");
 
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);

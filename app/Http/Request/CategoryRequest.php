@@ -19,7 +19,7 @@ class CategoryRequest extends FormRequest
         return [
             'name'              => 'required|string|min:2|max:30',
             'sort'              => 'required|numeric',
-            'discription'       => 'required|',
+            'description'       => 'required',
             'status'            => 'nullable|numeric|in:0,1'
         ];
     }

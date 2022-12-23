@@ -23,8 +23,8 @@ class CategoryController extends Controller
             if (!empty($request->name))
                 $query->where('name', 'LIKE', "%$request->name%");
 
-                if (!empty($request->discription))
-                $query->where('discription', 'LIKE', "%$request->discription%");
+                if (!empty($request->description))
+                $query->where('description', 'LIKE', "%$request->description%");
 
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
@@ -44,7 +44,7 @@ class CategoryController extends Controller
         try {
             $save = new Category();
             $save->name    = $request->name;
-            $save->discription      = $request->discription;
+            $save->description      = $request->description;
             $save->sort             = (int)$request->sort;
             $save->status           = (int)$request->status ?? '0';
 
@@ -77,7 +77,7 @@ class CategoryController extends Controller
         try {
             $save = Category::find($id);
             $save->name             = $request->name;
-            $save->discription      = $request->discription;
+            $save->description      = $request->description;
             $save->sort             = (int)$request->sort;
             $save->status           = (int)$request->status ?? '0';
 

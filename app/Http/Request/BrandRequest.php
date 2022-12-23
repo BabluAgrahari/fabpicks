@@ -19,6 +19,7 @@ class BrandRequest extends FormRequest
             'name'        => 'required|string|min:2|max:30',
             'logo'        => 'nullable',
             'sort'        => 'required|numeric',
+            'description' => 'required',
             'status'      => 'nullable|numeric|in:0,1'
         ];
     }

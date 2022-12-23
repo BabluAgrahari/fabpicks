@@ -17,6 +17,8 @@ use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ShippingBillingController;
 use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\WishlistController;
+use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\CRM\SettingController as CRMSettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -74,6 +76,14 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::controller(ProductController::class)->group(function () {
         Route::get('product', 'index');
         Route::get('product/{id}', 'show');
+    });
+
+    Route::controller(SettingController::class)->group(function () {
+        Route::put('generalSetting/{id}', 'generalSetting');
+        Route::put('refundPolicy/{id}', 'refundPolicy');
+        Route::put('aboutus/{id}', 'aboutus');
+        Route::put('conditions/{id}', 'conditions');
+        Route::put('privacy/{id}', 'privacy');
     });
 
     Route::resource('cart',CartController::class);

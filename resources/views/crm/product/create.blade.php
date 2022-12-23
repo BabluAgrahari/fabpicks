@@ -27,13 +27,24 @@
                             <input type="text" name="name" id="name" class="form-control" placeholder="Product Name">
                             <span class="text-danger" id="name_msg"></span>
                         </div>
+                        <div class="row">
+                            <div class="field-group col-md-6">
+                                <label for="product-name">Tags</label>
+                                <input type="text" name="tags" id="ta1" class="form-control" placeholder="Enter Tags">
+                                <span class="text-danger" id="tags_msg"></span>
+                            </div>
 
-                        <div class="field-group">
-                            <label for="product-name">Tags</label>
-                            <input type="text" name="tags" id="ta1" class="form-control" placeholder="Enter Tags">
-                            <span class="text-danger" id="tags_msg"></span>
+                            <div class="field-group col-md-6">
+                                <label for="tax">Tax</label>
+                                <select name="tax_id" id="tax_id" class="form-select js-example-basic-single">
+                                    <option value="">Select</option>
+                                    @foreach($taxes as $val)
+                                    <option value="{{$val->_id}}">{{ucwords($val->name)}}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger" id="tax_id_msg"></span>
+                            </div>
                         </div>
-
                         <div class="row">
                             <div class="field-group col-md-6">
                                 <label for="product-brand">Brand</label>
