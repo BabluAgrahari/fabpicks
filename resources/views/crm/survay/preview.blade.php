@@ -2,7 +2,7 @@
 @case('single_choise')
 
 <div class="question-box mb-2">
-    <span>Q-{{$counter}} {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}&nbsp;{{ ($list->required)?'(Required)':''}} </span>
     <div class="ans-group">
         <div class="all-feedback-options">
             @foreach($list->data['option'] as $key=>$val)
@@ -27,7 +27,7 @@
 @case('multi_choise')
 
 <div class="question-box mb-2">
-    <span>Q-{{$counter}} {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}&nbsp;{{ ($list->required)?'(Required)':''}}</span>
     <div class="ans-group">
         <div class="all-feedback-options">
             @foreach($list->data['option'] as $key=>$val)
@@ -51,7 +51,7 @@
 
 @case('yes_no')
 <div class="question-box mb-2">
-    <span>Q-{{$counter}} {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}&nbsp;{{ ($list->required)?'(Required)':''}}</span>
     <div class="ans-group">
         <?php $checked1 = ($list->data['answer'] == "1") ? '<i class="fa-solid fa-circle-check text-success"></i>' : '<i class="fa-regular fa-circle"></i>'; ?>
         <?php $checked2 = ($list->data['answer'] == "0") ? '<i class="fa-solid fa-circle-check text-success"></i>' : '<i class="fa-regular fa-circle"></i>'; ?>
@@ -77,7 +77,7 @@
 
 @case('rating')
 <div class="question-box mb-2">
-    <span>Q-{{$counter}} {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}&nbsp;{{ ($list->required)?'(Required)':''}}</span>
     <div class="ans-group">
         <div class="hello mt-0">
             <div class="star-rating js-star-rating">
@@ -103,7 +103,7 @@
 @case('upload_image')
 
 <div class="question-box mb-2">
-    <span>Q-{{$counter}} {{$list->survay_question}}</span>
+    <span>Q-{{$counter}} {{$list->survay_question}}&nbsp;{{ ($list->required)?'(Required)':''}}</span>
     <div class="ans-group">
         <div class="all-feedback-img-option">
             <img src="{{$list->data['image'] ?? defaultImg('400x300')}}" alt="">
@@ -122,7 +122,7 @@
 @case('subjective_question')
 <div class="question-box mb-2">
     <div class="ans-group">
-        <span>Q-{{$counter}} {{$list->survay_question}}</span>
+        <span>Q-{{$counter}} {{$list->survay_question}}&nbsp;{{ ($list->required)?'(Required)':''}}</span>
         <div class="ans-group-action">
             <!-- <button class="ans-edit-btn ans-btn"><i class="ri-pencil-line"></i></button> -->
             <!-- <a href="javascript:void(0);" _id="{{$list->_id}}" class="removQuestio text-danger">

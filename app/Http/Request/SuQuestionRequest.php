@@ -17,10 +17,10 @@ class SuQuestionRequest extends FormRequest
     public function rules(Request $request)
     {
         $rule =  [
-            'required'      => 'nullable|numeric|in"0,1',
+            'required'      => 'nullable|numeric|in:0,1',
             'survay_id'     => 'required',
             'survay_type'   => 'required|string|in:single_choise,multi_choise,yes_no,rating,upload_image,subjective_question',
-            'survay_question' => 'required|string|max:500',
+            'survay_question'=> 'required|string|max:500',
             'reward'        => 'required|numeric|min:1|max:3000',
             'data'          => 'required|array',
         ];

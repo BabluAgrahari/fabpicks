@@ -300,6 +300,7 @@
                     <label class="form-check-label">No</label>
                   </div>`;
           } else if (val.survay_type == 'rating') {
+           
             html += `
                   <div class="hello mt-0">
                     <div class="star-rating js-star-rating">
@@ -308,7 +309,7 @@
                       <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
                       <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
                       <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
-                      <div class="current-rating current-rating--${val.data.rating} js-current-rating"><i class="star-rating__star">AAA</i></div>
+                      <div class="current-rating current-rating--${val.data.rating ??''} js-current-rating"><i class="star-rating__star">AAA</i></div>
                     </div>
                   </div>`;
           } else if (val.survay_type == 'upload_image') {

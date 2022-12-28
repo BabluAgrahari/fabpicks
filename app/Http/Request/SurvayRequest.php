@@ -18,7 +18,7 @@ class SurvayRequest extends FormRequest
         return [
             'title'           => 'required|string|min:2|max:30',
             'type'            => 'required',
-            'discription'            =>  'required'
+            'discription'     => 'required'
         ];
     }
 

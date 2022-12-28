@@ -269,7 +269,7 @@
                         <div class="star-rating js-star-rating">
                           <input class="star-rating__input" type="radio" name="data[rating]" value="1"><i class="star-rating__star"></i>
                           <input class="star-rating__input" type="radio" name="data[rating]" value="2"><i class="star-rating__star"></i>
-                          <input class="star-rating__input" type="radio" name="data[rating]" value="3"><i class="star-rating__star"></i>
+                          <input class="star-rating__input" type="radio" name="data[rating]" value="3" checked><i class="star-rating__star"></i>
                           <input class="star-rating__input" type="radio" name="data[rating]" value="4"><i class="star-rating__star"></i>
                           <input class="star-rating__input" type="radio" name="data[rating]" value="5"><i class="star-rating__star"></i>
                           <div class="current-rating current-rating--3 js-current-rating"><i class="star-rating__star">AAA</i></div>
