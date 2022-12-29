@@ -23,6 +23,12 @@
 @case('reset')
 <i class="fa-solid fa-arrow-rotate-right"></i>&nbsp;
 @break
+@case('details')
+<i class="fa-regular fa-eye"></i>&nbsp;
+@break
+@case('list')
+<i class="fa-solid fa-square"></i>&nbsp;
+@break
 @default
 ''
 @endswitch

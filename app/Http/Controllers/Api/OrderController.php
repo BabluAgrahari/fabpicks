@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\User;
 use App\Http\Request\OrderRequest;
-
+use App\Models\Product;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 
@@ -40,28 +40,40 @@ class OrderController extends Controller
 
     public function store(OrderRequest $request)
     {
-        
+
         try {
+            $user = User::find(Auth::user()->_id);
+            if (empty($user) || $user->trail_point < 1)
+                return $this->failRes('Trail Point not Avaliable.');
+
+            $user->trail_point = (int)$user->trail_point - (int)$request->trail_point;
+            $user->save();
+
             $save = new Order();
             $save->order_number          = rand(100000, 999999);
             $save->order_date            = (int)strtotime($request->order_date);
             $save->amount                = $request->amount;
-            $save->trail_point           = $request->trail_point;
+            $save->trail_point           = (int)$request->trail_point;
             $save->payment_mode          = $request->payment_mode;
             $save->tax_amount            = $request->tax_amount;
-            $save->shippingcost          = $request->shippingcost;
+            $save->shipping_cost         = $request->shipping_cost;
             $save->status                = $request->status;
+            $save->order_status          = 'pending';
             $save->shipping_details      = $request->shipping_details;
             $save->billing_details       = $request->billing_details;
-            $save->products              = $request->products;
+
+            $products = array();
+            foreach ($request->products as $product) {
+                $pro = Product::find($product['product_id']);
+                $product['image'] = $pro->image;
+                $products[] = $product;
+            }
+            
+            $save->products   = $products;
 
             if (!$save->save())
                 return $this->failRes('Order not Created.');
 
-            $user = User::find($request->user_id);
-            $trail_point =  $user->trail_point;
-            $user->trail_point = (int)$trail_point - $request->trial_points;
-            $user->save();
             //return $this->recordRes($user);
             return $this->successRes('Order Created Successfully.');
         } catch (Exception $e) {

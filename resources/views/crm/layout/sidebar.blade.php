@@ -116,7 +116,7 @@
                     <li class="menu-item ">
                         <a href="{{url('crm/order')}}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Order">
                             <span class="menu-icon">
-                                <i class="ri-book-line"></i>
+                            <i class="fa-brands fa-first-order"></i>
                             </span>
                             <span class="menu-title">Orders</span>
                         </a>
@@ -126,7 +126,7 @@
                     <li class="menu-item ">
                         <a href="{{url('crm/user')}}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Customer">
                             <span class="menu-icon">
-                                <i class="ri-user-line"></i>
+                            <i class="fa-solid fa-users"></i>
                             </span>
                             <span class="menu-title">Customer</span>
                         </a>
@@ -136,7 +136,7 @@
                     <li class="menu-item ">
                         <a href="{{url('crm/survay')}}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Survay Question">
                             <span class="menu-icon">
-                                <i class="ri-booklet-line"></i>
+                            <i class="fa-solid fa-circle-question"></i>
                             </span>
                             <span class="menu-title">Survay Questions</span>
                         </a>
@@ -146,7 +146,7 @@
                     <li class="menu-item ">
                         <a href="{{url('crm/feedback')}}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Feedback">
                             <span class="menu-icon">
-                                <i class="ri-booklet-line"></i>
+                            <i class="fa-solid fa-comments"></i>
                             </span>
                             <span class="menu-title">Feedback</span>
                         </a>
@@ -154,7 +154,7 @@
                     <li class="menu-item ">
                         <a href="{{url('crm/push-notification')}}" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Push Notification">
                             <span class="menu-icon">
-                                <i class="ri-notification-4-line"></i>
+                            <i class="fa-solid fa-bell"></i>
                             </span>
                             <span class="menu-title">Push Notification</span>
                         </a>
@@ -163,7 +163,7 @@
                     <li class="menu-item sub-menu">
                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="right" data-bs-title="Settings">
                             <span class="menu-icon">
-                                <i class="ri-settings-2-line"></i>
+                            <i class="fa-solid fa-gear"></i>
                             </span>
                             <span class="menu-title">Settings</span>
                         </a>

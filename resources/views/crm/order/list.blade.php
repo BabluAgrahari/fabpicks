@@ -1,11 +1,12 @@
 @extends('crm.layout.app')
 @section('content')
 
+
 <div class="card">
   <div class="card-header ">
     <div class="row">
       <div class="col-md-9">
-        <h4>Order List</h4>
+        <h5>Order List</h5>
       </div>
       <div class="col-md-3 ">
         <div class=" product-btn-group d-flex justify-content-end">
@@ -42,15 +43,15 @@
                 <td>{{date('d-m-Y',(int)$list->order_date)}}</td>
                 <td>{{$list->amount}}</td>
                 <td>
-               
-                <select  _id="{{$list->_id}}" class="status">
-                                <option value="pending" {{$list->order_status =='pending'?'selected':''}}>Pending</option>
-                                <option value="accept"{{$list->order_status =='accept'?'selected':''}}>Accept</option>
-                                <option value="dispatch"{{$list->order_status =='dispatch'?'selected':''}}>Dispatch</option>
-                                <option value="delivared"{{$list->order_status =='delivared'?'selected':''}}>Delivared</option>
-                            </select>
+
+                  <select _id="{{$list->_id}}" class="status form-select form-select-sm">
+                    <option value="pending" {{$list->order_status =='pending'?'selected':''}}>Pending</option>
+                    <option value="accept" {{$list->order_status =='accept'?'selected':''}}>Accept</option>
+                    <option value="dispatch" {{$list->order_status =='dispatch'?'selected':''}}>Dispatch</option>
+                    <option value="delivared" {{$list->order_status =='delivared'?'selected':''}}>Delivared</option>
+                  </select>
                 </td>
-                <td><a href="{{url('crm/order-details/'.$list->_id)}}" class="orderDetails text-info" _id="{{$list->_id}}"><i class="ri-add-circle-line"></i></a></td>
+                <td><a href="{{url('crm/order-details/'.$list->_id)}}" class="orderDetails text-info" _id="{{$list->_id}}"> <x-icon type="details" /></a></td>
               </tr>
               @endforeach
             </tbody>
@@ -65,28 +66,34 @@
 
 @push('js')
 <script>
-    $(document).on('change', '.status', function(e) {
-        e.preventDefault(0);
-        // alert('hellow');
-        let id = $(this).attr('_id');
-        let order_status = $(this).val();
-        $.ajax({
-            url: "{{url('crm/order')}}/" + id,
-            type: 'post',
-            datatype: 'JSON',
-            data: {
-                _token: '{{ csrf_token() }}',
-                'order_status': order_status,
-            },
-            success: function(res) {
-                if (res.status || !res.status) {
-                    alertMsg(res.status, res.msg, 2000);
-                }
-            }
+  $(document).on('change', '.status', function(e) {
+    e.preventDefault(0);
+    // alert('hellow');
+    let id = $(this).attr('_id');
+    let order_status = $(this).val();
+    $.ajax({
+      url: "{{url('crm/order')}}/" + id,
+      type: 'post',
+      datatype: 'JSON',
+      data: {
+        _token: '{{ csrf_token() }}',
+        'order_status': order_status,
+      },
+      success: function(res) {
+        if (res.status || !res.status) {
+          let status = res.status ? 'success' : 'error';
+          $.toast({
+            text: res.msg,
+            heading: ucwords(status),
+            icon: status,
+            position: 'top-right',
+          })
+        }
+      }
 
-        });
     });
+  });
 </script>
-
 @endpush
+
 @endsection

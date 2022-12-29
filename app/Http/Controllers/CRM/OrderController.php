@@ -41,8 +41,8 @@ class OrderController extends Controller
 
     public function details($id)
     {
-        $data['shows']=Order::with(['User','Product'])->find($id);
-        // pr($data['shows']);
+        $data['show'] = Order::with(['User'])->find($id);
+        // pr($data['show']->toArray());die;
         return view('crm/order/orderdetails',$data);
     }
 
@@ -51,10 +51,10 @@ class OrderController extends Controller
         // pr($request->all());
         try {
             $save = Order::find($id);
-            $save->order_status        = $request->order_status;
+            $save->order_status      = $request->order_status;
 
             if ($save->save())
-                return response(['status' => true, 'msg' => 'Status Updared Successfully.']);
+                return response(['status' => true, 'msg' => 'Status Updated Successfully.']);
 
             return response(['status' => false, 'msg' => 'Status Not Update.']);
         } catch (Exception $e) {

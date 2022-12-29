@@ -105,7 +105,11 @@
     <script src="{{asset('assets')}}/js/main.js"></script>
     <script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/4/tinymce.min.js"></script>
     <script src="{{asset('assets')}}/js/texteditor.js"></script>
-    
+    <script src="{{asset('assets')}}/js/toast/src/jquery.toast.js"></script>
+
+    <script>
+
+    </script>
 
     <script>
         function alertMsg(status, msg, delay = 1000, remove = false) {
@@ -214,6 +218,10 @@
         });
         /*end single image preview*/
 
+        //for convert into upper case first letter
+        function ucwords(str = false) {
+           return str.charAt(0).toUpperCase() + str.slice(1);
+        }
         //for update status
         function chagneStatus(id = false, val = false, selector = false, url = false) {
 
@@ -241,7 +249,7 @@
             })
         }
     </script>
-    @stack('modal');
+    @stack('modal')
     @stack('js')
     @stack('pagination-js')
 
