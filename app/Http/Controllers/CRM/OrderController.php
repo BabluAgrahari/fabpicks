@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -24,7 +25,7 @@ class OrderController extends Controller
             $query->where('amount', 'LIKE', "%$request->amount%");
 
         if (!empty($request->Status))
-            $query->where('Status',$request->status);
+            $query->where('Status', $request->status);
 
         $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
         $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
@@ -42,8 +43,11 @@ class OrderController extends Controller
     public function details($id)
     {
         $data['show'] = Order::with(['User'])->find($id);
+
+        $user_id = $data['show']->user_id;
+        $data['totalOrder'] = Order::where('user_id', $user_id)->count();
         // pr($data['show']->toArray());die;
-        return view('crm/order/orderdetails',$data);
+        return view('crm/order/orderdetails', $data);
     }
 
     public function update(Request $request, $id)

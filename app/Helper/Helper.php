@@ -118,6 +118,14 @@ if (!function_exists('listStatus')) {
     }
 }
 
+if (!function_exists('rupees')) {
+
+    function rupees($amount)
+    {
+        return '&#x20B9;' . $amount;
+    }
+}
+
 function getLatitude()
 {
     $ip  = !empty($_SERVER['HTTP_X_FORWARDED_FOR']) ? $_SERVER['HTTP_X_FORWARDED_FOR'] : $_SERVER['REMOTE_ADDR'];

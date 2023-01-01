@@ -32,14 +32,14 @@
                     </div>
                     <div class="dashboard-account">
                         <div class="profile-pic">
-                            <img src="{{defaultImg()}}" class="img-fluid" alt="">
+                            <img src="{{Auth::user()->profile_img??defaultImg()}}" class="img-fluid" alt="">
                         </div>
 
 
                         <div class="user-profile-container ">
                             <div class="user-profile-pic">
                                 <div class="user-profile-img">
-                                    <img src="{{defaultImg()}}" class="img-fluid" alt="">
+                                    <img src="{{Auth::user()->profile_img??defaultImg()}}" class="img-fluid" alt="">
                                 </div>
 
                                 <div class="user-name">

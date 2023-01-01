@@ -4,7 +4,7 @@ use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\BrandController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\CategoryController;
-use App\Http\controllers\Api\SubCategoryController;
+use App\Http\Controllers\Api\SubCategoryController;
 use App\Http\Controllers\Api\AttributeController;
 use App\Http\Controllers\Api\Auth\LoginOtpController;
 use App\Http\Controllers\Api\CartController;
@@ -39,6 +39,9 @@ use Illuminate\Support\Facades\Route;
 Route::controller(LoginOtpController::class)->group(function () {
     Route::post('/verify-otp', 'verifyOtp');
     Route::post('/otp', 'otp');
+  	Route::post('/phonecheck', 'checkUserExistsPhone');
+  	Route::post('/login-with-phone', 'loginWithPhone');
+  	Route::post('login-with-email', 'loginWithEmail');
 });
 
 Route::group(['middleware' => ['jwt.verify']], function () {

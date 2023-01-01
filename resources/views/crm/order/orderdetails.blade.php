@@ -14,7 +14,7 @@
                                 <h2 class="order-number">
                                     #<span>{{$show->order_number}}</span>
                                 </h2>
-                                <button class="btn btn-sm paid-btn">Paid</button>
+                                <!-- <button class="btn btn-sm paid-btn">Paid</button> -->
                                 <button class="btn btn-sm unfulfilled-btn">{{$show->status}}</button>
 
                                 <div class="order-date-group">
@@ -24,7 +24,7 @@
                             </div>
                         </div>
                         <div class="order-detail-right-side">
-                            <button class="btn btn-sm fulfill-btn">{{$show->order_status}}</button>
+                            <button class="btn btn-sm fulfill-btn">{{ucwords($show->order_status)}}</button>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,9 @@
                     <p class="unfulfilled-bedge"> <span class="unfulfilled-icon"></span> <span class=" Unfulfilled-text">Products Details</span></p>
                     <div class="order-product-table">
                         <table class="table">
-                            @foreach($show->products as $product)
+                            <?php $subTotal = 0;
+                            $count = 0; ?>
+                            @foreach($show->products as $count=>$product)
                             <?php $product = (object)$product; ?>
                             <tr>
                                 <td>
@@ -48,7 +50,7 @@
                                             <img src="{{$product->image ?? defaultImg()}}" class="img-fluid" alt="">
                                         </div>
                                         <div class="order-product-details">
-                                            <p class="product-name">{{$product->name}}</p>
+                                            <p class="product-name">{{ucwords($product->name)}}</p>
                                             <div class="order-product-specification">
                                                 <!-- <p>Color: Black</p>
                                                 <p>Size: US10</p> -->
@@ -60,9 +62,10 @@
                                 <td>
                                     <div class="order-product-price">
                                         <span class="new-price">{{$product->price}}</span>
-                                        <span class="old-price">{{($product->price)*1.5}}</span>
+                                        <span class="old-price">{{!empty($product->offer_price)?$product->offer_price:''}}</span>
                                     </div>
                                 </td>
+                                <td>x</td>
                                 <td>
                                     <div class="order-product-quantity">
                                         <p>{{$product->qty}}</p>
@@ -70,12 +73,16 @@
                                 </td>
                                 <td>
                                     <div class="order-total-price">
-                                        <p>{{($product->qty)*($product->price)}}</p>
+                                        @php($price = $product->qty*$product->price)
+                                        <p>{!!rupees($price)!!}</p>
                                     </div>
                                 </td>
                             </tr>
+                            <?php
+                            $subTotal += $price;
+                            ?>
                             @endforeach
-                          
+
                         </table>
                     </div>
                 </div>
@@ -107,8 +114,8 @@
                         <table class="table">
                             <tbody>
                                 <tr>
-                                    <td>Subtotal <span>(2 items)</span></td>
-                                    <td>$314.00</td>
+                                    <td>Subtotal <span>({{$count+1}} items)</span></td>
+                                    <td>{{$subTotal}}</td>
                                 </tr>
                                 <tr>
                                     <td>Delivery </td>
@@ -122,7 +129,7 @@
                             <tfoot>
                                 <tr>
                                     <td>Total paid by customer</td>
-                                    <td>$334.00</td>
+                                    <td>{{$subTotal}}</td>
                                 </tr>
                             </tfoot>
 
@@ -159,12 +166,14 @@
                     </div>
                 </div>
             </div>
-
+            <?php
+            // echo "<pre>";
+            // print_r($show->toArray());
+            // die; 
+            ?>
             <div class="col-md-4">
                 <div class="customer-details">
-                    <h5>
-                        Customer
-                    </h5>
+                    <h5>Customer</h5>
 
                     <div class="customer-profile">
                         <div class="customer-profile-box">
@@ -188,7 +197,7 @@
                                 <i class="fa-solid fa-rectangle-list"></i>
                             </div>
                             <div class="customer-order-number-box">
-                                <span>5 Orders</span>
+                                <span>{{$totalOrder}} Orders</span>
                             </div>
                         </div>
                         <div class="customer-order-link">
@@ -200,10 +209,10 @@
                         <h6>Costomer Info</h6>
 
                         <div class="cutomer-info-group">
-                            <i class='bx bx-envelope'></i> <a href="mailto:abc@gmail.com">{{$show->User->email}}</a>
+                            <i class='bx bx-envelope'></i> <a href="mailto:{{$show->User->email}}">{{$show->User->email}}</a>
                         </div>
                         <div class="cutomer-info-group">
-                            <i class='bx bx-phone'></i> <a href="tel:+918888888888">{{$show->User->mobile_no}}</a>
+                            <i class='bx bx-phone'></i> <a href="tel:{{$show->User->mobile_no}}">{{$show->User->mobile_no}}</a>
                         </div>
                     </div>
 
@@ -222,7 +231,7 @@
                     <div class="customer-address">
                         <h6>Billing Address</h6>
                         <address>
-                        <p>{{$show->shipping_details['name']}}</p>
+                            <p>{{$show->shipping_details['name']}}</p>
                             <p>{{$show->billing_details['email']}}</p>
                             <p>{{$show->billing_details['city']}}</p>
                             <p>{{$show->billing_details['phone']}}</p>

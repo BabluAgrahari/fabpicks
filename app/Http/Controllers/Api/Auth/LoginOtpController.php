@@ -14,6 +14,85 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 class LoginOtpController extends Controller
 {
 
+    public function checkUserExistsPhone(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'mobile_no' => 'required|numeric|digits:10',
+        ]);
+
+        if ($validator->fails())
+            return $this->validationRes($validator->messages());
+
+        $user = User::where('mobile_no', $request->mobile_no)->first();
+
+        if (empty($user))
+            return $this->unauthorizedRes('User not found! Please sign up');
+
+        return $this->successRes('User found');
+    }
+
+    public function loginWithPhone(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'mobile_no' => 'required|numeric|digits:10',
+        ]);
+
+        if ($validator->fails())
+            return $this->validationRes($validator->messages());
+
+        $user = User::where('mobile_no', $request->mobile_no)->first();
+
+        if (empty($user))
+            return $this->unauthorizedRes('User not found! Please sign up');
+
+
+
+        $token = JWTAuth::fromUser($user);
+        if (!$token)
+            return $this->unauthorizedRes('Invalid Credentials.');
+
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+    }
+  
+  	public function loginWithEmail(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'email' => 'required',
+        ]);
+
+        if ($validator->fails())
+            return $this->validationRes($validator->messages());
+
+        $user = User::where('email', $request->email)->first();
+
+        if (empty($user))
+            return $this->unauthorizedRes('User not found! Please sign up');
+
+
+
+        $token = JWTAuth::fromUser($user);
+        if (!$token)
+            return $this->unauthorizedRes('Invalid Credentials.');
+
+        return response()->json([
+            'status' => true,
+            'code' => 200,
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
+    }
+
     public function otp(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -37,7 +116,7 @@ class LoginOtpController extends Controller
 
         $id = $user->_id;
         $update = User::find($id);
-        $update->otp = rand(1234,9999);
+        $update->otp = rand(1234, 9999);
         $update->expire_at = strtotime(Carbon::now()->addMinutes(5));
 
         if ($update->save())
