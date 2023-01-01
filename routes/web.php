@@ -108,7 +108,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::get('order', [OrderController::class, 'index']);
     Route::get('order-details/{id}', [OrderController::class, 'details']);
     Route::post('order/{id}', [OrderController::class, 'update']);
-
+    Route::get('order-cancel/{id}', [OrderController::class, 'orderCancel']);
 
     Route::get('product-listing', [ProductListingController::class, 'productListing'])->middleware('can:isAdmin');
 
