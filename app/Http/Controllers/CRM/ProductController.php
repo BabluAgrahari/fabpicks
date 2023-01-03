@@ -31,10 +31,10 @@ class ProductController extends Controller
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
 
-            $request->request->remove('page');
-            $request->request->remove('perPage');
-            $data['filter']  = $request->all();
-
+            unset($request['perPage']);
+            unset($request['page']);
+            $data['filter'] = $request->all();
+            
             return view('crm.product.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);

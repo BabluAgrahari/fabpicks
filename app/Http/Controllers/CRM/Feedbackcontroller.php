@@ -28,9 +28,9 @@ class FeedbackController extends Controller
         $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
         $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
 
-        $request->request->remove('page');
-        $request->request->remove('perPage');
-        $data['filter']  = $request->all();
+        unset($request['perPage']);
+        unset($request['page']);
+        $data['filter'] = $request->all();
         return view('crm/feedback/list',$data);
     }
 }

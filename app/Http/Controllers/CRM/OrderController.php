@@ -8,12 +8,16 @@ use App\Models\Order;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
     public function index(Request $request)
     {
         try {
+
+            Log::critical('demo');
+
             $query = Order::query();
 
             if (!empty($request->order_number))
@@ -30,15 +34,10 @@ class OrderController extends Controller
 
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
-
-            $request->request->remove('page');
-            $request->request->remove('perPage');
-            $request->except(['perPage', 'page']);
-            // $request->request->remove('perPage');
-            // unset($request['perPage']);
-            $data['filter']  = $request->all();
-            // print_r($data['filter']);
-            // die;
+            unset($request['perPage']);
+            unset($request['page']);
+            $data['filter'] = $request->all();
+ 
             return view('crm/order/list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);

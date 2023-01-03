@@ -44,8 +44,8 @@ class OrderController extends Controller
     {
         try {
             $user = User::find(Auth::user()->_id);
-            // if (empty($user) || $user->trail_point < 1)
-            //     return $this->failRes('Trail Point not Avaliable.');
+            if (empty($user) || $user->trail_point < 1)
+                return $this->failRes('Trail Point not Avaliable.');
 
             $user->trail_point = (int)$user->trail_point - (int)$request->trail_point;
             $user->save();

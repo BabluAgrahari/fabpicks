@@ -3,6 +3,7 @@
 namespace App\Libraries\Couriers;
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Support\Facades\Http;
 
 class DTDC
@@ -125,11 +126,17 @@ class DTDC
                         $status = 'delivered';
                         break;
                     default:
-                        $status = '';
+                        $status = $status;
                         break;
                 }
                 $order->courier_status = $status;
                 $order->save();
+
+                if ($order->status == 'delivered') {
+                    $user = User::find($order->user_id);
+                    $user->trail_point = 6;
+                    $user->save();
+                }
             }
         }
 

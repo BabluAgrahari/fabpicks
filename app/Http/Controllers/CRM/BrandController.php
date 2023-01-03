@@ -31,9 +31,9 @@ class BrandController extends Controller
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
 
-            $request->request->remove('page');
-            $request->request->remove('perPage');
-            $data['filter']  = $request->all();
+            unset($request['perPage']);
+            unset($request['page']);
+            $data['filter'] = $request->all();
             return view('crm.brand.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);
@@ -115,7 +115,7 @@ class BrandController extends Controller
         try {
 
             $save = Brand::find($request->id);
-// pr($request->all());die;
+            // pr($request->all());die;
             $save->status = (int)$request->status;
 
             $save->save();
@@ -133,7 +133,7 @@ class BrandController extends Controller
 
     public function export(Request $request)
     {
-        
-         return Excel::download(new BrandExport($request), 'brand.xlsx');
+
+        return Excel::download(new BrandExport($request), 'brand.xlsx');
     }
 }

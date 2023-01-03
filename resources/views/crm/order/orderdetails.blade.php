@@ -54,26 +54,28 @@
                                             <div class="order-product-specification">
                                                 <!-- <p>Color: Black</p>
                                                 <p>Size: US10</p> -->
-                                                <p>{{$product->sku}}</p>
+                                                <p>{{!empty($product->sku)?$product->sku:''}}</p>
                                             </div>
                                         </div>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="order-product-price">
-                                        <span class="new-price">{{$product->price}}</span>
+                                        <span class="new-price">{{$product->price ??0}}</span>
                                         <span class="old-price">{{!empty($product->offer_price)?$product->offer_price:''}}</span>
                                     </div>
                                 </td>
                                 <td>x</td>
                                 <td>
                                     <div class="order-product-quantity">
-                                        <p>{{$product->qty}}</p>
+                                        <p>{{$product->qty??0}}</p>
                                     </div>
                                 </td>
                                 <td>
                                     <div class="order-total-price">
-                                        @php($price = $product->qty*$product->price)
+                                        <?php $price = !empty($product->qty) ? $product->qty : 0;
+                                        $qty = !empty($product->price) ? $product->price : 0;
+                                        $price = $price * $qty; ?>
                                         <p>{!!rupees($price)!!}</p>
                                     </div>
                                 </td>
@@ -92,11 +94,14 @@
                     <div class="order-devlivery-group">
                         <div class="order-delivery">
                             <div class="order-delivery-icon">
-                                <img src="{{$show->thumbnail ?? defaultImg()}}" alt="">
+                                <img src="{{ asset('/dtdc.png') ?? defaultImg()}}" alt="" style="height: 80px;
+    width: 180px;">
                             </div>
                             <div class="order-delivery-title">
-                                <h4>FedEx</h4>
-                                <span>First class package</span>
+                                <h4>{{ucwords($show->courier)}}</h4>
+                                <span class="d-flex">
+                                    <h6>Reference Number - </h6>&nbsp;{{!empty($show->response['reference_number'])?$show->response['reference_number']:''}}
+                                </span>
                             </div>
                         </div>
 
@@ -115,7 +120,7 @@
                             <tbody>
                                 <tr>
                                     <td>Subtotal <span>({{$count+1}} items)</span></td>
-                                    <td>{{$subTotal}}</td>
+                                    <td>{!!rupees($subTotal)!!}</td>
                                 </tr>
                                 <tr>
                                     <td>Delivery </td>
@@ -129,7 +134,7 @@
                             <tfoot>
                                 <tr>
                                     <td>Total paid by customer</td>
-                                    <td>{{$subTotal}}</td>
+                                    <td>{!!rupees($subTotal)!!}</td>
                                 </tr>
                             </tfoot>
 
@@ -219,25 +224,25 @@
                     <div class="customer-address">
                         <h6>Shipping Address</h6>
                         <address>
-                            <p>{{$show->shipping_details['name']}}</p>
-                            <p>{{$show->shipping_details['email']}}</p>
-                            <p>{{$show->shipping_details['city']}}</p>
-                            <p>{{$show->shipping_details['phone']}}</p>
-                            <p>{{$show->shipping_details['state']}}</p>
-                            <p>{{$show->shipping_details['pincode']}}</p>
-                            <p>{{$show->shipping_details['address']}}</p>
+                            <p>{{$show->shipping_details['name']??''}}</p>
+                            <p>{{$show->shipping_details['email']??''}}</p>
+                            <p>{{$show->shipping_details['city']??''}}</p>
+                            <p>{{$show->shipping_details['phone']??''}}</p>
+                            <p>{{$show->shipping_details['state']??''}}</p>
+                            <p>{{$show->shipping_details['pincode']??''}}</p>
+                            <p>{{$show->shipping_details['address']??''}}</p>
                         </address>
                     </div>
                     <div class="customer-address">
                         <h6>Billing Address</h6>
                         <address>
-                            <p>{{$show->shipping_details['name']}}</p>
-                            <p>{{$show->billing_details['email']}}</p>
-                            <p>{{$show->billing_details['city']}}</p>
-                            <p>{{$show->billing_details['phone']}}</p>
-                            <p>{{$show->billing_details['state']}}</p>
-                            <p>{{$show->billing_details['pincode']}}</p>
-                            <p>{{$show->billing_details['address']}}</p>
+                            <p>{{$show->shipping_details['name']??''}}</p>
+                            <p>{{$show->billing_details['email']??''}}</p>
+                            <p>{{$show->billing_details['city']??''}}</p>
+                            <p>{{$show->billing_details['phone']??''}}</p>
+                            <p>{{$show->billing_details['state']??''}}</p>
+                            <p>{{$show->billing_details['pincode']??''}}</p>
+                            <p>{{$show->billing_details['address']??''}}</p>
                         </address>
                     </div>
                 </div>

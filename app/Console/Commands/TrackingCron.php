@@ -6,6 +6,7 @@ use App\Libraries\Couriers\DTDC;
 use App\Models\Order;
 use App\Models\Survay;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Log;
 
 class TrackingCron extends Command
 {
@@ -41,6 +42,7 @@ class TrackingCron extends Command
         $status = $dtdc->tracking($reference_number);
 
         $this->info('Successfully.');
+        Log::critical('demo');
         return Command::SUCCESS;
     }
 }

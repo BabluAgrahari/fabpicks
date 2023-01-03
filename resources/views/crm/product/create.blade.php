@@ -116,6 +116,7 @@
                             <label for="product-type">Product Type </label>
                             <select name="product_type" id="productType" class="form-select">
                                 <option value="trial_store">Trial Store</option>
+                              	<option value="no_trial_product">No Trail Store</option>
                                 <option value="brand_store">Brand Store</option>
                                 <option value="hot_deals">Hot Deals</option>
                                 <option value="rewards_store">Rewards Store</option>
@@ -317,15 +318,16 @@
 
         let val = $(this).val();
 
-        if (val == 'trial_store' || val == 'brand_store') {
-            let disabled = (val == 'brand_store') ? 'disabled' : '';
-            let value = (val == 'brand_store') ? 0 : '';
+        if (val == 'trial_store' || val == 'brand_store' || val == 'no_trial_product') {
+          
+            let disabled = (val == 'brand_store' || val == 'no_trial_product') ? 'disabled' : '';
+            let value = (val == 'brand_store' || val == 'no_trial_product') ? 0 : '';
             let span = (val == 'trial_store') ? '<span class="note">Trial Point should not greater than 6.</span>' : '';
 
             $('#saleTrail').html(`<label for="market-price1">Trial Point</label>
                             <input type="text" name="trial_point" value="${value}" class="form-control" placeholder="Trial Point" ${disabled}>
                             <span class="text-danger" id="trial_point_msg"></span>${span}`);
-        } else if (val == 'fixed_price' || val == 'rewards_store') {
+        } else if (val == 'hot_deals' || val == 'rewards_store') {
 
             let required = (val == 'rewards_store') ? '*' : '';
             $('#rewareField').html(required);

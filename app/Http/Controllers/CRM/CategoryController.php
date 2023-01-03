@@ -29,10 +29,9 @@ class CategoryController extends Controller
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
 
-            $request->safe()->except(['perPage','page']);
-            $request->request->remove('perPage');
             unset($request['perPage']);
-            $data['filter']  = $request->all();
+            unset($request['page']);
+            $data['filter'] = $request->all();
 
             return view('crm.category.list', $data);
         } catch (Exception $e) {
