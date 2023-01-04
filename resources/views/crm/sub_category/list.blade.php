@@ -5,7 +5,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-9">
-                <h5>Sub Category</h5>
+                <h5><x-icon type="list" />Sub Category</h5>
             </div>
             <div class="col-md-3 product-btn-group d-flex justify-content-end">
                 @if(!empty($filter))

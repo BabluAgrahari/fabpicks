@@ -7,7 +7,7 @@
         <div class="row">
 
             <div class="col-md-9">
-                <h4>Shipping Cost</h4>
+                <h5><x-icon type="list" />Shipping Cost</h5>
             </div>
 
             <div class="col-md-3 product-btn-group d-flex justify-content-end">
@@ -29,7 +29,7 @@
                         </div>
                         <div class="col-md-3">
                             <label>Destination State <cspan class="text-danger">*</cspan></label>
-                            <select name="destination_state" id="destinationState" class="form-control">
+                            <select name="destination_state" id="destinationState" class="form-select">
                                 <option value="">Select</option>
                                 @foreach(config('global.state') as $state)
                                 <option value="{{$state}}">{{ucwords($state)}}</option>

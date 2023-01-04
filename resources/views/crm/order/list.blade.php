@@ -6,7 +6,7 @@
   <div class="card-header ">
     <div class="row">
       <div class="col-md-9">
-        <h5>Order List</h5>
+        <h5><x-icon type="list" />Order List</h5>
       </div>
       <div class="col-md-3 ">
         <div class=" product-btn-group d-flex justify-content-end">
@@ -46,7 +46,7 @@
               <tr>
                 <th scope="row">{{++$key}}</th>
                 <td>{{$list->order_number}}</td>
-                <td>{{date('d-m-Y',(int)$list->order_date)}}</td>
+                <td>{{date('d-m-Y',$list->order_date)}}</td>
                 <td>{{$list->amount}}</td>
                 <td>{{$list->trail_point}}</td>
                 <td>{{!empty($list->products)?count($list->products):0}}</td>

@@ -6,7 +6,7 @@
         <div class="row">
 
             <div class="col-md-11">
-                <h4>Discount</h4>
+                <h5>Discount</h5>
             </div>
 
             <div class="col-md-1 ">

@@ -6,7 +6,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-3">
-                <h5>Client</h5>
+                <h5><x-icon type="list" />Client</h5>
             </div>
             <div class="col-md-9 product-btn-group d-flex justify-content-end">
                 @if(!empty($filter))

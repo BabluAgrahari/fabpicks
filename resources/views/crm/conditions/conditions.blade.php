@@ -6,7 +6,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-12">
-                <h4>Teams and Conditions</h4>
+                <h5><x-icon type="list" />Teams and Conditions</h5>
             </div>
         </div>
     </div>

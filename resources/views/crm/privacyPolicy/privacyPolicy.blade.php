@@ -7,7 +7,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-12">
-                <h4>Privacy Policy</h4>
+                <h5><x-icon type="list" />Privacy Policy</h5>
             </div>
         </div>
     </div>

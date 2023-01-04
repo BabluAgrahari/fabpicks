@@ -5,7 +5,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-12">
-                <h4>General Setting</h4>
+                <h5><x-icon type="list" />General Setting</h5>
             </div>
         </div>
     </div>

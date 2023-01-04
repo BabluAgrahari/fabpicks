@@ -5,7 +5,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-3">
-                <h5>All Products </h5>
+                <h5><x-icon type="list" />All Products </h5>
             </div>
             <div class="col-md-9 product-btn-group d-flex justify-content-end">
                 @if(!empty($filter))
@@ -54,7 +54,7 @@
                                 <td>{{$list->rewards_point}}</td>
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" _id="{{$list->sub_category}}" product_id="{{$list->_id}}" class="view text-info"><i class="ri-add-circle-line"></i></a>
+                                        <a href="javascript:void(0)" _id="{{$list->sub_category}}" product_id="{{$list->_id}}" class="view text-info"><i class="fa-solid fa-circle-plus"></i></a>
                                         <a href="{{url('crm/product/'.$list->_id)}}/edit" class="edit text-info">
                                             <x-icon type="edit" />
                                         </a>
@@ -144,7 +144,7 @@
                         list += `<tr><td>${++index}</td>
                         <td><img src="${val.image}" style="height:50px; width:60px;"></td>
                         <td>${val.name}</td>
-                        <td> <input type="text" _id="${val._id}" value="${val.sort}" name="sort" class="updatesort form-control form-control-sm" > </td>
+                        <td> <input type="text" _id="${val._id}" value="${val.sort??0}" name="sort" class="updatesort form-control form-control-sm" > </td>
                         
                         </tr>`;
                     });

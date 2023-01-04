@@ -6,7 +6,7 @@
     <div class="card-header">
         <div class="row">
             <div class="col-md-12">
-                <h4 class="page-title">About Us</h4>
+                <h5 class="page-title"><x-icon type="list" />About Us</h5>
             </div>
         </div>
     </div>

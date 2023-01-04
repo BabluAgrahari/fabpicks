@@ -34,7 +34,7 @@ class ProductController extends Controller
             unset($request['perPage']);
             unset($request['page']);
             $data['filter'] = $request->all();
-            
+
             return view('crm.product.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);
@@ -205,9 +205,9 @@ class ProductController extends Controller
             $save->sort        = $request->sort;
 
             if ($save->save())
-                return response(['status' => true, 'msg' => 'Sort Updared Successfully.']);
+                return response(['status' => true, 'msg' => 'Sort Updated Successfully.']);
 
-            return response(['status' => false, 'msg' => 'Sort Not Update.']);
+            return response(['status' => false, 'msg' => 'Sort not Update.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }
