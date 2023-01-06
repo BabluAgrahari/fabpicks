@@ -21,7 +21,7 @@
                         <input type="hidden" value="{{$res->id}}">
                         <div class="field-group">
                             <label for="about-us-content">Teams and Conditions Content</label>
-                            <textarea name="conditions" id="conditions" class="form-control textediter" required>{{$res->conditions}}</textarea>
+                            <textarea name="conditions" id="conditions" class="form-control textediter">{{$res->conditions}}</textarea>
                         </div>
                     </div>
                     <button class="btn btn-success mt-5 text-center"><x-icon type="update"/>Update</button>

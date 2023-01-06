@@ -104,7 +104,7 @@
 
                         <div class="field-group ">
                             <label for="product-description ">Description</label>
-                            <textarea name="description" id="description" rows="4" placeholder="Enter Discription" class="form-control"></textarea>
+                            <textarea name="description" id="description" rows="4" placeholder="Enter Discription" class="textediter form-control"></textarea>
                             <span class="text-danger" id="description_msg"></span>
                         </div>
 
@@ -116,7 +116,7 @@
                             <label for="product-type">Product Type </label>
                             <select name="product_type" id="productType" class="form-select">
                                 <option value="trial_store">Trial Store</option>
-                              	<option value="no_trial_product">No Trail Store</option>
+                                <option value="no_trial_product">No Trail Store</option>
                                 <option value="brand_store">Brand Store</option>
                                 <option value="hot_deals">Hot Deals</option>
                                 <option value="rewards_store">Rewards Store</option>
@@ -173,12 +173,12 @@
                             <div class="form-group col-md-6">
                                 <label>Thumbnail</label>
                                 <div class="input-group">
-                                    <input type="file" name="thumbnail" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                    <input type="file" name="thumbnail" class="imgInp form-control" id="" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                 </div>
                                 <span class="text-danger" id="thumbnail_msg"></span>
                             </div>
                             <div class="form-group col-md-6">
-                                <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('150x100')}}" class="img-fluid" alt=""></div>
+                                <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('100x80')}}" id="avatar" class="img-fluid" alt=""></div>
                             </div>
 
                             <div class="form-group col-md-12">
@@ -288,7 +288,7 @@
 
                                     <div>
                                         <label>Description</label>
-                                        <textarea name="details[0][description]" id="description" placeholder="Enter Discription" rows="1" class="form-control"></textarea>
+                                        <textarea name="details[0][description]" id="description" placeholder="Enter Discription" rows="1" class="textediter form-control"></textarea>
                                     </div>
                                 </td>
 
@@ -319,7 +319,7 @@
         let val = $(this).val();
 
         if (val == 'trial_store' || val == 'brand_store' || val == 'no_trial_product') {
-          
+
             let disabled = (val == 'brand_store' || val == 'no_trial_product') ? 'disabled' : '';
             let value = (val == 'brand_store' || val == 'no_trial_product') ? 0 : '';
             let span = (val == 'trial_store') ? '<span class="note">Trial Point should not greater than 6.</span>' : '';
@@ -391,7 +391,7 @@
                         </td>
                         <td>
                             <div>
-                                <textarea name="details[${i}][description]" rows="1" id="product-description"  placeholder="Enter Discription"  class="form-control" required></textarea>
+                                <textarea name="details[${i}][description]" rows="1" id="product-description"  placeholder="Enter Discription"  class="form-control textediter"></textarea>
                             </div>
                             </td>
                                 <td>

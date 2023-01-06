@@ -5,6 +5,11 @@
         color: red !important;
         font-size: 14px !important;
     }
+
+    .avatar {
+        width: 180px;
+        height: 100px;
+    }
 </style>
 
 <body>
@@ -106,9 +111,12 @@
     <script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/4/tinymce.min.js"></script>
     <script src="{{asset('assets')}}/js/texteditor.js"></script>
     <script src="{{asset('assets')}}/js/toast/src/jquery.toast.js"></script>
+    <script src="{{asset('assets')}}/js/custom.js"></script>
+    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
+    <!-- <script src="https://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script> -->
 
     <script>
-
     </script>
 
     <script>
@@ -119,7 +127,6 @@
             let icon = status ? '<i class="fa-regular fa-circle-check"></i>' : '<i class="fa-regular fa-circle-xmark"></i>';
             // if(customSelector)
             // let selector = customSelector;
-
 
             $('#' + selector).html(`<div class="alert alert-box alert-${classN} d-flex align-items-center w-100" role="alert">
            ${icon}
@@ -203,24 +210,29 @@
         //show file name
         $(document).on('change', 'input[type=file]', function() {
             var fileName = this.files[0].name;
-            $(this).parent().find('label').html(fileName);
+            $(this).html(fileName);
         })
 
         /*start single image preview*/
-        $(document).on('change', '#imgInp', function() {
-            var fileName = imgInp.files[0].name;
+        $(document).on('change', '.imgInp', function(e) {
+            var fileName = e.target.files[0].name;
             $('.file-name').html(fileName);
-            const [file] = imgInp.files
-            if (file) {
-                $('#avatar').show();
+            const [file] = e.target.files
+            if (file)
                 avatar.src = URL.createObjectURL(file)
-            }
+        });
+        $(document).on('change', '.imgInp1', function(e) {
+            var fileName = e.target.files[0].name;
+            $('.file-name').html(fileName);
+            const [file] = e.target.files
+            if (file)
+                avatar1.src = URL.createObjectURL(file)
         });
         /*end single image preview*/
 
         //for convert into upper case first letter
         function ucwords(str = false) {
-           return str.charAt(0).toUpperCase() + str.slice(1);
+            return str.charAt(0).toUpperCase() + str.slice(1);
         }
         //for update status
         function chagneStatus(id = false, val = false, selector = false, url = false) {
@@ -248,6 +260,10 @@
                 }
             })
         }
+
+        setTimeout(function() {
+            $('.mce-notification-inner').hide();
+        },5000);
     </script>
     @stack('modal')
     @stack('js')

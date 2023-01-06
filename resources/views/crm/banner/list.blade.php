@@ -63,12 +63,12 @@
     <div class="modal-dialog modal-dialog-centered  ">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="brandLabel">Update Banner</h1>
+                <h1 class="modal-title fs-6" id="brandLabel">Update Banner</h1>
                 <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
-                <div class="container ">
+                <!-- <div class="container "> -->
 
                     <div id="message"></div>
 
@@ -104,7 +104,7 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                <!-- </div> -->
             </div>
 
         </div>
@@ -149,12 +149,12 @@
             contentType: false,
             processData: false,
             beforeSend: function() {
-                $('#save').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Updating`).attr('disabled', true);
+                $('#update').html(`<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>&nbsp;Updating`).attr('disabled', true);
             },
             success: function(res) {
 
                 //hide loader
-                $('#save').html('Update').removeAttr('disabled');
+                $('#update').html('Update').removeAttr('disabled');
 
                 /*Start Validation Error Message*/
                 $('span.text-danger').html('');

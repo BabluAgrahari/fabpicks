@@ -47,8 +47,8 @@
                             @foreach($lists as $key=>$list)
                             <tr>
                                 <th scope="row">{{++$key}}</th>
-                                <td>{{ucWords($list->name)}}</td>
-                                <td>{{ucWords($list->description)}}</td>
+                                <td>{{ucwords($list->name)}}</td>
+                                <td>{!!$list->description!!}</td>
                                 <td>{{$list->sort}}</td>
                                 <td>{!!listStatus($list->status,$list->_id)!!}</td>
                                 <td><img src="{{$list->banner ?? defaultImg()}}" style="height:50px; width:60px;"></td>
@@ -97,18 +97,8 @@
 
                     <div class="field-group">
                         <label for="description ">Description</label>
-                        <textarea name="description" id="description" placeholder="Enter Description"  class="form-control"></textarea>
+                        <textarea name="description" id="description" placeholder="Enter Description" class="textediter form-control"></textarea>
                         <span class="text-danger" id="description_msg"></span>
-                    </div>
-
-                    <div class="field-group">
-                        <label for="banner">Banner</label>
-                        <input type="file" name="banner" id="banner" class="form-control">
-                    </div>
-
-                    <div class="field-group">
-                        <label for="icon">Icon</label>
-                        <input type="file" name="icon" id="icon" class="form-control">
                     </div>
 
                     <div class="row">
@@ -126,7 +116,20 @@
                             </select>
                             <span class="text-danger" id="sort_msg"></span>
                         </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="field-group col-md-9">
+                            <label for="banner">Banner</label>
+                            <input type="file" name="banner" class="imgInp form-control">
+                        </div>
+                        <div class="field-group col-md-3"><img src="{{defaultImg('80x80')}}" id="avatar" style="width:80px; height:80px;"></div>
+
+                        <div class="field-group col-md-9">
+                            <label for="icon">Icon</label>
+                            <input type="file" name="icon" id="icon" class="imgInp1 form-control">
+                        </div>
+                        <div class="field-group col-md-3"><img src="{{defaultImg('80x80')}}" id="avatar1" style="width:80px; height:80px;"></div>
 
                     </div>
 
@@ -232,8 +235,9 @@
                     $('#name').val(res.record.name);
                     $('#description').val(res.record.description);
                     $('#sort').val(res.record.sort);
-                    let status = res.record.status ? true : false;
-                    $('#status').prop('checked', status);
+                    $('#status').val(res.record.status);
+                    $('#avatar').attr('src', res.record.banner);
+                    $('#avatar1').attr('src', res.record.icon);
 
                     $('#CategoryLabel').html('Edit Category');
                     $('#save').html('Update');

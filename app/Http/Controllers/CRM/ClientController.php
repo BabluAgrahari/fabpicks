@@ -55,7 +55,7 @@ class ClientController extends Controller
     {
         try {
             $save = new Client();
-            $save->Brand_id          = $request->Brand_id;
+            $save->brand_id             = $request->brand_id;
             $save->store_name           = $request->store_name;
             $save->email                = $request->email;
             $save->gstin                = $request->gstin;

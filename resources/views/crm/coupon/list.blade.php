@@ -5,11 +5,11 @@
     <div class="card-header ">
         <div class="row">
 
-            <div class="col-md-11">
-                <h5>Discount</h5>
+            <div class="col-md-10">
+                <h5><x-icon type="list" />Discount</h5>
             </div>
 
-            <div class="col-md-1 ">
+            <div class="col-md-2 ">
                 <button type="button" class="btn btn-success" id="addcoupon">
                     <x-icon type="add" /> Add
                 </button>
@@ -110,7 +110,7 @@
                                     <button type="reset" class="btn btn-danger">
                                         <x-icon type="reset" />Reset
                                     </button>
-                                    <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
+                                    <button type="submit" class="btn btn-success" id="save">Add</button>
                                 </div>
                             </div>
 

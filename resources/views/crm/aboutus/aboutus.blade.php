@@ -4,11 +4,7 @@
 
 <div class="card " id="test">
     <div class="card-header">
-        <div class="row">
-            <div class="col-md-12">
-                <h5 class="page-title"><x-icon type="list" />About Us</h5>
-            </div>
-        </div>
+        <h5><x-icon type="list" />About Us</h5>
     </div>
 
     <div class="card-body">
@@ -21,10 +17,10 @@
                         <input type="hidden" value="{{$res->id}}">
                         <div class="field-group">
                             <label for="about-us-content">About Us Content</label>
-                            <textarea name="aboutus" id="aboutus" class="textediter form-control" required>{{$res->aboutus}}</textarea>
+                            <textarea name="aboutus" id="aboutus" class="textediter form-control">{{$res->aboutus}}</textarea>
                         </div>
                     </div>
-                    <button class="btn btn-success mt-5 text-center"><x-icon type="update"/>Update</button>
+                    <button class="btn btn-success mt-5 text-center"><x-icon type="update" />Update</button>
                 </div>
             </form>
 
@@ -32,4 +28,4 @@
     </div>
 </div>
 
-    @endsection
+@endsection

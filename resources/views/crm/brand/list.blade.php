@@ -54,7 +54,7 @@
                                 <th scope="row">{{++$key}}</th>
                                 <td><img src="{{$list->logo ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>{{ucWords($list->name)}}</td>
-                                <td>{{$list->description}}</td>
+                                <td>{!!$list->description!!}</td>
                                 <td>{{$list->sort}}</td>
                                 <td>{!!listStatus($list->status,$list->_id)!!}</td>
                                 @can('isAdmin')
@@ -110,7 +110,7 @@
 
                                 <div class="field-group">
                                     <label for="description ">Description</label>
-                                    <textarea name="description" id="description" rows="3" placeholder="Enter Description" rows="1" class="form-control"></textarea>
+                                    <textarea name="description" id="description" rows="3" placeholder="Enter Description" rows="1" class="textediter form-control"></textarea>
                                     <span class="text-danger" id="description_msg"></span>
                                 </div>
 
@@ -132,11 +132,13 @@
                                     </div>
                                 </div>
 
-                                <div class="field-group">
+                                <div class="field-group col-md-9">
                                     <label for="banner">Logo</label>
-                                    <input type="file" name="logo" id="" class="form-control">
+                                    <input type="file" name="logo" id="" class="imgInp form-control">
                                     <span class="text-danger" id="logo_msg"></span>
                                 </div>
+
+                                <div class="field-group col-md-3"><img src="{{defaultImg('80x80')}}" id="avatar" style="width:80px; height:80px;"></div>
 
 
                                 <div class="col-md-12 mb-1 text-center">
@@ -246,8 +248,7 @@
                     $('#brandName').val(res.record.name);
                     $('#description').val(res.record.description);
                     $('#sort').val(res.record.sort);
-                    let status = res.record.status ? true : false;
-                    $('#status').prop('checked', status);
+                    $('#status').val(res.record.status);
 
                     $('#brandLabel').html('Edit Brand');
                     $('#save').html(`<x-icon type="update" />Update`);

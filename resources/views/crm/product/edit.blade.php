@@ -40,7 +40,7 @@
                                 <select name="tax_id" id="tax_id" class="form-select js-example-basic-single">
                                     <option value="">Select</option>
                                     @foreach($taxes as $val)
-                                    <option value="{{$val->_id}}"{{$val->_id==$res->tax_id?'selected':''}}>{{ucwords($val->name)}}</option>
+                                    <option value="{{$val->_id}}" {{$val->_id==$res->tax_id?'selected':''}}>{{ucwords($val->name)}}</option>
                                     @endforeach
                                 </select>
                                 <span class="text-danger" id="tax_id_msg"></span>
@@ -106,7 +106,7 @@
 
                         <div class="field-group ">
                             <label for="product-description ">Description</label>
-                            <textarea name="description" id="description" rows="4" class="form-control">{{$res->description}}</textarea>
+                            <textarea name="description" id="description" rows="4" class="textediter form-control">{{$res->description}}</textarea>
                             <span class="text-danger" id="description_msg"></span>
                         </div>
 
@@ -174,12 +174,12 @@
                             <div class="form-group col-md-6">
                                 <label>Thumbnail</label>
                                 <div class="input-group">
-                                    <input type="file" name="thumbnail" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                    <input type="file" name="thumbnail" class="imgInp form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                 </div>
                                 <span class="text-danger" id="thumbnail_msg"></span>
                             </div>
                             <div class="form-group col-md-6">
-                                <div class="box-body"><img src="{{$res->image ?? defaultImg('150x100')}}" class="img-fluid" alt=""></div>
+                                <div class="box-body"><img src="{{$res->image ?? defaultImg('100x80')}}" id="avatar" class="img-fluid" alt=""></div>
                             </div>
 
                             <div class="form-group mt-3 col-md-12">
@@ -307,7 +307,7 @@
 
                                 <td>
                                     <div> @if($loop->first)<label>Description</label>@endif
-                                        <textarea name="details[{{$key}}][description]" rows="1" placeholder="Description" class="form-control">{{!empty($detail['description'])?$detail['description']:''}}</textarea>
+                                        <textarea name="details[{{$key}}][description]" rows="1" placeholder="Description" class="textediter form-control">{{!empty($detail['description'])?$detail['description']:''}}</textarea>
                                     </div>
                                 </td>
 
@@ -331,7 +331,7 @@
                                 <td>
                                     <div>
                                         <label>Description</label>
-                                        <textarea name="details[0][description]" id="description" class="form-control"></textarea>
+                                        <textarea name="details[0][description]" id="description" class="textediter form-control"></textarea>
                                     </div>
                                 </td>
 
@@ -437,7 +437,7 @@
                         </td>
                         <td>
                             <div>
-                                <textarea name="details[${i}][description]" rows="1" id="product-description" class="form-control" required></textarea>
+                                <textarea name="details[${i}][description]" rows="1" id="product-description" class="textediter form-control"></textarea>
                             </div>
                             </td>
                                 <td>

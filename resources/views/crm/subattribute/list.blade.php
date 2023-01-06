@@ -19,7 +19,7 @@
                     <x-icon type="export" />Export
                 </a>
                 <button type="button" class="btn btn-success" id="AddSubAttribute" data-bs-toggle="modal" data-bs-target="#SubAttribute">
-                    <i class="ri-add-circle-line"></i> Add
+                    <x-icon type="add" /> Add
                 </button>
 
             </div>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="card-body">
-    @include('crm.subattribute.filter')
+        @include('crm.subattribute.filter')
         <div class="row">
             <div class="col-md-12 ">
                 <div class="table-responsive">
@@ -52,7 +52,7 @@
                                 <td><img src="{{$list->icon ?? defaultImg()}}" style="height:50px; width:60px;"> </td>
                                 <td>
                                     <div class="action-group">
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><x-icon type="edit"/></a>
+                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info"><x-icon type="edit" /></a>
                                     </div>
                                 </td>
                             </tr>
@@ -72,77 +72,76 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="SubAttributeLabel">Sub Attributes</h1>
+                <h1 class="modal-title fs-6" id="SubAttributeLabel">Sub Attributes</h1>
                 <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div id="message"></div>
+                <form id="SaveSubAttribute" action="{{url('crm/sub-attribute')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div id="put"></div>
 
-                <div class="container">
-                    <div id="message"></div>
-                    <form id="SaveSubAttribute" action="{{url('crm/sub-attribute')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div id="put"></div>
+                    <div class="row">
 
-                        <div class="row">
-
-                            <div class="col-md-12">
-                                <div class="field-group">
-                                    <label>Attribute</label>
-                                    <select name="attribute_id" class="form-control" id="attribute_id">
-                                        <option value="">Select</option>
-                                        @foreach($attributes as $attr)
-                                        <option value="{{$attr->_id}}">{{ucwords($attr->name)}}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger" id="attribute_id_msg"></span>
-                                </div>
-                            </div>
-
-                            <div class="col-md-12">
-                                <div class="field-group">
-                                    <label>Sub Attribute Name</label>
-                                    <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
-                                </div>
-                                <span class="text-danger" id="name_msg"></span>
+                        <div class="col-md-12">
+                            <div class="field-group">
+                                <label>Attribute</label>
+                                <select name="attribute_id" class="form-control" id="attribute_id">
+                                    <option value="">Select</option>
+                                    @foreach($attributes as $attr)
+                                    <option value="{{$attr->_id}}">{{ucwords($attr->name)}}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger" id="attribute_id_msg"></span>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="field-group">
-                                    <label for="icon">Icon</label>
-                                    <input type="file" name="icon" id="icon" class="form-control">
-                                </div>
+                        <div class="col-md-12">
+                            <div class="field-group">
+                                <label>Sub Attribute Name</label>
+                                <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
                             </div>
-                            <div class="col-md-6">
-                                <div class="field-group">
-                                    <label for="sort ">Sort</label>
-                                    <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
-                                </div>
-                                <span class="text-danger" id="sort_msg"></span>
+                            <span class="text-danger" id="name_msg"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-9">
+                            <div class="field-group">
+                                <label for="icon">Icon</label>
+                                <input type="file" name="icon" id="icon" class="form-control">
                             </div>
-                            <div class="col-md-6">
-                                <div class="field-group">
+                        </div>
+                        <div class="field-group col-md-3"><img src="{{defaultImg('80x80')}}" id="avatar" style="width:80px; height:80px;"></div>
+
+                        <div class="col-md-6">
+                            <div class="field-group">
+                                <label for="sort ">Sort</label>
+                                <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
+                            </div>
+                            <span class="text-danger" id="sort_msg"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="field-group">
                                 <label>Status</label>
-                                    <select class="form-select" name="status" id="status">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactivce</option>
-                                    </select>
-                                    <span class="text-danger" id="status_msg"></span>
-                                </div>
+                                <select class="form-select" name="status" id="status">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactivce</option>
+                                </select>
+                                <span class="text-danger" id="status_msg"></span>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="row">
-                            <div class="col-md-12 text-center">
+                    <div class="row">
+                        <div class="col-md-12 text-center">
                             <button type="reset" class="btn btn-danger">
-                                    <x-icon type="reset" />Reset
-                                </button>
-                                <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
-                            </div>
+                                <x-icon type="reset" />Reset
+                            </button>
+                            <button type="submit" class="btn btn-success" id="save">Add</button>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
 
@@ -156,8 +155,7 @@
 @push('js')
 
 <script>
-
-$(document).on('click', '.activeVer', function() {
+    $(document).on('click', '.activeVer', function() {
         let id = $(this).attr('_id');
         let val = $(this).attr('val');
         let selector = $(this);
@@ -236,8 +234,8 @@ $(document).on('click', '.activeVer', function() {
                     $('#attribute_id').val(res.record.attribute_id);
                     $('#name').val(res.record.name);
                     $('#sort').val(res.record.sort);
-                    let status = res.record.status ? true : false;
-                    $('#status').prop('checked', status);
+                    $('#status').val(res.record.status);
+                    $('#avatar').attr('src', res.record.icon);
 
                     $('#SubAttributeLabel').html('Edit Sub Attribute');
                     $('#save').html(`<x-icon type="update" />Update`);
