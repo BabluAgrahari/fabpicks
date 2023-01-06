@@ -232,6 +232,7 @@
             success: function(res) {
 
                 if (res.status) {
+                    textediter();
                     $('#name').val(res.record.name);
                     $('#description').val(res.record.description);
                     $('#sort').val(res.record.sort);

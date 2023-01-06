@@ -104,7 +104,7 @@
 
                         <div class="field-group ">
                             <label for="product-description ">Description</label>
-                            <textarea name="description" id="description" rows="4" placeholder="Enter Discription" class="textediter form-control"></textarea>
+                            <textarea name="description" id="description" rows="4" placeholder="Enter Discription" class="form-control"></textarea>
                             <span class="text-danger" id="description_msg"></span>
                         </div>
 
@@ -284,7 +284,7 @@
 
                         <div class="field-group col-md-8">
                             <label>Description</label>
-                            <textarea name="details[0][description]" id="description" placeholder="Enter Discription" rows="1" class="textediter form-control"></textarea>
+                            <textarea name="details[0][description]" id="textLabel0" placeholder="Enter Discription" rows="1" class="form-control"></textarea>
                         </div>
 
                         <!-- <table class="table table-borderless" id="myproductTable">
@@ -328,6 +328,8 @@
 @push('js')
 
 <script>
+    texteditor('description');
+    texteditor('textLabel0');
     $('#productType').change(function() {
 
         let val = $(this).val();
@@ -403,12 +405,13 @@
                         </div>
                         <div class="field-group col-md-1"> <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a></div>
                         <div class="field-group col-md-8">
-                            <textarea name="details[${i}][description]" rows="1" id="product-description"  placeholder="Enter Discription"  class="form-control textediter"></textarea>
+                            <textarea name="details[${i}][description]" id="textLabel${i}" rows="1" placeholder="Enter Discription" class="form-control"></textarea>
                         </div>
                         </div>`;
         $('#field_wrapper1').append(fieldHTML);
+        texteditor(`textLabel${i}`);
         i++;
-        textediter();
+        
     });
 
     function removeRow(id) {

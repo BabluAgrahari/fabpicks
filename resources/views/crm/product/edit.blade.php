@@ -357,6 +357,8 @@
 @push('js')
 
 <script>
+    texteditor('description');
+
     $('#productType').change(function() {
 
         let val = $(this).val();
@@ -367,16 +369,16 @@
             let span = (val == 'trial_store') ? '<span class="note">Trial Point should not greater than 6.</span>' : '';
 
             $('#saleTrail').html(`<label for="market-price1">Trial Point</label>
-                            <input type="text" name="trial_point" value="${value}" class="form-control" placeholder="Trial Point" ${disabled}>
-                            <span class="text-danger" id="trial_point_msg"></span>${span}`);
+<input type="text" name="trial_point" value="${value}" class="form-control" placeholder="Trial Point" ${disabled}>
+<span class="text-danger" id="trial_point_msg"></span>${span}`);
         } else if (val == 'hot_deals' || val == 'rewards_store') {
 
             let required = (val == 'rewards_store') ? '*' : '';
             $('#rewareField').html(required);
 
             $('#saleTrail').html(` <label for="market-price1">Sale Price</label>
-                            <input type="text" name="sale_price" class="form-control" placeholder="Sale Price">
-                            <span class="text-danger" id="sale_price_msg"></span>`);
+<input type="text" name="sale_price" class="form-control" placeholder="Sale Price">
+<span class="text-danger" id="sale_price_msg"></span>`);
         }
     })
 
@@ -385,37 +387,37 @@
     $('#add_more').click(function() {
         i = parseInt(j);
         var vendor_id = $(this).attr('vendor_id');
-        var fieldHTML = `<div class="row" id="row-${i}"> 
-                                                <div class="col-md-2 field-group">
-                                                    <input type="text" name="inventory[${i}][stock]" class="form-control" placeholder="stock">
-                                                </div>
-                                                <div class="col-md-2 field-group">
-                                                    <select name="inventory[${i}][unit]" id="unit" class="form-select  ">
-                                                        <option value="" selected>Select</option>
-                                                        <option value="kg">KG</option>
-                                                        <option value="pcs">PC</option>
-                                                        <option value="pcs">Box</option>
-                                                        <option value="pcs">Bottle</option>
-                                                        <option value="pcs">Box(4 Units)</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2 field-group">
-                                                    <select name="inventory[${i}][attribute]" option='${i}' class="form-select attribute">
-                                                        <option value="">Select</option>
-                                                        @foreach($attributes as $val)
-                                                        <option value="{{$val->_id}}">{{ucwords($val->name)}}</option>
-                                                        @endforeach
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-2 field-group">
-                                                    <select name="inventory[${i}][sub_attribute]" id="subAttribute-${i}" class="form-select">
-                                                    <option value="">Select</option>
-                                                    </select>
-                                                </div>
-                                                <div class="col-md-1 field-group">           
-                                <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
-                              </div>
-                                </div>`;
+        var fieldHTML = `<div class="row" id="row-${i}">
+    <div class="col-md-2 field-group">
+        <input type="text" name="inventory[${i}][stock]" class="form-control" placeholder="stock">
+    </div>
+    <div class="col-md-2 field-group">
+        <select name="inventory[${i}][unit]" id="unit" class="form-select  ">
+            <option value="" selected>Select</option>
+            <option value="kg">KG</option>
+            <option value="pcs">PC</option>
+            <option value="pcs">Box</option>
+            <option value="pcs">Bottle</option>
+            <option value="pcs">Box(4 Units)</option>
+        </select>
+    </div>
+    <div class="col-md-2 field-group">
+        <select name="inventory[${i}][attribute]" option='${i}' class="form-select attribute">
+            <option value="">Select</option>
+            @foreach($attributes as $val)
+            <option value="{{$val->_id}}">{{ucwords($val->name)}}</option>
+            @endforeach
+        </select>
+    </div>
+    <div class="col-md-2 field-group">
+        <select name="inventory[${i}][sub_attribute]" id="subAttribute-${i}" class="form-select">
+            <option value="">Select</option>
+        </select>
+    </div>
+    <div class="col-md-1 field-group">
+        <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
+    </div>
+</div>`;
         $('#stock').append(fieldHTML);
         i++;
     });
@@ -430,20 +432,20 @@
         i = parseInt(i);
         var vendor_id = $(this).attr('vendor_id');
         var fieldHTML = `<tr id="row-${i}">
-                        <td>
-                            <div>
-                                <input type="text" name="details[${i}][label]" class="form-control" placeholder="Label" required>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <textarea name="details[${i}][description]" rows="1" id="product-description" class="textediter form-control"></textarea>
-                            </div>
-                            </td>
-                                <td>
-                                <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
-                                </td>
-                            </tr>`;
+    <td>
+        <div>
+            <input type="text" name="details[${i}][label]" class="form-control" placeholder="Label" required>
+        </div>
+    </td>
+    <td>
+        <div>
+            <textarea name="details[${i}][description]" rows="1" id="product-description" class="textediter form-control"></textarea>
+        </div>
+    </td>
+    <td>
+        <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
+    </td>
+</tr>`;
         $('#field_wrapper1').append(fieldHTML);
         i++;
     });
@@ -492,7 +494,7 @@
             success: function(res) {
 
                 //hide loader
-                $('#save').html(`<x-icon type="update"/>Update`).removeAttr('disabled');
+                $('#save').html(`<x-icon type="update" />Update`).removeAttr('disabled');
 
                 /*Start Validation Error Message*/
                 $('span.text-danger').html('');

@@ -109,16 +109,29 @@
     <script src="{{asset('assets')}}/js/tags.js"></script>
     <script src="{{asset('assets')}}/js/main.js"></script>
     <script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/4/tinymce.min.js"></script>
-    <script src="{{asset('assets')}}/js/texteditor.js"></script>
+    <!-- <script src="{{asset('assets')}}/js/texteditor.js"></script> -->
     <script src="{{asset('assets')}}/js/toast/src/jquery.toast.js"></script>
-    <script src="{{asset('assets')}}/js/custom.js"></script>
+    <!-- <script src="{{asset('assets')}}/js/custom.js"></script> -->
     <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
     <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
     <!-- <script src="https://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script> -->
 
-    <script>
-    </script>
+    <script src="//cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
 
+    <script>
+        function texteditor(selector) {
+            $(function() {
+                var $ckfield = CKEDITOR.replace(selector);
+                $ckfield.on('change', function() {
+                    $ckfield.updateElement();
+                });
+            });
+        }
+
+        // function dynamicTextarea(selector) {
+        //     CKEDITOR.replace('#test');
+        // }
+    </script>
     <script>
         function alertMsg(status, msg, delay = 1000, remove = false) {
 
@@ -263,7 +276,7 @@
 
         setTimeout(function() {
             $('.mce-notification-inner').hide();
-        },5000);
+        }, 5000);
     </script>
     @stack('modal')
     @stack('js')
