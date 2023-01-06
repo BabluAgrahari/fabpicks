@@ -178,7 +178,8 @@
                                 <span class="text-danger" id="thumbnail_msg"></span>
                             </div>
                             <div class="form-group col-md-6">
-                                <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('100x80')}}" id="avatar" class="img-fluid" alt=""></div>
+                                <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('100x80')}}" id="avatar" style="width: 80px;
+    height: 80px;" class="img-fluid" alt=""></div>
                             </div>
 
                             <div class="form-group col-md-12">
@@ -272,9 +273,21 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div id="field_wrapper1">
                     <hr>
-                    <table class="table table-borderless" id="myproductTable">
+                    <div class="row">
+                        <div class="field-group col-md-6">
+                            <label>Label</label>
+                            <input type="text" name="details[0][label]" id="product-name" class="form-control" placeholder="Label">
+                        </div>
+                        <div class="field-group col-md-1"><button type="button" class="btn btn-success mt-4" id="myaddBtn">+</button></div>
+
+                        <div class="field-group col-md-8">
+                            <label>Description</label>
+                            <textarea name="details[0][description]" id="description" placeholder="Enter Discription" rows="1" class="textediter form-control"></textarea>
+                        </div>
+
+                        <!-- <table class="table table-borderless" id="myproductTable">
                         <tbody id="field_wrapper1">
                             <tr class="product-table-row">
 
@@ -295,7 +308,8 @@
                                 <td><button type="button" class="btn btn-success mt-4" id="myaddBtn">+</button></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
+                    </div>
                 </div>
 
                 <div class="row">
@@ -383,23 +397,18 @@
     var i = 1;
     $('#myaddBtn').click(function() {
         var vendor_id = $(this).attr('vendor_id');
-        var fieldHTML = `<tr id="row-${i}">
-                        <td>
-                            <div>
-                                <input type="text" id="details[${i}][label]" class="form-control" placeholder="Label" required>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <textarea name="details[${i}][description]" rows="1" id="product-description"  placeholder="Enter Discription"  class="form-control textediter"></textarea>
-                            </div>
-                            </td>
-                                <td>
-                                <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
-                                </td>
-                            </tr>`;
+        var fieldHTML = `<div class="row" id="row-${i}">
+                        <div class="field-group col-md-6">
+                            <input type="text" id="details[${i}][label]" class="form-control" placeholder="Label" required>
+                        </div>
+                        <div class="field-group col-md-1"> <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a></div>
+                        <div class="field-group col-md-8">
+                            <textarea name="details[${i}][description]" rows="1" id="product-description"  placeholder="Enter Discription"  class="form-control textediter"></textarea>
+                        </div>
+                        </div>`;
         $('#field_wrapper1').append(fieldHTML);
         i++;
+        textediter();
     });
 
     function removeRow(id) {

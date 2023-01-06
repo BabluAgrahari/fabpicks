@@ -179,7 +179,7 @@
                                 <span class="text-danger" id="thumbnail_msg"></span>
                             </div>
                             <div class="form-group col-md-6">
-                                <div class="box-body"><img src="{{$res->image ?? defaultImg('100x80')}}" id="avatar" class="img-fluid" alt=""></div>
+                                <div class="box-body"><img src="{{$res->image ?? defaultImg('100x80')}}" id="avatar" class="img-fluid" alt="" style="width: 80px;height: 80px;"></div>
                             </div>
 
                             <div class="form-group mt-3 col-md-12">
