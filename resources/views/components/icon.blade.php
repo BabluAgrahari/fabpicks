@@ -29,6 +29,9 @@
 @case('list')
 <i class="fa-solid fa-square"></i>&nbsp;
 @break
+@case('update')
+
+@break
 @default
 ''
 @endswitch
