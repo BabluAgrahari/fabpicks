@@ -2,11 +2,15 @@
 @section('content')
 
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+
 <div class="card">
     <div class="card-header ">
         <div class="row">
             <div class="col-md-3">
-                <h5><x-icon type="list" />Client</h5>
+                <h5>
+                    <x-icon type="list" />Client
+                </h5>
             </div>
             <div class="col-md-9 product-btn-group d-flex justify-content-end">
                 @if(!empty($filter))
@@ -69,7 +73,7 @@
 </div>
 
 @push('modal')
-<div class="modal fade" id="ClientModal" tabindex="-1" aria-labelledby="clientLabel" aria-hidden="true">
+<div class="modal fade" id="ClientModal" aria-labelledby="clientLabel" aria-hidden="true" style="overflow:hidden;">
     <div class="modal-dialog modal-dialog-centered modal-lg ">
         <div class="modal-content">
             <div class="modal-header">
@@ -87,12 +91,14 @@
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="store-owner ">Brand <span class="required">*</span></label>
-                                        <select name="brand_ids[]" id="brand_id" multiple class="form-select js-example-basic-single">
-                                            <option value="" selected>Select</option>
+                                        <select name="brand_ids[]" id="brand_id" multiple class="form-select js-example-basic-single" >
+                                            <!-- <option value="" selected>Select</option> -->
                                             @foreach($brands as $res)
                                             <option value="{{$res->_id}}">{{$res->name}}</option>
+                                           
                                             @endforeach
                                         </select>
+                                      
                                         <span class="text-danger" id="store_owner_msg"></span>
                                     </div>
                                 </div>
@@ -155,7 +161,7 @@
                                 <div class="col-md-4">
                                     <div class="field-group">
                                         <label for="state ">State <span class="required">*</span></label>
-                                        <select name="state" id="state" class="form-select js-example-basic-single">
+                                        <select name="state" id="state" class="form-select  "  >
                                             <option value=" ">Select</option>
                                             @foreach(config('global.state') as $state)
                                             <option value="{{$state}}">{{$state}}</option>
@@ -353,6 +359,19 @@
                 }
             }
         })
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $(".js-example-basic-single").select2({
+            dropdownParent: "#ClientModal",
+            closeOnSelect: false,
+            width: "100%",
+            allowHtml: true,
+            allowClear: true,
+            tags: true
+        });
     });
 </script>
 @endpush
