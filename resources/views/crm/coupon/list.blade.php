@@ -142,7 +142,7 @@
         let id = $(this).attr('_id');
         let val = $(this).attr('val');
         let selector = $(this);
-        let url = "{{ url('crm/coupon') }}";
+        let url = "{{ url('crm/coupon-status') }}";
         chagneStatus(id, val, selector, url);
     })
 

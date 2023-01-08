@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\User;
 use App\Http\Request\OrderRequest;
 use App\Libraries\Couriers\DTDC;
+use App\Models\Coupon;
 use App\Models\Product;
 use Exception;
 use Illuminate\Support\Facades\Auth;
@@ -43,9 +44,16 @@ class OrderController extends Controller
     public function store(OrderRequest $request)
     {
         try {
+            $coupon = $this->checkCoupon($request->coupon_code); //for coupon
+            if (!empty($coupon) && $coupon['status']) {
+                $coupon_id =  $coupon['coupon_id'];
+            } else {
+                return $this->failRes($coupon['msg']);
+            }
+
             $user = User::find(Auth::user()->_id);
             if (empty($user) || $user->trail_point < 1)
-                return $this->failRes('Trail Point not Avaliable.');
+                return $this->failRes('Trail Point not avaliable.');
 
             $user->trail_point = (int)$user->trail_point - (int)$request->trail_point;
             $user->save();
@@ -62,6 +70,10 @@ class OrderController extends Controller
             $save->order_status          = 'pending';
             $save->shipping_details      = $request->shipping_details;
             $save->billing_details       = $request->billing_details;
+            if (!empty($request->coupon_code)) {
+                $save->coupon_code           = $request->coupon_code;
+                $save->coupon_id             = $coupon_id;
+            }
 
             $products = array();
             foreach ($request->products as $product) {
@@ -75,6 +87,7 @@ class OrderController extends Controller
             if (!$save->save())
                 return $this->failRes('Order not Created.');
 
+            //here is courier DTDC Api
             $dtdc = new DTDC();
             $res = $dtdc->shipOrder($save);
 
@@ -105,5 +118,31 @@ class OrderController extends Controller
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }
+    }
+
+    private function checkCoupon($coupon)
+    {
+        $coupon = Coupon::where('coupon_code', $coupon)->where('coupon_qty', '>', 0)->where('status', 1)->first();
+        if (empty($coupon))
+            return ['status' => false, 'msg' => 'Invalid Coupon Code.'];
+
+        $coupon_id = $coupon->_id;
+        if ($coupon->expiry < strtotime(date('Y-m-d H:i'))) //validate coupon expiry time
+            return ['status' => false, 'msg' => 'Coupon is Expired.'];
+
+        $user = User::find(Auth::user()->_id);
+        if (is_array($user->coupon_ids) && in_array($coupon_id, $user->coupon_ids)) //validate reapete used coupon
+            return ['status' => false, 'msg' => 'This coupon is already used.'];
+
+        $qty = $coupon->coupon_qty;
+        $updated_qty = $qty - 1;
+        $coupon->coupon_qty = $updated_qty;
+        $coupon->save();
+
+        //for update coupon ids in user collection
+        $user->coupon_ids[] = $coupon_id;
+        $user->save();
+
+        return ['status' => true, 'coupon_id' => $coupon_id];
     }
 }

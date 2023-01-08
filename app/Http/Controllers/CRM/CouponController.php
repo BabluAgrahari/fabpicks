@@ -36,8 +36,9 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         try {
-            if (strtotime($request->expiry) < date('y-m-d H:i'))
-                return response(['validation' => ['expiry' => 'Please Select valid Expiry Date']]);
+            
+            if (strtotime($request->expiry) < strtotime(date('Y-m-d H:i')))
+                return response(['validation' => ['expiry' => 'Please Select valid Expiry Date.']]);
 
             // $coupon = Coupon::latest()->userAccess()->limit(1)->first();
 

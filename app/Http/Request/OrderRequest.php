@@ -48,7 +48,7 @@ class OrderRequest extends FormRequest
                     'billing_details.address'       =>  'required|string|min:2|max:200',
                     'products.*.product_id'         =>  'required',
                     'products.*.name'               =>  'required|min:2|max:200',
-                    'products.*.price'              =>  'required',
+                    'products.*.mrp'                =>  'required',
                     'products.*.qty'                =>  'required|numeric',
                     'products.*.sku'                =>  'required|min:2|max:100'
 

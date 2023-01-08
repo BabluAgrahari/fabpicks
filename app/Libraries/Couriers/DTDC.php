@@ -22,7 +22,7 @@ class DTDC
             $product = (object)$product;
             $orderItems[] = array(
                 'description' => $product->name,
-                'declared_value' => $product->price,
+                'declared_value' => $product->mrp,
                 'weight' => '0.5',
                 'height' => '5',
                 'length' => '5',
