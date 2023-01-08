@@ -116,7 +116,7 @@
     <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
     <!-- <script src="https://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script> -->
 
-    <script src="//cdn.ckeditor.com/4.20.1/standard/ckeditor.js"></script>
+    <script src="//cdn.ckeditor.com/4.20.1/basic/ckeditor.js"></script>
 
     <script>
         function texteditor(selector) {

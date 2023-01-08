@@ -284,7 +284,7 @@
 
                         <div class="field-group col-md-8">
                             <label>Description</label>
-                            <textarea name="details[0][description]" id="textLabel0" placeholder="Enter Discription" rows="1" class="form-control"></textarea>
+                            <textarea name="details[0][description]" id="textLabel0" placeholder="Enter Description" rows="1" class="form-control"></textarea>
                         </div>
 
                         <!-- <table class="table table-borderless" id="myproductTable">
@@ -314,8 +314,8 @@
 
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <button type="submit" id="save" class="btn btn-success"> <x-icon type="save" />Add</button>
                         <button type="reset" class="btn btn-danger"> <x-icon type="reset" />Reset</button>
+                        <button type="submit" id="save" class="btn btn-success"> <x-icon type="save" />Add</button>
                     </div>
                 </div>
             </form>
@@ -405,13 +405,13 @@
                         </div>
                         <div class="field-group col-md-1"> <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a></div>
                         <div class="field-group col-md-8">
-                            <textarea name="details[${i}][description]" id="textLabel${i}" rows="1" placeholder="Enter Discription" class="form-control"></textarea>
+                            <textarea name="details[${i}][description]" id="textLabel${i}" rows="1" placeholder="Enter Description" class="form-control"></textarea>
                         </div>
                         </div>`;
         $('#field_wrapper1').append(fieldHTML);
         texteditor(`textLabel${i}`);
         i++;
-        
+
     });
 
     function removeRow(id) {

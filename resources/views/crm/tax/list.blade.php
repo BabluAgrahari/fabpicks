@@ -97,7 +97,7 @@
                                     <button type="reset" class="btn btn-danger">
                                         <x-icon type="reset" />Reset
                                     </button>
-                                    <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
+                                    <button type="submit" class="btn btn-success" id="save">Add</button>
                                 </div>
                             </div>
                         </form>

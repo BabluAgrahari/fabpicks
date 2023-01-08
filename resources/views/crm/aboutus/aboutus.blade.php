@@ -27,5 +27,9 @@
         </div>
     </div>
 </div>
-
+@push('js')
+<script>
+    texteditor(`aboutus`);
+</script>
+@endpush
 @endsection

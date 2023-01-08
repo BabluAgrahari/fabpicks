@@ -56,9 +56,9 @@
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info">
                                             <x-icon type="edit" />
                                         </a>
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-info">
+                                        <!-- <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-info">
                                             <x-icon type="remove" />
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </td>
                             </tr>
@@ -183,6 +183,7 @@
         $('form#SaveSubCategory').attr('action', '{{ url("crm/sub-category") }}');
         $('#put').html('');
         $('#SubCategory').modal('show');
+        texteditor(`description`);
     });
 
     $("form#SaveSubCategory").submit(function(e) {
@@ -257,6 +258,7 @@
                     $('form#SaveSubCategory').attr('action', '{{ url("crm/sub-category") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#SubCategory').modal('show');
+                    texteditor(`description`);
                 }
             }
         })

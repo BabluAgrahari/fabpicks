@@ -169,6 +169,7 @@
     $('form#saveSurvay').attr('action', '{{ url("crm/survay") }}');
     $('#put').html('');
     $('#survayModel').modal('show');
+    texteditor(`description`);
   });
   /*start form submit functionality*/
   $("form#saveSurvay").submit(function(e) {
@@ -239,6 +240,7 @@
           $('form#saveSurvay').attr('action', '{{ url("crm/survay") }}/' + id);
           $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
           $('#survayModel').modal('show');
+          texteditor(`description`);
         }
       }
     })

@@ -16,6 +16,7 @@ use App\Http\Controllers\CRM\OrderController;
 use App\Http\Controllers\CRM\ClientController;
 use App\Http\Controllers\CRM\UserController;
 use App\Http\Controllers\CRM\CouponController;
+use App\Http\Controllers\CRM\DiscountController;
 use App\Http\Controllers\CRM\ProductAddController;
 use App\Http\Controllers\CRM\ProductController;
 use App\Http\Controllers\CRM\ProductListingController;
@@ -58,6 +59,8 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
 
     Route::resource('coupon', CouponController::class)->middleware('can:isAdmin');
 
+    Route::resource('discount', DiscountController::class)->middleware('can:isAdmin');
+
     Route::resource('tax', TaxController::class)->middleware('can:isAdmin');
 
     Route::get('product-view/{id}', [ProductController::class, 'viewProduct']);
@@ -77,6 +80,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::post('attribute-status',  [AttributeController::class, 'status']);
     Route::post('sub-attribute-status',  [SubAttributeController::class, 'status']);
     Route::post('brand-status',  [BrandController::class, 'status']);
+    Route::post('coupon-status', [CouponController::class, 'status']);
 
     // Route::get('show/{id}', [ProductController::class, 'show']);
 

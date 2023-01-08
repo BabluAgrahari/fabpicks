@@ -57,5 +57,9 @@
         </div>
     </div>
 </div>
-
+@push('js')
+<script>
+    texteditor(`company-address`);
+</script>
+@endpush
 @endsection

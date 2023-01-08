@@ -82,13 +82,14 @@ class ProductController extends Controller
             $save->offer_price              = (int)$request->offer_price;
             $save->maximum_qty              = (int)$request->maximum_qty;
             $save->expire_date              = (int)strtotime($request->expire_date);
+            $save->details                  = $request->details;
 
             if (!empty($request->file('thumbnail')))
                 $save->image  = singleFile($request->file('thumbnail'), 'product');
 
             if (!empty($request->file('images')))
                 $save->images = multiFile($request->file('images'), 'product');
-                
+
             if (!$save->save())
                 return response(['status' => false, 'msg' => 'Product Not Added.']);
 
@@ -141,12 +142,13 @@ class ProductController extends Controller
             $save->offer_price              = (int)$request->offer_price;
             $save->maximum_qty              = (int)$request->maximum_qty;
             $save->expire_date              = (int)strtotime($request->expire_date);
+            $save->details                  = $request->details;
 
             if (!empty($request->file('thumbnail')))
                 $save->image  = singleFile($request->file('thumbnail'), 'product');
 
             if ($save->save())
-                return response(['status' => true, 'msg' => 'Product Updared Successfully.']);
+                return response(['status' => true, 'msg' => 'Product Updated Successfully.']);
 
             return response(['status' => false, 'msg' => 'Product Not .']);
         } catch (Exception $e) {

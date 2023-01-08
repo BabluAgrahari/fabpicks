@@ -181,6 +181,7 @@
         $('form#saveBrand').attr('action', '{{ url("crm/brand") }}');
         $('#put').html('');
         $('#brandModal').modal('show');
+        texteditor(`description`);
     });
 
     /*start form submit functionality*/
@@ -255,6 +256,7 @@
                     $('form#saveBrand').attr('action', '{{ url("crm/brand") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#brandModal').modal('show');
+                    texteditor(`description`);
                 }
             }
         })

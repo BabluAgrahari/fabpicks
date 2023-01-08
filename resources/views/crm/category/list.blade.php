@@ -58,9 +58,9 @@
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit">
                                             <x-icon type="edit" />
                                         </a>
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove">
+                                        <!-- <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove">
                                             <x-icon type="remove" />
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </td>
                             </tr>
@@ -160,6 +160,7 @@
         let selector = $(this);
         let url = "{{ url('crm/category-status') }}";
         chagneStatus(id, val, selector, url);
+        
     })
 
     $('#AddCategory').click(function(e) {
@@ -169,6 +170,7 @@
         $('form#saveCategory').attr('action', '{{ url("crm/category") }}');
         $('#put').html('');
         $('#Category').modal('show');
+        texteditor(`description`);
     });
     /*start form submit functionality*/
     $("form#saveCategory").submit(function(e) {
@@ -232,7 +234,6 @@
             success: function(res) {
 
                 if (res.status) {
-                    textediter();
                     $('#name').val(res.record.name);
                     $('#description').val(res.record.description);
                     $('#sort').val(res.record.sort);
@@ -245,6 +246,7 @@
                     $('form#saveCategory').attr('action', '{{ url("crm/category") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#Category').modal('show');
+                    texteditor(`description`);
                 }
             }
         })

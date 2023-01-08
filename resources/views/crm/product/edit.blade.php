@@ -239,7 +239,7 @@
                             </select>
                         </div>
 
-                        <div class="field-group mt-4 col-md-2">
+                        <div class="field-group {{ $loop->first?'mt-4':''}}  col-md-2">
                             @if($loop->first)
                             <button type="button" class="btn btn-success" id="add_more">+</button>
                             @else
@@ -291,59 +291,58 @@
                 </div>
 
 
-                <div class="row">
+                <div id="field_wrapper1">
                     <hr>
-                    <table class="table table-borderless" id="myproductTable">
-                        <tbody id="field_wrapper1">
-                            @if(!empty($res->details))
-                            @foreach($res->details as $key=>$detail)
-                            <tr class="product-table-row" id="row-{{$key}}">
+                    @if(!empty($res->details))
+                    @foreach($res->details as $key=>$detail)
+                    <div class="row" id="row-{{$key}}">
 
-                                <td>
-                                    <div> @if($loop->first)<label>Label</label>@endif
-                                        <input type="text" name="details[{{$key}}][label]" value="{{!empty($detail['label'])?$detail['label']:''}}" class="form-control" placeholder="Label">
-                                    </div>
-                                </td>
+                        <div class="field-group col-md-6"> @if($loop->first)<label>Label</label>@endif
+                            <input type="text" name="details[{{$key}}][label]" value="{{!empty($detail['label'])?$detail['label']:''}}" class="form-control" placeholder="Label">
+                        </div>
 
-                                <td>
-                                    <div> @if($loop->first)<label>Description</label>@endif
-                                        <textarea name="details[{{$key}}][description]" rows="1" placeholder="Description" class="textediter form-control">{{!empty($detail['description'])?$detail['description']:''}}</textarea>
-                                    </div>
-                                </td>
-
-                                <td>
-                                    @if($loop->first)
-                                    <button type="button" class="btn btn-success mt-4" id="myaddBtn">+</button>
-                                    @else
-                                    <a href="javascript:void(0)" onClick="removeRow(<?= $key ?>);" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
-                                    @endif
-                                </td>
-                            </tr>
-                            @endforeach
+                        <div class="field-group {{ $loop->first?'mt-4':''}} col-md-1">
+                            @if($loop->first)
+                            <button type="button" class="btn btn-success" id="myaddBtn">+</button>
                             @else
-                            <tr class="product-table-row">
-                                <td>
-                                    <div>
-                                        <label>Label</label>
-                                        <input type="text" name="details[0][label]" id="product-name" class="form-control" placeholder="Label">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div>
-                                        <label>Description</label>
-                                        <textarea name="details[0][description]" id="description" class="textediter form-control"></textarea>
-                                    </div>
-                                </td>
-
-                                <td><button type="button" class="btn btn-success mt-4" id="myaddBtn">+</button></td>
-                            </tr>
+                            <a href="javascript:void(0)" onClick="removeRow(<?= $key ?>);" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
                             @endif
-                        </tbody>
-                    </table>
+                        </div>
+
+                        <div class="field-group col-md-8"> @if($loop->first)<label>Description</label>@endif
+                            <textarea name="details[{{$key}}][description]" id="textLabel{{$key}}" rows="1" placeholder="Enter Description" class="form-control">{{!empty($detail['description'])?$detail['description']:''}}</textarea>
+                        </div>
+
+                    </div>
+                    @push('js')
+                    <script>
+                        texteditor('textLabel{{$key}}');
+                    </script>
+                    @endpush
+                    @endforeach
+                    @else
+                    <div class="row" id="row-0">
+                        <div class="field-group col-md-6">
+                            <label>Label</label>
+                            <input type="text" name="details[0][label]" id="product-name" class="form-control" placeholder="Label">
+                        </div>
+
+                        <div class="field-group col-md-1 mt-4">
+                            <button type="button" class="btn btn-success mt-4" id="myaddBtn">+</button>
+                        </div>
+
+                        <div class="field-group col-md-8">
+                            <label>Description</label>
+                            <textarea name="details[0][description]" id="textLabel0" class="form-control" placeholder="Enter Description"></textarea>
+                        </div>
+                    </div>
+                    @endif
                 </div>
 
                 <div class="row">
                     <div class="col-md-12">
+
+                        <button type="reset" class="btn btn-danger"> <x-icon type="reset" />Reset</button>
                         <button type="submit" id="save" class="btn btn-success">Update</button>
                     </div>
                 </div>
@@ -358,6 +357,7 @@
 
 <script>
     texteditor('description');
+    texteditor('textLabel0');
 
     $('#productType').change(function() {
 
@@ -369,29 +369,28 @@
             let span = (val == 'trial_store') ? '<span class="note">Trial Point should not greater than 6.</span>' : '';
 
             $('#saleTrail').html(`<label for="market-price1">Trial Point</label>
-<input type="text" name="trial_point" value="${value}" class="form-control" placeholder="Trial Point" ${disabled}>
-<span class="text-danger" id="trial_point_msg"></span>${span}`);
+            <input type="text" name="trial_point" value="${value}" class="form-control" placeholder="Trial Point" ${disabled}>
+            <span class="text-danger" id="trial_point_msg"></span>${span}`);
         } else if (val == 'hot_deals' || val == 'rewards_store') {
 
             let required = (val == 'rewards_store') ? '*' : '';
             $('#rewareField').html(required);
 
             $('#saleTrail').html(` <label for="market-price1">Sale Price</label>
-<input type="text" name="sale_price" class="form-control" placeholder="Sale Price">
-<span class="text-danger" id="sale_price_msg"></span>`);
+             <input type="text" name="sale_price" class="form-control" placeholder="Sale Price">
+            <span class="text-danger" id="sale_price_msg"></span>`);
         }
     })
-
 
     var j = "{{!empty($inv_key)?++$inv_key:1}}";
     $('#add_more').click(function() {
         i = parseInt(j);
         var vendor_id = $(this).attr('vendor_id');
         var fieldHTML = `<div class="row" id="row-${i}">
-    <div class="col-md-2 field-group">
+     <div class="col-md-2 field-group">
         <input type="text" name="inventory[${i}][stock]" class="form-control" placeholder="stock">
-    </div>
-    <div class="col-md-2 field-group">
+     </div>
+     <div class="col-md-2 field-group">
         <select name="inventory[${i}][unit]" id="unit" class="form-select  ">
             <option value="" selected>Select</option>
             <option value="kg">KG</option>
@@ -400,24 +399,24 @@
             <option value="pcs">Bottle</option>
             <option value="pcs">Box(4 Units)</option>
         </select>
-    </div>
-    <div class="col-md-2 field-group">
+     </div>
+     <div class="col-md-2 field-group">
         <select name="inventory[${i}][attribute]" option='${i}' class="form-select attribute">
             <option value="">Select</option>
             @foreach($attributes as $val)
             <option value="{{$val->_id}}">{{ucwords($val->name)}}</option>
             @endforeach
         </select>
-    </div>
-    <div class="col-md-2 field-group">
+     </div>
+     <div class="col-md-2 field-group">
         <select name="inventory[${i}][sub_attribute]" id="subAttribute-${i}" class="form-select">
             <option value="">Select</option>
         </select>
-    </div>
-    <div class="col-md-1 field-group">
+     </div>
+     <div class="col-md-1 field-group">
         <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
-    </div>
-</div>`;
+     </div>
+      </div>`;
         $('#stock').append(fieldHTML);
         i++;
     });
@@ -431,22 +430,21 @@
     $('#myaddBtn').click(function() {
         i = parseInt(i);
         var vendor_id = $(this).attr('vendor_id');
-        var fieldHTML = `<tr id="row-${i}">
-    <td>
-        <div>
+        var fieldHTML = `<div class="row" id="row-${i}">
+        <div class="field-group col-md-6">
             <input type="text" name="details[${i}][label]" class="form-control" placeholder="Label" required>
         </div>
-    </td>
-    <td>
-        <div>
-            <textarea name="details[${i}][description]" rows="1" id="product-description" class="textediter form-control"></textarea>
-        </div>
-    </td>
-    <td>
+
+        <div class="col-md-1 field-group">
         <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
-    </td>
-</tr>`;
+        </div>
+
+        <div class="field-group col-md-8">
+            <textarea name="details[${i}][description]" rows="1" id="textLabel${i}" class="textediter form-control"></textarea>
+        </div>
+        </div>`;
         $('#field_wrapper1').append(fieldHTML);
+        texteditor(`textLabel${i}`);
         i++;
     });
 

@@ -24,11 +24,17 @@
                             <textarea name="refund" id="refund" class="form-control textediter">{{$res->refund}}</textarea>
                         </div>
                     </div>
-                    <button class="btn btn-success mt-5 text-center"><x-icon type="update"/>Update</button>
+                    <button class="btn btn-success mt-5 text-center"><x-icon type="update" />Update</button>
                 </div>
             </form>
 
         </div>
     </div>
 </div>
+
+@push('js')
+<script>
+    texteditor(`refund`);
+</script>
+@endpush
 @endsection
