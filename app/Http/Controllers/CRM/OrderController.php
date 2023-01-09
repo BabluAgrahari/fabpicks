@@ -4,6 +4,7 @@ namespace App\Http\Controllers\CRM;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -54,6 +55,12 @@ class OrderController extends Controller
             $save->order_status        = $request->order_status;
 
             if ($save->save())
+              	if($save->order_status == 'delivared') {
+              		$user = User::find($save->user_id);
+              		$user->trail_point = 6;
+              		$user->save();
+            	}
+          	
                 return response(['status' => true, 'msg' => 'Status Updared Successfully.']);
 
             return response(['status' => false, 'msg' => 'Status Not Update.']);
