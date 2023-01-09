@@ -5,6 +5,7 @@ namespace App\Http\Controllers\CRM;
 use App\Http\Controllers\Controller;
 use App\Libraries\Couriers\DTDC;
 use App\Models\Order;
+use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -37,7 +38,7 @@ class OrderController extends Controller
             unset($request['perPage']);
             unset($request['page']);
             $data['filter'] = $request->all();
- 
+
             return view('crm/order/list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['error', $e->getMessage()]);
@@ -61,10 +62,16 @@ class OrderController extends Controller
             $save = Order::find($id);
             $save->order_status      = $request->order_status;
 
-            if (!$save->save())
-                return response(['status' => false, 'msg' => 'Status Not Update.']);
+            if ($save->save())
+                if ($save->order_status == 'delivared') {
+                    $user = User::find($save->user_id);
+                    $user->trail_point = 6;
+                    $user->save();
+                }
 
-            return response(['status' => true, 'msg' => 'Status Updated Successfully.']);
+            return response(['status' => true, 'msg' => 'Status Updared Successfully.']);
+
+            return response(['status' => false, 'msg' => 'Status Not Update.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }

@@ -28,7 +28,7 @@ class ProductController extends Controller
             if ($request->title)
                 $query->where('title', 'LIKE', "%$request->title%");
 
-            $record = $query->with(['Inventory.Attributes', 'Inventory.SubAttributes', 'SubCategory', 'Category', 'Brand'])->get();
+            $record = $query->with(['Inventory.Attributes', 'Inventory.SubAttributes', 'SubCategory', 'Category', 'Brand', 'PSurvey', 'PSurvey.Questions'])->get();
 
             if (!empty($request->name))
                 $record->where('name', 'LIKE', "%$request->name%");

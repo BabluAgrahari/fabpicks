@@ -33,4 +33,10 @@ class Product extends BaseModel
 
         return $this->hasMany(ProductInventory::class, 'product_id', '_id');
     }
+
+    public function PSurvey()
+    {
+
+        return $this->hasOne(Survay::class, '_id', 'pre_qulifing_question');
+    }
 }
