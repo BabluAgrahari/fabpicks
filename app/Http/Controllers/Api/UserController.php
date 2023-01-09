@@ -23,9 +23,11 @@ class UserController extends Controller
         }
     }
 
-    public function update(UserRequest $request, $id)
-    {
+    public function update(Request $request, $id)
+    {	
+      	//return json_encode($request->all());
         try {
+          	
             $save = User::find($id);
             $save->name    = $request->name;
             $save->email   = $request->email;
