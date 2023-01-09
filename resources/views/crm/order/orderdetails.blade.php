@@ -106,7 +106,7 @@
                         </div>
 
                         <div class="order-delivery-price">
-                            <h5>$20.00</h5>
+                            <h6>{!!rupees(0)!!}</h6>
                         </div>
                     </div>
                 </div>
@@ -124,11 +124,11 @@
                                 </tr>
                                 <tr>
                                     <td>Delivery </td>
-                                    <td>$20.00</td>
+                                    <td>{!!rupees(0)!!}</td>
                                 </tr>
                                 <tr>
                                     <td>Tax </td>
-                                    <td>$000.00</td>
+                                    <td>{!!rupees(0)!!}</td>
                                 </tr>
                             </tbody>
                             <tfoot>

@@ -85,50 +85,72 @@
                     <form id="savecoupon" action="{{url('crm/coupon')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div id="put"></div>
+                        <div class="field-group">
+                            <label>Coupon Code</label>
+                            <input type="text" name="coupon_code" value="FAB{{rand(1111,9999)}}" id="coupon_code" placeholder="Coupon Code" class="form-control">
+                            <span class="text-danger" id="coupon_code_msg"></span>
+                        </div>
+
+                        <div class="field-group">
+                            <label>Coupon Qty</label>
+                            <input type="text" name="coupon_qty" id="coupon_qty" class="form-control" placeholder="Coupon Qty">
+                            <span class="text-danger" id="coupon_qty_msg"></span>
+                        </div>
+
                         <div class="row">
-                            <div class="field-group">
-                                <label>Coupon Code</label>
-                                <input type="text" name="coupon_code" value="FAB{{rand(1111,9999)}}" id="coupon_code" placeholder="Coupon Code" class="form-control">
-                                <span class="text-danger" id="coupon_code_msg"></span>
-                            </div>
-
-                            <div class="field-group">
-                                <label>Coupon Qty</label>
-                                <input type="text" name="coupon_qty" id="coupon_qty" class="form-control" placeholder="Coupon Qty">
-                                <span class="text-danger" id="coupon_qty_msg"></span>
-                            </div>
-
-                            <div class="field-group">
+                            <div class="field-group col-md-6">
                                 <label>Expiry Datetime</label>
-                                <input type="datetime-local" name="expiry" id="expiry" class="form-control" placeholder="Expiry Datetime">
+                                <input type="datetime-local" value="" name="expiry" id="expiry" class="form-control" placeholder="Expiry Datetime">
                                 <span class="text-danger" id="expiry_msg"></span>
                             </div>
 
-                            <div class="field-group">
+                            <div class="field-group col-md-6">
+                                <label>Cart Value</label>
+                                <input type="text" name="cart_value" id="cart_value" class="form-control" placeholder="Cart Value">
+                                <span class="text-danger" id="cart_value_msg"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field-group col-md-6">
+                                <label>Discount Type</label>
+                                <select class="form-select" name="discount_type" id="discount_type">
+                                    <option value="flat">Flat</option>
+                                    <option value="percentage">Percentage</option>
+                                </select>
+                                <span class="text-danger" id="discount_type_msg"></span>
+                            </div>
+                            <div class="field-group col-md-6" id="amount">
                                 <label>Amount</label>
                                 <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount">
                                 <span class="text-danger" id="amount_msg"></span>
                             </div>
+                        </div>
 
-                            <div class="field-group">
-                                <label>Status</label>
-                                <select class="form-select" name="status" id="status">
-                                    <option value="1">Active</option>
-                                    <option value="0">Inactivce</option>
-                                </select>
-                            </div>
+                        <div class="field-group">
+                            <label>Description</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                            <span class="text-danger" id="amount_msg"></span>
+                        </div>
 
-                            <div class="col-md-12 mt-2 mb-2 text-center">
-                                <button type="reset" class="btn btn-danger">
-                                    <x-icon type="reset" />Reset
-                                </button>
-                                <button type="submit" class="btn btn-success" id="save">Add</button>
-                            </div>
+                        <div class="field-group">
+                            <label>Status</label>
+                            <select class="form-select" name="status" id="status">
+                                <option value="1">Active</option>
+                                <option value="0">Inactivce</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mt-2 mb-2 text-center">
+                            <button type="reset" class="btn btn-danger">
+                                <x-icon type="reset" />Reset
+                            </button>
+                            <button type="submit" class="btn btn-success" id="save">Add</button>
+                        </div>
 
                     </form>
                 </div>
                 <div class="modal-footer">
-
                 </div>
             </div>
         </div>
@@ -138,6 +160,18 @@
 
 @push('js')
 <script>
+    $('#discount_type').change(function() {
+        let val = $(this).val();
+        if (val == 'percentage') {
+            $('#amount').html(` <label>Percentage(%)</label>
+                                <input type="text" name="percentage" id="percentage" class="form-control" placeholder="Percentage(%)">
+                                <span class="text-danger" id="percentage_msg"></span>`);
+        } else if (val == 'flat') {
+            $('#amount').html(` <label>Amount</label>
+                                <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount">
+                                <span class="text-danger" id="amount_msg"></span>`);
+        }
+    });
     $(document).on('click', '.activeVer', function() {
         let id = $(this).attr('_id');
         let val = $(this).attr('val');
@@ -153,6 +187,7 @@
         $('form#savecoupon').attr('action', '{{ url("crm/coupon") }}');
         $('#put').html('');
         $('#couponModal').modal('show');
+        texteditor(`description`);
     });
 
     /*start form submit functionality*/
@@ -223,12 +258,17 @@
                     $('#amount').val(res.record.amount);
                     $('#coupon_qty').val(res.record.coupon_qty);
                     $('#status').val(res.record.status);
+                    $('#description').val(res.record.description);
+                    $('#discount_type').val(res.record.discount_type);
+                    $('#cart_value').val(res.record.cart_value);
+                    $('#expiry').val('2023-01-08T21:37');
 
                     $('#couponLabel').html('Edit Coupon');
                     $('#save').html(`<x-icon type="update"/>Update`);
                     $('form#savecoupon').attr('action', '{{ url("crm/coupon") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#couponModal').modal('show');
+                    texteditor(`description`);
                 }
             }
         })

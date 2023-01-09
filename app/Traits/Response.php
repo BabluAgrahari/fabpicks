@@ -88,7 +88,7 @@ trait Response
     {
 
         return response()->json([
-            'stauts' => false,
+            'status' => false,
             'code' => 404,
             'msg' => 'Not Found.'
         ]);

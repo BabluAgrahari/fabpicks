@@ -36,7 +36,7 @@ class CouponController extends Controller
     public function store(Request $request)
     {
         try {
-            
+
             if (strtotime($request->expiry) < strtotime(date('Y-m-d H:i')))
                 return response(['validation' => ['expiry' => 'Please Select valid Expiry Date.']]);
 
@@ -52,6 +52,9 @@ class CouponController extends Controller
             $save->amount           = $request->amount;
             $save->status           = (int)$request->status;
             $save->expiry_status    = 1;
+            $save->discount_type    = $request->discount_type;
+            $save->cart_value       = $request->cart_value;
+            $save->description      = $request->description;
             if ($save->save())
                 return response(['status' => true, 'msg' => 'Coupon Added Successfully.']);
 
@@ -85,6 +88,9 @@ class CouponController extends Controller
             $save->expiry           = (int)strtotime($request->expiry);
             $save->amount           = $request->amount;
             $save->status           = (int)$request->status;
+            $save->discount_type    = $request->discount_type;
+            $save->cart_value       = $request->cart_value;
+            $save->description      = $request->description;
             if ($save->save())
                 return response(['status' => true, 'msg' => 'Coupon Updated Successfully.']);
 

@@ -176,6 +176,6 @@
         });
     });
 </script>
-@endpush;
+@endpush
 
 @endsection

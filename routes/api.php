@@ -16,6 +16,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\OrderController;
 use App\Http\Controllers\Api\ShippingBillingController;
 use App\Http\Controllers\Api\BannerController;
+use App\Http\Controllers\Api\CouponController;
 use App\Http\Controllers\Api\WishlistController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\CRM\SettingController as CRMSettingController;
@@ -39,9 +40,9 @@ use Illuminate\Support\Facades\Route;
 Route::controller(LoginOtpController::class)->group(function () {
     Route::post('/verify-otp', 'verifyOtp');
     Route::post('/otp', 'otp');
-  	Route::post('/phonecheck', 'checkUserExistsPhone');
-  	Route::post('/login-with-phone', 'loginWithPhone');
-  	Route::post('login-with-email', 'loginWithEmail');
+    Route::post('/phonecheck', 'checkUserExistsPhone');
+    Route::post('/login-with-phone', 'loginWithPhone');
+    Route::post('login-with-email', 'loginWithEmail');
 });
 
 Route::group(['middleware' => ['jwt.verify']], function () {
@@ -89,15 +90,15 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::put('privacy/{id}', 'privacy');
     });
 
-    Route::resource('cart',CartController::class);
+    Route::resource('cart', CartController::class);
 
     Route::controller(UserController::class)->group(function () {
         Route::put('user/{id}', 'update');
         Route::get('user/{id}', 'show');
     });
 
-   
-    Route::resource('order',OrderController::class);
+
+    Route::resource('order', OrderController::class);
 
 
     Route::controller(ShippingBillingController::class)->group(function () {
@@ -115,17 +116,20 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     });
 
     Route::controller(BannerController::class)->group(function () {
-     
-        Route::get('banner', 'index');
-    });  
-    
-    Route::resource('wishlist',WishlistController::class);
 
+        Route::get('banner', 'index');
+    });
+
+    Route::resource('wishlist', WishlistController::class);
+
+    Route::resource('coupon', CouponController::class);
+    Route::controller(CouponController::class)->group(function () {
+        Route::get('find-coupon/{coupon_code}', 'findCoupon');
+    });
 });
 
 Route::controller(RegisterController::class)->group(function () {
     Route::post('register', 'register');
- 
 });
 
 
