@@ -254,7 +254,7 @@
 
                 if (res.status) {
                     $('#coupon_code').val(res.record.coupon_code);
-                    $('#expiry').val(res.record.expiry);
+                    // $('#expiry').val(res.record.expiry);
                     $('#amount').val(res.record.amount);
                     $('#coupon_qty').val(res.record.coupon_qty);
                     $('#status').val(res.record.status);
@@ -262,6 +262,9 @@
                     $('#discount_type').val(res.record.discount_type);
                     $('#cart_value').val(res.record.cart_value);
                     $('#expiry').val('2023-01-08T21:37');
+                    var date = new Date(res.record.expiry * 1000);
+                    // $('#expiry').val(date.getFullYear() + '-' + date.getMonth() + 1 + '-' + date.getDate() + 'T' + date.getHours() + 1 + ':' + date.getMinutes() + 1);
+                    console.log(`'${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}T${date.getHours()+1}:${date.getMinutes()+1}'`)
 
                     $('#couponLabel').html('Edit Coupon');
                     $('#save').html(`<x-icon type="update"/>Update`);
