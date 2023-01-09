@@ -93,7 +93,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::resource('cart', CartController::class);
 
     Route::controller(UserController::class)->group(function () {
-        Route::put('user/{id}', 'update');
+        Route::post('user/{id}', 'update');
         Route::get('user/{id}', 'show');
     });
 
