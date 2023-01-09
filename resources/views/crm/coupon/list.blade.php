@@ -261,10 +261,9 @@
                     $('#description').val(res.record.description);
                     $('#discount_type').val(res.record.discount_type);
                     $('#cart_value').val(res.record.cart_value);
-                    $('#expiry').val('2023-01-08T21:37');
-                    var date = new Date(res.record.expiry * 1000);
-                    // $('#expiry').val(date.getFullYear() + '-' + date.getMonth() + 1 + '-' + date.getDate() + 'T' + date.getHours() + 1 + ':' + date.getMinutes() + 1);
-                    console.log(`'${date.getFullYear()}-0${date.getMonth()+1}-${date.getDate()}T${date.getHours()+1}:${date.getMinutes()+1}'`)
+                    var now = new Date(res.record.expiry * 1000);
+                    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                    $('#expiry').val(now.toISOString().slice(0, 16));
 
                     $('#couponLabel').html('Edit Coupon');
                     $('#save').html(`<x-icon type="update"/>Update`);
