@@ -5,7 +5,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-12">
-                <h4>General Setting</h4>
+                <h5><x-icon type="list" />General Setting</h5>
             </div>
         </div>
     </div>
@@ -45,11 +45,11 @@
                         <div class="col-md-6">
                             <div class="field-group">
                                 <label for="company-address">Company Address</label>
-                                <textarea id="company-address" name="general_setting[company_address]" value="" class="form-control" required>{{!empty($res->general_setting['company_address'])?$res->general_setting['company_address']:'';}}</textarea>
+                                <textarea id="company-address" name="general_setting[company_address]" value="" class="textediter form-control" required>{{!empty($res->general_setting['company_address'])?$res->general_setting['company_address']:'';}}</textarea>
                             </div>
                         </div>
                         <div class="col-md-12">
-                            <button class="btn btn-success" id="update"><x-icon type="update"/>Update</button>
+                            <button class="btn btn-success" id="update"><x-icon type="update" />Update</button>
                         </div>
                     </div>
                 </form>
@@ -57,15 +57,9 @@
         </div>
     </div>
 </div>
-
-
-    @push('js')
-
-
-
-
-
-    @endpush
-
-
-    @endsection
+@push('js')
+<script>
+    texteditor(`company-address`);
+</script>
+@endpush
+@endsection

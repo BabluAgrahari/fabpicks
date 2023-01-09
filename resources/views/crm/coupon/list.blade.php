@@ -5,11 +5,11 @@
     <div class="card-header ">
         <div class="row">
 
-            <div class="col-md-11">
-                <h4>Discount</h4>
+            <div class="col-md-10">
+                <h5><x-icon type="list" />Coupon</h5>
             </div>
 
-            <div class="col-md-1 ">
+            <div class="col-md-2 float-right">
                 <button type="button" class="btn btn-success" id="addcoupon">
                     <x-icon type="add" /> Add
                 </button>
@@ -25,9 +25,12 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">From Amount</th>
-                                <th scope="col">To Amount</th>
-                                <th scope="col">Discount</th>
+                                <th scope="col">Coupon Code</th>
+                                <th scope="col">Coupon Qty</th>
+                                <th scope="col">Expiry Time</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Expiry Status</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -35,9 +38,17 @@
                             @foreach($lists as $key=>$list)
                             <tr>
                                 <th scope="row">{{++$key}}</th>
-                                <td>{{$list->from_amount}}</td>
-                                <td>{{$list->to_amount}}</td>
-                                <td>{{$list->discount}}</td>
+                                <td>{{$list->coupon_code}}</td>
+                                <td>{{$list->coupon_qty}}</td>
+                                <td>{{date('d-m-Y H:i A',$list->expiry)}}</td>
+                                <td>{{$list->amount}}</td>
+                                <td>@if($list->expiry_status)
+                                    <span class="activeVer badge bg-success">Active</span>
+                                    @else
+                                    <span class="activeVer badge bg-danger">Expired</span>
+                                    @endif
+                                </td>
+                                <td>{!!listStatus($list->status,$list->_id)!!}</td>
                                 <td>
                                     <div class="action-group">
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info">
@@ -63,62 +74,85 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="couponLabel">Add Discount</h1>
+                <h1 class="modal-title fs-6" id="couponLabel">Add Coupon</h1>
                 <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+                <div id="message"></div>
 
-                <div class="container ">
+                <div class="row">
 
-                    <div id="message"></div>
+                    <form id="savecoupon" action="{{url('crm/coupon')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        <div id="put"></div>
+                        <div class="field-group">
+                            <label>Coupon Code</label>
+                            <input type="text" name="coupon_code" value="FAB{{rand(1111,9999)}}" id="coupon_code" placeholder="Coupon Code" class="form-control">
+                            <span class="text-danger" id="coupon_code_msg"></span>
+                        </div>
 
-                    <div class="row">
+                        <div class="field-group">
+                            <label>Coupon Qty</label>
+                            <input type="text" name="coupon_qty" id="coupon_qty" class="form-control" placeholder="Coupon Qty">
+                            <span class="text-danger" id="coupon_qty_msg"></span>
+                        </div>
 
-                        <form id="savecoupon" action="{{url('crm/coupon')}}" method="post" enctype="multipart/form-data">
-                            @csrf
-                            <div id="put"></div>
-                            <div class="row">
-
-                                <div class="col-md-12">
-                                    <div class="field-group">
-                                        <label>From Amount</label>
-                                        <input type="text" name="from_amount" id="from_amount" placeholder="From Amount" class="form-control">
-                                        <span class="text-danger" id="from_amount_msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="field-group">
-                                        <label>To Amount</label>
-                                        <input type="text" name="to_amount" id="to_amount" class="form-control" placeholder="To Amount">
-                                        <span class="text-danger" id="to_amount_msg"></span>
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-
-                                <div class="col-md-12">
-                                    <div class="field-group">
-                                        <label>Discount</label>
-                                        <input type="text" name="discount" id="discount" class="form-control" placeholder="Discount">
-                                        <span class="text-danger" id="discount_msg"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-6 mt-4 text-center">
-                                    <button type="reset" class="btn btn-danger">
-                                        <x-icon type="reset" />Reset
-                                    </button>
-                                    <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
-                                </div>
+                        <div class="row">
+                            <div class="field-group col-md-6">
+                                <label>Expiry Datetime</label>
+                                <input type="datetime-local" value="" name="expiry" id="expiry" class="form-control" placeholder="Expiry Datetime">
+                                <span class="text-danger" id="expiry_msg"></span>
                             </div>
 
-                        </form>
-                    </div>
+                            <div class="field-group col-md-6">
+                                <label>Cart Value</label>
+                                <input type="text" name="cart_value" id="cart_value" class="form-control" placeholder="Cart Value">
+                                <span class="text-danger" id="cart_value_msg"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="field-group col-md-6">
+                                <label>Discount Type</label>
+                                <select class="form-select" name="discount_type" id="discount_type">
+                                    <option value="flat">Flat</option>
+                                    <option value="percentage">Percentage</option>
+                                </select>
+                                <span class="text-danger" id="discount_type_msg"></span>
+                            </div>
+                            <div class="field-group col-md-6" id="amount">
+                                <label>Amount</label>
+                                <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount">
+                                <span class="text-danger" id="amount_msg"></span>
+                            </div>
+                        </div>
+
+                        <div class="field-group">
+                            <label>Description</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                            <span class="text-danger" id="amount_msg"></span>
+                        </div>
+
+                        <div class="field-group">
+                            <label>Status</label>
+                            <select class="form-select" name="status" id="status">
+                                <option value="1">Active</option>
+                                <option value="0">Inactivce</option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12 mt-2 mb-2 text-center">
+                            <button type="reset" class="btn btn-danger">
+                                <x-icon type="reset" />Reset
+                            </button>
+                            <button type="submit" class="btn btn-success" id="save">Add</button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
                 </div>
             </div>
-
         </div>
     </div>
 </div>
@@ -126,13 +160,34 @@
 
 @push('js')
 <script>
+    $('#discount_type').change(function() {
+        let val = $(this).val();
+        if (val == 'percentage') {
+            $('#amount').html(` <label>Percentage(%)</label>
+                                <input type="text" name="percentage" id="percentage" class="form-control" placeholder="Percentage(%)">
+                                <span class="text-danger" id="percentage_msg"></span>`);
+        } else if (val == 'flat') {
+            $('#amount').html(` <label>Amount</label>
+                                <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount">
+                                <span class="text-danger" id="amount_msg"></span>`);
+        }
+    });
+    $(document).on('click', '.activeVer', function() {
+        let id = $(this).attr('_id');
+        let val = $(this).attr('val');
+        let selector = $(this);
+        let url = "{{ url('crm/coupon-status') }}";
+        chagneStatus(id, val, selector, url);
+    })
+
     $('#addcoupon').click(function(e) {
         e.preventDefault();
-        $('#couponLabel').html('Add Discount');
+        $('#couponLabel').html('Add Coupon');
         $('#save').html(`<x-icon type="save"/>Add`);
         $('form#savecoupon').attr('action', '{{ url("crm/coupon") }}');
         $('#put').html('');
         $('#couponModal').modal('show');
+        texteditor(`description`);
     });
 
     /*start form submit functionality*/
@@ -198,15 +253,22 @@
             success: function(res) {
 
                 if (res.status) {
-                    $('#from_amount').val(res.record.from_amount);
-                    $('#to_amount').val(res.record.to_amount);
-                    $('#discount').val(res.record.discount);
+                    $('#coupon_code').val(res.record.coupon_code);
+                    $('#expiry').val(res.record.expiry);
+                    $('#amount').val(res.record.amount);
+                    $('#coupon_qty').val(res.record.coupon_qty);
+                    $('#status').val(res.record.status);
+                    $('#description').val(res.record.description);
+                    $('#discount_type').val(res.record.discount_type);
+                    $('#cart_value').val(res.record.cart_value);
+                    $('#expiry').val('2023-01-08T21:37');
 
-                    $('#couponLabel').html('Edit Discount');
+                    $('#couponLabel').html('Edit Coupon');
                     $('#save').html(`<x-icon type="update"/>Update`);
                     $('form#savecoupon').attr('action', '{{ url("crm/coupon") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#couponModal').modal('show');
+                    texteditor(`description`);
                 }
             }
         })

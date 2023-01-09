@@ -28,9 +28,9 @@ class SubAttributeController extends Controller
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
 
-            $request->request->remove('page');
-            $request->request->remove('perPage');
-            $data['filter']  = $request->all();
+            unset($request['perPage']);
+            unset($request['page']);
+            $data['filter'] = $request->all();
 
             $data['attributes'] = Attribute::where('status', 1)->get();
             return view('crm.subattribute.list', $data);

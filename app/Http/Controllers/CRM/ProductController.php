@@ -31,9 +31,9 @@ class ProductController extends Controller
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
 
-            $request->request->remove('page');
-            $request->request->remove('perPage');
-            $data['filter']  = $request->all();
+            unset($request['perPage']);
+            unset($request['page']);
+            $data['filter'] = $request->all();
 
             return view('crm.product.list', $data);
         } catch (Exception $e) {
@@ -82,13 +82,14 @@ class ProductController extends Controller
             $save->offer_price              = (int)$request->offer_price;
             $save->maximum_qty              = (int)$request->maximum_qty;
             $save->expire_date              = (int)strtotime($request->expire_date);
+            $save->details                  = $request->details;
 
             if (!empty($request->file('thumbnail')))
                 $save->image  = singleFile($request->file('thumbnail'), 'product');
 
             if (!empty($request->file('images')))
                 $save->images = multiFile($request->file('images'), 'product');
-                
+
             if (!$save->save())
                 return response(['status' => false, 'msg' => 'Product Not Added.']);
 
@@ -141,12 +142,13 @@ class ProductController extends Controller
             $save->offer_price              = (int)$request->offer_price;
             $save->maximum_qty              = (int)$request->maximum_qty;
             $save->expire_date              = (int)strtotime($request->expire_date);
+            $save->details                  = $request->details;
 
             if (!empty($request->file('thumbnail')))
                 $save->image  = singleFile($request->file('thumbnail'), 'product');
 
             if ($save->save())
-                return response(['status' => true, 'msg' => 'Product Updared Successfully.']);
+                return response(['status' => true, 'msg' => 'Product Updated Successfully.']);
 
             return response(['status' => false, 'msg' => 'Product Not .']);
         } catch (Exception $e) {
@@ -205,9 +207,9 @@ class ProductController extends Controller
             $save->sort        = $request->sort;
 
             if ($save->save())
-                return response(['status' => true, 'msg' => 'Sort Updared Successfully.']);
+                return response(['status' => true, 'msg' => 'Sort Updated Successfully.']);
 
-            return response(['status' => false, 'msg' => 'Sort Not Update.']);
+            return response(['status' => false, 'msg' => 'Sort not Update.']);
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }

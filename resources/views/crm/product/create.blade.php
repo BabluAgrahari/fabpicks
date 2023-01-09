@@ -116,6 +116,7 @@
                             <label for="product-type">Product Type </label>
                             <select name="product_type" id="productType" class="form-select">
                                 <option value="trial_store">Trial Store</option>
+                                <option value="no_trial_product">No Trail Store</option>
                                 <option value="brand_store">Brand Store</option>
                                 <option value="hot_deals">Hot Deals</option>
                                 <option value="rewards_store">Rewards Store</option>
@@ -172,12 +173,13 @@
                             <div class="form-group col-md-6">
                                 <label>Thumbnail</label>
                                 <div class="input-group">
-                                    <input type="file" name="thumbnail" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                    <input type="file" name="thumbnail" class="imgInp form-control" id="" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
                                 </div>
                                 <span class="text-danger" id="thumbnail_msg"></span>
                             </div>
                             <div class="form-group col-md-6">
-                                <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('150x100')}}" class="img-fluid" alt=""></div>
+                                <div class="box-body"><img src="{{$res->thumbnail ?? defaultImg('100x80')}}" id="avatar" style="width: 80px;
+    height: 80px;" class="img-fluid" alt=""></div>
                             </div>
 
                             <div class="form-group col-md-12">
@@ -271,9 +273,21 @@
                     </div>
                 </div>
 
-                <div class="row">
+                <div id="field_wrapper1">
                     <hr>
-                    <table class="table table-borderless" id="myproductTable">
+                    <div class="row">
+                        <div class="field-group col-md-6">
+                            <label>Label</label>
+                            <input type="text" name="details[0][label]" id="product-name" class="form-control" placeholder="Label">
+                        </div>
+                        <div class="field-group col-md-1"><button type="button" class="btn btn-success mt-4" id="myaddBtn">+</button></div>
+
+                        <div class="field-group col-md-8">
+                            <label>Description</label>
+                            <textarea name="details[0][description]" id="textLabel0" placeholder="Enter Description" rows="1" class="form-control"></textarea>
+                        </div>
+
+                        <!-- <table class="table table-borderless" id="myproductTable">
                         <tbody id="field_wrapper1">
                             <tr class="product-table-row">
 
@@ -287,20 +301,21 @@
 
                                     <div>
                                         <label>Description</label>
-                                        <textarea name="details[0][description]" id="description" placeholder="Enter Discription" rows="1" class="form-control"></textarea>
+                                        <textarea name="details[0][description]" id="description" placeholder="Enter Discription" rows="1" class="textediter form-control"></textarea>
                                     </div>
                                 </td>
 
                                 <td><button type="button" class="btn btn-success mt-4" id="myaddBtn">+</button></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </table> -->
+                    </div>
                 </div>
 
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <button type="submit" id="save" class="btn btn-success"> <x-icon type="save" />Add</button>
                         <button type="reset" class="btn btn-danger"> <x-icon type="reset" />Reset</button>
+                        <button type="submit" id="save" class="btn btn-success"> <x-icon type="save" />Add</button>
                     </div>
                 </div>
             </form>
@@ -313,19 +328,22 @@
 @push('js')
 
 <script>
+    texteditor('description');
+    texteditor('textLabel0');
     $('#productType').change(function() {
 
         let val = $(this).val();
 
-        if (val == 'trial_store' || val == 'brand_store') {
-            let disabled = (val == 'brand_store') ? 'disabled' : '';
-            let value = (val == 'brand_store') ? 0 : '';
+        if (val == 'trial_store' || val == 'brand_store' || val == 'no_trial_product') {
+
+            let disabled = (val == 'brand_store' || val == 'no_trial_product') ? 'disabled' : '';
+            let value = (val == 'brand_store' || val == 'no_trial_product') ? 0 : '';
             let span = (val == 'trial_store') ? '<span class="note">Trial Point should not greater than 6.</span>' : '';
 
             $('#saleTrail').html(`<label for="market-price1">Trial Point</label>
                             <input type="text" name="trial_point" value="${value}" class="form-control" placeholder="Trial Point" ${disabled}>
                             <span class="text-danger" id="trial_point_msg"></span>${span}`);
-        } else if (val == 'fixed_price' || val == 'rewards_store') {
+        } else if (val == 'hot_deals' || val == 'rewards_store') {
 
             let required = (val == 'rewards_store') ? '*' : '';
             $('#rewareField').html(required);
@@ -381,23 +399,19 @@
     var i = 1;
     $('#myaddBtn').click(function() {
         var vendor_id = $(this).attr('vendor_id');
-        var fieldHTML = `<tr id="row-${i}">
-                        <td>
-                            <div>
-                                <input type="text" id="details[${i}][label]" class="form-control" placeholder="Label" required>
-                            </div>
-                        </td>
-                        <td>
-                            <div>
-                                <textarea name="details[${i}][description]" rows="1" id="product-description"  placeholder="Enter Discription"  class="form-control" required></textarea>
-                            </div>
-                            </td>
-                                <td>
-                                <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a>
-                                </td>
-                            </tr>`;
+        var fieldHTML = `<div class="row" id="row-${i}">
+                        <div class="field-group col-md-6">
+                            <input type="text" id="details[${i}][label]" class="form-control" placeholder="Label" required>
+                        </div>
+                        <div class="field-group col-md-1"> <a href="javascript:void(0)" onClick="removeRow(${i});" class="btn btn-xs btn-danger"><span class="mdi mdi-delete-forever">-</span></a></div>
+                        <div class="field-group col-md-8">
+                            <textarea name="details[${i}][description]" id="textLabel${i}" rows="1" placeholder="Enter Description" class="form-control"></textarea>
+                        </div>
+                        </div>`;
         $('#field_wrapper1').append(fieldHTML);
+        texteditor(`textLabel${i}`);
         i++;
+
     });
 
     function removeRow(id) {

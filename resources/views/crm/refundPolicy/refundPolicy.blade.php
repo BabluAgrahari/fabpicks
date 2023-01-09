@@ -6,7 +6,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-12">
-                <h4>Refund Policy</h4>
+                <h5><x-icon type="list" />Refund Policy</h5>
             </div>
         </div>
     </div>
@@ -21,14 +21,20 @@
                         <input type="hidden" value="{{$res->id}}">
                         <div class="field-group">
                             <label for="about-us-content">Refund Policy Content</label>
-                            <textarea name="refund" id="refund" class="form-control textediter" required>{{$res->refund}}</textarea>
+                            <textarea name="refund" id="refund" class="form-control textediter">{{$res->refund}}</textarea>
                         </div>
                     </div>
-                    <button class="btn btn-success mt-5 text-center"><x-icon type="update"/>Update</button>
+                    <button class="btn btn-success mt-5 text-center"><x-icon type="update" />Update</button>
                 </div>
             </form>
 
         </div>
     </div>
 </div>
+
+@push('js')
+<script>
+    texteditor(`refund`);
+</script>
+@endpush
 @endsection

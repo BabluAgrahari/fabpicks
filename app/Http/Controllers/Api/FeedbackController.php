@@ -15,7 +15,7 @@ class FeedbackController extends Controller
     {
         try {
 
-            $record = Feedback::where('status','success')->latest()->get();
+            $record = Feedback::where('status', 'success')->latest()->get();
 
             if ($record->isEmpty())
                 return $this->notFoundRes();
@@ -39,17 +39,21 @@ class FeedbackController extends Controller
 
     public function store(FeedbackRequest $request)
     {
-        $save = new Feedback();
-        $save->review     = $request->review;
-        $save->quality    = $request->quality;
-        $save->price      = $request->price;
-        $save->value      = $request->value;
-        $save->remarks    = $request->remarks;
-        $save->status     = $request->status;
+        try {
+            $save = new Feedback();
+            $save->review  = $request->review;
+            $save->quality = $request->quality;
+            $save->price   = $request->price;
+            $save->value   = $request->value;
+            $save->remarks = $request->remarks;
+            $save->status  = $request->status;
 
-        if ($save->save())
-            return $this->successRes('Feedback Created Successfully.');
+            if ($save->save())
+                return $this->successRes('Feedback Created Successfully.');
 
-        return $this->failRes('Feedback not Created.');
+            return $this->failRes('Feedback not Created.');
+        } catch (Exception $e) {
+            return $this->failRes($e->getMessage());
+        }
     }
 }

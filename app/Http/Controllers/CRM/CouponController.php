@@ -5,113 +5,126 @@ namespace App\Http\Controllers\CRM;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Coupon;
-use Illuminate\Console\View\Components\Alert; 
+use Exception;
+use Illuminate\Console\View\Components\Alert;
 
 class CouponController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index(Request $request)
     {
-        $query = Coupon::userAccess();
+        try {
+            $query = Coupon::userAccess();
 
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->latest()->paginate($perPage);
 
-            $request->request->remove('page');
-            $request->request->remove('perPage');
-        return view('crm.coupon.list', $data);
+            unset($request['perPage']);
+            unset($request['page']);
+            $data['filter'] = $request->all();
+            return view('crm.coupon.list', $data);
+        } catch (Exception $e) {
+            return redirect('500')->with(['error', $e->getMessage()]);
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        if ($request->from_amount > $request->to_amount)
-            return response(['validation' => ['to_amount' => 'To Amount should not smaller than From Amount.']]);
+        try {
 
-        $coupon = Coupon::latest()->userAccess()->limit(1)->first();
+            if (strtotime($request->expiry) < strtotime(date('Y-m-d H:i')))
+                return response(['validation' => ['expiry' => 'Please Select valid Expiry Date.']]);
 
-        if (!empty($coupon) && $coupon->to_amount >= $request->from_amount)
-            return response(['status' => false, 'msg' => 'Invalide Discount Range.']);
+            // $coupon = Coupon::latest()->userAccess()->limit(1)->first();
 
-        $save = new Coupon();
-        $save->from_amount      = $request->from_amount;
-        $save->to_amount        = $request->to_amount;
-        $save->discount         = $request->discount;
-        if ($save->save())
-            return response(['status' => true, 'msg' => 'Coupon Added Successfully.']);
+            // if (!empty($coupon) && $coupon->to_amount >= $request->from_amount)
+            //     return response(['status' => false, 'msg' => 'Invalide Discount Range.']);
 
-        return response(['status' => false, 'msg' => 'Coupon not Added.']);
+            $save = new Coupon();
+            $save->coupon_code      = $request->coupon_code;
+            $save->coupon_qty       = (int)$request->coupon_qty;
+            $save->expiry           = (int)strtotime($request->expiry);
+            $save->amount           = $request->amount;
+            $save->status           = (int)$request->status;
+            $save->expiry_status    = 1;
+            $save->discount_type    = $request->discount_type;
+            $save->cart_value       = $request->cart_value;
+            $save->description      = $request->description;
+            if ($save->save())
+                return response(['status' => true, 'msg' => 'Coupon Added Successfully.']);
+
+            return response(['status' => false, 'msg' => 'Coupon not Added.']);
+        } catch (Exception $e) {
+            return response(['status' => false, 'msg' => $e->getMessage()]);
+        }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $record = Coupon::find($id);
-        return response(['status' => true, 'record' => $record]);
+        try {
+            $record = Coupon::find($id);
+            return response(['status' => true, 'record' => $record]);
+        } catch (Exception $e) {
+            return response(['status' => false, 'msg' => $e->getMessage()]);
+        }
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, $id)
     {
-        $save = Coupon::find($id);
-        $save->from_amount          = $request->from_amount;
-        $save->to_amount          = $request->to_amount;
-        $save->discount          = $request->discount;
-        if ($save->save())
-            return response(['status' => true, 'msg' => 'Coupon Updated Successfully.']);
+        try {
+            $save = Coupon::find($id);
+            $save->coupon_code      = $request->coupon_code;
+            $save->coupon_qty       = (int)$request->coupon_qty;
+            $save->expiry           = (int)strtotime($request->expiry);
+            $save->amount           = $request->amount;
+            $save->status           = (int)$request->status;
+            $save->discount_type    = $request->discount_type;
+            $save->cart_value       = $request->cart_value;
+            $save->description      = $request->description;
+            if ($save->save())
+                return response(['status' => true, 'msg' => 'Coupon Updated Successfully.']);
 
-        return response(['status' => false, 'msg' => 'Coupon not Updated.']);
+            return response(['status' => false, 'msg' => 'Coupon not Updated.']);
+        } catch (Exception $e) {
+            return response(['status' => false, 'msg' => $e->getMessage()]);
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
         //
+    }
+
+    public function status(Request $request)
+
+    {
+
+        try {
+
+            $save = Coupon::find($request->id);
+            // pr($request->all());die;
+            $save->status = (int)$request->status;
+
+            $save->save();
+
+            if ($save->status == 1)
+
+                return response(['status' => 'success', 'msg' => 'This Brand is Active!', 'val' => $save->status]);
+
+            return response(['status' => 'success', 'msg' => 'This Brand is Inactive!', 'val' => $save->status]);
+        } catch (Exception $e) {
+
+            return response(['status' => 'error', 'msg' => 'Something went wrong!!']);
+        }
     }
 }

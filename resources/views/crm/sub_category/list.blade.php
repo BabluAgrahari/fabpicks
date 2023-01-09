@@ -5,7 +5,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-9">
-                <h5>Sub Category</h5>
+                <h5><x-icon type="list" />Sub Category</h5>
             </div>
             <div class="col-md-3 product-btn-group d-flex justify-content-end">
                 @if(!empty($filter))
@@ -46,7 +46,7 @@
                             <tr>
                                 <th scope="row">{{++$key}}</th>
                                 <td>{{$list->name}}</td>
-                                <td>{{$list->description}}</td>
+                                <td>{!!$list->description!!}</td>
                                 <td>{{$list->sort}}</td>
                                 <td>{!!listStatus($list->status,$list->_id)!!}</td>
                                 <td><img src="{{$list->banner ?? defaultImg()}}" style="height:50px; width:60px;"></td>
@@ -56,9 +56,9 @@
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="edit text-info">
                                             <x-icon type="edit" />
                                         </a>
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-info">
+                                        <!-- <a href="javascript:void(0)" _id="{{$list->_id}}" class="remove text-info">
                                             <x-icon type="remove" />
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </td>
                             </tr>
@@ -77,85 +77,84 @@
     <div class="modal-dialog modal-dialog-centered ">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="SubCategoryLabel"> Sub Category</h1>
+                <h1 class="modal-title fs-6" id="SubCategoryLabel"> Sub Category</h1>
                 <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <div class="container">
-                    <div id="message"></div>
-                    <form id="SaveSubCategory" action="{{url('crm/sub-category')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div id="put"></div>
+                <div id="message"></div>
+                <form id="SaveSubCategory" action="{{url('crm/sub-category')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div id="put"></div>
 
-                        <div class="row">
+                    <div class="row">
 
-                            <div class="col-md-12">
-                                <div class="field-group">
-                                    <label>Category</label>
-                                    <select name="category_id" class="form-control" id="category_id">
-                                        <option value="">Select</option>
-                                        @foreach($categories as $cat)
-                                        <option value="{{$cat->_id}}">{{ucwords($cat->name)}}</option>
-                                        @endforeach
-                                    </select>
-                                    <span class="text-danger" id="category_id_msg"></span>
-                                </div>
+                        <div class="col-md-12">
+                            <div class="field-group">
+                                <label>Category</label>
+                                <select name="category_id" class="form-select" id="category_id">
+                                    <option value="">Select</option>
+                                    @foreach($categories as $cat)
+                                    <option value="{{$cat->_id}}">{{ucwords($cat->name)}}</option>
+                                    @endforeach
+                                </select>
+                                <span class="text-danger" id="category_id_msg"></span>
                             </div>
-                            <div class="col-md-12">
-                                <div class="field-group">
-                                    <label>Sub Category Name</label>
-                                    <input type="text" id="name" name="name" placeholder="Enter Name" class="form-control">
-                                </div>
-                                <span class="text-danger" id="name_msg"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="field-group">
+                                <label>Sub Category Name</label>
+                                <input type="text" id="name" name="name" placeholder="Enter Name" class="form-control">
                             </div>
-                            <div class="col-md-12">
-                                <div class="field-group">
-                                    <label for="description ">Description</label>
-                                    <textarea id="description" name="description" cols="10" rows="3" placeholder="Enter Description" class="form-control"></textarea>
-                                </div>
-                                <span class="text-danger" id="description_msg"></span>
+                            <span class="text-danger" id="name_msg"></span>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="field-group">
+                                <label for="description ">Description</label>
+                                <textarea id="description" name="description" cols="10" rows="3" placeholder="Enter Description" class="textediter form-control"></textarea>
+                            </div>
+                            <span class="text-danger" id="description_msg"></span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="field-group">
+                                <label for="sort ">Sort</label>
+                                <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
+                            </div>
+                            <span class="text-danger" id="sort_msg"></span>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="field-group">
+                                <label>Status</label>
+                                <select class="form-select" name="status" id="status">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactivce</option>
+                                </select>
+                                <span class="text-danger" id="status_msg"></span>
                             </div>
                         </div>
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="field-group">
-                                    <label for="banner">Banner</label>
-                                    <input type="file" name="banner" id="banner" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-12">
-                                <div class="field-group">
-                                    <label for="icon">Icon</label>
-                                    <input type="file" name="icon" id="icon" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="field-group">
-                                    <label for="sort ">Sort</label>
-                                    <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
-                                </div>
-                                <span class="text-danger" id="sort_msg"></span>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="field-group">
-                                    <label>Status</label>
-                                    <select class="form-select" name="status" id="status">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactivce</option>
-                                    </select>
-                                    <span class="text-danger" id="status_msg"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-12 text-center">
-                                <button type="reset" class="btn btn-danger">
-                                    <x-icon type="reset" />Reset
-                                </button>
-                                <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
-                            </div>
+                        <div class="field-group col-md-9">
+                            <label for="banner">Banner</label>
+                            <input type="file" name="banner" id="banner" class="imgInp form-control">
                         </div>
-                    </form>
-                </div>
+                        <div class="field-group col-md-3"><img src="{{defaultImg('80x80')}}" id="avatar" style="width:80px; height:80px;"></div>
+
+                        <div class="field-group col-md-9">
+                            <label for="icon">Icon</label>
+                            <input type="file" name="icon" id="icon" class="imgInp1 form-control">
+                        </div>
+                        <div class="field-group col-md-3"><img src="{{defaultImg('80x80')}}" id="avatar1" style="width:80px; height:80px;"></div>
+
+                        <div class="col-md-12 text-center">
+                            <button type="reset" class="btn btn-danger">
+                                <x-icon type="reset" />Reset
+                            </button>
+                            <button type="submit" class="btn btn-success" id="save">Add</button>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
 
@@ -169,8 +168,7 @@
 @push('js')
 
 <script>
-
-$(document).on('click', '.activeVer', function() {
+    $(document).on('click', '.activeVer', function() {
         let id = $(this).attr('_id');
         let val = $(this).attr('val');
         let selector = $(this);
@@ -185,6 +183,7 @@ $(document).on('click', '.activeVer', function() {
         $('form#SaveSubCategory').attr('action', '{{ url("crm/sub-category") }}');
         $('#put').html('');
         $('#SubCategory').modal('show');
+        texteditor(`description`);
     });
 
     $("form#SaveSubCategory").submit(function(e) {
@@ -250,14 +249,16 @@ $(document).on('click', '.activeVer', function() {
                     $('#description').val(res.record.description);
                     $('#sort').val(res.record.sort);
                     $('#category').val(res.category);
-                    let status = res.record.status ? true : false;
-                    $('#status').prop('checked', status);
+                    $('#status').val(res.record.status);
+                    $('#avatar').attr('src', res.record.banner);
+                    $('#avatar1').attr('src', res.record.icon);
 
                     $('#SubCategoryLabel').html('Edit Sub Category');
                     $('#save').html(`<x-icon type="update" />Update`);
                     $('form#SaveSubCategory').attr('action', '{{ url("crm/sub-category") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#SubCategory').modal('show');
+                    texteditor(`description`);
                 }
             }
         })

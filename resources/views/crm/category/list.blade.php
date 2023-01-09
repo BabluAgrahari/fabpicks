@@ -5,7 +5,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-9">
-                <h5>All Category </h5>
+                <h5><x-icon type="list" />All Category </h5>
             </div>
 
             <div class="col-md-3 product-btn-group d-flex justify-content-end">
@@ -47,8 +47,8 @@
                             @foreach($lists as $key=>$list)
                             <tr>
                                 <th scope="row">{{++$key}}</th>
-                                <td>{{ucWords($list->name)}}</td>
-                                <td>{{ucWords($list->description)}}</td>
+                                <td>{{ucwords($list->name)}}</td>
+                                <td>{!!$list->description!!}</td>
                                 <td>{{$list->sort}}</td>
                                 <td>{!!listStatus($list->status,$list->_id)!!}</td>
                                 <td><img src="{{$list->banner ?? defaultImg()}}" style="height:50px; width:60px;"></td>
@@ -58,9 +58,9 @@
                                         <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-info edit">
                                             <x-icon type="edit" />
                                         </a>
-                                        <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove">
+                                        <!-- <a href="javascript:void(0)" _id="{{$list->_id}}" class="text-danger remove">
                                             <x-icon type="remove" />
-                                        </a>
+                                        </a> -->
                                     </div>
                                 </td>
                             </tr>
@@ -97,18 +97,8 @@
 
                     <div class="field-group">
                         <label for="description ">Description</label>
-                        <textarea name="description" id="description" placeholder="Enter Description"  class="form-control"></textarea>
+                        <textarea name="description" id="description" placeholder="Enter Description" class="textediter form-control"></textarea>
                         <span class="text-danger" id="description_msg"></span>
-                    </div>
-
-                    <div class="field-group">
-                        <label for="banner">Banner</label>
-                        <input type="file" name="banner" id="banner" class="form-control">
-                    </div>
-
-                    <div class="field-group">
-                        <label for="icon">Icon</label>
-                        <input type="file" name="icon" id="icon" class="form-control">
                     </div>
 
                     <div class="row">
@@ -126,7 +116,20 @@
                             </select>
                             <span class="text-danger" id="sort_msg"></span>
                         </div>
+                    </div>
 
+                    <div class="row">
+                        <div class="field-group col-md-9">
+                            <label for="banner">Banner</label>
+                            <input type="file" name="banner" class="imgInp form-control">
+                        </div>
+                        <div class="field-group col-md-3"><img src="{{defaultImg('80x80')}}" id="avatar" style="width:80px; height:80px;"></div>
+
+                        <div class="field-group col-md-9">
+                            <label for="icon">Icon</label>
+                            <input type="file" name="icon" id="icon" class="imgInp1 form-control">
+                        </div>
+                        <div class="field-group col-md-3"><img src="{{defaultImg('80x80')}}" id="avatar1" style="width:80px; height:80px;"></div>
 
                     </div>
 
@@ -157,6 +160,7 @@
         let selector = $(this);
         let url = "{{ url('crm/category-status') }}";
         chagneStatus(id, val, selector, url);
+        
     })
 
     $('#AddCategory').click(function(e) {
@@ -166,6 +170,7 @@
         $('form#saveCategory').attr('action', '{{ url("crm/category") }}');
         $('#put').html('');
         $('#Category').modal('show');
+        texteditor(`description`);
     });
     /*start form submit functionality*/
     $("form#saveCategory").submit(function(e) {
@@ -232,14 +237,16 @@
                     $('#name').val(res.record.name);
                     $('#description').val(res.record.description);
                     $('#sort').val(res.record.sort);
-                    let status = res.record.status ? true : false;
-                    $('#status').prop('checked', status);
+                    $('#status').val(res.record.status);
+                    $('#avatar').attr('src', res.record.banner);
+                    $('#avatar1').attr('src', res.record.icon);
 
                     $('#CategoryLabel').html('Edit Category');
                     $('#save').html('Update');
                     $('form#saveCategory').attr('action', '{{ url("crm/category") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
                     $('#Category').modal('show');
+                    texteditor(`description`);
                 }
             }
         })

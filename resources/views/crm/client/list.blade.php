@@ -2,11 +2,15 @@
 @section('content')
 
 
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
+
 <div class="card">
     <div class="card-header ">
         <div class="row">
             <div class="col-md-3">
-                <h5>Client</h5>
+                <h5>
+                    <x-icon type="list" />Client
+                </h5>
             </div>
             <div class="col-md-9 product-btn-group d-flex justify-content-end">
                 @if(!empty($filter))
@@ -69,11 +73,11 @@
 </div>
 
 @push('modal')
-<div class="modal fade" id="ClientModal" tabindex="-1" aria-labelledby="clientLabel" aria-hidden="true">
+<div class="modal fade" id="ClientModal" aria-labelledby="clientLabel" aria-hidden="true" style="overflow:hidden;">
     <div class="modal-dialog modal-dialog-centered modal-lg ">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="clientLabel">Client</h1>
+                <h1 class="modal-title fs-6" id="clientLabel">Client</h1>
                 <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -86,20 +90,22 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="store-owner ">Brand: <span class="required">*</span></label>
-                                        <select name="Brand_id" id="Brand_id" class="form-select js-example-basic-single">
-                                            <option value="" selected>Select</option>
+                                        <label for="store-owner ">Brand <span class="required">*</span></label>
+                                        <select name="brand_ids[]" id="brand_id" multiple class="form-select js-example-basic-single" >
+                                            <!-- <option value="" selected>Select</option> -->
                                             @foreach($brands as $res)
                                             <option value="{{$res->_id}}">{{$res->name}}</option>
+                                           
                                             @endforeach
                                         </select>
+                                      
                                         <span class="text-danger" id="store_owner_msg"></span>
                                     </div>
                                 </div>
 
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="store-name ">Store Name: <span class="required">*</span></label>
+                                        <label for="store-name ">Store Name <span class="required">*</span></label>
                                         <input type="text" id="store_name" name="store_name" class="form-control" placeholder="Store Name">
                                         <span class="text-danger" id="store_name_msg"></span>
                                     </div>
@@ -107,7 +113,7 @@
 
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="business-email ">Business Email: <span class="required">*</span></label>
+                                        <label for="business-email ">Business Email <span class="required">*</span></label>
                                         <input type="text" id="email" name="email" class="form-control" placeholder="Business Email">
                                         <span class="text-danger" id="email_msg"></span>
                                     </div>
@@ -116,21 +122,21 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="vat/gstin ">VAT/GSTIN No: </label>
+                                        <label for="vat/gstin ">VAT/GSTIN No </label>
                                         <input type="text" id="gstin" name="gstin" class="form-control" placeholder="VAT/GSTIN No. ">
                                         <span class="text-danger" id="gstin_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="phone ">Phone: </label>
+                                        <label for="phone ">Phone </label>
                                         <input type="text" id="phone" name="phone" class="form-control" placeholder="Phone No. ">
                                         <span class="text-danger" id="phone_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="mobile ">Mobile: <span class="required">*</span></label>
+                                        <label for="mobile ">Mobile <span class="required">*</span></label>
                                         <input type="text" name="mobile" id="mobile" class="form-control" placeholder=" Mobile No. ">
                                         <span class="text-danger" id="mobile_msg"></span>
                                     </div>
@@ -140,22 +146,22 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="address ">Store Address: <span class="required">*</span></label>
-                                        <textarea name="address" id="address" placeholder="Enter Address" class="form-control"></textarea>
+                                        <label for="address ">Store Address <span class="required">*</span></label>
+                                        <textarea name="address" id="address" placeholder="Enter Address" rows="1" class="form-control"></textarea>
                                         <span class="text-danger" id="address_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="country ">Country: <span class="required">*</span></label>
+                                        <label for="country ">Country <span class="required">*</span></label>
                                         <input type="text" name="country" id="country" class="form-control" placeholder="Enter Country">
                                         <span class="text-danger" id="country_msg"></span>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="state ">State: <span class="required">*</span></label>
-                                        <select name="state" id="state" class="form-select js-example-basic-single">
+                                        <label for="state ">State <span class="required">*</span></label>
+                                        <select name="state" id="state" class="form-select  "  >
                                             <option value=" ">Select</option>
                                             @foreach(config('global.state') as $state)
                                             <option value="{{$state}}">{{$state}}</option>
@@ -169,7 +175,7 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="city ">City: <span class="required">*</span></label>
+                                        <label for="city ">City <span class="required">*</span></label>
                                         <input type="text" name="city" id="city" placeholder="Enter City" class="form-control">
 
                                         <span class="text-danger" id="city_msg"></span>
@@ -177,51 +183,61 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="pincode/zipcode ">Pincode/Zipcode: </label>
-                                        <input type="text" id="pincode" name="pincode" class="form-control" placeholder="Pincode/Zipcode">
+                                        <label for="pincode/zipcode ">Pincode </label>
+                                        <input type="text" id="pincode" name="pincode" class="form-control" placeholder="Pincode">
                                         <span class="text-danger" id="pincode_msg"></span>
                                     </div>
                                 </div>
+
                                 <div class="col-md-4">
                                     <div class="field-group">
-                                        <label for="logo ">Logo: </label>
-                                        <input type="file" id="logo" name="logo" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row">
-
-                                <div class="col-md-4" id="passwordField">
-                                </div>
-
-                                <div class="col-md-3">
-                                    <div class="field-group">
                                         <div class="form-check form-switch custom-switch custom-switch-1">
-                                            <label class="form-check-label" for="store">Store</label>
-                                            <input class="form-check-input" type="checkbox" role="switch" value="1" name="store" id="store" checked>
-                                            <span class="note">(Toggle the store status.)</span>
+                                            <label>Store</label>
+                                            <select name="store" id="store" class="form-select">
+                                                <option value="1">Active</option>
+                                                <option value="0">Inactive</option>
+                                            </select>
                                             <span class="text-danger" id="store_msg"></span>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-3">
+
+
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-4">
                                     <div class="field-group">
-                                        <div class="form-check form-switch custom-switch custom-switch-1">
-                                            <label class="form-check-label" for="verified-store">Verified Store:</label>
-                                            <input class="form-check-input" type="checkbox" role="switch" name="verified_store" value="1" id="verified_store">
-                                            <span class="text-danger" id="verified_store_msg"></span>
-                                        </div>
+                                        <label>Verified Store</label>
+                                        <select name="verified_store" id="verified_store" class="form-select">
+                                            <option value="1">Active</option>
+                                            <option value="0">Inactive</option>
+                                        </select>
+                                        <span class="text-danger" id="verified_store_msg"></span>
                                     </div>
+                                </div>
+
+                                <div id="passwordField" class="col-md-4">
                                 </div>
                             </div>
 
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="field-group">
+                                        <label for="logo">Logo </label>
+                                        <input type="file" name="logo" class="form-control imgInp" id="imgInp">
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-2">
+                                    <img src="{{defaultImg('180x100')}}" class="avatar" id="avatar" />
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-12 text-center">
                                     <button type="reset" class="btn btn-danger">
                                         <x-icon type="reset" />Reset
                                     </button>
-                                    <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
+                                    <button type="submit" class="btn btn-success" id="save">Add</button>
                                 </div>
                             </div>
                         </form>
@@ -244,9 +260,9 @@
         $('#ClientModal').modal('show');
         $('#passwordField').html(`<div class="field-group">
                                         <label>Password </label>
-                                        <input type="password" id="password" name="password" class="form-control">
+                                        <input type="password" id="password" name="password" placeholder="Password" class="form-control">
                                         <span class="text-danger" id="password_msg"></span>
-                                    </div>`);
+                                    </div>`).show();
     });
 
     function removeRow(id) {
@@ -332,16 +348,30 @@
                     $('#store').prop('checked', store);
                     let verified_store = res.record.verified_store ? true : false;
                     $('#verified_store').prop('checked', verified_store);
+                    $('#avatar').attr('src', res.record.logo);
 
                     $('#clientLabel').html('Edit Client');
                     $('#save').html(`<x-icon type="update"/>Update`);
                     $('form#ClientSave').attr('action', '{{ url("crm/client") }}/' + id);
                     $('#put').html('<input type="hidden" id="putInput" name="_method" value="PUT">');
-                    $('#passwordField').html('');
+                    $('#passwordField').html('').hide();
                     $('#ClientModal').modal('show');
                 }
             }
         })
+    });
+</script>
+
+<script>
+    $(document).ready(function() {
+        $(".js-example-basic-single").select2({
+            dropdownParent: "#ClientModal",
+            closeOnSelect: false,
+            width: "100%",
+            allowHtml: true,
+            allowClear: true,
+            tags: true
+        });
     });
 </script>
 @endpush

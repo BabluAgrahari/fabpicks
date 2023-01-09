@@ -5,6 +5,11 @@
         color: red !important;
         font-size: 14px !important;
     }
+
+    .avatar {
+        width: 180px;
+        height: 100px;
+    }
 </style>
 
 <body>
@@ -32,14 +37,14 @@
                     </div>
                     <div class="dashboard-account">
                         <div class="profile-pic">
-                            <img src="{{defaultImg()}}" class="img-fluid" alt="">
+                            <img src="{{Auth::user()->profile_img??defaultImg()}}" class="img-fluid" alt="">
                         </div>
 
 
                         <div class="user-profile-container ">
                             <div class="user-profile-pic">
                                 <div class="user-profile-img">
-                                    <img src="{{defaultImg()}}" class="img-fluid" alt="">
+                                    <img src="{{Auth::user()->profile_img??defaultImg()}}" class="img-fluid" alt="">
                                 </div>
 
                                 <div class="user-name">
@@ -98,15 +103,36 @@
     <script src="{{asset('assets')}}/js/jquery.min.js"></script>
     <script src="{{asset('assets')}}/js/bootstrap.bundle.min.js"></script>
     <script src="{{asset('assets')}}/js/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js" integrity="sha512-2ImtlRlf2VVmiGZsjm9bEyhjGW4dU7B6TNwh/hx/iSByxNENtj3WVE6o/9Lj4TJeVXPi4bnOIMXFIJJAeufa0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <script src="{{asset('assets')}}/js/tags.js"></script>
+    <!-- <script src="{{asset('assets')}}/js/tags.js"></script> -->
     <script src="{{asset('assets')}}/js/main.js"></script>
     <script src="https://cdn.tiny.cloud/1/qagffr3pkuv17a8on1afax661irst1hbr4e6tbv888sz91jc/tinymce/4/tinymce.min.js"></script>
-    <script src="{{asset('assets')}}/js/texteditor.js"></script>
-    
+    <!-- <script src="{{asset('assets')}}/js/texteditor.js"></script> -->
+    <script src="{{asset('assets')}}/js/toast/src/jquery.toast.js"></script>
+    <!-- <script src="{{asset('assets')}}/js/custom.js"></script> -->
+    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script> -->
+    <!-- <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
+    <!-- <script src="https://cdn.ckeditor.com/4.5.6/standard/ckeditor.js"></script> -->
 
+    <script src="//cdn.ckeditor.com/4.20.1/basic/ckeditor.js"></script>
+
+    <script>
+        function texteditor(selector) {
+            $(function() {
+                var $ckfield = CKEDITOR.replace(selector);
+                $ckfield.on('change', function() {
+                    $ckfield.updateElement();
+                });
+            });
+        }
+
+        // function dynamicTextarea(selector) {
+        //     CKEDITOR.replace('#test');
+        // }
+    </script>
     <script>
         function alertMsg(status, msg, delay = 1000, remove = false) {
 
@@ -115,7 +141,6 @@
             let icon = status ? '<i class="fa-regular fa-circle-check"></i>' : '<i class="fa-regular fa-circle-xmark"></i>';
             // if(customSelector)
             // let selector = customSelector;
-
 
             $('#' + selector).html(`<div class="alert alert-box alert-${classN} d-flex align-items-center w-100" role="alert">
            ${icon}
@@ -199,21 +224,30 @@
         //show file name
         $(document).on('change', 'input[type=file]', function() {
             var fileName = this.files[0].name;
-            $(this).parent().find('label').html(fileName);
+            $(this).html(fileName);
         })
 
         /*start single image preview*/
-        $(document).on('change', '#imgInp', function() {
-            var fileName = imgInp.files[0].name;
+        $(document).on('change', '.imgInp', function(e) {
+            var fileName = e.target.files[0].name;
             $('.file-name').html(fileName);
-            const [file] = imgInp.files
-            if (file) {
-                $('#avatar').show();
+            const [file] = e.target.files
+            if (file)
                 avatar.src = URL.createObjectURL(file)
-            }
+        });
+        $(document).on('change', '.imgInp1', function(e) {
+            var fileName = e.target.files[0].name;
+            $('.file-name').html(fileName);
+            const [file] = e.target.files
+            if (file)
+                avatar1.src = URL.createObjectURL(file)
         });
         /*end single image preview*/
 
+        //for convert into upper case first letter
+        function ucwords(str = false) {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        }
         //for update status
         function chagneStatus(id = false, val = false, selector = false, url = false) {
 
@@ -240,8 +274,12 @@
                 }
             })
         }
+
+        setTimeout(function() {
+            $('.mce-notification-inner').hide();
+        }, 5000);
     </script>
-    @stack('modal');
+    @stack('modal')
     @stack('js')
     @stack('pagination-js')
 

@@ -6,7 +6,7 @@
     <div class="card-header ">
         <div class="row">
             <div class="col-md-12">
-                <h4>Teams and Conditions</h4>
+                <h5><x-icon type="list" />Teams and Conditions</h5>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
                         <input type="hidden" value="{{$res->id}}">
                         <div class="field-group">
                             <label for="about-us-content">Teams and Conditions Content</label>
-                            <textarea name="conditions" id="conditions" class="form-control textediter" required>{{$res->conditions}}</textarea>
+                            <textarea name="conditions" id="conditions" class="form-control textediter">{{$res->conditions}}</textarea>
                         </div>
                     </div>
                     <button class="btn btn-success mt-5 text-center"><x-icon type="update"/>Update</button>

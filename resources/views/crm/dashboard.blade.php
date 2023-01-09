@@ -31,7 +31,7 @@
                              <div class="dashboard-box">
                                  <div class="dashboard-title-group dashboard-box-top">
                                      <div class="dashboard-title">
-                                         <h6>Total Sell</h6>
+                                         <h6>Total Order</h6>
                                      </div>
                                      <div class="dashboard-icon icon-box icon-1">
                                          <i class="fa-solid fa-basket-shopping"></i>
@@ -39,7 +39,7 @@
                                  </div>
 
                                  <div class="dashboard-stats">
-                                     <h2>0</h2>
+                                     <h4>{{$allOrder}}</h4>
                                  </div>
                              </div>
                          </div>
@@ -55,10 +55,27 @@
                                  </div>
 
                                  <div class="dashboard-stats">
-                                     <h2>0</h2>
+                                     <h4>{{$pendingOrder}}</h4>
                                  </div>
                              </div>
                          </div>
+                         <div class="col-md-4">
+                             <div class="dashboard-box">
+                                 <div class="dashboard-title-group dashboard-box-top">
+                                     <div class="dashboard-title">
+                                         <h6>Delivered Order</h6>
+                                     </div>
+                                     <div class="dashboard-icon icon-box icon-6">
+                                         <i class="fa-solid fa-cart-plus"></i>
+                                     </div>
+                                 </div>
+
+                                 <div class="dashboard-stats">
+                                     <h4>{{$delviredOrder}}</h4>
+                                 </div>
+                             </div>
+                         </div>
+
                          <div class="col-md-4">
                              <div class="dashboard-box">
                                  <div class="dashboard-title-group dashboard-box-top">
@@ -71,7 +88,7 @@
                                  </div>
 
                                  <div class="dashboard-stats">
-                                     <h2>0</h2>
+                                     <h4>0</h4>
                                  </div>
                              </div>
                          </div>
@@ -87,7 +104,7 @@
                                  </div>
 
                                  <div class="dashboard-stats">
-                                     <h2>0</h2>
+                                     <h4>0</h4>
                                  </div>
                              </div>
                          </div>
@@ -95,7 +112,7 @@
                              <div class="dashboard-box">
                                  <div class="dashboard-title-group dashboard-box-top">
                                      <div class="dashboard-title">
-                                         <h6>New User</h6>
+                                         <h6>All User</h6>
                                      </div>
                                      <div class="dashboard-icon icon-box icon-5">
                                          <i class="fa-solid fa-users"></i>
@@ -103,26 +120,11 @@
                                  </div>
 
                                  <div class="dashboard-stats">
-                                     <h2>0</h2>
+                                     <h4>{{$allUser}}</h4>
                                  </div>
                              </div>
                          </div>
-                         <div class="col-md-4">
-                             <div class="dashboard-box">
-                                 <div class="dashboard-title-group dashboard-box-top">
-                                     <div class="dashboard-title">
-                                         <h6>Pending Order</h6>
-                                     </div>
-                                     <div class="dashboard-icon icon-box icon-6">
-                                         <i class="fa-solid fa-cart-plus"></i>
-                                     </div>
-                                 </div>
 
-                                 <div class="dashboard-stats">
-                                     <h2>0</h2>
-                                 </div>
-                             </div>
-                         </div>
                      </div>
                  </div>
                  <div class="col-md-5 ">
@@ -137,7 +139,7 @@
 
                              <div class="chart-box chart-box-3 " id="newpost3">
                                  <div class="chart">
-                                     <h2 class="text-center">Fixed Price :-</h2>
+                                     <h4 class="text-center">Fixed Price :-</h4>
                                      <div class="d-flex justify-content-center">
                                          <div id="myPlot"></div>
                                      </div>
@@ -185,252 +187,38 @@
                                  <thead>
                                      <tr>
                                          <th scope="col">#</th>
-                                         <th scope="col">Product Name</th>
-                                         <th scope="col">Order Id</th>
-                                         <th scope="col">Price</th>
-                                         <th scope="col">Sold</th>
-                                         <th scope="col">Sales</th>
+                                         <th scope="col">Order Number</th>
+                                         <th scope="col">Order Date</th>
+                                         <th scope="col">Amount</th>
+                                         <th scope="col">Status</th>
                                          <th scope="col">Action</th>
                                      </tr>
                                  </thead>
                                  <tbody>
+                                     @foreach($lists as $key=>$list)
                                      <tr>
-                                         <th scope="row">1</th>
-                                         <td>Product - 1</td>
-                                         <td>#4545</td>
-                                         <td>Rs. 455</td>
-                                         <td>984</td>
-                                         <td>Rs. 12984</td>
+                                         <th scope="row">{{++$key}}</th>
+                                         <td>{{$list->order_number}}</td>
+                                         <td>{{date('d-m-Y',(int)$list->order_date)}}</td>
+                                         <td>{{$list->amount}}</td>
                                          <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
+
+                                             <select _id="{{$list->_id}}" class="status form-select form-select-sm">
+                                                 <option value="pending" {{$list->order_status =='pending'?'selected':''}}>Pending</option>
+                                                 <option value="accept" {{$list->order_status =='accept'?'selected':''}}>Accept</option>
+                                                 <option value="dispatch" {{$list->order_status =='dispatch'?'selected':''}}>Dispatch</option>
+                                                 <option value="delivared" {{$list->order_status =='delivared'?'selected':''}}>Delivared</option>
+                                             </select>
                                          </td>
+                                         <td><a href="{{url('crm/order-details/'.$list->_id)}}" class="orderDetails text-info" _id="{{$list->_id}}">
+                                                 <x-icon type="details" />
+                                             </a></td>
                                      </tr>
-                                     <tr>
-                                         <th scope="row">2</th>
-                                         <td>Product - 2</td>
-                                         <td>#45455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">3</th>
-                                         <td>Product - 3</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">4</th>
-                                         <td>Product - 4</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">5</th>
-                                         <td>Product - 5</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">6</th>
-                                         <td>Product - 6</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">7</th>
-                                         <td>Product - 7</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">7</th>
-                                         <td>Product - 7</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">7</th>
-                                         <td>Product - 7</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">7</th>
-                                         <td>Product - 7</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">7</th>
-                                         <td>Product - 7</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">7</th>
-                                         <td>Product - 7</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">7</th>
-                                         <td>Product - 7</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
-                                     <tr>
-                                         <th scope="row">7</th>
-                                         <td>Product - 7</td>
-                                         <td>#455</td>
-                                         <td>Rs. 4565</td>
-                                         <td>9834</td>
-                                         <td>Rs. 129384</td>
-                                         <td>
-                                             <div class="form-check form-switch">
-                                                 <input class="form-check-input customCheckbox" type="checkbox" role="switch" id="customCheckbox" checked>
-                                             </div>
-                                         </td>
-                                     </tr>
+                                     @endforeach
                                  </tbody>
                              </table>
                          </div>
                      </div>
-                 </div>
-
-                 <div class="row align-items-center mb-3">
-                     <div class="col-md-1">
-                         <div class="list-number">
-                             <select name="" id="" class="form-select">
-                                 <option value="1">1</option>
-                                 <option value="2">2</option>
-                                 <option value="3">3</option>
-                                 <option value="4">4</option>
-                                 <option value="5">5</option>
-                                 <option value="6">6</option>
-                                 <option value="7">7</option>
-                                 <option value="8">8</option>
-                                 <option value="9">9</option>
-                                 <option value="10">10</option>
-                                 <option value="11">11</option>
-                                 <option value="12">12</option>
-                                 <option value="13">13</option>
-                                 <option value="14">14</option>
-                                 <option value="15">15</option>
-                                 <option value="16">16</option>
-                                 <option value="17">17</option>
-                                 <option value="18">18</option>
-                                 <option value="19">19</option>
-                                 <option value="20">20</option>
-                                 <option value="21">21</option>
-                                 <option value="22">22</option>
-                                 <option value="23">23</option>
-                                 <option value="24">24</option>
-                                 <option value="25">25</option>
-                             </select>
-                         </div>
-                     </div>
-
-                     <div class="col-md-5 ">
-                         <p class="mb-0">Showing 1 to 6 of 25 Results</p>
-                     </div>
-
-                     <div class="col-md-6 d-flex justify-content-end">
-                         <nav aria-label="Page navigation  pagination-sm">
-                             <ul class="pagination">
-                                 <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">1</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                             </ul>
-                         </nav>
-                     </div>
-
                  </div>
              </div>
          </div>
@@ -450,7 +238,37 @@
  <script src="{{asset('assets')}}/js/product-chart.js"></script>
  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
 
+ @push('js')
+ <script>
+     $(document).on('change', '.status', function(e) {
+         e.preventDefault(0);
+         // alert('hellow');
+         let id = $(this).attr('_id');
+         let order_status = $(this).val();
+         $.ajax({
+             url: "{{url('crm/order')}}/" + id,
+             type: 'post',
+             datatype: 'JSON',
+             data: {
+                 _token: '{{ csrf_token() }}',
+                 'order_status': order_status,
+             },
+             success: function(res) {
+                 if (res.status || !res.status) {
+                     let status = res.status ? 'success' : 'error';
+                     $.toast({
+                         text: res.msg,
+                         heading: ucwords(status),
+                         icon: status,
+                         position: 'top-right',
+                     })
+                 }
+             }
 
+         });
+     });
+ </script>
+ @endpush
 
  <!-- second chart start-->
  <script>

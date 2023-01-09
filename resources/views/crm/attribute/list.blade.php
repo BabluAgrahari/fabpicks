@@ -6,7 +6,7 @@
         <div class="row">
 
             <div class="col-md-9">
-                <h4> Attributes</h4>
+                <h5><x-icon type="list" />Attributes</h5>
             </div>
 
             <div class="col-md-3 product-btn-group d-flex justify-content-end">
@@ -71,71 +71,58 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="AttributeLabel"> Attributes</h1>
+                <h1 class="modal-title fs-6" id="AttributeLabel"> Attributes</h1>
                 <button type="button" class="btn-close" onclick="javascript:window.location.reload()" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
 
-                <div class="container">
-                    <div id="message"></div>
-                    <form id="SaveAttribute" action="{{url('crm/attribute')}}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div id="put"></div>
-                        <div class="row">
-
-                            <div class="col-md-12">
-
-                                <div class="field-group">
-                                    <label for="category-name ">Attribute Name</label>
-                                    <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
-                                    <span class="text-danger" id="name_msg"></span>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="field-group">
-                                    <label for="icon">Icon</label>
-                                    <input type="file" name="icon" id="icon" class="form-control">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="field-group">
-                                    <label for="sort ">Sort</label>
-                                    <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="form-control">
-                                    <span class="text-danger" id="sort_msg"></span>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="field-group">
-                                    <label>Status</label>
-                                    <select class="form-select" name="status" id="status">
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactivce</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                </div>
-                <div class="row">
-                    <div class="col-md-12 text-center">
-                    <button type="reset" class="btn btn-danger">
-                            <x-icon type="reset" />Reset
-                        </button>
-                        <button type="submit" class="btn btn-success btn-sm" id="save">Add</button>
+                <div id="message"></div>
+                <form id="SaveAttribute" action="{{url('crm/attribute')}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    <div id="put"></div>
+                    <div class="field-group">
+                        <label for="category-name ">Attribute Name</label>
+                        <input type="text" name="name" id="name" placeholder="Enter Name" class="form-control">
+                        <span class="text-danger" id="name_msg"></span>
                     </div>
-                </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="field-group">
+                                <label>Status</label>
+                                <select class="form-select" name="status" id="status">
+                                    <option value="1">Active</option>
+                                    <option value="0">Inactivce</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="field-group col-md-6">
+                            <label for="sort ">Sort</label>
+                            <input type="number" name="sort" id="sort" placeholder="Enter Sort" class="imgInp form-control">
+                            <span class="text-danger" id="sort_msg"></span>
+                        </div>
+
+                        <div class="field-group col-md-9">
+                            <label for="icon">Icon</label>
+                            <input type="file" name="icon" id="icon" class="imgInp form-control">
+                        </div>
+                        <div class="field-group col-md-3"><img src="{{defaultImg('80x80')}}" id="avatar" style="width:80px; height:80px;"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <button type="reset" class="btn btn-danger">
+                                <x-icon type="reset" />Reset
+                            </button>
+                            <button type="submit" class="btn btn-success" id="save">Add</button>
+                        </div>
+                    </div>
                 </form>
             </div>
             <div class="modal-footer">
-
             </div>
         </div>
 
     </div>
-</div>
 </div>
 
 @endpush
@@ -143,8 +130,7 @@
 @push('js')
 
 <script>
-
-$(document).on('click', '.activeVer', function() {
+    $(document).on('click', '.activeVer', function() {
         let id = $(this).attr('_id');
         let val = $(this).attr('val');
         let selector = $(this);
@@ -223,8 +209,8 @@ $(document).on('click', '.activeVer', function() {
                 if (res.status) {
                     $('#name').val(res.record.name);
                     $('#sort').val(res.record.sort);
-                    let status = res.record.status ? true : false;
-                    $('#status').prop('checked', status);
+                    $('#status').val(res.record.status);
+                    $('#avatar').attr('src', res.record.icon);
 
                     $('#AttributeLabel').html('Edit Attribute');
                     $('#save').html(`<x-icon type="update" />Update`);
