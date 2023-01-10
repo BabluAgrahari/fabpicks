@@ -9,6 +9,7 @@ use App\Models\SurvayQuestion;
 use App\Models\Topic;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use Illuminate\Support\Facades\Validator;
 
 class SurvayController extends Controller
 {
@@ -25,7 +26,6 @@ class SurvayController extends Controller
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }
- 
     }
 
     public function show($id)
@@ -40,21 +40,28 @@ class SurvayController extends Controller
 
     public function storeAnswer(Request $request)
     {
-        try{
-        $save= SurvayQuestion::find($request->question_id);
-        $answer = [];
-        if(!empty($save->answer))
-        $answer = $save->answer;
+        try {
+            $validator = Validator::make($request->all(), [
+                'user_id' => 'required',
+                'answer' => 'required',
+                'question_id' => 'required'
+            ]);
 
-        $answer[] = ['user_id'=>$request->user_id,'answer'=>$request->answer];
-        // print_r($answer);die;
-        $save->answer = $answer;
-        
-        if($save->save())
-        return $this->successRes('Answer Saved Successfully.');
+            if ($validator->fails())
+                return $this->validationRes($validator->messages());
 
-        return $this->failRes('Answer not Saved.');
-       
+            $save = SurvayQuestion::find($request->question_id);
+            $answer = [];
+            if (!empty($save->answer))
+                $answer = $save->answer;
+
+            $answer[] = ['user_id' => $request->user_id, 'answer' => $request->answer];
+            $save->answer = $answer;
+
+            if ($save->save())
+                return $this->successRes('Answer Saved Successfully.');
+
+            return $this->failRes('Answer not Saved.');
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }
@@ -62,9 +69,9 @@ class SurvayController extends Controller
 
     public function topics()
     {
-      try {
+        try {
 
-            $record = Topic::latest()->get();
+            $record = Topic::latest()->wher('status', 1)->get();
 
             if ($record->isEmpty())
                 return $this->notFoundRes();
@@ -74,7 +81,4 @@ class SurvayController extends Controller
             return $this->failRes($e->getMessage());
         }
     }
-
-   
-
 }

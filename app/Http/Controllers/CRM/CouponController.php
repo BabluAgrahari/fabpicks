@@ -50,6 +50,7 @@ class CouponController extends Controller
             $save->coupon_qty       = (int)$request->coupon_qty;
             $save->expiry           = (int)strtotime($request->expiry);
             $save->amount           = $request->amount;
+            $save->percentage       = $request->percentage;
             $save->status           = (int)$request->status;
             $save->expiry_status    = 1;
             $save->discount_type    = $request->discount_type;
@@ -58,7 +59,7 @@ class CouponController extends Controller
             $save->link             = $request->link;
 
             if (!empty($request->file('image')))
-            $save->image  = singleFile($request->file('image'), 'coupon');
+                $save->image  = singleFile($request->file('image'), 'coupon');
 
             if ($save->save())
                 return response(['status' => true, 'msg' => 'Coupon Added Successfully.']);
@@ -92,10 +93,16 @@ class CouponController extends Controller
             $save->coupon_qty       = (int)$request->coupon_qty;
             $save->expiry           = (int)strtotime($request->expiry);
             $save->amount           = $request->amount;
+            $save->percentage       = $request->percentage;
             $save->status           = (int)$request->status;
             $save->discount_type    = $request->discount_type;
             $save->cart_value       = $request->cart_value;
             $save->description      = $request->description;
+            $save->link             = $request->link;
+
+            if (!empty($request->file('image')))
+                $save->image  = singleFile($request->file('image'), 'coupon');
+
             if ($save->save())
                 return response(['status' => true, 'msg' => 'Coupon Updated Successfully.']);
 
