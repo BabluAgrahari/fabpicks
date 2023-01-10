@@ -100,6 +100,12 @@
                                     </a>
                                 </li>
 
+                                <li class="menu-item">
+                                    <a href="{{url('crm/topic')}}" class="active">
+                                        <span class="menu-title">Topic</span>
+                                    </a>
+                                </li>
+
                             </ul>
                         </div>
                     </li>

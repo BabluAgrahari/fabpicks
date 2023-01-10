@@ -55,6 +55,11 @@ class CouponController extends Controller
             $save->discount_type    = $request->discount_type;
             $save->cart_value       = $request->cart_value;
             $save->description      = $request->description;
+            $save->link             = $request->link;
+
+            if (!empty($request->file('image')))
+            $save->image  = singleFile($request->file('image'), 'coupon');
+
             if ($save->save())
                 return response(['status' => true, 'msg' => 'Coupon Added Successfully.']);
 

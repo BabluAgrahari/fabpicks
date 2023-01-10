@@ -100,14 +100,22 @@
               <div class="col-md-6">
                 <div class="field-group">
                   <label for="type-of-survay">Type of Survay</label>
-                  <select name="type" id="type" class="form-select ">
+                  <select name="type" id="type" class="form-select rewardSurvey">
                     <option value="">Select</option>
                     <option value="pre_qulifing_question">Pre-Qulifing Questions</option>
                     <option value="no_feedback">Feedback</option>
+                    <option value="reward_survey">Reward Survey</option>
                   </select>
                   <span class="text-danger" id="type_msg"></span>
                 </div>
               </div>
+
+              <div id="additionField">
+              </div>
+
+              <div id="subAddFild">
+              </div>
+
               <div class="col-md-12">
                 <div class="field-group">
                   <label for="type-of-survay">Description </label>
@@ -302,7 +310,7 @@
                     <label class="form-check-label">No</label>
                   </div>`;
           } else if (val.survay_type == 'rating') {
-           
+
             html += `
                   <div class="hello mt-0">
                     <div class="star-rating js-star-rating">
@@ -335,6 +343,42 @@
     })
 
   })
+
+  $(document).on('change', '.rewardSurvey', function(e) {
+    e.preventDefault(0);
+    var html = '';
+    let val = $(this).val();
+    //console.log(val);
+    if (val == 'reward_survey') {
+
+      html += `<div class="row">
+                  <div class="field-group col-md-6">
+                    <label class="form-check-label">Brand</label>
+                    <select name="brand_id" class="form-select brand " id="brand">
+                    <option value="">Select</option>
+                    @foreach($brands as $res)
+                    <option value="{{$res->_id}}">{{$res->name}}</option>
+                    @endforeach
+                  </select>
+                  </div>
+                  
+                  <div class="field-group col-md-6">
+                    <label class="form-check-label">Topic</label>
+                    <select name="topic_id" class="form-select " id="topic">
+                    <option value="">Select</option>
+                    @foreach($topics as $res)
+                    <option value="{{$res->_id}}">{{$res->name}}</option>
+                    @endforeach
+                  </select>
+                  </div>
+                  </div>`;
+
+    }
+    $('#additionField').html(html);
+  });
+
+
+ 
 </script>
 
 @include('crm.survay.survayQuestion')

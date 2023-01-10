@@ -46,6 +46,8 @@ class FeedbackController extends Controller
             $save->price   = $request->price;
             $save->value   = $request->value;
             $save->remarks = $request->remarks;
+            $save->product_id = $request->product_id;
+            $save->user_id = $request->user_id;
             $save->status  = $request->status;
 
             if ($save->save())
