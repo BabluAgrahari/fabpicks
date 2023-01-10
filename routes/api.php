@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\BannerController;
 use App\Http\Controllers\Api\CouponController;
 use App\Http\Controllers\Api\WishlistController;
 use App\Http\Controllers\Api\SettingController;
+use App\Http\Controllers\Api\SurvayController;
 use App\Http\Controllers\CRM\SettingController as CRMSettingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -119,6 +120,12 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
         Route::get('banner', 'index');
     });
+
+    Route::controller(SurvayController::class)->group(function () {
+
+        Route::get('survay', 'index');
+    });
+
 
     Route::resource('wishlist', WishlistController::class);
 

@@ -127,6 +127,20 @@
                             </div>
                         </div>
 
+                        <div class="row">
+                            <div class="field-group col-md-6">
+                                <label>link</label>
+                                <input type="text" value="" name="link" id="link" class="form-control" placeholder="Enter Link">
+                                <span class="text-danger" id="link_msg"></span>
+                            </div>
+
+                            <div class="field-group col-md-6">
+                                    <label for="banner">Image</label>
+                                    <input type="file" name="image" id="" class="imgInp form-control">
+                                    <span class="text-danger" id="image_msg"></span>
+                                </div>
+                        </div>
+
                         <div class="field-group">
                             <label>Description</label>
                             <textarea class="form-control" id="description" name="description"></textarea>

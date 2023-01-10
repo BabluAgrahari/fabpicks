@@ -5,8 +5,10 @@ namespace App\Http\Controllers\CRM;
 use App\Http\Controllers\Controller;
 use App\Http\Request\SuQuestionRequest;
 use App\Http\Request\SurvayRequest;
+use App\Models\Brand;
 use App\Models\Survay;
 use App\Models\SurvayQuestion;
+use App\Models\Topic;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -33,7 +35,9 @@ class SurvayController extends Controller
             unset($request['perPage']);
             unset($request['page']);
             $data['filter'] = $request->all();
-            
+            $data['brands'] = Brand::get();
+            $data['topics'] = Topic::get();
+            //pr($data['brands']);
             return view('crm.survay.list', $data);
         } catch (Exception $e) {
             return redirect('500')->with(['erroe', $e->getMessage()]);
@@ -47,6 +51,9 @@ class SurvayController extends Controller
             $save->title  = $request->title;
             $save->type  = $request->type;
             $save->description  = $request->description;
+            $save->brand_id  = $request->brand_id;
+            $save->topic_id  = $request->topic_id;
+           
 
             if ($save->save())
                 return response(['status' => true, 'msg' => 'Survay Added Successfully.']);
@@ -106,7 +113,7 @@ class SurvayController extends Controller
 
             $data['list'] = $save;
             $data['counter'] = $request->counter;
-       
+
             $respose = view('crm.survay.preview', $data)->render();
 
             return response(['status' => true, 'response' => $respose, 'msg' => 'Survay Added Successfully.']);
@@ -133,5 +140,20 @@ class SurvayController extends Controller
         $respose = view('crm.survay.editQuestion', $data)->render();
 
         return response(['status' => true, 'response' => $respose]);
+    }
+
+    public function storebrand(Request $request)
+    {
+        try {
+            $save = new brand();
+            $save->rewardType  = $request->rewardType;
+
+            if ($save->save())
+                return response(['status' => true, 'msg' => 'Survay Added Successfully.']);
+
+            return response(['status' => false, 'msg' => 'Survay not Added.']);
+        } catch (Exception $e) {
+            return response(['status' => false, 'msg' => $e->getmessage()]);
+        }
     }
 }

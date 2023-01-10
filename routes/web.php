@@ -23,6 +23,7 @@ use App\Http\Controllers\CRM\ProductListingController;
 use App\Http\Controllers\CRM\FeedbackController;
 use App\Http\Controllers\CRM\ShippingCostController;
 use App\Http\Controllers\CRM\TaxController;
+use App\Http\Controllers\CRM\TopicController;
 use App\Models\Banner;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Artisan;
@@ -46,6 +47,8 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::get('logout', [LoginController::class, 'logout']);
 
     Route::resource('brand', BrandController::class);
+
+    Route::resource('topic', TopicController::class);
 
     Route::resource('category', CategoryController::class)->middleware('can:isAdmin');
 
