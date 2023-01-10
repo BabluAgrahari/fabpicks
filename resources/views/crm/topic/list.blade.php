@@ -250,6 +250,7 @@
                     $('#description').val(res.record.description);
                     $('#sort').val(res.record.sort);
                     $('#status').val(res.record.status);
+                    $('#avatar').attr('src',res.record.logo);
 
                     $('#topicLabel').html('Edit topic');
                     $('#save').html(`<x-icon type="update" />Update`);

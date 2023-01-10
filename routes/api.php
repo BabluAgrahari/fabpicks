@@ -124,6 +124,9 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::controller(SurvayController::class)->group(function () {
 
         Route::get('survay', 'index');
+        Route::get('survay/{id}', 'show');
+        Route::post('store-answer/{id}', 'storeAnswer');
+        Route::get('survay/topics', 'topics');
     });
 
 

@@ -97,6 +97,13 @@
                             <span class="text-danger" id="coupon_qty_msg"></span>
                         </div>
 
+                        <div class="field-group ">
+                                <label>Link</label>
+                                <input type="text" value="" name="link" id="link" class="form-control" placeholder="Enter Link">
+                                <span class="text-danger" id="link_msg"></span>
+                            </div>
+
+
                         <div class="row">
                             <div class="field-group col-md-6">
                                 <label>Expiry Datetime</label>
@@ -128,19 +135,16 @@
                         </div>
 
                         <div class="row">
-                            <div class="field-group col-md-6">
-                                <label>link</label>
-                                <input type="text" value="" name="link" id="link" class="form-control" placeholder="Enter Link">
-                                <span class="text-danger" id="link_msg"></span>
+                        
+                        <div class="field-group col-md-7">
+                                <label for="banner">Image</label>
+                                <input type="file" name="image" id="" class="imgInp form-control">
+                                <span class="text-danger" id="image_msg"></span>
                             </div>
-
-                            <div class="field-group col-md-6">
-                                    <label for="banner">Image</label>
-                                    <input type="file" name="image" id="" class="imgInp form-control">
-                                    <span class="text-danger" id="image_msg"></span>
-                                </div>
+                            <div class="field-group col-md-5"><img src="{{defaultImg('80x80')}}" id="avatar" style="width:80px; height:80px;"></div>
                         </div>
-
+                        
+                       
                         <div class="field-group">
                             <label>Description</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
@@ -271,6 +275,7 @@
                     // $('#expiry').val(res.record.expiry);
                     $('#amount').val(res.record.amount);
                     $('#coupon_qty').val(res.record.coupon_qty);
+                    $('#avatar').attr('src',res.record.image);
                     $('#status').val(res.record.status);
                     $('#description').val(res.record.description);
                     $('#discount_type').val(res.record.discount_type);
