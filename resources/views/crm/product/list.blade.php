@@ -54,6 +54,10 @@
                                 <td>{{$list->rewards_point}}</td>
                                 <td>
                                     <div class="action-group">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">
+Image
+</button>
+
                                         <a href="javascript:void(0)" _id="{{$list->sub_category}}" product_id="{{$list->_id}}" class="view text-info"><i class="fa-solid fa-circle-plus"></i></a>
                                         <a href="{{url('crm/product/'.$list->_id)}}/edit" class="edit text-info">
                                             <x-icon type="edit" />
@@ -116,8 +120,10 @@
 <!-- related products End -->
 @endpush
 
+
 @push('js')
 <script>
+
     // //for edit
     $(document).on('click', '.view', function(e) {
         e.preventDefault(0);
@@ -177,5 +183,7 @@
     });
 </script>
 @endpush
+
+@include('crm.product.gallery');
 
 @endsection

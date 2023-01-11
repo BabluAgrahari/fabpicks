@@ -30,7 +30,7 @@ class ProductController extends Controller
 
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
-
+// pr( $data['lists']);
             unset($request['perPage']);
             unset($request['page']);
             $data['filter'] = $request->all();
