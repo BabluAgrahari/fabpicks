@@ -264,18 +264,6 @@
         html += `<div id="Rating" class="size_chart">
                   <div class="feedback-container">
 
-                    <div class="feedback-options">
-                      <div class="hello">
-                        <div class="star-rating js-star-rating">
-                          <input class="star-rating__input" type="radio" name="data[rating]" value="1"><i class="star-rating__star"></i>
-                          <input class="star-rating__input" type="radio" name="data[rating]" value="2"><i class="star-rating__star"></i>
-                          <input class="star-rating__input" type="radio" name="data[rating]" value="3" checked><i class="star-rating__star"></i>
-                          <input class="star-rating__input" type="radio" name="data[rating]" value="4"><i class="star-rating__star"></i>
-                          <input class="star-rating__input" type="radio" name="data[rating]" value="5"><i class="star-rating__star"></i>
-                          <div class="current-rating current-rating--3 js-current-rating"><i class="star-rating__star">AAA</i></div>
-                        </div>
-                      </div>
-
                        <div class="form-check">
                       <button type="submit" class="btn btn-sm btn-success" id="saveBtn" id="singleChoice"><x-icon type="save" />Save</button>
                       </div>
@@ -286,14 +274,8 @@
       } else if (val == 'upload_image') {
         html += `<div id="Upload_Image" class="size_chart">
         <div class="row">            
-        <div class="col-md-8 feedback-container">
-                      <div class="feedback-option mt-3">
-                        <input type="file" name="image" class="form-control">
-                        <span id="image_msg" class="text-danger"></span>
-                      </div>
-                    </div>
-
-                    <div class="col-md-4 mt-4 form-check">
+                
+                    <div class="col-md-12 mt-2 form-check">
                       <button type="submit" class="btn btn-sm btn-success" id="saveBtn" id="singleChoice"><x-icon type="save" />Save</button>
                       </div>
                       </div>
@@ -318,6 +300,25 @@
   });
 
 
+  // <div class="col-md-8 feedback-container">
+  //                     <div class="feedback-option mt-3">
+  //                       <input type="file" name="image" class="form-control">
+  //                       <span id="image_msg" class="text-danger"></span>
+  //                     </div>
+  //                   </div>
+
+  // <div class="feedback-options">
+  //                     <div class="hello">
+  //                       <div class="star-rating js-star-rating">
+  //                         <input class="star-rating__input" type="radio" name="data[rating]" value="1"><i class="star-rating__star"></i>
+  //                         <input class="star-rating__input" type="radio" name="data[rating]" value="2"><i class="star-rating__star"></i>
+  //                         <input class="star-rating__input" type="radio" name="data[rating]" value="3" checked><i class="star-rating__star"></i>
+  //                         <input class="star-rating__input" type="radio" name="data[rating]" value="4"><i class="star-rating__star"></i>
+  //                         <input class="star-rating__input" type="radio" name="data[rating]" value="5"><i class="star-rating__star"></i>
+  //                         <div class="current-rating current-rating--3 js-current-rating"><i class="star-rating__star">AAA</i></div>
+  //                       </div>
+  //                     </div>
+                    
   $(document).on('click', '.addQuestion', function(e) {
     e.preventDefault(0);
     $('#survay_id').val($(this).attr('_id'));

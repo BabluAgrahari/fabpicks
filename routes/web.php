@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\UserController as ApiUserController;
 use App\Http\Controllers\CRM\Auth\LoginController;
 use App\Http\Controllers\CRM\Auth\Register;
 use App\Http\Controllers\CRM\BrandController;
