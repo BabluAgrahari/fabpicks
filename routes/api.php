@@ -128,6 +128,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('survay/{id}', 'show');
         Route::post('store-answer', 'storeAnswer');
         Route::get('survay/topics', 'topics');
+        Route::get('survay-report','survayReport');
     });
 
 

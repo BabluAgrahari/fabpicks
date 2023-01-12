@@ -42,28 +42,37 @@ class SurvayController extends Controller
     public function storeAnswer(Request $request)
     {
         try {
+
+            $question_type = ($request->question_type == 'multi_choise') ? 'array' : '';
             $validator = Validator::make($request->all(), [
                 'user_id' => 'required',
-                'answer' => 'required',
-                'question_id' => 'required'
+                'answer' => 'required|' . $question_type,
+                'question_id' => 'required',
+                'question_type' => 'required|string|in:single_choise,multi_choise,yes_no,rating,upload_image,subjective_question'
             ]);
 
             if ($validator->fails())
                 return $this->validationRes($validator->messages());
 
             $save = SurvayQuestion::find($request->question_id);
-            $answer = [];
-            if (!empty($save->answer))
-                $answer = $save->answer;
 
-            $answer[] = ['user_id' => $request->user_id, 'answer' => $request->answer];
-            $save->answer = $answer;
+            if ($save->survay_type != $request->question_type)
+                return $this->failRes('Question type is invalid.');
 
+            // $answer = [];
+            // if (!empty($save->answer))
+            //     $answer = $save->answer;
+
+            // $answer[] = ['user_id' => $request->user_id, 'answer' => $request->answer];
+            // $save->answer = $answer;
+
+            //surevay answer into survay answer collection
             $ans = new SurvayAnswer();
-            $ans->survay_id = $save->survay_id;
-            $ans->user_id = $request->user_id ?? Auth::user()->_id;
+            $ans->survay_id   = $save->survay_id;
+            $ans->user_id     = $request->user_id ?? Auth::user()->_id;
             $ans->question_id = $request->question_id;
-            $ans->answer = $request->answer;
+            $ans->answer      = $request->answer;
+            $ans->question_type = $request->question_type;
             $ans->save();
 
             if ($save->save())
@@ -93,8 +102,16 @@ class SurvayController extends Controller
     public function survayReport(Request $request)
     {
         try {
-            $record  = SurvayAnswer::where('survay_id',$request->survay_id)->where('user_id',Auth::user()->_id)->get();
-            return $this->recordsRes($record);
+            $validator = Validator::make($request->all(), [
+                'survay_id' => 'required'
+            ]);
+
+            if ($validator->fails())
+                return $this->validationRes($validator->messages());
+
+            $records = SurvayAnswer::with(['Question', 'Survay'])->where('survay_id', $request->survay_id)->where('user_id', Auth::user()->_id)->get();
+
+            return $this->recordsRes($records);
         } catch (Exception $e) {
             return $this->failRes($e->getMessage());
         }
