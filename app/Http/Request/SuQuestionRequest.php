@@ -31,8 +31,6 @@ class SuQuestionRequest extends FormRequest
         } else if ($request->survay_type == 'multi_choise') {
             $rule['data.answer'] = 'nullable';
             $rule['data.option.*'] = 'required';
-        } else if($request->survay_type =='upload_image') {
-            $rule['image'] = 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048';
         }
 
         return $rule;

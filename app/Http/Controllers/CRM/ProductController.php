@@ -30,7 +30,7 @@ class ProductController extends Controller
 
             $perPage = !empty($request->perPage) ? $request->perPage : config('global.perPage');
             $data['lists'] = $query->dateRange($request->date_range)->latest()->paginate($perPage);
-// pr( $data['lists']);
+ //pr( $data['lists']);
             unset($request['perPage']);
             unset($request['page']);
             $data['filter'] = $request->all();
@@ -213,5 +213,47 @@ class ProductController extends Controller
         } catch (Exception $e) {
             return response(['status' => false, 'msg' => $e->getMessage()]);
         }
+    }
+
+    public function multiimage(Request $request,$id)
+    {
+       
+            $record = Product::select('images')->find($id);
+             $img = '<div class="row">';
+
+        $img1 = '';
+
+        $img2 = '';
+
+        foreach ($record as $key => $image) {
+
+            $img .= '<div class="col-md-3"><div class="card p-2">
+
+           <img src="' . asset('client_image/' . $image->images) . '" style="width: 135px;
+
+           height: 135px;"></div></div>';
+
+            $img1 .= ' <div class="mySlides">
+
+         <div class="numbertext"></div>
+
+         <img src="' . asset('client_image/' . $image->images) . '" style="width:100%">
+
+         </div>';
+
+            $img2 .= ' <div class="column" id="remove-' . $image->id . '">
+
+         <img class="demo cursor" src="' . asset('client_image/' . $image->images) . '" style="width:100%" onclick="currentSlide(' . ++$key . ')" alt="The Woods">
+
+          <div class="outer-remove"><a class="inner-remove text-danger" href="javascript:void(0);" _id="' . $image->id . '" Title="Remove"><span class="mdi mdi-close-circle-outline mdi-18px"></span></a></div>
+
+         </div>';
+        }
+
+        $img .= '</div>';
+
+        return response(['img1' => $img1, 'img2' => $img2]);
+            // return response(['status' => true, 'record' => $record]);
+       
     }
 }

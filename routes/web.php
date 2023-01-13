@@ -67,6 +67,7 @@ Route::group(['prefix' => 'crm', 'middleware' => 'auth'], function () {
     Route::resource('tax', TaxController::class)->middleware('can:isAdmin');
 
     Route::get('product-view/{id}', [ProductController::class, 'viewProduct']);
+    Route::get('image/{id}', [ProductController::class, 'multiimage']);
     Route::post('product-update/{id}', [ProductController::class, 'sortupdate']);
 
     Route::resource('product', ProductController::class)->middleware('can:isAdmin');

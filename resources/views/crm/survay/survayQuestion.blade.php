@@ -285,14 +285,7 @@
                   </div>`;
       } else if (val == 'upload_image') {
         html += `<div id="Upload_Image" class="size_chart">
-        <div class="row">            
-        <div class="col-md-8 feedback-container">
-                      <div class="feedback-option mt-3">
-                        <input type="file" name="image" class="form-control">
-                        <span id="image_msg" class="text-danger"></span>
-                      </div>
-                    </div>
-
+                <div class="row"> 
                     <div class="col-md-4 mt-4 form-check">
                       <button type="submit" class="btn btn-sm btn-success" id="saveBtn" id="singleChoice"><x-icon type="save" />Save</button>
                       </div>

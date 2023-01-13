@@ -291,6 +291,9 @@
                     <label class="form-check-label">${option}</label>
                   </div>`;
             })
+            html +=`<a href="javascript:void(0)" class="edit text-info">
+                                            <x-icon type="edit" />
+                                        </a>`;
           } else if (val.survay_type == 'multi_choise') {
             $.each(val.data.option, (ind, option) => {
               let checked = (val.data.answer.hasOwnProperty(ind)) ? 'checked' : 'disabled'
