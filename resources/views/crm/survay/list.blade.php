@@ -45,7 +45,7 @@
                 <th scope="row">{{++$keys}}</th>
                 <td>{{ucwords($list->title)}}</td>
                 <td>{{ucwords(str_replace('_',' ',$list->type))}}</td>
-                <td>{{$list->description}}</td>
+                <td>{!! $list->description !!}</td>
 
                 <td>
                   <div class="action-group ">
@@ -267,6 +267,7 @@
       success: function(res) {
 
         let html = '';
+        let html1 = '';
         let record = res.record;
         if (record == '') {
           html += `<div class="row">
@@ -313,8 +314,8 @@
                     <label class="form-check-label">No</label>
                   </div>`;
           } else if (val.survay_type == 'rating') {
-
-            html += `
+            // ${val.data.rating ??''}
+            html1 += `
                   <div class="hello mt-0">
                     <div class="star-rating js-star-rating">
                       <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
@@ -322,14 +323,14 @@
                       <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
                       <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
                       <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
-                      <div class="current-rating current-rating--${val.data.rating ??''} js-current-rating"><i class="star-rating__star">AAA</i></div>
+                      <div class="current-rating current-rating-- js-current-rating"><i class="star-rating__star">AAA</i></div>
                     </div>
                   </div>`;
           } else if (val.survay_type == 'upload_image') {
 
             let image = (val.data != null) ? "{{asset('survay')}}/" + val.data.image : defaultImg('400x300');
             let src = image;
-            html += `<div class="all-feedback-img-option">
+            html1 += `<div class="all-feedback-img-option">
                     <img src="${src}" alt="">
                   </div>`;
           } else if (val.survay_type == 'subjective_question') {

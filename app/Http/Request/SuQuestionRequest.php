@@ -20,10 +20,12 @@ class SuQuestionRequest extends FormRequest
             'required'      => 'nullable|numeric|in:0,1',
             'survay_id'     => 'required',
             'survay_type'   => 'required|string|in:single_choise,multi_choise,yes_no,rating,upload_image,subjective_question',
-            'survay_question'=> 'required|string|max:500',
+            'survay_question' => 'required|string|max:500',
             'reward'        => 'required|numeric|min:1|max:3000',
-            'data'          => 'required|array',
         ];
+
+        if ($request->survay_type != 'upload_image' && $request->survay_type != 'rating' && $request->survay_type != 'subjective_question')
+            $rule['data'] = 'required|array';
 
         if ($request->survay_type == 'single_choise') {
             $rule['data.answer'] = 'nullable';
@@ -32,6 +34,9 @@ class SuQuestionRequest extends FormRequest
             $rule['data.answer'] = 'nullable';
             $rule['data.option.*'] = 'required';
         }
+        // } else if($request->survay_type =='upload_image') {
+        //     $rule['image'] = 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048';
+        // }
 
         return $rule;
     }

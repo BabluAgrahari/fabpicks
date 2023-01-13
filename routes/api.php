@@ -96,6 +96,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
     Route::controller(UserController::class)->group(function () {
         Route::post('user/{id}', 'update');
         Route::get('user/{id}', 'show');
+        Route::post('reward', 'storeReward');
     });
 
 
@@ -125,8 +126,9 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
         Route::get('survay', 'index');
         Route::get('survay/{id}', 'show');
-        Route::post('store-answer/{id}', 'storeAnswer');
+        Route::post('store-answer', 'storeAnswer');
         Route::get('survay/topics', 'topics');
+        Route::get('survay-report','survayReport');
     });
 
 

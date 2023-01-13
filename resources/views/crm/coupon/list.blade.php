@@ -25,10 +25,11 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Coupon Code</th>
                                 <th scope="col">Coupon Qty</th>
                                 <th scope="col">Expiry Time</th>
-                                <th scope="col">Amount</th>
+                                <th scope="col">Amount/Per</th>
                                 <th scope="col">Expiry Status</th>
                                 <th scope="col">Status</th>
                                 <th scope="col">Action</th>
@@ -38,10 +39,11 @@
                             @foreach($lists as $key=>$list)
                             <tr>
                                 <th scope="row">{{++$key}}</th>
+                                <td><img src="{{$list->image ?? defaultImg()}}" style="height:50px; width:60px;"></td>
                                 <td>{{$list->coupon_code}}</td>
                                 <td>{{$list->coupon_qty}}</td>
                                 <td>{{date('d-m-Y H:i A',$list->expiry)}}</td>
-                                <td>{{$list->amount}}</td>
+                                <td>{{$list->amount??$list->percentage.'%'}}</td>
                                 <td>@if($list->expiry_status)
                                     <span class="activeVer badge bg-success">Active</span>
                                     @else
@@ -98,10 +100,10 @@
                         </div>
 
                         <div class="field-group ">
-                                <label>Link</label>
-                                <input type="text" value="" name="link" id="link" class="form-control" placeholder="Enter Link">
-                                <span class="text-danger" id="link_msg"></span>
-                            </div>
+                            <label>Link</label>
+                            <input type="text" value="" name="link" id="link" class="form-control" placeholder="Enter Link">
+                            <span class="text-danger" id="link_msg"></span>
+                        </div>
 
 
                         <div class="row">
@@ -128,27 +130,27 @@
                                 <span class="text-danger" id="discount_type_msg"></span>
                             </div>
                             <div class="field-group col-md-6" id="amount">
-                                <label>Amount</label>
-                                <input type="text" name="amount" id="amount" class="form-control" placeholder="Amount">
+                                <label id="amoutnLabel">Amount</label>
+                                <input type="text" name="amount" id="amount_val" class="form-control" placeholder="Amount">
                                 <span class="text-danger" id="amount_msg"></span>
                             </div>
                         </div>
 
                         <div class="row">
-                        
-                        <div class="field-group col-md-7">
+
+                            <div class="field-group col-md-7">
                                 <label for="banner">Image</label>
                                 <input type="file" name="image" id="" class="imgInp form-control">
                                 <span class="text-danger" id="image_msg"></span>
                             </div>
                             <div class="field-group col-md-5"><img src="{{defaultImg('80x80')}}" id="avatar" style="width:80px; height:80px;"></div>
                         </div>
-                        
-                       
+
+
                         <div class="field-group">
                             <label>Description</label>
                             <textarea class="form-control" id="description" name="description"></textarea>
-                            <span class="text-danger" id="amount_msg"></span>
+                            <span class="text-danger" id="description_msg"></span>
                         </div>
 
                         <div class="field-group">
@@ -250,8 +252,10 @@
                 /*End Status message*/
 
                 //for reset all field
-                if (res.status)
-                    $('form#savecoupon').trigger('reset');
+                if (res.status) {
+                    if (!update)
+                        $('form#savecoupon').trigger('reset');
+                }
             }
         });
     });
@@ -272,10 +276,13 @@
 
                 if (res.status) {
                     $('#coupon_code').val(res.record.coupon_code);
-                    // $('#expiry').val(res.record.expiry);
-                    $('#amount').val(res.record.amount);
+                    let label = res.record.amount ? 'Amount' : 'Percentage(%)';
+                    let name = res.record.amount ? 'amount' : 'percentage';
+                    $('#amount_val').attr('name', name);
+                    $('#amoutnLabel').html(label);
+                    $('#amount_val').val(res.record.amount ?? res.record.percentage);
                     $('#coupon_qty').val(res.record.coupon_qty);
-                    $('#avatar').attr('src',res.record.image);
+                    $('#avatar').attr('src', res.record.image);
                     $('#status').val(res.record.status);
                     $('#description').val(res.record.description);
                     $('#discount_type').val(res.record.discount_type);
@@ -283,6 +290,8 @@
                     var now = new Date(res.record.expiry * 1000);
                     now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
                     $('#expiry').val(now.toISOString().slice(0, 16));
+
+                    $('#link').val(res.record.link);
 
                     $('#couponLabel').html('Edit Coupon');
                     $('#save').html(`<x-icon type="update"/>Update`);

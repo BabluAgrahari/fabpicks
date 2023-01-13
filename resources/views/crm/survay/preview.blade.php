@@ -1,3 +1,4 @@
+<?php //print_r($list->toArray()); die;?>
 @switch($list->survay_type)
 @case('single_choise')
 
@@ -79,16 +80,7 @@
 <div class="question-box mb-2">
     <span>Q-{{$counter}} {{$list->survay_question}}&nbsp;{{ ($list->required)?'(Required)':''}}</span>
     <div class="ans-group">
-        <div class="hello mt-0">
-            <div class="star-rating js-star-rating">
-                <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
-                <input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
-                <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
-                <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
-                <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
-                <div class="current-rating current-rating--{{$list->data['rating']}} js-current-rating"><i class="star-rating__star">AAA</i></div>
-            </div>
-        </div>
+        
 
         <div class="ans-group-action">
             <!-- <button class="ans-edit-btn ans-btn"><i class="ri-pencil-line"></i></button> -->
@@ -105,9 +97,9 @@
 <div class="question-box mb-2">
     <span>Q-{{$counter}} {{$list->survay_question}}&nbsp;{{ ($list->required)?'(Required)':''}}</span>
     <div class="ans-group">
-        <div class="all-feedback-img-option">
-            <img src="{{$list->data['image'] ?? defaultImg('400x300')}}" alt="">
-        </div>
+        <!-- <div class="all-feedback-img-option">
+            <img src="$list->data['image'] ?? defaultImg('400x300')" alt="">
+        </div> -->
 
         <div class="ans-group-action">
             <!-- <button class="ans-edit-btn ans-btn"><i class="ri-pencil-line"></i></button> -->
@@ -135,3 +127,14 @@
 @default
 <span class="status">Trash</span>
 @endswitch
+
+<!-- <div class="hello mt-0">
+            <div class="star-rating js-star-rating">
+                <input class="star-rating__input" type="radio" name="rating" value="1"><i class="star-rating__star"></i>
+                <input class="star-rating__input" type="radio" name="rating" value="2"><i class="star-rating__star"></i>
+                <input class="star-rating__input" type="radio" name="rating" value="3"><i class="star-rating__star"></i>
+                <input class="star-rating__input" type="radio" name="rating" value="4"><i class="star-rating__star"></i>
+                <input class="star-rating__input" type="radio" name="rating" value="5"><i class="star-rating__star"></i>
+                <div class="current-rating current-rating--$list->data['rating'] js-current-rating"><i class="star-rating__star">AAA</i></div>
+            </div>
+        </div> -->
